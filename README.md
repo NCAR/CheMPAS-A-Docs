@@ -26,4 +26,16 @@ python -m sphinx -W --keep-going -b linkcheck docs docs/_build/linkcheck
 The HTML entry point is `docs/_build/html/index.html`. Build products are not
 committed.
 
+## Read the Docs Deployment
+
+The Read the Docs project slug `chempas-a` must use:
+
+- repository URL: `https://github.com/NCAR/CheMPAS-A-Docs`
+- default branch: `main`
+- configuration file: `.readthedocs.yaml`
+
+After changing the repository or branch in the Read the Docs project settings,
+resynchronize the project's versions and rebuild `latest`. Subsequent pushes to
+`main` should build through the repository integration.
+
 See [LICENSE](LICENSE) for the project license.
