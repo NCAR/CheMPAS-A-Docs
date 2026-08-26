@@ -1,0 +1,132 @@
+{
+  "external_inventory": {
+    "artifact_id": "cams-glob-ant-v6.2-x1.40962-miem-inventory",
+    "logical_path": "inventory/cams-glob-ant-v6.2-x1.40962/miem_inventory.cams-glob-ant-v6.2-x1.40962.nc",
+    "manifest_id": "cams-glob-ant-v6.2-nox-x1.40962-2024-07",
+    "sha256": "d213866000e8a633954d0c730ba5524f729f26a97d02cc5a13d8b405aa6c8e9c",
+    "size_bytes": 20758020
+  },
+  "figures": {
+    "diurnal_structure": {
+      "pdf": {
+        "path": "stage9d_diurnal_structure.pdf",
+        "sha256": "6fb947333faf1d86f7e2218060a3253030b93d785ecc4d021126ebde3a2e075f",
+        "size_bytes": 34250
+      },
+      "png": {
+        "path": "stage9d_diurnal_structure.png",
+        "sha256": "0feea32fe94905431a19ea1c5508609c58803e7dedd2526e35d8226c7f6af2ae",
+        "size_bytes": 652144
+      }
+    },
+    "global_emissions_response": {
+      "pdf": {
+        "path": "stage9d_global_emissions_response.pdf",
+        "sha256": "0738ea39acae14d8ccf94fc7654fb918daf6cb0f50c86311a652f8d884ec0274",
+        "size_bytes": 6011905
+      },
+      "png": {
+        "path": "stage9d_global_emissions_response.png",
+        "sha256": "a7bf2377ce66a6aceb8e0ef0288fe717853878e1afaa470d8e00bcf7c236a8ca",
+        "size_bytes": 7610684
+      }
+    },
+    "noy_budget": {
+      "pdf": {
+        "path": "stage9d_noy_budget.pdf",
+        "sha256": "9f83558ac24fe768e7f941d761ab1a4553902144238d1f1f869f934e6bf57ad7",
+        "size_bytes": 27554
+      },
+      "png": {
+        "path": "stage9d_noy_budget.png",
+        "sha256": "d512a061d11aab3eeb80d86a3921bea227b5b6cf9247a4628bbea278838004a3",
+        "size_bytes": 513827
+      }
+    }
+  },
+  "inputs": {
+    "a1_report": {
+      "path": "docs/chempas/musica/global-runs/stage9d-a1-report.json",
+      "sha256": "82285dbb55142ca0e6615afa5ea647ec40c8b11875a70987a57cdc0a73f768da",
+      "size_bytes": 962442
+    },
+    "external_input_manifest": {
+      "path": "test_cases/global_miem/external-inputs.cams-glob-ant-v6.2-2024-07.json",
+      "sha256": "6d5be3455a2f827b2e1013ae0c6f5fdf82699657b7508f527172ed872e0ce9ed",
+      "size_bytes": 22725
+    },
+    "final_control_history": {
+      "path": "runs/stage9d/a1-20260806T171217Z-3866a7401b/no_miem_control/history.2024-07-02_00.00.00.nc",
+      "sha256": "396c8027cdab7d45c8d910fc9b6e6ecf60a748a857d8c765bdd2bc4ec7a6b51e",
+      "size_bytes": 172542636
+    },
+    "final_enabled_history": {
+      "path": "runs/stage9d/a1-20260806T171217Z-3866a7401b/continuous/history.2024-07-02_00.00.00.nc",
+      "sha256": "d8d4bce3131309f0226f506602427abf56e12ee0e18ef52c16767fb973354212",
+      "size_bytes": 176476976
+    },
+    "plot_script": {
+      "path": "scripts/plot_global_miem_science.py",
+      "sha256": "6957cafb5d3cbfc8fa48316099d39020ce757e3f0cdc507c421a5c6869e734e6",
+      "size_bytes": 41182
+    },
+    "plot_style": {
+      "path": "scripts/style.py",
+      "sha256": "fdcc750fa00c68643d1c0409979258b4b6c88cc16884d161c3b57b2cadab8622",
+      "size_bytes": 13898
+    }
+  },
+  "overall_pass": true,
+  "rendering": {
+    "dense_spatial_artists_rasterized_in_pdf": true,
+    "dpi": 300,
+    "explicit_physical_units": true,
+    "formats": [
+      "png",
+      "pdf"
+    ],
+    "style": "scripts/style.py NCAR default"
+  },
+  "run": {
+    "cells": 40962,
+    "chempas_commit": "3866a7401bc9158190ede7c61d1c566ca94d9da7",
+    "executable_sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+    "hourly_frames": 25,
+    "miem_commit": "9fdf14a189262eecb677862d877ab72b06c95e21",
+    "mpi_ranks": 8,
+    "musica_commit": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc",
+    "scenario_id": "A1",
+    "scenario_name": "a1_diurnal_science",
+    "start_time": "2024-07-01_00:00:00",
+    "stop_time": "2024-07-02_00:00:00",
+    "vertical_levels": 26
+  },
+  "schema_version": "chempas-global-miem-science-figure-manifest-v1",
+  "selections": {
+    "response_column_method": "sum(q_species * rho_zz / rdzw) / species_molar_mass",
+    "spatial_fields": [
+      "emis_NO",
+      "emis_NO2",
+      "enabled-control column qNO",
+      "enabled-control column qNO2"
+    ],
+    "spatial_frame": "2024-07-02_00:00:00",
+    "time_series": "all 25 accepted hourly frames"
+  },
+  "validation": {
+    "a1_overall_pass": true,
+    "concentration_interpretation": "software acceptance; date-matched meteorology with an idealized, not chemically spun-up Chapman-NOx background",
+    "continuous_peak_rss_kib": 1044480,
+    "continuous_wall_seconds": 1815.82,
+    "external_manifest_hash_match": true,
+    "final_emitted_noy_moles": 6774776721.057326,
+    "final_enabled_minus_control_noy_moles": 6774776720.960083,
+    "final_response_relative_residual": 1.4353728989878728e-11,
+    "meteorology_control_bitwise_equal": true,
+    "packaged_inventory_record_match": true,
+    "passing_assertion_count": 47,
+    "restart_equivalence_pass": true,
+    "science_distribution_audit_pass": true,
+    "selected_history_hashes_match": true
+  }
+}

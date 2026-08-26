@@ -1,0 +1,526 @@
+{
+  "assertions": {
+    "declared_sum_matches_retained_sectors": true,
+    "finite_nonnegative_complete": true,
+    "global_grid_area": true,
+    "time_count": true
+  },
+  "inventory": {
+    "path": "raw/cams-glob-ant-v6.2/CAMS-GLOB-ANT_Glb_0.1x0.1_anthro_nox_v6.2_2024-07_2024-08.nc",
+    "sha256": "2687ea4f95161119f3e7962f65a1026898a6c3730d509001ef30190fdd83b032",
+    "size_bytes": 95931202
+  },
+  "mapping": {
+    "NO2_mass_multiplier_per_kg_NO_equivalent": 0.1036036036036036,
+    "NO_mass_multiplier_per_kg_NO_equivalent": 0.9324324324324323,
+    "conservation_constraint": "elemental nitrogen molar flux",
+    "native_basis": "NOx expressed as nitric oxide (30 g mol-1)",
+    "published_mass_fractions": {
+      "NO": 0.9,
+      "NO2": 0.1
+    }
+  },
+  "native_grid": {
+    "earth_radius_m": 6371229.0,
+    "integrated_area_m2": 510101140207790.44,
+    "latitude_cells": 1800,
+    "longitude_cells": 3600,
+    "sphere_area_relative_error": 2.3279697032558434e-15
+  },
+  "overall_pass": true,
+  "schema_version": "chempas-global-miem-inventory-audit-v1",
+  "times": [
+    {
+      "explicit_species_mapping": {
+        "NO2_kg_s-1": 243.75745864439946,
+        "NO_kg_s-1": 2193.8171277995953,
+        "explicit_N_mol_s-1": 78426.31278124158,
+        "native_N_mol_s-1": 78426.31278124158,
+        "nitrogen_relative_difference": 0.0
+      },
+      "fields": {
+        "agl": {
+          "global_Tg_NO_equivalent_yr-1": 0.33330393044948287,
+          "global_Tg_N_yr-1": 0.15554183420975867,
+          "global_kg_s-1": 10.561981095306127,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.06526774496595043,
+            "northern_midlatitudes": 6.992400942648766,
+            "northern_tropics": 2.5034579729243616,
+            "southern_midlatitudes": 0.0674124437991,
+            "southern_tropics": 0.9334419909679483
+          },
+          "native_flux_max_kg_m-2_s-1": 1.455992271193196e-10,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 1353458
+        },
+        "ags": {
+          "global_Tg_NO_equivalent_yr-1": 2.3322363394289134,
+          "global_Tg_N_yr-1": 1.08837695840016,
+          "global_kg_s-1": 73.90562749624596,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.16246586087959086,
+            "northern_midlatitudes": 35.726119896706344,
+            "northern_tropics": 26.14241789861949,
+            "southern_midlatitudes": 2.9834194908613405,
+            "southern_tropics": 8.891204349179194
+          },
+          "native_flux_max_kg_m-2_s-1": 3.935582970626683e-10,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 1406769
+        },
+        "awb": {
+          "global_Tg_NO_equivalent_yr-1": 1.6840275851464317,
+          "global_Tg_N_yr-1": 0.7858795397350015,
+          "global_kg_s-1": 53.3647097839624,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.021918730709909514,
+            "northern_midlatitudes": 7.6071389523406445,
+            "northern_tropics": 30.574084648945703,
+            "southern_midlatitudes": 2.8530472253999473,
+            "southern_tropics": 12.308520226566188
+          },
+          "native_flux_max_kg_m-2_s-1": 1.0720972720701383e-10,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 662806
+        },
+        "com": {
+          "global_Tg_NO_equivalent_yr-1": 0.7597692964963407,
+          "global_Tg_N_yr-1": 0.3545590050316257,
+          "global_kg_s-1": 24.076130562176626,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.07175068603624071,
+            "northern_midlatitudes": 11.883815352480582,
+            "northern_tropics": 7.657975421817219,
+            "southern_midlatitudes": 1.5795591316640396,
+            "southern_tropics": 2.883029970178545
+          },
+          "native_flux_max_kg_m-2_s-1": 2.5875121489882247e-10,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 669329
+        },
+        "ene": {
+          "global_Tg_NO_equivalent_yr-1": 18.569122693264454,
+          "global_Tg_N_yr-1": 8.665590590190076,
+          "global_kg_s-1": 588.4320733277552,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 5.39851091363447,
+            "northern_midlatitudes": 269.6003828859537,
+            "northern_tropics": 245.64639796760832,
+            "southern_midlatitudes": 13.263943133610919,
+            "southern_tropics": 54.5228384269479
+          },
+          "native_flux_max_kg_m-2_s-1": 4.546066634247836e-08,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 36958
+        },
+        "fef": {
+          "global_Tg_NO_equivalent_yr-1": 0.13373498684878113,
+          "global_Tg_N_yr-1": 0.0624096605294312,
+          "global_kg_s-1": 4.237893027462891,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.21062367402585302,
+            "northern_midlatitudes": 2.2268148973922854,
+            "northern_tropics": 1.5337255191128027,
+            "southern_midlatitudes": 0.01947658554869803,
+            "southern_tropics": 0.24725235138325116
+          },
+          "native_flux_max_kg_m-2_s-1": 2.4007171806061933e-09,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 15508
+        },
+        "ind": {
+          "global_Tg_NO_equivalent_yr-1": 13.9074539122882,
+          "global_Tg_N_yr-1": 6.490145159067827,
+          "global_kg_s-1": 440.70967032203237,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 2.919823986184402,
+            "northern_midlatitudes": 225.19631047218013,
+            "northern_tropics": 163.23817133643436,
+            "southern_midlatitudes": 7.72208278222804,
+            "southern_tropics": 41.63328174500545
+          },
+          "native_flux_max_kg_m-2_s-1": 9.137635714751013e-08,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 302630
+        },
+        "ref": {
+          "global_Tg_NO_equivalent_yr-1": 1.6826663484380235,
+          "global_Tg_N_yr-1": 0.7852442959377444,
+          "global_kg_s-1": 53.32157390986378,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.49997965100079206,
+            "northern_midlatitudes": 29.497128685520586,
+            "northern_tropics": 9.844882780151034,
+            "southern_midlatitudes": 3.0474080369785743,
+            "southern_tropics": 10.432174756212794
+          },
+          "native_flux_max_kg_m-2_s-1": 1.393621484879759e-08,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 291539
+        },
+        "res": {
+          "global_Tg_NO_equivalent_yr-1": 1.5467980998894546,
+          "global_Tg_N_yr-1": 0.7218391132817454,
+          "global_kg_s-1": 49.01608051022971,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.09059337139475239,
+            "northern_midlatitudes": 12.717553926652052,
+            "northern_tropics": 26.418223004287068,
+            "southern_midlatitudes": 2.304861917152034,
+            "southern_tropics": 7.48484829074382
+          },
+          "native_flux_max_kg_m-2_s-1": 3.8410041813818907e-10,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 669329
+        },
+        "shp": {
+          "global_Tg_NO_equivalent_yr-1": 11.930566192948326,
+          "global_Tg_N_yr-1": 5.56759755670922,
+          "global_kg_s-1": 378.0645923265443,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.012946277077816638,
+            "arctic": 4.625222408478116,
+            "northern_midlatitudes": 155.77946244245686,
+            "northern_tropics": 157.9820072239434,
+            "southern_midlatitudes": 13.959654086673481,
+            "southern_tropics": 45.70529988791455
+          },
+          "native_flux_max_kg_m-2_s-1": 3.3040654656701918e-09,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 2112125
+        },
+        "sum": {
+          "global_Tg_NO_equivalent_yr-1": 74.2468616392388,
+          "global_Tg_N_yr-1": 34.648535431644774,
+          "global_kg_s-1": 2352.789383437247,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.012946277077816638,
+            "arctic": 19.850509871557666,
+            "northern_midlatitudes": 1116.9928106131729,
+            "northern_tropics": 897.96714173994,
+            "southern_midlatitudes": 64.92214645102501,
+            "southern_tropics": 253.04382848447375
+          },
+          "native_flux_max_kg_m-2_s-1": 1.0531782379530341e-07,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 3498688
+        },
+        "swd": {
+          "global_Tg_NO_equivalent_yr-1": 0.06791076610466533,
+          "global_Tg_N_yr-1": 0.03169169084884382,
+          "global_kg_s-1": 2.1520065088879727,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.06574552452798127,
+            "northern_midlatitudes": 1.4697291390381966,
+            "northern_tropics": 0.43774550003240653,
+            "southern_midlatitudes": 0.004980974403781406,
+            "southern_tropics": 0.17380537088560738
+          },
+          "native_flux_max_kg_m-2_s-1": 1.367713164945883e-09,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 152679
+        },
+        "tnr": {
+          "global_Tg_NO_equivalent_yr-1": 1.1828076450599248,
+          "global_Tg_N_yr-1": 0.5519769010279649,
+          "global_kg_s-1": 37.481682168161385,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.6550028747740153,
+            "northern_midlatitudes": 26.118463848535463,
+            "northern_tropics": 7.702767627488573,
+            "southern_midlatitudes": 1.1417882185633557,
+            "southern_tropics": 1.863659598799987
+          },
+          "native_flux_max_kg_m-2_s-1": 2.909160412567502e-10,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 373012
+        },
+        "tro": {
+          "global_Tg_NO_equivalent_yr-1": 20.116463870286996,
+          "global_Tg_N_yr-1": 9.387683139467264,
+          "global_kg_s-1": 637.4653632672444,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 5.063604344423759,
+            "northern_midlatitudes": 332.1774900777534,
+            "northern_tropics": 218.2852849302914,
+            "southern_midlatitudes": 15.974512100068939,
+            "southern_tropics": 65.96447181470683
+          },
+          "native_flux_max_kg_m-2_s-1": 2.65232014129424e-09,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 448275
+        }
+      },
+      "sector_sum_closure": {
+        "declared_sum_kg_s-1": 2352.789383437247,
+        "difference_kg_s-1": -8.686256478540599e-07,
+        "maximum_cell_absolute_difference_kg_m-2_s-1": 6.876469375639599e-15,
+        "maximum_cell_relative_difference": 2.4171545410959875e-07,
+        "passed": true,
+        "reconstructed_sum_kg_s-1": 2352.7893843058728,
+        "relative_difference": 3.6918971751949326e-10,
+        "tolerance_relative": 5e-06
+      },
+      "time": "2024-07-01T00:00:00Z"
+    },
+    {
+      "explicit_species_mapping": {
+        "NO2_kg_s-1": 240.93988342577228,
+        "NO_kg_s-1": 2168.4589508319505,
+        "explicit_N_mol_s-1": 77519.78858046586,
+        "native_N_mol_s-1": 77519.78858046587,
+        "nitrogen_relative_difference": 1.8771871666370583e-16
+      },
+      "fields": {
+        "agl": {
+          "global_Tg_NO_equivalent_yr-1": 0.3344710744816371,
+          "global_Tg_N_yr-1": 0.15608650142476402,
+          "global_kg_s-1": 10.598966417340849,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.06540008411066853,
+            "northern_midlatitudes": 7.0033861592329725,
+            "northern_tropics": 2.4812603485113365,
+            "southern_midlatitudes": 0.07642741117433251,
+            "southern_tropics": 0.9724924143115389
+          },
+          "native_flux_max_kg_m-2_s-1": 1.4280156224177887e-10,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 1353458
+        },
+        "ags": {
+          "global_Tg_NO_equivalent_yr-1": 2.3322363394289134,
+          "global_Tg_N_yr-1": 1.08837695840016,
+          "global_kg_s-1": 73.90562749624596,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.16246586087959086,
+            "northern_midlatitudes": 35.726119896706344,
+            "northern_tropics": 26.14241789861949,
+            "southern_midlatitudes": 2.9834194908613405,
+            "southern_tropics": 8.891204349179194
+          },
+          "native_flux_max_kg_m-2_s-1": 3.935582970626683e-10,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 1406769
+        },
+        "awb": {
+          "global_Tg_NO_equivalent_yr-1": 1.3658867507777257,
+          "global_Tg_N_yr-1": 0.6374138170296054,
+          "global_kg_s-1": 43.283228075313666,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.03531726707944327,
+            "northern_midlatitudes": 7.053521072617665,
+            "northern_tropics": 22.016655254388457,
+            "southern_midlatitudes": 1.2859881213709419,
+            "southern_tropics": 12.891746359857152
+          },
+          "native_flux_max_kg_m-2_s-1": 1.287452783271803e-10,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 665275
+        },
+        "com": {
+          "global_Tg_NO_equivalent_yr-1": 0.7449037393518391,
+          "global_Tg_N_yr-1": 0.34762174503085824,
+          "global_kg_s-1": 23.605059809066447,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.07828410861851634,
+            "northern_midlatitudes": 11.913829442237613,
+            "northern_tropics": 7.655027589609787,
+            "southern_midlatitudes": 1.3771743023297138,
+            "southern_tropics": 2.5807443662708214
+          },
+          "native_flux_max_kg_m-2_s-1": 2.5875121489882247e-10,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 669329
+        },
+        "ene": {
+          "global_Tg_NO_equivalent_yr-1": 18.437641395242466,
+          "global_Tg_N_yr-1": 8.604232651113149,
+          "global_kg_s-1": 584.2655968562003,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 5.518904418908791,
+            "northern_midlatitudes": 267.7020949684164,
+            "northern_tropics": 245.54426237467544,
+            "southern_midlatitudes": 12.801117190298541,
+            "southern_tropics": 52.69921790390106
+          },
+          "native_flux_max_kg_m-2_s-1": 4.391962704630714e-08,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 36958
+        },
+        "fef": {
+          "global_Tg_NO_equivalent_yr-1": 0.13373498684878113,
+          "global_Tg_N_yr-1": 0.0624096605294312,
+          "global_kg_s-1": 4.237893027462891,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.21062367402585302,
+            "northern_midlatitudes": 2.2268148973922854,
+            "northern_tropics": 1.5337255191128027,
+            "southern_midlatitudes": 0.01947658554869803,
+            "southern_tropics": 0.24725235138325116
+          },
+          "native_flux_max_kg_m-2_s-1": 2.4007171806061933e-09,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 15508
+        },
+        "ind": {
+          "global_Tg_NO_equivalent_yr-1": 13.529720890822778,
+          "global_Tg_N_yr-1": 6.313869749050631,
+          "global_kg_s-1": 428.73978737942684,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 3.0006329282964455,
+            "northern_midlatitudes": 216.47443512629863,
+            "northern_tropics": 159.73478920685005,
+            "southern_midlatitudes": 7.715186486318615,
+            "southern_tropics": 41.81474363166309
+          },
+          "native_flux_max_kg_m-2_s-1": 8.71751453246361e-08,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 302630
+        },
+        "ref": {
+          "global_Tg_NO_equivalent_yr-1": 1.6826663484380235,
+          "global_Tg_N_yr-1": 0.7852442959377444,
+          "global_kg_s-1": 53.32157390986378,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.49997965100079206,
+            "northern_midlatitudes": 29.497128685520586,
+            "northern_tropics": 9.844882780151034,
+            "southern_midlatitudes": 3.0474080369785743,
+            "southern_tropics": 10.432174756212794
+          },
+          "native_flux_max_kg_m-2_s-1": 1.393621484879759e-08,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 291539
+        },
+        "res": {
+          "global_Tg_NO_equivalent_yr-1": 1.5058886548286683,
+          "global_Tg_N_yr-1": 0.7027480389200452,
+          "global_kg_s-1": 47.71971180323969,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.10461999343320896,
+            "northern_midlatitudes": 12.771383909023772,
+            "northern_tropics": 26.380129570667382,
+            "southern_midlatitudes": 1.880090538631986,
+            "southern_tropics": 6.58348779148335
+          },
+          "native_flux_max_kg_m-2_s-1": 2.3295351758712e-10,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 669329
+        },
+        "shp": {
+          "global_Tg_NO_equivalent_yr-1": 11.957723396261352,
+          "global_Tg_N_yr-1": 5.580270918255299,
+          "global_kg_s-1": 378.9251698409071,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.03137990847524026,
+            "arctic": 4.79999888785144,
+            "northern_midlatitudes": 154.48303151165834,
+            "northern_tropics": 158.9822315249496,
+            "southern_midlatitudes": 14.002364398866693,
+            "southern_tropics": 46.62616360910575
+          },
+          "native_flux_max_kg_m-2_s-1": 3.2434428476335597e-09,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 2149886
+        },
+        "sum": {
+          "global_Tg_NO_equivalent_yr-1": 73.3886474185173,
+          "global_Tg_N_yr-1": 34.24803546197473,
+          "global_kg_s-1": 2325.593657413976,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.03137990847524026,
+            "arctic": 20.384749480694488,
+            "northern_midlatitudes": 1103.7390813729148,
+            "northern_tropics": 886.5600656275645,
+            "southern_midlatitudes": 62.6199049521445,
+            "southern_tropics": 252.2584760721825
+          },
+          "native_flux_max_kg_m-2_s-1": 1.0111637038789922e-07,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 3534703
+        },
+        "swd": {
+          "global_Tg_NO_equivalent_yr-1": 0.06791076610466533,
+          "global_Tg_N_yr-1": 0.03169169084884382,
+          "global_kg_s-1": 2.1520065088879727,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.06574552452798127,
+            "northern_midlatitudes": 1.4697291390381966,
+            "northern_tropics": 0.43774550003240653,
+            "southern_midlatitudes": 0.004980974403781406,
+            "southern_tropics": 0.17380537088560738
+          },
+          "native_flux_max_kg_m-2_s-1": 1.367713164945883e-09,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 152679
+        },
+        "tnr": {
+          "global_Tg_NO_equivalent_yr-1": 1.1794386727037045,
+          "global_Tg_N_yr-1": 0.5504047139283955,
+          "global_kg_s-1": 37.37492368412845,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 0.6653532748498823,
+            "northern_midlatitudes": 25.883145547249576,
+            "northern_tropics": 7.775138679354457,
+            "southern_midlatitudes": 1.1536926196427637,
+            "southern_tropics": 1.8975935630317697
+          },
+          "native_flux_max_kg_m-2_s-1": 2.909160412567502e-10,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 373012
+        },
+        "tro": {
+          "global_Tg_NO_equivalent_yr-1": 20.116424419117806,
+          "global_Tg_N_yr-1": 9.387664728921642,
+          "global_kg_s-1": 637.4641131094602,
+          "latitude_region_kg_s-1": {
+            "antarctic": 0.0,
+            "arctic": 5.1774239792832,
+            "northern_midlatitudes": 331.53446178131134,
+            "northern_tropics": 218.0317989977865,
+            "southern_midlatitudes": 16.27257856784881,
+            "southern_tropics": 66.44784978323037
+          },
+          "native_flux_max_kg_m-2_s-1": 2.5887278987113405e-09,
+          "native_flux_min_kg_m-2_s-1": 0.0,
+          "nonzero_cells": 448275
+        }
+      },
+      "sector_sum_closure": {
+        "declared_sum_kg_s-1": 2325.593657413976,
+        "difference_kg_s-1": -5.035681169829331e-07,
+        "maximum_cell_absolute_difference_kg_m-2_s-1": 5.30238569810957e-15,
+        "maximum_cell_relative_difference": 2.495764593664839e-07,
+        "passed": true,
+        "reconstructed_sum_kg_s-1": 2325.593657917544,
+        "relative_difference": 2.1653314859092497e-10,
+        "tolerance_relative": 5e-06
+      },
+      "time": "2024-08-01T00:00:00Z"
+    }
+  ]
+}

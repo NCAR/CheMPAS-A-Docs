@@ -1,0 +1,110 @@
+{
+  "assertions": {
+    "declared_sum_matches_all_sectors": true,
+    "finite_nonnegative_complete": true,
+    "global_grid_area": true,
+    "two_monthly_brackets": true
+  },
+  "inventory": {
+    "path": "raw/cams-glob-ant-v6.2/CAMS-GLOB-ANT_Glb_0.1x0.1_anthro_ch4_v6.2_2024-07_2024-08.nc",
+    "sha256": "583bcec11a215e63f3cecf7a81675b60ef02ce889d6fa4edf01c2427a74514ba",
+    "size_bytes": 101336259
+  },
+  "mapping": {
+    "emitted_fields": [
+      "agl",
+      "ags",
+      "awb",
+      "com",
+      "ene",
+      "fef",
+      "ind",
+      "ref",
+      "res",
+      "shp",
+      "swd",
+      "tnr",
+      "tro",
+      "fef_coal",
+      "fef_gas",
+      "fef_oil"
+    ],
+    "fugitive_sector_semantics": "provider sum includes fef, fef_coal, fef_gas, and fef_oil as distinct fields",
+    "native_molar_mass_kg_mol-1": 0.016,
+    "native_species": "CH4"
+  },
+  "native_grid": {
+    "earth_radius_m": 6371229.0,
+    "latitude_cells": 1800,
+    "longitude_cells": 3600,
+    "sphere_area_relative_error": 2.3279697032558434e-15
+  },
+  "overall_pass": true,
+  "schema_version": "chempas-global-methane-anthropogenic-audit-v1",
+  "times": [
+    {
+      "field_totals_kg_s-1": {
+        "agl": 3819.7677152349684,
+        "ags": 2360.6363450669496,
+        "awb": 81.27959365093935,
+        "com": 16.601877892749215,
+        "ene": 16.78458263602187,
+        "fef": 4.863683874246432,
+        "fef_coal": 1225.2146576042055,
+        "fef_gas": 1360.1179326881925,
+        "fef_oil": 1021.2097102234949,
+        "ind": 37.80440496850582,
+        "ref": 202.78871669274207,
+        "res": 281.9749968731157,
+        "shp": 6.570678150067146,
+        "sum": 13099.071358155321,
+        "swd": 2630.7545539446455,
+        "tnr": 0.2835946904434068,
+        "tro": 32.41831837126563
+      },
+      "global_Tg_CH4_yr-1": 413.3667660938823,
+      "global_kg_s-1": 13099.071358155321,
+      "global_mol_CH4_s-1": 818691.9598847076,
+      "sector_sum_closure": {
+        "declared_kg_s-1": 13099.071358155321,
+        "passed": true,
+        "reconstructed_all_sectors_kg_s-1": 13099.071362562556,
+        "relative_difference": 3.3645399450973876e-10,
+        "tolerance_relative": 5e-06
+      },
+      "time": "2024-07-01T00:00:00Z"
+    },
+    {
+      "field_totals_kg_s-1": {
+        "agl": 3819.7677152349684,
+        "ags": 2391.3810201213955,
+        "awb": 65.42626232237335,
+        "com": 16.401634959859564,
+        "ene": 16.725534091042036,
+        "fef": 4.863683874246432,
+        "fef_coal": 1225.2146576042055,
+        "fef_gas": 1360.1179326881925,
+        "fef_oil": 1021.2097102234949,
+        "ind": 36.76305586365855,
+        "ref": 202.78871669274207,
+        "res": 277.3764695752167,
+        "shp": 6.348360821764532,
+        "sum": 13108.221335509466,
+        "swd": 2630.7545539446455,
+        "tnr": 0.2824901338535145,
+        "tro": 32.79954358551739
+      },
+      "global_Tg_CH4_yr-1": 413.65551149004807,
+      "global_kg_s-1": 13108.221335509466,
+      "global_mol_CH4_s-1": 819263.8334693416,
+      "sector_sum_closure": {
+        "declared_kg_s-1": 13108.221335509466,
+        "passed": true,
+        "reconstructed_all_sectors_kg_s-1": 13108.221341737175,
+        "relative_difference": 4.7509943739263e-10,
+        "tolerance_relative": 5e-06
+      },
+      "time": "2024-08-01T00:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,3778 @@
+{
+  "assertions": [
+    {
+      "detail": "emissions/reference branch area, vertical metric, pressure, and density are bitwise identical",
+      "name": "paired_meteorology_identity",
+      "passed": true
+    },
+    {
+      "detail": "70/70 hard range checks pass",
+      "name": "finite_nonnegative_physical_state",
+      "passed": true
+    },
+    {
+      "detail": "44/44 deliberately broad screening envelopes pass",
+      "name": "reference_anchored_plausibility_screen",
+      "passed": true
+    },
+    {
+      "detail": "every species reports the unqualified pressure <150 hPa column separately",
+      "name": "upper_column_exposed",
+      "passed": true
+    },
+    {
+      "detail": "R3/F3 reports passed plotter provenance, duration, inventory, executable, and history-hash checks",
+      "name": "passed_promotable_same_provenance_inputs",
+      "passed": true
+    }
+  ],
+  "bands": {
+    "above_150_hpa": {
+      "interpretation": "unqualified upper column; stability checks only",
+      "pressure_maximum_pa": 15000.0,
+      "pressure_minimum_pa": null
+    },
+    "diagnostic_troposphere": {
+      "interpretation": "full fixed-pressure tropospheric diagnostic domain",
+      "pressure_maximum_pa": null,
+      "pressure_minimum_pa": 15000.0
+    },
+    "lower_troposphere": {
+      "interpretation": "lower and middle troposphere at or below about 500 hPa",
+      "pressure_maximum_pa": null,
+      "pressure_minimum_pa": 50000.0
+    },
+    "upper_troposphere": {
+      "interpretation": "150-500 hPa upper-tropospheric diagnostic band",
+      "pressure_maximum_pa": 50000.0,
+      "pressure_minimum_pa": 15000.0
+    }
+  },
+  "figures": {
+    "pdf": {
+      "path": "global_tropo_concentration_ranges.pdf",
+      "sha256": "fb80213c9b9fcdad1169b8867e6159ed4c7c0d2073f0908c5d3645639f292bd8",
+      "size_bytes": 35445
+    },
+    "png": {
+      "path": "global_tropo_concentration_ranges.png",
+      "sha256": "a9140bef58b7744af1d5f55c0f8ca930b6fe47a334b00d99138f124c13ae5acb",
+      "size_bytes": 493713
+    }
+  },
+  "hard_bound_checks": [
+    {
+      "allowed_maximum": 120000.0,
+      "allowed_minimum": 1.0,
+      "band": "full_column",
+      "metric": "dry_air_pressure_range",
+      "observed_maximum": 103156.48410994538,
+      "observed_minimum": 72.59130084798056,
+      "passed": true,
+      "species": "dry_air",
+      "state": "reduced_continuous"
+    },
+    {
+      "allowed_maximum": 2.5,
+      "allowed_minimum": 1e-07,
+      "band": "full_column",
+      "metric": "dry_air_density_range",
+      "observed_maximum": 1.4354015749952882,
+      "observed_minimum": 0.0010075785926010033,
+      "passed": true,
+      "species": "dry_air",
+      "state": "reduced_continuous"
+    },
+    {
+      "allowed_maximum": 550000000000000.0,
+      "allowed_minimum": 450000000000000.0,
+      "band": "global_column",
+      "metric": "global_mesh_area",
+      "observed": 510101127769088.0,
+      "passed": true,
+      "species": "dry_air",
+      "state": "reduced_continuous"
+    },
+    {
+      "allowed_maximum": 6e+18,
+      "allowed_minimum": 4e+18,
+      "band": "global_column",
+      "metric": "global_dry_air_mass",
+      "observed": 5.111229491069485e+18,
+      "passed": true,
+      "species": "dry_air",
+      "state": "reduced_continuous"
+    },
+    {
+      "allowed_maximum": 115000.0,
+      "allowed_minimum": 80000.0,
+      "band": "global_column",
+      "metric": "hydrostatic_equivalent_pressure",
+      "observed": 98262.94426717413,
+      "passed": true,
+      "species": "dry_air",
+      "state": "reduced_continuous"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 8.029769316843766e-08,
+      "observed_minimum": 3.7813291730449867e-93,
+      "passed": true,
+      "species": "NO",
+      "state": "reduced_continuous"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 3.9767872532091726e-08,
+      "observed_minimum": 8.143174616313382e-14,
+      "passed": true,
+      "species": "NO2",
+      "state": "reduced_continuous"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 6.080456722614756e-06,
+      "observed_minimum": 2.467023788365881e-21,
+      "passed": true,
+      "species": "O3",
+      "state": "reduced_continuous"
+    },
+    {
+      "allowed_maximum": 0.1,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 0.03615552644992567,
+      "observed_minimum": 4.523496284175616e-08,
+      "passed": true,
+      "species": "H2O",
+      "state": "reduced_continuous"
+    },
+    {
+      "allowed_maximum": 120000.0,
+      "allowed_minimum": 1.0,
+      "band": "full_column",
+      "metric": "dry_air_pressure_range",
+      "observed_maximum": 103156.48410994538,
+      "observed_minimum": 72.59130084798056,
+      "passed": true,
+      "species": "dry_air",
+      "state": "reduced_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2.5,
+      "allowed_minimum": 1e-07,
+      "band": "full_column",
+      "metric": "dry_air_density_range",
+      "observed_maximum": 1.4354015749952882,
+      "observed_minimum": 0.0010075785926010033,
+      "passed": true,
+      "species": "dry_air",
+      "state": "reduced_no_miem_control"
+    },
+    {
+      "allowed_maximum": 550000000000000.0,
+      "allowed_minimum": 450000000000000.0,
+      "band": "global_column",
+      "metric": "global_mesh_area",
+      "observed": 510101127769088.0,
+      "passed": true,
+      "species": "dry_air",
+      "state": "reduced_no_miem_control"
+    },
+    {
+      "allowed_maximum": 6e+18,
+      "allowed_minimum": 4e+18,
+      "band": "global_column",
+      "metric": "global_dry_air_mass",
+      "observed": 5.111229491069485e+18,
+      "passed": true,
+      "species": "dry_air",
+      "state": "reduced_no_miem_control"
+    },
+    {
+      "allowed_maximum": 115000.0,
+      "allowed_minimum": 80000.0,
+      "band": "global_column",
+      "metric": "hydrostatic_equivalent_pressure",
+      "observed": 98262.94426717413,
+      "passed": true,
+      "species": "dry_air",
+      "state": "reduced_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 5.257807410516286e-10,
+      "observed_minimum": 0.0,
+      "passed": true,
+      "species": "NO",
+      "state": "reduced_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 1.0581720229040998e-09,
+      "observed_minimum": 8.143174069332223e-14,
+      "passed": true,
+      "species": "NO2",
+      "state": "reduced_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 6.080456722847086e-06,
+      "observed_minimum": 2.970083747502883e-08,
+      "passed": true,
+      "species": "O3",
+      "state": "reduced_no_miem_control"
+    },
+    {
+      "allowed_maximum": 0.1,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 0.03615552644992567,
+      "observed_minimum": 4.523496284175616e-08,
+      "passed": true,
+      "species": "H2O",
+      "state": "reduced_no_miem_control"
+    },
+    {
+      "allowed_maximum": 120000.0,
+      "allowed_minimum": 1.0,
+      "band": "full_column",
+      "metric": "dry_air_pressure_range",
+      "observed_maximum": 104091.65491640223,
+      "observed_minimum": 69.61165531361016,
+      "passed": true,
+      "species": "dry_air",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2.5,
+      "allowed_minimum": 1e-07,
+      "band": "full_column",
+      "metric": "dry_air_density_range",
+      "observed_maximum": 1.4404028511199989,
+      "observed_minimum": 0.0010558873301309835,
+      "passed": true,
+      "species": "dry_air",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 550000000000000.0,
+      "allowed_minimum": 450000000000000.0,
+      "band": "global_column",
+      "metric": "global_mesh_area",
+      "observed": 510101127769088.0,
+      "passed": true,
+      "species": "dry_air",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 6e+18,
+      "allowed_minimum": 4e+18,
+      "band": "global_column",
+      "metric": "global_dry_air_mass",
+      "observed": 5.111229491069485e+18,
+      "passed": true,
+      "species": "dry_air",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 115000.0,
+      "allowed_minimum": 80000.0,
+      "band": "global_column",
+      "metric": "hydrostatic_equivalent_pressure",
+      "observed": 98262.94426717413,
+      "passed": true,
+      "species": "dry_air",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 0.22,
+      "allowed_minimum": 0.2,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 0.20950026438853306,
+      "observed_minimum": 0.2094999316209165,
+      "passed": true,
+      "species": "O2",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 4.974006200573555e-10,
+      "observed_minimum": 0.0,
+      "passed": true,
+      "species": "O",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 1000000000000.0,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "number_density_maximum",
+      "observed": 79982526.55530985,
+      "passed": true,
+      "species": "O",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 3.02955380407478e-16,
+      "observed_minimum": 0.0,
+      "passed": true,
+      "species": "O1D",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 1000000000000.0,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "number_density_maximum",
+      "observed": 77.70182895354881,
+      "passed": true,
+      "species": "O1D",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 6.0469514249916e-06,
+      "observed_minimum": 2.558967440733552e-21,
+      "passed": true,
+      "species": "O3",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 9.492793314775938e-12,
+      "observed_minimum": 5.01948513252435e-39,
+      "passed": true,
+      "species": "OH",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 1000000000000.0,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "number_density_maximum",
+      "observed": 34161268.87005012,
+      "passed": true,
+      "species": "OH",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 1.486459030409338e-10,
+      "observed_minimum": 3.803523018013493e-36,
+      "passed": true,
+      "species": "HO2",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 1000000000000.0,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "number_density_maximum",
+      "observed": 1240205376.9682176,
+      "passed": true,
+      "species": "HO2",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 1.9753703296710803e-09,
+      "observed_minimum": 1.27149394107771e-13,
+      "passed": true,
+      "species": "H2O2",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 1.15785838696323e-07,
+      "observed_minimum": 1.1490428669409738e-89,
+      "passed": true,
+      "species": "NO",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 4.590489794982454e-08,
+      "observed_minimum": 1.0902994797908066e-13,
+      "passed": true,
+      "species": "NO2",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 2.6600525191942015e-08,
+      "observed_minimum": 3.567648509540655e-16,
+      "passed": true,
+      "species": "HNO3",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 1.1891185606310231e-07,
+      "observed_minimum": 4.8882418293263514e-08,
+      "passed": true,
+      "species": "CO",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 5e-06,
+      "allowed_minimum": 5e-07,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 1.9000000000000756e-06,
+      "observed_minimum": 1.8795586153146758e-06,
+      "passed": true,
+      "species": "CH4",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 5.116623495948579e-11,
+      "observed_minimum": 4.887165821155288e-26,
+      "passed": true,
+      "species": "CH3O2",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 1000000000000.0,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "number_density_maximum",
+      "observed": 1159485441.8155723,
+      "passed": true,
+      "species": "CH3O2",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 2.53228175496923e-09,
+      "observed_minimum": 1.79643976377984e-15,
+      "passed": true,
+      "species": "CH3OOH",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 1.4346257165021235e-09,
+      "observed_minimum": 3.119623733236604e-15,
+      "passed": true,
+      "species": "CH2O",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 0.1,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 0.03494106618772611,
+      "observed_minimum": 2.1696947127152907e-07,
+      "passed": true,
+      "species": "H2O",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 120000.0,
+      "allowed_minimum": 1.0,
+      "band": "full_column",
+      "metric": "dry_air_pressure_range",
+      "observed_maximum": 104091.65491640223,
+      "observed_minimum": 69.61165531361016,
+      "passed": true,
+      "species": "dry_air",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2.5,
+      "allowed_minimum": 1e-07,
+      "band": "full_column",
+      "metric": "dry_air_density_range",
+      "observed_maximum": 1.4404028511199989,
+      "observed_minimum": 0.0010558873301309835,
+      "passed": true,
+      "species": "dry_air",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 550000000000000.0,
+      "allowed_minimum": 450000000000000.0,
+      "band": "global_column",
+      "metric": "global_mesh_area",
+      "observed": 510101127769088.0,
+      "passed": true,
+      "species": "dry_air",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 6e+18,
+      "allowed_minimum": 4e+18,
+      "band": "global_column",
+      "metric": "global_dry_air_mass",
+      "observed": 5.111229491069485e+18,
+      "passed": true,
+      "species": "dry_air",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 115000.0,
+      "allowed_minimum": 80000.0,
+      "band": "global_column",
+      "metric": "hydrostatic_equivalent_pressure",
+      "observed": 98262.94426717413,
+      "passed": true,
+      "species": "dry_air",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 0.22,
+      "allowed_minimum": 0.2,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 0.2095002643885352,
+      "observed_minimum": 0.20949993311309792,
+      "passed": true,
+      "species": "O2",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 4.974006896648452e-10,
+      "observed_minimum": 0.0,
+      "passed": true,
+      "species": "O",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 1000000000000.0,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "number_density_maximum",
+      "observed": 79982528.33541135,
+      "passed": true,
+      "species": "O",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 3.0295538236241175e-16,
+      "observed_minimum": 0.0,
+      "passed": true,
+      "species": "O1D",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 1000000000000.0,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "number_density_maximum",
+      "observed": 77.70183593480579,
+      "passed": true,
+      "species": "O1D",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 6.046951430297532e-06,
+      "observed_minimum": 7.762221339476685e-09,
+      "passed": true,
+      "species": "O3",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 9.4927940797787e-12,
+      "observed_minimum": 4.4797944648102967e-42,
+      "passed": true,
+      "species": "OH",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 1000000000000.0,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "number_density_maximum",
+      "observed": 33799095.44377621,
+      "passed": true,
+      "species": "OH",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 1.4864598230081857e-10,
+      "observed_minimum": 3.104274687320389e-39,
+      "passed": true,
+      "species": "HO2",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 1000000000000.0,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "number_density_maximum",
+      "observed": 1231769982.9296913,
+      "passed": true,
+      "species": "HO2",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 1.910806040440455e-09,
+      "observed_minimum": 1.2714939428277068e-13,
+      "passed": true,
+      "species": "H2O2",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 2.5766357944837683e-08,
+      "observed_minimum": 0.0,
+      "passed": true,
+      "species": "NO",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 2.3651273118150765e-08,
+      "observed_minimum": 1.0902989817237705e-13,
+      "passed": true,
+      "species": "NO2",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 2.5952056234070138e-08,
+      "observed_minimum": 3.5676485091318486e-16,
+      "passed": true,
+      "species": "HNO3",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 1.1891185606309684e-07,
+      "observed_minimum": 4.8882418287919305e-08,
+      "passed": true,
+      "species": "CO",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 5e-06,
+      "allowed_minimum": 5e-07,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 1.900000000000076e-06,
+      "observed_minimum": 1.881591552369155e-06,
+      "passed": true,
+      "species": "CH4",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 5.759892666987975e-11,
+      "observed_minimum": 9.52112534801101e-26,
+      "passed": true,
+      "species": "CH3O2",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 1000000000000.0,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "number_density_maximum",
+      "observed": 1355480169.3033595,
+      "passed": true,
+      "species": "CH3O2",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 2.575899740691607e-09,
+      "observed_minimum": 1.796439764739887e-15,
+      "passed": true,
+      "species": "CH3OOH",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-05,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 1.4078748554364346e-09,
+      "observed_minimum": 3.1196238184823536e-15,
+      "passed": true,
+      "species": "CH2O",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 0.1,
+      "allowed_minimum": 0.0,
+      "band": "full_column",
+      "metric": "exact_range",
+      "observed_maximum": 0.03494106618772611,
+      "observed_minimum": 2.1696947127152907e-07,
+      "passed": true,
+      "species": "H2O",
+      "state": "expanded_no_miem_control"
+    }
+  ],
+  "inputs": {
+    "audit_schema": {
+      "path": "concentration-audit.schema.json",
+      "sha256": "53c5da0342bcc2fe0f136d67545f08e0933c243b1b3e1c4befefc07291e7ed97",
+      "size_bytes": 12889
+    },
+    "audit_script": {
+      "path": "audit_global_tropo_concentrations.py",
+      "sha256": "1f3176f39f7cc0a0207e3d8cf845cb76075b368da7749032723ae3796888b4e2",
+      "size_bytes": 49555
+    },
+    "expanded_report": {
+      "path": "f3-report.json",
+      "sha256": "453ad1f40551257c9f1cf2fb7b4e8a6369285e3e6cbbcd1b1f36992783d0ad50",
+      "size_bytes": 1890641
+    },
+    "plot_protocol": {
+      "path": "PLOTTING_PROTOCOL.md",
+      "sha256": "bee50daa7002a73d1908a03a11ed9a569686b1eb557d42d6b697352bb2d2e6b0",
+      "size_bytes": 7372
+    },
+    "reduced_report": {
+      "path": "r3-report.json",
+      "sha256": "cbb497c7e2f6106f12b9e5f57d6c0a69a4aa8d277d3f0c86887d0842f6baa01c",
+      "size_bytes": 816503
+    },
+    "selected_histories": {
+      "expanded_continuous": {
+        "path": "continuous/history.2024-07-03_00.00.00.nc",
+        "sha256": "876e607dbc5af8cad9d5f8421c284751ed4c8b4a5290904529b9fc7f5c7ddc8e",
+        "size_bytes": 287239992
+      },
+      "expanded_no_miem_control": {
+        "path": "no_miem_control/history.2024-07-03_00.00.00.nc",
+        "sha256": "8dec5c8675f4e588a7dc2318d2ea8d616d1cb5c6df9f585519fe33fce5080377",
+        "size_bytes": 283305652
+      },
+      "reduced_continuous": {
+        "path": "continuous/history.2024-07-02_00.00.00.nc",
+        "sha256": "8b80da1e42941391b8ad6e24cd93e6e5e9cb52eaaa4aa00b3822965c308f6512",
+        "size_bytes": 125355648
+      },
+      "reduced_no_miem_control": {
+        "path": "no_miem_control/history.2024-07-02_00.00.00.nc",
+        "sha256": "4c6f2ab837420334dc24322173a1a629dd0fb264df22102d47b6e698441a14c8",
+        "size_bytes": 121421308
+      }
+    }
+  },
+  "interpretation": {
+    "observational_evaluation": false,
+    "production_air_quality": false,
+    "purpose": "physical validity and broad concentration plausibility screening",
+    "spinup": "all F3 branches share one day of FS spin-up with CAMS-NOx emissions; this initializes fast partitioning but not long-lived chemical climatology",
+    "upper_column": "stability only; chemistry is not qualified above the 150 hPa diagnostic boundary"
+  },
+  "overall_pass": true,
+  "provenance": {
+    "chempas_commit": "caa0c12dde7b862ce14a49021e25a45cc00b337f",
+    "executable_sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+    "lightning_enabled": false,
+    "mixed_provenance_rejected": true,
+    "science_inventory_sha256": "d213866000e8a633954d0c730ba5524f729f26a97d02cc5a13d8b405aa6c8e9c"
+  },
+  "reference_screening_checks": [
+    {
+      "allowed_maximum": 1.5e-07,
+      "allowed_minimum": 1e-09,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_mean",
+      "observed": 3.844820425912024e-08,
+      "passed": true,
+      "reference": "global_o3",
+      "species": "O3",
+      "state": "reduced_continuous"
+    },
+    {
+      "allowed_maximum": 2e-07,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 5.492452271483514e-08,
+      "passed": true,
+      "reference": "global_o3",
+      "species": "O3",
+      "state": "reduced_continuous"
+    },
+    {
+      "allowed_maximum": 1e-06,
+      "allowed_minimum": 0.0,
+      "band": "upper_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 3.5328510338426336e-07,
+      "passed": true,
+      "reference": "global_o3",
+      "species": "O3",
+      "state": "reduced_continuous"
+    },
+    {
+      "allowed_maximum": 1e-07,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 4.719534389282986e-10,
+      "passed": true,
+      "reference": "remote_nox",
+      "species": "NO",
+      "state": "reduced_continuous"
+    },
+    {
+      "allowed_maximum": 1e-07,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 2.007519958717573e-09,
+      "passed": true,
+      "reference": "remote_nox",
+      "species": "NO2",
+      "state": "reduced_continuous"
+    },
+    {
+      "allowed_maximum": 0.08,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 0.0278286878683569,
+      "passed": true,
+      "reference": "noaa_air_composition",
+      "species": "H2O",
+      "state": "reduced_continuous"
+    },
+    {
+      "allowed_maximum": 1.5e-07,
+      "allowed_minimum": 1e-09,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_mean",
+      "observed": 3.850262538070662e-08,
+      "passed": true,
+      "reference": "global_o3",
+      "species": "O3",
+      "state": "reduced_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-07,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 5.4924512905666434e-08,
+      "passed": true,
+      "reference": "global_o3",
+      "species": "O3",
+      "state": "reduced_no_miem_control"
+    },
+    {
+      "allowed_maximum": 1e-06,
+      "allowed_minimum": 0.0,
+      "band": "upper_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 3.532851033836113e-07,
+      "passed": true,
+      "reference": "global_o3",
+      "species": "O3",
+      "state": "reduced_no_miem_control"
+    },
+    {
+      "allowed_maximum": 1e-07,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 4.22367584385767e-10,
+      "passed": true,
+      "reference": "remote_nox",
+      "species": "NO",
+      "state": "reduced_no_miem_control"
+    },
+    {
+      "allowed_maximum": 1e-07,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 1.0106481098812488e-09,
+      "passed": true,
+      "reference": "remote_nox",
+      "species": "NO2",
+      "state": "reduced_no_miem_control"
+    },
+    {
+      "allowed_maximum": 0.08,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 0.0278286878683569,
+      "passed": true,
+      "reference": "noaa_air_composition",
+      "species": "H2O",
+      "state": "reduced_no_miem_control"
+    },
+    {
+      "allowed_maximum": 1.5e-07,
+      "allowed_minimum": 1e-09,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_mean",
+      "observed": 4.2953925749022204e-08,
+      "passed": true,
+      "reference": "global_o3",
+      "species": "O3",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-07,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 6.069305677237598e-08,
+      "passed": true,
+      "reference": "global_o3",
+      "species": "O3",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 1e-06,
+      "allowed_minimum": 0.0,
+      "band": "upper_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 3.6477555023782575e-07,
+      "passed": true,
+      "reference": "global_o3",
+      "species": "O3",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 1e-07,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 9.684143554747841e-11,
+      "passed": true,
+      "reference": "remote_nox",
+      "species": "NO",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 1e-07,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 9.59714621374189e-10,
+      "passed": true,
+      "reference": "remote_nox",
+      "species": "NO2",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 5e-08,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 3.3482623998757874e-09,
+      "passed": true,
+      "reference": "remote_nox",
+      "species": "HNO3",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 5e-07,
+      "allowed_minimum": 2e-08,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_mean",
+      "observed": 8.76651444903368e-08,
+      "passed": true,
+      "reference": "noaa_air_composition",
+      "species": "CO",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 3e-06,
+      "allowed_minimum": 1e-06,
+      "band": "diagnostic_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_mean",
+      "observed": 1.8974898204741813e-06,
+      "passed": true,
+      "reference": "noaa_ch4",
+      "species": "CH4",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 0.08,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 0.027585841608460927,
+      "passed": true,
+      "reference": "noaa_air_composition",
+      "species": "H2O",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-08,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 1.6264152472992352e-09,
+      "passed": true,
+      "reference": "peroxides",
+      "species": "H2O2",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-08,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 6.230480316844116e-10,
+      "passed": true,
+      "reference": "peroxides",
+      "species": "CH2O",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 2e-08,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 1.913363744395407e-09,
+      "passed": true,
+      "reference": "peroxides",
+      "species": "CH3OOH",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 5e-10,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 3.6159894684438615e-11,
+      "passed": true,
+      "reference": "global_oh",
+      "species": "HO2",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 5e-10,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 3.468142516095211e-11,
+      "passed": true,
+      "reference": "global_oh",
+      "species": "CH3O2",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 5000000.0,
+      "allowed_minimum": 100000.0,
+      "band": "diagnostic_troposphere",
+      "domain": "number_density",
+      "metric": "weighted_mean",
+      "observed": 1326378.9268052026,
+      "passed": true,
+      "reference": "global_oh",
+      "species": "OH",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 0.215,
+      "allowed_minimum": 0.205,
+      "band": "diagnostic_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_mean",
+      "observed": 0.20950000130426613,
+      "passed": true,
+      "reference": "noaa_air_composition",
+      "species": "O2",
+      "state": "expanded_continuous"
+    },
+    {
+      "allowed_maximum": 1.5e-07,
+      "allowed_minimum": 1e-09,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_mean",
+      "observed": 4.290295940344064e-08,
+      "passed": true,
+      "reference": "global_o3",
+      "species": "O3",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-07,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 6.052987086903109e-08,
+      "passed": true,
+      "reference": "global_o3",
+      "species": "O3",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 1e-06,
+      "allowed_minimum": 0.0,
+      "band": "upper_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 3.647755498069403e-07,
+      "passed": true,
+      "reference": "global_o3",
+      "species": "O3",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 1e-07,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 8.127059606551755e-11,
+      "passed": true,
+      "reference": "remote_nox",
+      "species": "NO",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 1e-07,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 8.625362698291933e-10,
+      "passed": true,
+      "reference": "remote_nox",
+      "species": "NO2",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 5e-08,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 2.581072082852491e-09,
+      "passed": true,
+      "reference": "remote_nox",
+      "species": "HNO3",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 5e-07,
+      "allowed_minimum": 2e-08,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_mean",
+      "observed": 8.768053247770801e-08,
+      "passed": true,
+      "reference": "noaa_air_composition",
+      "species": "CO",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 3e-06,
+      "allowed_minimum": 1e-06,
+      "band": "diagnostic_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_mean",
+      "observed": 1.8974990592284386e-06,
+      "passed": true,
+      "reference": "noaa_ch4",
+      "species": "CH4",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 0.08,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 0.027585841608460927,
+      "passed": true,
+      "reference": "noaa_air_composition",
+      "species": "H2O",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-08,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 1.628731077230154e-09,
+      "passed": true,
+      "reference": "peroxides",
+      "species": "H2O2",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-08,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 5.119327177527078e-10,
+      "passed": true,
+      "reference": "peroxides",
+      "species": "CH2O",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 2e-08,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 1.907137468802549e-09,
+      "passed": true,
+      "reference": "peroxides",
+      "species": "CH3OOH",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 5e-10,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 3.5931283750874315e-11,
+      "passed": true,
+      "reference": "global_oh",
+      "species": "HO2",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 5e-10,
+      "allowed_minimum": 0.0,
+      "band": "lower_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_p99",
+      "observed": 3.47684365883416e-11,
+      "passed": true,
+      "reference": "global_oh",
+      "species": "CH3O2",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 5000000.0,
+      "allowed_minimum": 100000.0,
+      "band": "diagnostic_troposphere",
+      "domain": "number_density",
+      "metric": "weighted_mean",
+      "observed": 1320210.5032430259,
+      "passed": true,
+      "reference": "global_oh",
+      "species": "OH",
+      "state": "expanded_no_miem_control"
+    },
+    {
+      "allowed_maximum": 0.215,
+      "allowed_minimum": 0.205,
+      "band": "diagnostic_troposphere",
+      "domain": "mixing_ratio",
+      "metric": "weighted_mean",
+      "observed": 0.20950000133891636,
+      "passed": true,
+      "reference": "noaa_air_composition",
+      "species": "O2",
+      "state": "expanded_no_miem_control"
+    }
+  ],
+  "references": {
+    "global_o3": {
+      "benchmark": "Observation-calibrated global modeling gives about 29.2 ppb mean surface O3 and 53.2 ppb at 500 hPa.",
+      "url": "https://doi.org/10.5194/acp-26-2255-2026"
+    },
+    "global_oh": {
+      "benchmark": "Published global models span 0.87-1.28 million molecule cm-3 for volume-weighted mean tropospheric OH.",
+      "url": "https://doi.org/10.5194/acp-19-13701-2019"
+    },
+    "noaa_air_composition": {
+      "benchmark": "NOAA gives dry-air O2 at 20.936%, CH4 near 2 ppm, other trace species below 1 ppm, and a representative wet-air case with 3% H2O.",
+      "url": "https://gml.noaa.gov/ccgg/about/co2_measurements.html"
+    },
+    "noaa_ch4": {
+      "benchmark": "NOAA global marine-boundary-layer CH4 was 1929.56 +/- 0.61 ppb in 2024.",
+      "url": "https://gml.noaa.gov/aggi/aggi.html"
+    },
+    "peroxides": {
+      "benchmark": "Aircraft campaign means for H2O2, CH3OOH, and CH2O were about 1.39, 0.44, and 0.48 ppb in the most enhanced campaign.",
+      "url": "https://doi.org/10.1029/2006JD007746"
+    },
+    "remote_nox": {
+      "benchmark": "NASA free-tropospheric medians were tens of ppt for NO and NO2; the screening ceiling allows polluted source cells.",
+      "url": "https://ntrs.nasa.gov/citations/19900053207"
+    }
+  },
+  "schema_version": "chempas-global-tropo-concentration-audit-v1",
+  "states": {
+    "expanded_continuous": {
+      "geometry": {
+        "cell_count": 40962,
+        "density_maximum_kg_m-3": 1.4404028511199989,
+        "density_minimum_kg_m-3": 0.0010558873301309835,
+        "dry_air_mass_kg": 5.111229491069485e+18,
+        "hydrostatic_equivalent_pressure_pa": 98262.94426717413,
+        "level_count": 26,
+        "mean_column_mass_kg_m-2": 10020.031740418402,
+        "mesh_area_m2": 510101127769088.0,
+        "pressure_maximum_pa": 104091.65491640223,
+        "pressure_minimum_pa": 69.61165531361016
+      },
+      "species": {
+        "CH2O": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 2.69319542773291e-11,
+              "minimum": 3.119623733236604e-15,
+              "sample_count": 593124,
+              "weighted_mean": 7.384970996664165e-12,
+              "weighted_median": 6.3129633909444735e-12,
+              "weighted_p01": 1.3763230871536457e-12,
+              "weighted_p95": 1.490557152646343e-11,
+              "weighted_p99": 1.9294592740342962e-11
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1.4346257165021235e-09,
+              "minimum": 3.3887276972975914e-12,
+              "sample_count": 471888,
+              "weighted_mean": 1.8742512610434603e-10,
+              "weighted_median": 1.7397889991261797e-10,
+              "weighted_p01": 8.235428772648573e-12,
+              "weighted_p95": 4.035444261964209e-10,
+              "weighted_p99": 5.448889857667284e-10
+            },
+            "lower_troposphere": {
+              "maximum": 1.4346257165021235e-09,
+              "minimum": 3.9838203040903524e-11,
+              "sample_count": 304835,
+              "weighted_mean": 2.703966817190846e-10,
+              "weighted_median": 2.5524353239722096e-10,
+              "weighted_p01": 1.0392428184629982e-10,
+              "weighted_p95": 4.3774578346756825e-10,
+              "weighted_p99": 6.230480316844116e-10
+            },
+            "upper_troposphere": {
+              "maximum": 3.1320989504805004e-10,
+              "minimum": 3.3887276972975914e-12,
+              "sample_count": 167053,
+              "weighted_mean": 7.000265655238047e-11,
+              "weighted_median": 6.165051090083482e-11,
+              "weighted_p01": 6.994985959473777e-12,
+              "weighted_p95": 1.5621202499212095e-10,
+              "weighted_p99": 2.034133731326513e-10
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qCH2O"
+        },
+        "CH3O2": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 4.2705077922232456e-11,
+              "minimum": 9.521125347990666e-26,
+              "sample_count": 593124,
+              "weighted_mean": 2.413208197544665e-12,
+              "weighted_median": 1.0205299357388154e-12,
+              "weighted_p01": 2.7016054571740014e-20,
+              "weighted_p95": 9.84349963227564e-12,
+              "weighted_p99": 1.792220440443103e-11
+            },
+            "diagnostic_troposphere": {
+              "maximum": 5.116623495948579e-11,
+              "minimum": 4.887165821155288e-26,
+              "sample_count": 471888,
+              "weighted_mean": 5.187633353520357e-12,
+              "weighted_median": 2.5636968249141726e-12,
+              "weighted_p01": 2.6073644325959005e-17,
+              "weighted_p95": 2.1577620739118128e-11,
+              "weighted_p99": 3.2753048229708513e-11
+            },
+            "lower_troposphere": {
+              "maximum": 5.116623495948579e-11,
+              "minimum": 4.887165821155288e-26,
+              "sample_count": 304835,
+              "weighted_mean": 7.436947451996057e-12,
+              "weighted_median": 4.6055360296685095e-12,
+              "weighted_p01": 3.888768089360352e-17,
+              "weighted_p95": 2.637579345246231e-11,
+              "weighted_p99": 3.468142516095211e-11
+            },
+            "upper_troposphere": {
+              "maximum": 2.959849335201587e-11,
+              "minimum": 5.51308742311693e-23,
+              "sample_count": 167053,
+              "weighted_mean": 2.0043735690773997e-12,
+              "weighted_median": 1.235743254916303e-12,
+              "weighted_p01": 1.2505312126488345e-17,
+              "weighted_p95": 6.717810491564792e-12,
+              "weighted_p99": 1.2073578861045753e-11
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "number_density_bands": {
+            "above_150_hpa": {
+              "maximum": 9481104.285631664,
+              "minimum": 2.580886271979477e-07,
+              "sample_count": 593124,
+              "weighted_mean": 2368032.636440578,
+              "weighted_median": 2256585.4711786467,
+              "weighted_p01": 0.15875346468375803,
+              "weighted_p95": 4878704.025449552,
+              "weighted_p99": 6113327.26484359
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1159485441.8155723,
+              "minimum": 1.0069317140298445e-06,
+              "sample_count": 471888,
+              "weighted_mean": 65514831.48679703,
+              "weighted_median": 20113773.96719103,
+              "weighted_p01": 202.2386489654867,
+              "weighted_p95": 310625888.5384391,
+              "weighted_p99": 618506718.593201
+            },
+            "lower_troposphere": {
+              "maximum": 1159485441.8155723,
+              "minimum": 1.0069317140298445e-06,
+              "sample_count": 304835,
+              "weighted_mean": 137242913.10037398,
+              "weighted_median": 80847804.45384227,
+              "weighted_p01": 2584.728905802738,
+              "weighted_p95": 495053526.0729144,
+              "weighted_p99": 734366943.7353128
+            },
+            "upper_troposphere": {
+              "maximum": 393465545.22051066,
+              "minimum": 0.0003500141761927416,
+              "sample_count": 167053,
+              "weighted_mean": 17668304.693277333,
+              "weighted_median": 8586295.517544713,
+              "weighted_p01": 51.508555018735095,
+              "weighted_p95": 64804465.302927725,
+              "weighted_p99": 124532677.41177031
+            }
+          },
+          "number_density_unit": "molecule cm-3",
+          "source_variable": "qCH3O2"
+        },
+        "CH3OOH": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 1.788056772935106e-10,
+              "minimum": 1.79643976377984e-15,
+              "sample_count": 593124,
+              "weighted_mean": 2.244888033710984e-11,
+              "weighted_median": 8.206029640888024e-12,
+              "weighted_p01": 8.064296081512657e-13,
+              "weighted_p95": 9.691993384850707e-11,
+              "weighted_p99": 1.374359115462186e-10
+            },
+            "diagnostic_troposphere": {
+              "maximum": 2.53228175496923e-09,
+              "minimum": 1.957185853213562e-12,
+              "sample_count": 471888,
+              "weighted_mean": 4.023483184705713e-10,
+              "weighted_median": 1.4463138155729488e-10,
+              "weighted_p01": 5.690968949967215e-12,
+              "weighted_p95": 1.4892927826786115e-09,
+              "weighted_p99": 1.826314351439876e-09
+            },
+            "lower_troposphere": {
+              "maximum": 2.53228175496923e-09,
+              "minimum": 1.957185853213562e-12,
+              "sample_count": 304835,
+              "weighted_mean": 6.213731965992184e-10,
+              "weighted_median": 5.046235416857441e-10,
+              "weighted_p01": 2.464481815226029e-11,
+              "weighted_p95": 1.629423005429893e-09,
+              "weighted_p99": 1.913363744395407e-09
+            },
+            "upper_troposphere": {
+              "maximum": 1.2646302954088714e-09,
+              "minimum": 2.691104873595337e-12,
+              "sample_count": 167053,
+              "weighted_mean": 9.23813437328387e-11,
+              "weighted_median": 3.691347172701545e-11,
+              "weighted_p01": 4.655078716459864e-12,
+              "weighted_p95": 3.8525877390326536e-10,
+              "weighted_p99": 6.713278722622582e-10
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qCH3OOH"
+        },
+        "CH4": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 1.9000000000000756e-06,
+              "minimum": 1.8993023642243357e-06,
+              "sample_count": 593124,
+              "weighted_mean": 1.8999054635853468e-06,
+              "weighted_median": 1.8999392027151037e-06,
+              "weighted_p01": 1.8995625119849448e-06,
+              "weighted_p95": 1.8999952448989803e-06,
+              "weighted_p99": 1.899999999474971e-06
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1.9000000000000646e-06,
+              "minimum": 1.8795586153146758e-06,
+              "sample_count": 471888,
+              "weighted_mean": 1.8974898204741813e-06,
+              "weighted_median": 1.8982989057148211e-06,
+              "weighted_p01": 1.8912707641133546e-06,
+              "weighted_p95": 1.8999677762525522e-06,
+              "weighted_p99": 1.8999999944730315e-06
+            },
+            "lower_troposphere": {
+              "maximum": 1.9000000000000646e-06,
+              "minimum": 1.8795586153146758e-06,
+              "sample_count": 304835,
+              "weighted_mean": 1.8963177098579784e-06,
+              "weighted_median": 1.8964396392015497e-06,
+              "weighted_p01": 1.8904156760290194e-06,
+              "weighted_p95": 1.8999451931628348e-06,
+              "weighted_p99": 1.8999999916801476e-06
+            },
+            "upper_troposphere": {
+              "maximum": 1.9000000000000477e-06,
+              "minimum": 1.8929769992751648e-06,
+              "sample_count": 167053,
+              "weighted_mean": 1.899148607297242e-06,
+              "weighted_median": 1.8994616153049534e-06,
+              "weighted_p01": 1.8959998822457676e-06,
+              "weighted_p95": 1.8999788066187015e-06,
+              "weighted_p99": 1.8999999959825024e-06
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qCH4"
+        },
+        "CO": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 6.015492156966616e-08,
+              "minimum": 4.8882418293263514e-08,
+              "sample_count": 593124,
+              "weighted_mean": 5.154135455019873e-08,
+              "weighted_median": 5.13693360414724e-08,
+              "weighted_p01": 4.9147875437885317e-08,
+              "weighted_p95": 5.418690025099655e-08,
+              "weighted_p99": 5.565246857524017e-08
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1.1891185606310231e-07,
+              "minimum": 5.200295172178796e-08,
+              "sample_count": 471888,
+              "weighted_mean": 7.693206405333901e-08,
+              "weighted_median": 7.471963966006787e-08,
+              "weighted_p01": 5.313000087880595e-08,
+              "weighted_p95": 1.0563220076923463e-07,
+              "weighted_p99": 1.1295540460290527e-07
+            },
+            "lower_troposphere": {
+              "maximum": 1.1891185606310231e-07,
+              "minimum": 5.842216846427911e-08,
+              "sample_count": 304835,
+              "weighted_mean": 8.76651444903368e-08,
+              "weighted_median": 8.739246608026262e-08,
+              "weighted_p01": 6.412905387141193e-08,
+              "weighted_p95": 1.0819910170547468e-07,
+              "weighted_p99": 1.1465632226110155e-07
+            },
+            "upper_troposphere": {
+              "maximum": 1.061166543173796e-07,
+              "minimum": 5.200295172178796e-08,
+              "sample_count": 167053,
+              "weighted_mean": 6.174246321393643e-08,
+              "weighted_median": 6.041123059892222e-08,
+              "weighted_p01": 5.28801028690235e-08,
+              "weighted_p95": 7.563452566804792e-08,
+              "weighted_p99": 8.52677914861737e-08
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qCO"
+        },
+        "H2O": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 0.00011554185138862572,
+              "minimum": 2.39496256860609e-07,
+              "sample_count": 593124,
+              "weighted_mean": 2.5846701767422616e-06,
+              "weighted_median": 2.2841032149770782e-06,
+              "weighted_p01": 5.616734487815645e-07,
+              "weighted_p95": 4.485516626778692e-06,
+              "weighted_p99": 1.1312248958227022e-05
+            },
+            "diagnostic_troposphere": {
+              "maximum": 0.03494106618772611,
+              "minimum": 2.1696947127152907e-07,
+              "sample_count": 471888,
+              "weighted_mean": 0.0050815982409789925,
+              "weighted_median": 0.002154685295175397,
+              "weighted_p01": 7.675637021141998e-07,
+              "weighted_p95": 0.019950577814892,
+              "weighted_p99": 0.02657038261779604
+            },
+            "lower_troposphere": {
+              "maximum": 0.03494106618772611,
+              "minimum": 1.0700904511987363e-06,
+              "sample_count": 304835,
+              "weighted_mean": 0.00809379756393768,
+              "weighted_median": 0.006176761790272438,
+              "weighted_p01": 9.518361655957859e-05,
+              "weighted_p95": 0.02296267747402134,
+              "weighted_p99": 0.027585841608460927
+            },
+            "upper_troposphere": {
+              "maximum": 0.015533598358693437,
+              "minimum": 2.1696947127152907e-07,
+              "sample_count": 167053,
+              "weighted_mean": 0.0008186929517627669,
+              "weighted_median": 0.00024363370152850149,
+              "weighted_p01": 6.401823393445524e-07,
+              "weighted_p95": 0.0036298216696233226,
+              "weighted_p99": 0.006728034019970847
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qv"
+        },
+        "H2O2": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 3.49893068388362e-10,
+              "minimum": 1.27149394107771e-13,
+              "sample_count": 593124,
+              "weighted_mean": 5.545296787737653e-11,
+              "weighted_median": 3.251226740293111e-11,
+              "weighted_p01": 9.163980121775015e-12,
+              "weighted_p95": 2.1250230053868656e-10,
+              "weighted_p99": 2.950360246576364e-10
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1.9753703296710803e-09,
+              "minimum": 2.2741615124153508e-11,
+              "sample_count": 471888,
+              "weighted_mean": 5.465037517896249e-10,
+              "weighted_median": 4.5052372247261143e-10,
+              "weighted_p01": 4.1798512471676184e-11,
+              "weighted_p95": 1.3545826281655818e-09,
+              "weighted_p99": 1.5835435593716465e-09
+            },
+            "lower_troposphere": {
+              "maximum": 1.9753703296710803e-09,
+              "minimum": 9.92780274851954e-11,
+              "sample_count": 304835,
+              "weighted_mean": 7.867748804775669e-10,
+              "weighted_median": 7.385649104986622e-10,
+              "weighted_p01": 1.9679783862844632e-10,
+              "weighted_p95": 1.4562741143422105e-09,
+              "weighted_p99": 1.6264152472992352e-09
+            },
+            "upper_troposphere": {
+              "maximum": 1.404418133890663e-09,
+              "minimum": 2.2741615124153508e-11,
+              "sample_count": 167053,
+              "weighted_mean": 2.0646879542965733e-10,
+              "weighted_median": 1.649376178894219e-10,
+              "weighted_p01": 3.687881451333822e-11,
+              "weighted_p95": 5.144640542434555e-10,
+              "weighted_p99": 7.237730123922358e-10
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qH2O2"
+        },
+        "HNO3": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 4.794493955574206e-11,
+              "minimum": 3.567648509540655e-16,
+              "sample_count": 593124,
+              "weighted_mean": 1.1192676654413614e-11,
+              "weighted_median": 1.1709156577768106e-11,
+              "weighted_p01": 1.579716902908959e-14,
+              "weighted_p95": 2.0291040188177526e-11,
+              "weighted_p99": 2.4704156153625135e-11
+            },
+            "diagnostic_troposphere": {
+              "maximum": 2.6600525191942015e-08,
+              "minimum": 1.1009185424353555e-11,
+              "sample_count": 471888,
+              "weighted_mean": 3.7902263615514873e-10,
+              "weighted_median": 2.223329073171689e-10,
+              "weighted_p01": 1.8768949597711086e-11,
+              "weighted_p95": 9.779328584723739e-10,
+              "weighted_p99": 2.1637627270182537e-09
+            },
+            "lower_troposphere": {
+              "maximum": 2.6600525191942015e-08,
+              "minimum": 2.5991955178841085e-11,
+              "sample_count": 304835,
+              "weighted_mean": 5.80923801846826e-10,
+              "weighted_median": 4.5794051013714357e-10,
+              "weighted_p01": 6.373111465372723e-11,
+              "weighted_p95": 1.1273138677297602e-09,
+              "weighted_p99": 3.3482623998757874e-09
+            },
+            "upper_troposphere": {
+              "maximum": 1.16922860090507e-09,
+              "minimum": 1.1009185424353555e-11,
+              "sample_count": 167053,
+              "weighted_mean": 9.328937123940685e-11,
+              "weighted_median": 6.893788578837182e-11,
+              "weighted_p01": 1.6969953115677944e-11,
+              "weighted_p95": 2.378548768418306e-10,
+              "weighted_p99": 3.980355816734548e-10
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qHNO3"
+        },
+        "HO2": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 1.486459030409338e-10,
+              "minimum": 8.894637068389277e-29,
+              "sample_count": 593124,
+              "weighted_mean": 8.81472058015381e-12,
+              "weighted_median": 2.206962003758216e-12,
+              "weighted_p01": 1.0855966978214034e-21,
+              "weighted_p95": 5.050131738355551e-11,
+              "weighted_p99": 1.1130448832679255e-10
+            },
+            "diagnostic_troposphere": {
+              "maximum": 5.245238060261536e-11,
+              "minimum": 3.803523018013493e-36,
+              "sample_count": 471888,
+              "weighted_mean": 6.919857665162406e-12,
+              "weighted_median": 9.594015726062767e-13,
+              "weighted_p01": 5.00111644208707e-27,
+              "weighted_p95": 2.9294166081097134e-11,
+              "weighted_p99": 3.520228229973575e-11
+            },
+            "lower_troposphere": {
+              "maximum": 5.245238060261536e-11,
+              "minimum": 3.803523018013493e-36,
+              "sample_count": 304835,
+              "weighted_mean": 8.613015531177045e-12,
+              "weighted_median": 1.0743000592740633e-12,
+              "weighted_p01": 6.02510667191077e-28,
+              "weighted_p95": 3.194252396515893e-11,
+              "weighted_p99": 3.6159894684438615e-11
+            },
+            "upper_troposphere": {
+              "maximum": 3.51335917619117e-11,
+              "minimum": 2.0670028556918386e-29,
+              "sample_count": 167053,
+              "weighted_mean": 4.52367771535008e-12,
+              "weighted_median": 8.738509723391643e-13,
+              "weighted_p01": 2.2532815833653802e-23,
+              "weighted_p95": 1.8568548516738002e-11,
+              "weighted_p99": 2.6393816387967816e-11
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "number_density_bands": {
+            "above_150_hpa": {
+              "maximum": 73046550.8327787,
+              "minimum": 3.27818908246201e-10,
+              "sample_count": 593124,
+              "weighted_mean": 8646448.904190693,
+              "weighted_median": 2974388.4514702577,
+              "weighted_p01": 0.05219915249027676,
+              "weighted_p95": 33607540.46467861,
+              "weighted_p99": 41825813.2842077
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1240205376.9682176,
+              "minimum": 8.185290308042435e-17,
+              "sample_count": 471888,
+              "weighted_mean": 87426756.11233522,
+              "weighted_median": 9364592.720945021,
+              "weighted_p01": 4.885073526966261e-07,
+              "weighted_p95": 452916770.53725576,
+              "weighted_p99": 713235132.7821585
+            },
+            "lower_troposphere": {
+              "maximum": 1240205376.9682176,
+              "minimum": 8.185290308042435e-17,
+              "sample_count": 304835,
+              "weighted_mean": 158915820.70743704,
+              "weighted_median": 22705305.452619564,
+              "weighted_p01": 1.2590620988512855e-08,
+              "weighted_p95": 618706497.6236333,
+              "weighted_p99": 799259258.4227076
+            },
+            "upper_troposphere": {
+              "maximum": 473621008.0553682,
+              "minimum": 2.6847623875402135e-10,
+              "sample_count": 167053,
+              "weighted_mean": 39739666.65383573,
+              "weighted_median": 7153194.138685273,
+              "weighted_p01": 0.0004221107349839082,
+              "weighted_p95": 182950019.37868917,
+              "weighted_p99": 277243327.7139816
+            }
+          },
+          "number_density_unit": "molecule cm-3",
+          "source_variable": "qHO2"
+        },
+        "NO": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 5.0231786704489127e-11,
+              "minimum": 1.1490428669409738e-89,
+              "sample_count": 593124,
+              "weighted_mean": 1.2836165733745883e-11,
+              "weighted_median": 1.0486527505042415e-11,
+              "weighted_p01": 1.4832275777234284e-72,
+              "weighted_p95": 3.540957667613986e-11,
+              "weighted_p99": 4.7036549515751744e-11
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1.15785838696323e-07,
+              "minimum": 6.557506502436655e-83,
+              "sample_count": 471888,
+              "weighted_mean": 1.8129764317707865e-11,
+              "weighted_median": 6.837325286385775e-13,
+              "weighted_p01": 4.604887751986995e-68,
+              "weighted_p95": 4.010017519689663e-11,
+              "weighted_p99": 7.638326846860777e-11
+            },
+            "lower_troposphere": {
+              "maximum": 1.15785838696323e-07,
+              "minimum": 6.557506502436655e-83,
+              "sample_count": 304835,
+              "weighted_mean": 2.1613851909164454e-11,
+              "weighted_median": 7.967567662777354e-13,
+              "weighted_p01": 1.8379194883824262e-67,
+              "weighted_p95": 3.489097780072559e-11,
+              "weighted_p99": 9.684143554747841e-11
+            },
+            "upper_troposphere": {
+              "maximum": 9.815560362122383e-11,
+              "minimum": 8.297686064453697e-80,
+              "sample_count": 167053,
+              "weighted_mean": 1.3199036358070564e-11,
+              "weighted_median": 1.2722861418890542e-13,
+              "weighted_p01": 1.0208418460443986e-68,
+              "weighted_p95": 4.293424299368774e-11,
+              "weighted_p99": 5.998581018189493e-11
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qNO"
+        },
+        "NO2": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 9.045003265663171e-11,
+              "minimum": 1.0902994797908066e-13,
+              "sample_count": 593124,
+              "weighted_mean": 3.439145544642866e-11,
+              "weighted_median": 3.4501800874967776e-11,
+              "weighted_p01": 3.1488691616038294e-12,
+              "weighted_p95": 5.4016314812859456e-11,
+              "weighted_p99": 6.311090917902952e-11
+            },
+            "diagnostic_troposphere": {
+              "maximum": 4.590489794982454e-08,
+              "minimum": 3.9756087046709106e-13,
+              "sample_count": 471888,
+              "weighted_mean": 1.0251236288970233e-10,
+              "weighted_median": 2.742246937462194e-11,
+              "weighted_p01": 4.977870399999334e-12,
+              "weighted_p95": 3.6708239588241747e-10,
+              "weighted_p99": 8.549869378723544e-10
+            },
+            "lower_troposphere": {
+              "maximum": 4.590489794982454e-08,
+              "minimum": 3.9756087046709106e-13,
+              "sample_count": 304835,
+              "weighted_mean": 1.418554354582779e-10,
+              "weighted_median": 2.5003441029653814e-11,
+              "weighted_p01": 3.682022858344006e-12,
+              "weighted_p95": 5.535783838078833e-10,
+              "weighted_p99": 9.59714621374189e-10
+            },
+            "upper_troposphere": {
+              "maximum": 7.380576704149074e-10,
+              "minimum": 9.466623327143377e-13,
+              "sample_count": 167053,
+              "weighted_mean": 4.683351359567135e-11,
+              "weighted_median": 3.2380693160803253e-11,
+              "weighted_p01": 6.617284480295884e-12,
+              "weighted_p95": 1.3340554886360122e-10,
+              "weighted_p99": 2.6308955198229194e-10
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qNO2"
+        },
+        "O": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 4.974006200573555e-10,
+              "minimum": 0.0,
+              "sample_count": 593124,
+              "weighted_mean": 1.0004215868486983e-11,
+              "weighted_median": 1.1294554437553795e-14,
+              "weighted_p01": 0.0,
+              "weighted_p95": 5.156846406615208e-11,
+              "weighted_p99": 2.505433853137456e-10
+            },
+            "diagnostic_troposphere": {
+              "maximum": 3.875466173029617e-14,
+              "minimum": 0.0,
+              "sample_count": 471888,
+              "weighted_mean": 7.876935808161546e-16,
+              "weighted_median": 4.362220584017238e-17,
+              "weighted_p01": 0.0,
+              "weighted_p95": 3.733047838010695e-15,
+              "weighted_p99": 1.4467541175597627e-14
+            },
+            "lower_troposphere": {
+              "maximum": 4.470241381842988e-15,
+              "minimum": 0.0,
+              "sample_count": 304835,
+              "weighted_mean": 1.8058340403978864e-16,
+              "weighted_median": 5.860463823772034e-17,
+              "weighted_p01": 0.0,
+              "weighted_p95": 6.725729461089756e-16,
+              "weighted_p99": 9.339078362977304e-16
+            },
+            "upper_troposphere": {
+              "maximum": 3.875466173029617e-14,
+              "minimum": 0.0,
+              "sample_count": 167053,
+              "weighted_mean": 1.6468841277335128e-15,
+              "weighted_median": 2.0568349074803723e-180,
+              "weighted_p01": 0.0,
+              "weighted_p95": 7.846157472949745e-15,
+              "weighted_p99": 1.8554700050104475e-14
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "number_density_bands": {
+            "above_150_hpa": {
+              "maximum": 79982526.55530985,
+              "minimum": 0.0,
+              "sample_count": 593124,
+              "weighted_mean": 9804997.557019368,
+              "weighted_median": 60712.58584886862,
+              "weighted_p01": 0.0,
+              "weighted_p95": 47986781.63754211,
+              "weighted_p99": 65395911.544772096
+            },
+            "diagnostic_troposphere": {
+              "maximum": 193648.392436506,
+              "minimum": 0.0,
+              "sample_count": 471888,
+              "weighted_mean": 10005.203174131746,
+              "weighted_median": 1055.5582724137503,
+              "weighted_p01": 0.0,
+              "weighted_p95": 48035.36209467522,
+              "weighted_p99": 98788.99155323829
+            },
+            "lower_troposphere": {
+              "maximum": 103741.4520146983,
+              "minimum": 0.0,
+              "sample_count": 304835,
+              "weighted_mean": 3336.4107007915545,
+              "weighted_median": 1495.3291042545823,
+              "weighted_p01": 0.0,
+              "weighted_p95": 10678.08130400601,
+              "weighted_p99": 13096.582803647349
+            },
+            "upper_troposphere": {
+              "maximum": 193648.392436506,
+              "minimum": 0.0,
+              "sample_count": 167053,
+              "weighted_mean": 14453.650010826423,
+              "weighted_median": 1.6760514790341534e-135,
+              "weighted_p01": 0.0,
+              "weighted_p95": 69611.31199827004,
+              "weighted_p99": 107985.27708999261
+            }
+          },
+          "number_density_unit": "molecule cm-3",
+          "source_variable": "qO"
+        },
+        "O1D": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 3.02955380407478e-16,
+              "minimum": 0.0,
+              "sample_count": 593124,
+              "weighted_mean": 6.24585200328411e-18,
+              "weighted_median": 5.668661546500279e-22,
+              "weighted_p01": 0.0,
+              "weighted_p95": 3.293074587990022e-17,
+              "weighted_p99": 1.549306121137059e-16
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1.3700575172374578e-19,
+              "minimum": 0.0,
+              "sample_count": 471888,
+              "weighted_mean": 2.2621787154376932e-21,
+              "weighted_median": 5.3072367362861335e-24,
+              "weighted_p01": 0.0,
+              "weighted_p95": 9.98858741022314e-21,
+              "weighted_p99": 3.9061616711860515e-20
+            },
+            "lower_troposphere": {
+              "maximum": 8.219857669143295e-21,
+              "minimum": 0.0,
+              "sample_count": 304835,
+              "weighted_mean": 7.014590175508988e-22,
+              "weighted_median": 7.066154380462942e-24,
+              "weighted_p01": 0.0,
+              "weighted_p95": 3.645905343180032e-21,
+              "weighted_p99": 5.8729240124742804e-21
+            },
+            "upper_troposphere": {
+              "maximum": 1.3700575172374578e-19,
+              "minimum": 0.0,
+              "sample_count": 167053,
+              "weighted_mean": 4.470930375527228e-21,
+              "weighted_median": 0.0,
+              "weighted_p01": 0.0,
+              "weighted_p95": 2.3059412769934543e-20,
+              "weighted_p99": 7.001704179588659e-20
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "number_density_bands": {
+            "above_150_hpa": {
+              "maximum": 77.70182895354881,
+              "minimum": 0.0,
+              "sample_count": 593124,
+              "weighted_mean": 6.121490387325772,
+              "weighted_median": 0.003386718121727817,
+              "weighted_p01": 0.0,
+              "weighted_p95": 38.14375781036014,
+              "weighted_p99": 61.14863038591258
+            },
+            "diagnostic_troposphere": {
+              "maximum": 0.6883349847650944,
+              "minimum": 0.0,
+              "sample_count": 471888,
+              "weighted_mean": 0.02855510153705218,
+              "weighted_median": 0.00011210298208295693,
+              "weighted_p01": 0.0,
+              "weighted_p95": 0.1401545425646776,
+              "weighted_p99": 0.36999175091721637
+            },
+            "lower_troposphere": {
+              "maximum": 0.11253065895986658,
+              "minimum": 0.0,
+              "sample_count": 304835,
+              "weighted_mean": 0.012934387343294067,
+              "weighted_median": 0.00016405926057433875,
+              "weighted_p01": 0.0,
+              "weighted_p95": 0.06328534499696693,
+              "weighted_p99": 0.0851027091988975
+            },
+            "upper_troposphere": {
+              "maximum": 0.6883349847650944,
+              "minimum": 0.0,
+              "sample_count": 167053,
+              "weighted_mean": 0.03897496644062005,
+              "weighted_median": 1.3594995438357129e-298,
+              "weighted_p01": 0.0,
+              "weighted_p95": 0.20425766198907266,
+              "weighted_p99": 0.4381282691973301
+            }
+          },
+          "number_density_unit": "molecule cm-3",
+          "source_variable": "qO1D"
+        },
+        "O2": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 0.20950026438853306,
+              "minimum": 0.20949993392970573,
+              "sample_count": 593124,
+              "weighted_mean": 0.2095000192767733,
+              "weighted_median": 0.2095000046188622,
+              "weighted_p01": 0.20949996388077616,
+              "weighted_p95": 0.20950011756324033,
+              "weighted_p99": 0.20950017270317686
+            },
+            "diagnostic_troposphere": {
+              "maximum": 0.20950014995578764,
+              "minimum": 0.2094999316209165,
+              "sample_count": 471888,
+              "weighted_mean": 0.20950000130426613,
+              "weighted_median": 0.20949999573328754,
+              "weighted_p01": 0.20949996123653247,
+              "weighted_p95": 0.20950004781756978,
+              "weighted_p99": 0.20950007110306856
+            },
+            "lower_troposphere": {
+              "maximum": 0.20950013894084457,
+              "minimum": 0.2094999316209165,
+              "sample_count": 304835,
+              "weighted_mean": 0.2095000020783486,
+              "weighted_median": 0.20949999658668653,
+              "weighted_p01": 0.20949996139027938,
+              "weighted_p95": 0.20950004810113088,
+              "weighted_p99": 0.20950007029801257
+            },
+            "upper_troposphere": {
+              "maximum": 0.20950014995578764,
+              "minimum": 0.2094999339218638,
+              "sample_count": 167053,
+              "weighted_mean": 0.20950000020877413,
+              "weighted_median": 0.20949999458361968,
+              "weighted_p01": 0.20949996106142962,
+              "weighted_p95": 0.20950004735427877,
+              "weighted_p99": 0.2095000722569037
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qO2"
+        },
+        "O3": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 6.0469514249916e-06,
+              "minimum": 8.189321020423035e-08,
+              "sample_count": 593124,
+              "weighted_mean": 2.094652082863118e-06,
+              "weighted_median": 1.4140853545067205e-06,
+              "weighted_p01": 1.7365803978936275e-07,
+              "weighted_p95": 5.647288058015991e-06,
+              "weighted_p99": 5.974252881047498e-06
+            },
+            "diagnostic_troposphere": {
+              "maximum": 5.776514661327325e-07,
+              "minimum": 2.558967440733552e-21,
+              "sample_count": 471888,
+              "weighted_mean": 6.773404698695458e-08,
+              "weighted_median": 4.855026119009987e-08,
+              "weighted_p01": 3.159656180416625e-08,
+              "weighted_p95": 1.7287809878427464e-07,
+              "weighted_p99": 3.273325904309762e-07
+            },
+            "lower_troposphere": {
+              "maximum": 8.924400526705214e-08,
+              "minimum": 2.558967440733552e-21,
+              "sample_count": 304835,
+              "weighted_mean": 4.2953925749022204e-08,
+              "weighted_median": 4.2450878442826795e-08,
+              "weighted_p01": 3.101269308492132e-08,
+              "weighted_p95": 5.376252300583885e-08,
+              "weighted_p99": 6.069305677237598e-08
+            },
+            "upper_troposphere": {
+              "maximum": 5.776514661327325e-07,
+              "minimum": 3.477442362396491e-08,
+              "sample_count": 167053,
+              "weighted_mean": 1.0280321026823525e-07,
+              "weighted_median": 7.340871321481346e-08,
+              "weighted_p01": 4.327651389380104e-08,
+              "weighted_p95": 2.8279666619311726e-07,
+              "weighted_p99": 3.6477555023782575e-07
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qO3"
+        },
+        "OH": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 9.492793314775938e-12,
+              "minimum": 1.8780653432808334e-30,
+              "sample_count": 593124,
+              "weighted_mean": 4.3998194205474783e-13,
+              "weighted_median": 9.258603103105412e-14,
+              "weighted_p01": 3.047187922308642e-23,
+              "weighted_p95": 2.4399127138356336e-12,
+              "weighted_p99": 6.4718722200906245e-12
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1.5372186158861258e-12,
+              "minimum": 5.01948513252435e-39,
+              "sample_count": 471888,
+              "weighted_mean": 1.0494979381229879e-13,
+              "weighted_median": 5.745649528357584e-15,
+              "weighted_p01": 8.958210976813522e-30,
+              "weighted_p95": 4.203876902212883e-13,
+              "weighted_p99": 6.16160358451241e-13
+            },
+            "lower_troposphere": {
+              "maximum": 1.4670186365748887e-12,
+              "minimum": 5.01948513252435e-39,
+              "sample_count": 304835,
+              "weighted_mean": 9.65833095419661e-14,
+              "weighted_median": 4.235883677543915e-15,
+              "weighted_p01": 9.597328322349455e-31,
+              "weighted_p95": 4.0150828526065744e-13,
+              "weighted_p99": 5.369339931744359e-13
+            },
+            "upper_troposphere": {
+              "maximum": 1.5372186158861258e-12,
+              "minimum": 5.849474176260881e-32,
+              "sample_count": 167053,
+              "weighted_mean": 1.1679015569549365e-13,
+              "weighted_median": 7.885008925179337e-15,
+              "weighted_p01": 8.1618392327232e-26,
+              "weighted_p95": 4.568804868625884e-13,
+              "weighted_p99": 7.352220360178235e-13
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "number_density_bands": {
+            "above_150_hpa": {
+              "maximum": 3737485.2740087174,
+              "minimum": 6.92175887240377e-12,
+              "sample_count": 593124,
+              "weighted_mean": 431511.9000454502,
+              "weighted_median": 147132.39095048886,
+              "weighted_p01": 0.002418963783974533,
+              "weighted_p95": 1664124.6371107844,
+              "weighted_p99": 2056653.2576292027
+            },
+            "diagnostic_troposphere": {
+              "maximum": 34161268.87005012,
+              "minimum": 1.0802075552594675e-19,
+              "sample_count": 471888,
+              "weighted_mean": 1326378.9268052026,
+              "weighted_median": 82175.74981770563,
+              "weighted_p01": 9.430868462648042e-10,
+              "weighted_p95": 5944031.409301164,
+              "weighted_p99": 8656806.794945702
+            },
+            "lower_troposphere": {
+              "maximum": 34161268.87005012,
+              "minimum": 1.0802075552594675e-19,
+              "sample_count": 304835,
+              "weighted_mean": 1781252.8810406283,
+              "weighted_median": 94840.49721531248,
+              "weighted_p01": 2.1002504358286183e-11,
+              "weighted_p95": 7504155.106841372,
+              "weighted_p99": 9271964.276898285
+            },
+            "upper_troposphere": {
+              "maximum": 11408189.052292988,
+              "minimum": 7.696776523981035e-13,
+              "sample_count": 167053,
+              "weighted_mean": 1022953.2900197364,
+              "weighted_median": 77296.56872972257,
+              "weighted_p01": 1.705965234333427e-06,
+              "weighted_p95": 4174682.94089466,
+              "weighted_p99": 6695514.577670732
+            }
+          },
+          "number_density_unit": "molecule cm-3",
+          "source_variable": "qOH"
+        }
+      },
+      "tier": "expanded",
+      "variant": "continuous"
+    },
+    "expanded_no_miem_control": {
+      "geometry": {
+        "cell_count": 40962,
+        "density_maximum_kg_m-3": 1.4404028511199989,
+        "density_minimum_kg_m-3": 0.0010558873301309835,
+        "dry_air_mass_kg": 5.111229491069485e+18,
+        "hydrostatic_equivalent_pressure_pa": 98262.94426717413,
+        "level_count": 26,
+        "mean_column_mass_kg_m-2": 10020.031740418402,
+        "mesh_area_m2": 510101127769088.0,
+        "pressure_maximum_pa": 104091.65491640223,
+        "pressure_minimum_pa": 69.61165531361016
+      },
+      "species": {
+        "CH2O": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 2.693195427732928e-11,
+              "minimum": 3.1196238184823536e-15,
+              "sample_count": 593124,
+              "weighted_mean": 7.38496962690695e-12,
+              "weighted_median": 6.312976194151974e-12,
+              "weighted_p01": 1.3763230868358777e-12,
+              "weighted_p95": 1.4905558009256382e-11,
+              "weighted_p99": 1.929460873671019e-11
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1.4078748554364346e-09,
+              "minimum": 3.388728339065774e-12,
+              "sample_count": 471888,
+              "weighted_mean": 1.8541568156385304e-10,
+              "weighted_median": 1.7414546466225453e-10,
+              "weighted_p01": 8.235428545991735e-12,
+              "weighted_p95": 4.0006412524325405e-10,
+              "weighted_p99": 4.806964431942371e-10
+            },
+            "lower_troposphere": {
+              "maximum": 1.4078748554364346e-09,
+              "minimum": 5.7563114903654986e-11,
+              "sample_count": 304835,
+              "weighted_mean": 2.66965448780697e-10,
+              "weighted_median": 2.5559149330481285e-10,
+              "weighted_p01": 1.0411168795530523e-10,
+              "weighted_p95": 4.263563720004915e-10,
+              "weighted_p99": 5.119327177527078e-10
+            },
+            "upper_troposphere": {
+              "maximum": 3.132098943498299e-10,
+              "minimum": 3.388728339065774e-12,
+              "sample_count": 167053,
+              "weighted_mean": 7.000534621407494e-11,
+              "weighted_median": 6.165429309826973e-11,
+              "weighted_p01": 6.9949858296935535e-12,
+              "weighted_p95": 1.562210529127101e-10,
+              "weighted_p99": 2.0346992190594366e-10
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qCH2O"
+        },
+        "CH3O2": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 4.270507448310784e-11,
+              "minimum": 9.52112534801101e-26,
+              "sample_count": 593124,
+              "weighted_mean": 2.4132088303300087e-12,
+              "weighted_median": 1.020530023310315e-12,
+              "weighted_p01": 2.7016055006746924e-20,
+              "weighted_p95": 9.843499611368162e-12,
+              "weighted_p99": 1.7922205656196875e-11
+            },
+            "diagnostic_troposphere": {
+              "maximum": 5.759892666987975e-11,
+              "minimum": 2.2442650859101152e-23,
+              "sample_count": 471888,
+              "weighted_mean": 5.2286721932349335e-12,
+              "weighted_median": 2.6173473273472886e-12,
+              "weighted_p01": 4.087262865330499e-17,
+              "weighted_p95": 2.1600648201227653e-11,
+              "weighted_p99": 3.2910619902923035e-11
+            },
+            "lower_troposphere": {
+              "maximum": 5.759892666987975e-11,
+              "minimum": 2.2442650859101152e-23,
+              "sample_count": 304835,
+              "weighted_mean": 7.507048147283005e-12,
+              "weighted_median": 4.703649802712552e-12,
+              "weighted_p01": 1.3787907196737764e-16,
+              "weighted_p95": 2.6508879216077893e-11,
+              "weighted_p99": 3.47684365883416e-11
+            },
+            "upper_troposphere": {
+              "maximum": 2.9585769223222034e-11,
+              "minimum": 5.513087437224125e-23,
+              "sample_count": 167053,
+              "weighted_mean": 2.004283677074376e-12,
+              "weighted_median": 1.2359430818077274e-12,
+              "weighted_p01": 1.2505312163698865e-17,
+              "weighted_p95": 6.715111583393091e-12,
+              "weighted_p99": 1.2075104340154321e-11
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "number_density_bands": {
+            "above_150_hpa": {
+              "maximum": 9481281.262610208,
+              "minimum": 2.580886271984991e-07,
+              "sample_count": 593124,
+              "weighted_mean": 2368033.262335108,
+              "weighted_median": 2256585.4305877862,
+              "weighted_p01": 0.15875346475633456,
+              "weighted_p95": 4878712.644884508,
+              "weighted_p99": 6113328.283576515
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1355480169.3033595,
+              "minimum": 0.00035001417708837733,
+              "sample_count": 471888,
+              "weighted_mean": 66029847.55578985,
+              "weighted_median": 20315232.525949154,
+              "weighted_p01": 235.45522259331946,
+              "weighted_p95": 312409140.2788442,
+              "weighted_p99": 622505723.9615531
+            },
+            "lower_troposphere": {
+              "maximum": 1355480169.3033595,
+              "minimum": 0.0006178239000833139,
+              "sample_count": 304835,
+              "weighted_mean": 138531387.10394788,
+              "weighted_median": 82308936.65154871,
+              "weighted_p01": 10098.339863439034,
+              "weighted_p95": 495949975.05741405,
+              "weighted_p99": 740005161.581245
+            },
+            "upper_troposphere": {
+              "maximum": 393296397.8854157,
+              "minimum": 0.00035001417708837733,
+              "sample_count": 167053,
+              "weighted_mean": 17667382.304722052,
+              "weighted_median": 8585682.152617037,
+              "weighted_p01": 51.508555381989524,
+              "weighted_p95": 64759879.53317996,
+              "weighted_p99": 124512622.0693707
+            }
+          },
+          "number_density_unit": "molecule cm-3",
+          "source_variable": "qCH3O2"
+        },
+        "CH3OOH": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 1.7880567729308297e-10,
+              "minimum": 1.796439764739887e-15,
+              "sample_count": 593124,
+              "weighted_mean": 2.2448886284849138e-11,
+              "weighted_median": 8.20599583732747e-12,
+              "weighted_p01": 8.064296100114229e-13,
+              "weighted_p95": 9.691995139343573e-11,
+              "weighted_p99": 1.3743589562786016e-10
+            },
+            "diagnostic_troposphere": {
+              "maximum": 2.575899740691607e-09,
+              "minimum": 2.129954884533316e-12,
+              "sample_count": 471888,
+              "weighted_mean": 4.063383846907317e-10,
+              "weighted_median": 1.453462000088432e-10,
+              "weighted_p01": 5.692886367414411e-12,
+              "weighted_p95": 1.5032286528826764e-09,
+              "weighted_p99": 1.829966186068621e-09
+            },
+            "lower_troposphere": {
+              "maximum": 2.575899740691607e-09,
+              "minimum": 2.129954884533316e-12,
+              "sample_count": 304835,
+              "weighted_mean": 6.281861213504788e-10,
+              "weighted_median": 5.142732870440694e-10,
+              "weighted_p01": 2.4684357041991026e-11,
+              "weighted_p95": 1.642095828056863e-09,
+              "weighted_p99": 1.907137468802549e-09
+            },
+            "upper_troposphere": {
+              "maximum": 1.2645894085113923e-09,
+              "minimum": 2.6911062151798665e-12,
+              "sample_count": 167053,
+              "weighted_mean": 9.237646231749038e-11,
+              "weighted_median": 3.6912925390423414e-11,
+              "weighted_p01": 4.654921714582927e-12,
+              "weighted_p95": 3.85133424922058e-10,
+              "weighted_p99": 6.713214865833303e-10
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qCH3OOH"
+        },
+        "CH4": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 1.900000000000076e-06,
+              "minimum": 1.8993023642243418e-06,
+              "sample_count": 593124,
+              "weighted_mean": 1.8999054635749427e-06,
+              "weighted_median": 1.8999392019020422e-06,
+              "weighted_p01": 1.8995625119846259e-06,
+              "weighted_p95": 1.8999952448989772e-06,
+              "weighted_p99": 1.8999999994749637e-06
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1.9000000000000642e-06,
+              "minimum": 1.881591552369155e-06,
+              "sample_count": 471888,
+              "weighted_mean": 1.8974990592284386e-06,
+              "weighted_median": 1.8982984332528743e-06,
+              "weighted_p01": 1.891428897436917e-06,
+              "weighted_p95": 1.8999677762527426e-06,
+              "weighted_p99": 1.8999999944730203e-06
+            },
+            "lower_troposphere": {
+              "maximum": 1.9000000000000642e-06,
+              "minimum": 1.881591552369155e-06,
+              "sample_count": 304835,
+              "weighted_mean": 1.8963334864562133e-06,
+              "weighted_median": 1.8964401348735729e-06,
+              "weighted_p01": 1.8908095775243967e-06,
+              "weighted_p95": 1.8999451943149271e-06,
+              "weighted_p99": 1.8999999916801574e-06
+            },
+            "upper_troposphere": {
+              "maximum": 1.9000000000000521e-06,
+              "minimum": 1.8929731163143447e-06,
+              "sample_count": 167053,
+              "weighted_mean": 1.8991485936061318e-06,
+              "weighted_median": 1.8994615877364904e-06,
+              "weighted_p01": 1.896000288143399e-06,
+              "weighted_p95": 1.899978806616319e-06,
+              "weighted_p99": 1.8999999959825789e-06
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qCH4"
+        },
+        "CO": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 6.015492156966498e-08,
+              "minimum": 4.8882418287919305e-08,
+              "sample_count": 593124,
+              "weighted_mean": 5.1541354377581114e-08,
+              "weighted_median": 5.136933569096172e-08,
+              "weighted_p01": 4.9147875394470656e-08,
+              "weighted_p95": 5.4186900120233966e-08,
+              "weighted_p99": 5.565246998143472e-08
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1.1891185606309684e-07,
+              "minimum": 5.200295156585056e-08,
+              "sample_count": 471888,
+              "weighted_mean": 7.694107132187569e-08,
+              "weighted_median": 7.471967744433476e-08,
+              "weighted_p01": 5.312999457716453e-08,
+              "weighted_p95": 1.0574380601408793e-07,
+              "weighted_p99": 1.1294808157546868e-07
+            },
+            "lower_troposphere": {
+              "maximum": 1.1891185606309684e-07,
+              "minimum": 5.8422173349227956e-08,
+              "sample_count": 304835,
+              "weighted_mean": 8.768053247770801e-08,
+              "weighted_median": 8.739333116667794e-08,
+              "weighted_p01": 6.412905363765049e-08,
+              "weighted_p95": 1.0823743635270936e-07,
+              "weighted_p99": 1.1464763912855888e-07
+            },
+            "upper_troposphere": {
+              "maximum": 1.061166543173798e-07,
+              "minimum": 5.200295156585056e-08,
+              "sample_count": 167053,
+              "weighted_mean": 6.174244040273656e-08,
+              "weighted_median": 6.041122241971258e-08,
+              "weighted_p01": 5.288010197661405e-08,
+              "weighted_p95": 7.563445761267165e-08,
+              "weighted_p99": 8.526779552182385e-08
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qCO"
+        },
+        "H2O": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 0.00011554185138862572,
+              "minimum": 2.39496256860609e-07,
+              "sample_count": 593124,
+              "weighted_mean": 2.5846701767422616e-06,
+              "weighted_median": 2.2841032149770782e-06,
+              "weighted_p01": 5.616734487815645e-07,
+              "weighted_p95": 4.485516626778692e-06,
+              "weighted_p99": 1.1312248958227022e-05
+            },
+            "diagnostic_troposphere": {
+              "maximum": 0.03494106618772611,
+              "minimum": 2.1696947127152907e-07,
+              "sample_count": 471888,
+              "weighted_mean": 0.0050815982409789925,
+              "weighted_median": 0.002154685295175397,
+              "weighted_p01": 7.675637021141998e-07,
+              "weighted_p95": 0.019950577814892,
+              "weighted_p99": 0.02657038261779604
+            },
+            "lower_troposphere": {
+              "maximum": 0.03494106618772611,
+              "minimum": 1.0700904511987363e-06,
+              "sample_count": 304835,
+              "weighted_mean": 0.00809379756393768,
+              "weighted_median": 0.006176761790272438,
+              "weighted_p01": 9.518361655957859e-05,
+              "weighted_p95": 0.02296267747402134,
+              "weighted_p99": 0.027585841608460927
+            },
+            "upper_troposphere": {
+              "maximum": 0.015533598358693437,
+              "minimum": 2.1696947127152907e-07,
+              "sample_count": 167053,
+              "weighted_mean": 0.0008186929517627669,
+              "weighted_median": 0.00024363370152850149,
+              "weighted_p01": 6.401823393445524e-07,
+              "weighted_p95": 0.0036298216696233226,
+              "weighted_p99": 0.006728034019970847
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qv"
+        },
+        "H2O2": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 3.498928641414008e-10,
+              "minimum": 1.2714939428277068e-13,
+              "sample_count": 593124,
+              "weighted_mean": 5.5452977629029477e-11,
+              "weighted_median": 3.251226739215361e-11,
+              "weighted_p01": 9.1639731012797e-12,
+              "weighted_p95": 2.125023000271604e-10,
+              "weighted_p99": 2.9503598033232604e-10
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1.910806040440455e-09,
+              "minimum": 2.274161527639585e-11,
+              "sample_count": 471888,
+              "weighted_mean": 5.484704076861539e-10,
+              "weighted_median": 4.5087321450615355e-10,
+              "weighted_p01": 4.179852961477109e-11,
+              "weighted_p95": 1.3624359001411483e-09,
+              "weighted_p99": 1.589176495688921e-09
+            },
+            "lower_troposphere": {
+              "maximum": 1.910806040440455e-09,
+              "minimum": 9.92780238119128e-11,
+              "sample_count": 304835,
+              "weighted_mean": 7.901311146889484e-10,
+              "weighted_median": 7.409632809786137e-10,
+              "weighted_p01": 1.9680426573483064e-10,
+              "weighted_p95": 1.4652887516168403e-09,
+              "weighted_p99": 1.628731077230154e-09
+            },
+            "upper_troposphere": {
+              "maximum": 1.404806826868007e-09,
+              "minimum": 2.274161527639585e-11,
+              "sample_count": 167053,
+              "weighted_mean": 2.064689012698815e-10,
+              "weighted_median": 1.6492776603886313e-10,
+              "weighted_p01": 3.6878822115137723e-11,
+              "weighted_p95": 5.144531302770084e-10,
+              "weighted_p99": 7.238012666813418e-10
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qH2O2"
+        },
+        "HNO3": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 4.794501162500537e-11,
+              "minimum": 3.5676485091318486e-16,
+              "sample_count": 593124,
+              "weighted_mean": 1.1192674739920363e-11,
+              "weighted_median": 1.1709171562994622e-11,
+              "weighted_p01": 1.5797169999092773e-14,
+              "weighted_p95": 2.0291016985284396e-11,
+              "weighted_p99": 2.4704154025742216e-11
+            },
+            "diagnostic_troposphere": {
+              "maximum": 2.5952056234070138e-08,
+              "minimum": 1.1009185424234727e-11,
+              "sample_count": 471888,
+              "weighted_mean": 3.6676665530563926e-10,
+              "weighted_median": 2.2240632275698634e-10,
+              "weighted_p01": 1.876882533802307e-11,
+              "weighted_p95": 9.726912785339146e-10,
+              "weighted_p99": 1.777656053194862e-09
+            },
+            "lower_troposphere": {
+              "maximum": 2.5952056234070138e-08,
+              "minimum": 2.5991955173524226e-11,
+              "sample_count": 304835,
+              "weighted_mean": 5.600037668513837e-10,
+              "weighted_median": 4.5830320923591196e-10,
+              "weighted_p01": 6.37606572426508e-11,
+              "weighted_p95": 1.0971921034005404e-09,
+              "weighted_p99": 2.581072082852491e-09
+            },
+            "upper_troposphere": {
+              "maximum": 1.166510693432877e-09,
+              "minimum": 1.1009185424234727e-11,
+              "sample_count": 167053,
+              "weighted_mean": 9.329487719232915e-11,
+              "weighted_median": 6.894403749045676e-11,
+              "weighted_p01": 1.6969953102630175e-11,
+              "weighted_p95": 2.3784471841908565e-10,
+              "weighted_p99": 3.9802742476225e-10
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qHNO3"
+        },
+        "HO2": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 1.4864598230081857e-10,
+              "minimum": 8.894637056523878e-29,
+              "sample_count": 593124,
+              "weighted_mean": 8.814725642290603e-12,
+              "weighted_median": 2.206962118834097e-12,
+              "weighted_p01": 1.0855966963594206e-21,
+              "weighted_p95": 5.050132338518456e-11,
+              "weighted_p99": 1.1130449615602935e-10
+            },
+            "diagnostic_troposphere": {
+              "maximum": 5.221462385441985e-11,
+              "minimum": 3.104274687320389e-39,
+              "sample_count": 471888,
+              "weighted_mean": 6.934532734199004e-12,
+              "weighted_median": 9.811057368795033e-13,
+              "weighted_p01": 5.147859929367558e-31,
+              "weighted_p95": 2.9265448849217914e-11,
+              "weighted_p99": 3.503811230224839e-11
+            },
+            "lower_troposphere": {
+              "maximum": 5.221462385441985e-11,
+              "minimum": 3.104274687320389e-39,
+              "sample_count": 304835,
+              "weighted_mean": 8.638007039399217e-12,
+              "weighted_median": 1.122664511122729e-12,
+              "weighted_p01": 1.1102120430715804e-32,
+              "weighted_p95": 3.1875762654448486e-11,
+              "weighted_p99": 3.5931283750874315e-11
+            },
+            "upper_troposphere": {
+              "maximum": 3.513381625714755e-11,
+              "minimum": 6.751141274606416e-30,
+              "sample_count": 167053,
+              "weighted_mean": 4.5237528198906855e-12,
+              "weighted_median": 8.739416218829952e-13,
+              "weighted_p01": 2.2532732260899744e-23,
+              "weighted_p95": 1.856866013571634e-11,
+              "weighted_p99": 2.6393883455705313e-11
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "number_density_bands": {
+            "above_150_hpa": {
+              "maximum": 73047877.1257169,
+              "minimum": 3.278189078088923e-10,
+              "sample_count": 593124,
+              "weighted_mean": 8646453.8926491,
+              "weighted_median": 2974387.7082410906,
+              "weighted_p01": 0.05219909773774108,
+              "weighted_p95": 33607540.80191433,
+              "weighted_p99": 41825821.27967531
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1231769982.9296913,
+              "minimum": 7.293014332885224e-20,
+              "sample_count": 471888,
+              "weighted_mean": 87611860.19055949,
+              "weighted_median": 9428899.20533527,
+              "weighted_p01": 8.114860314321434e-10,
+              "weighted_p95": 454724579.73052716,
+              "weighted_p99": 711505097.554301
+            },
+            "lower_troposphere": {
+              "maximum": 1231769982.9296913,
+              "minimum": 7.293014332885224e-20,
+              "sample_count": 304835,
+              "weighted_mean": 159377306.19522446,
+              "weighted_median": 23516715.22144096,
+              "weighted_p01": 6.75453072483442e-13,
+              "weighted_p95": 618800001.4020416,
+              "weighted_p99": 792464394.530394
+            },
+            "upper_troposphere": {
+              "maximum": 473633451.04780036,
+              "minimum": 8.883196011591829e-11,
+              "sample_count": 167053,
+              "weighted_mean": 39740409.31850461,
+              "weighted_median": 7153308.097542495,
+              "weighted_p01": 0.00042209472216864083,
+              "weighted_p95": 182959238.2933472,
+              "weighted_p99": 277246715.1242316
+            }
+          },
+          "number_density_unit": "molecule cm-3",
+          "source_variable": "qHO2"
+        },
+        "NO": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 5.0232205117587295e-11,
+              "minimum": 0.0,
+              "sample_count": 593124,
+              "weighted_mean": 1.2836161994182951e-11,
+              "weighted_median": 1.0486527797986085e-11,
+              "weighted_p01": 0.0,
+              "weighted_p95": 3.5409575849136194e-11,
+              "weighted_p99": 4.7036526175893796e-11
+            },
+            "diagnostic_troposphere": {
+              "maximum": 2.5766357944837683e-08,
+              "minimum": 0.0,
+              "sample_count": 471888,
+              "weighted_mean": 1.1048423576898226e-11,
+              "weighted_median": 6.33151529968037e-13,
+              "weighted_p01": 0.0,
+              "weighted_p95": 3.926516575265915e-11,
+              "weighted_p99": 6.944487199363421e-11
+            },
+            "lower_troposphere": {
+              "maximum": 2.5766357944837683e-08,
+              "minimum": 0.0,
+              "sample_count": 304835,
+              "weighted_mean": 9.52854421121692e-12,
+              "weighted_median": 7.636680088212005e-13,
+              "weighted_p01": 0.0,
+              "weighted_p95": 3.242953843087167e-11,
+              "weighted_p99": 8.127059606551755e-11
+            },
+            "upper_troposphere": {
+              "maximum": 9.815560501369135e-11,
+              "minimum": 0.0,
+              "sample_count": 167053,
+              "weighted_mean": 1.3199377445571648e-11,
+              "weighted_median": 1.2721656153946304e-13,
+              "weighted_p01": 9.127929157438936e-77,
+              "weighted_p95": 4.2933901740165455e-11,
+              "weighted_p99": 5.998581084288706e-11
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qNO"
+        },
+        "NO2": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 9.045003265229247e-11,
+              "minimum": 1.0902989817237705e-13,
+              "sample_count": 593124,
+              "weighted_mean": 3.439145485250384e-11,
+              "weighted_median": 3.4501787743712526e-11,
+              "weighted_p01": 3.1488683086750925e-12,
+              "weighted_p95": 5.4016314765248575e-11,
+              "weighted_p99": 6.311090940262911e-11
+            },
+            "diagnostic_troposphere": {
+              "maximum": 2.3651273118150765e-08,
+              "minimum": 3.8544387307657257e-13,
+              "sample_count": 471888,
+              "weighted_mean": 7.695359547916384e-11,
+              "weighted_median": 2.695519486872829e-11,
+              "weighted_p01": 6.1450267316236135e-12,
+              "weighted_p95": 3.288274538506953e-10,
+              "weighted_p99": 7.753337579002217e-10
+            },
+            "lower_troposphere": {
+              "maximum": 2.3651273118150765e-08,
+              "minimum": 3.8544387307657257e-13,
+              "sample_count": 304835,
+              "weighted_mean": 9.823563037278428e-11,
+              "weighted_median": 2.456767830800623e-11,
+              "weighted_p01": 5.947141377037775e-12,
+              "weighted_p95": 4.966872580601704e-10,
+              "weighted_p99": 8.625362698291933e-10
+            },
+            "upper_troposphere": {
+              "maximum": 7.380576947338514e-10,
+              "minimum": 2.3250993908559787e-12,
+              "sample_count": 167053,
+              "weighted_mean": 4.683497138220752e-11,
+              "weighted_median": 3.237869934812221e-11,
+              "weighted_p01": 6.621703156621997e-12,
+              "weighted_p95": 1.3338896117969375e-10,
+              "weighted_p99": 2.630895528752289e-10
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qNO2"
+        },
+        "O": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 4.974006896648452e-10,
+              "minimum": 0.0,
+              "sample_count": 593124,
+              "weighted_mean": 1.0004220689298308e-11,
+              "weighted_median": 1.1294571589786543e-14,
+              "weighted_p01": 0.0,
+              "weighted_p95": 5.1568464020340786e-11,
+              "weighted_p99": 2.5054252583497304e-10
+            },
+            "diagnostic_troposphere": {
+              "maximum": 3.8754875771671334e-14,
+              "minimum": 0.0,
+              "sample_count": 471888,
+              "weighted_mean": 7.868006270454945e-16,
+              "weighted_median": 4.3413903982360433e-17,
+              "weighted_p01": 0.0,
+              "weighted_p95": 3.731750481492375e-15,
+              "weighted_p99": 1.4467541005522305e-14
+            },
+            "lower_troposphere": {
+              "maximum": 2.5943186316611693e-15,
+              "minimum": 0.0,
+              "sample_count": 304835,
+              "weighted_mean": 1.790565372690289e-16,
+              "weighted_median": 5.822475433306313e-17,
+              "weighted_p01": 0.0,
+              "weighted_p95": 6.688086890081055e-16,
+              "weighted_p99": 9.297007689349448e-16
+            },
+            "upper_troposphere": {
+              "maximum": 3.8754875771671334e-14,
+              "minimum": 0.0,
+              "sample_count": 167053,
+              "weighted_mean": 1.6468882962284447e-15,
+              "weighted_median": 1.353144886155086e-177,
+              "weighted_p01": 0.0,
+              "weighted_p95": 7.846214288722966e-15,
+              "weighted_p99": 1.8554704595348547e-14
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "number_density_bands": {
+            "above_150_hpa": {
+              "maximum": 79982528.33541135,
+              "minimum": 0.0,
+              "sample_count": 593124,
+              "weighted_mean": 9805002.2823591,
+              "weighted_median": 60712.587279002895,
+              "weighted_p01": 0.0,
+              "weighted_p95": 47986784.01910799,
+              "weighted_p99": 65395923.34913377
+            },
+            "diagnostic_troposphere": {
+              "maximum": 193649.46195347156,
+              "minimum": 0.0,
+              "sample_count": 471888,
+              "weighted_mean": 9993.972110911667,
+              "weighted_median": 1054.0396957843952,
+              "weighted_p01": 0.0,
+              "weighted_p95": 47994.15077939081,
+              "weighted_p99": 98785.80776037578
+            },
+            "lower_troposphere": {
+              "maximum": 60576.6803320167,
+              "minimum": 0.0,
+              "sample_count": 304835,
+              "weighted_mean": 3308.2862408099686,
+              "weighted_median": 1486.9343636454719,
+              "weighted_p01": 0.0,
+              "weighted_p95": 10634.909895601462,
+              "weighted_p99": 13059.465309303434
+            },
+            "upper_troposphere": {
+              "maximum": 193649.46195347156,
+              "minimum": 0.0,
+              "sample_count": 167053,
+              "weighted_mean": 14453.687760916277,
+              "weighted_median": 1.6082755991091844e-135,
+              "weighted_p01": 0.0,
+              "weighted_p95": 69611.47261492533,
+              "weighted_p99": 107985.35658081228
+            }
+          },
+          "number_density_unit": "molecule cm-3",
+          "source_variable": "qO"
+        },
+        "O1D": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 3.0295538236241175e-16,
+              "minimum": 0.0,
+              "sample_count": 593124,
+              "weighted_mean": 6.245854496885734e-18,
+              "weighted_median": 5.668661541764202e-22,
+              "weighted_p01": 0.0,
+              "weighted_p95": 3.2930746759077445e-17,
+              "weighted_p99": 1.549306555515566e-16
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1.3700899518813304e-19,
+              "minimum": 0.0,
+              "sample_count": 471888,
+              "weighted_mean": 2.2618879038027993e-21,
+              "weighted_median": 5.3088211799917436e-24,
+              "weighted_p01": 0.0,
+              "weighted_p95": 9.988732574599987e-21,
+              "weighted_p99": 3.9062341566580686e-20
+            },
+            "lower_troposphere": {
+              "maximum": 8.2202804905728e-21,
+              "minimum": 0.0,
+              "sample_count": 304835,
+              "weighted_mean": 7.00919356148884e-22,
+              "weighted_median": 7.071835926193687e-24,
+              "weighted_p01": 0.0,
+              "weighted_p95": 3.646104504353339e-21,
+              "weighted_p99": 5.873183994562743e-21
+            },
+            "upper_troposphere": {
+              "maximum": 1.3700899518813304e-19,
+              "minimum": 0.0,
+              "sample_count": 167053,
+              "weighted_mean": 4.4709917394540224e-21,
+              "weighted_median": 0.0,
+              "weighted_p01": 0.0,
+              "weighted_p95": 2.305949473387248e-20,
+              "weighted_p99": 7.001758988279304e-20
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "number_density_bands": {
+            "above_150_hpa": {
+              "maximum": 77.70183593480579,
+              "minimum": 0.0,
+              "sample_count": 593124,
+              "weighted_mean": 6.121492833580632,
+              "weighted_median": 0.0033867189250467913,
+              "weighted_p01": 0.0,
+              "weighted_p95": 38.1437583975622,
+              "weighted_p99": 61.148633140984685
+            },
+            "diagnostic_troposphere": {
+              "maximum": 0.6883438456566882,
+              "minimum": 0.0,
+              "sample_count": 471888,
+              "weighted_mean": 0.028551448903364467,
+              "weighted_median": 0.00011231766861558129,
+              "weighted_p01": 0.0,
+              "weighted_p95": 0.1401568805554822,
+              "weighted_p99": 0.36999239215157387
+            },
+            "lower_troposphere": {
+              "maximum": 0.11253644742677192,
+              "minimum": 0.0,
+              "sample_count": 304835,
+              "weighted_mean": 0.012924449304884695,
+              "weighted_median": 0.00016423160458487975,
+              "weighted_p01": 0.0,
+              "weighted_p95": 0.06328562122014957,
+              "weighted_p99": 0.08510307178129774
+            },
+            "upper_troposphere": {
+              "maximum": 0.6883438456566882,
+              "minimum": 0.0,
+              "sample_count": 167053,
+              "weighted_mean": 0.03897550651331255,
+              "weighted_median": 1.3045642464380251e-298,
+              "weighted_p01": 0.0,
+              "weighted_p95": 0.2042581232488416,
+              "weighted_p99": 0.4381400601692306
+            }
+          },
+          "number_density_unit": "molecule cm-3",
+          "source_variable": "qO1D"
+        },
+        "O2": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 0.2095002643885352,
+              "minimum": 0.20949993416472412,
+              "sample_count": 593124,
+              "weighted_mean": 0.2095000192775607,
+              "weighted_median": 0.20950000443737674,
+              "weighted_p01": 0.20949996568960808,
+              "weighted_p95": 0.20950011747029695,
+              "weighted_p99": 0.20950017270057567
+            },
+            "diagnostic_troposphere": {
+              "maximum": 0.20950014900076497,
+              "minimum": 0.20949993311309792,
+              "sample_count": 471888,
+              "weighted_mean": 0.20950000133891636,
+              "weighted_median": 0.20949999557079735,
+              "weighted_p01": 0.20949996347904454,
+              "weighted_p95": 0.20950004699945915,
+              "weighted_p99": 0.2095000699002101
+            },
+            "lower_troposphere": {
+              "maximum": 0.20950013215752392,
+              "minimum": 0.20949993311309792,
+              "sample_count": 304835,
+              "weighted_mean": 0.2095000021358211,
+              "weighted_median": 0.20949999647265433,
+              "weighted_p01": 0.2094999638687727,
+              "weighted_p95": 0.20950004730496338,
+              "weighted_p99": 0.20950006924741768
+            },
+            "upper_troposphere": {
+              "maximum": 0.20950014900076497,
+              "minimum": 0.2094999341566991,
+              "sample_count": 167053,
+              "weighted_mean": 0.20950000021112594,
+              "weighted_median": 0.20949999438058697,
+              "weighted_p01": 0.20949996309130225,
+              "weighted_p95": 0.2095000464639517,
+              "weighted_p99": 0.20950007115922276
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qO2"
+        },
+        "O3": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 6.046951430297532e-06,
+              "minimum": 8.189321020422716e-08,
+              "sample_count": 593124,
+              "weighted_mean": 2.0946520803551464e-06,
+              "weighted_median": 1.4140853502794484e-06,
+              "weighted_p01": 1.7365803978826243e-07,
+              "weighted_p95": 5.6472880580205005e-06,
+              "weighted_p99": 5.974252881041704e-06
+            },
+            "diagnostic_troposphere": {
+              "maximum": 5.776514653316948e-07,
+              "minimum": 7.762221339476685e-09,
+              "sample_count": 471888,
+              "weighted_mean": 6.770421276134786e-08,
+              "weighted_median": 4.84791315714239e-08,
+              "weighted_p01": 3.169193242117501e-08,
+              "weighted_p95": 1.728780982358214e-07,
+              "weighted_p99": 3.2733259029878466e-07
+            },
+            "lower_troposphere": {
+              "maximum": 8.924400514835918e-08,
+              "minimum": 7.762221339476685e-09,
+              "sample_count": 304835,
+              "weighted_mean": 4.290295940344064e-08,
+              "weighted_median": 4.237582056448866e-08,
+              "weighted_p01": 3.1113184768224414e-08,
+              "weighted_p95": 5.36524485840733e-08,
+              "weighted_p99": 6.052987086903109e-08
+            },
+            "upper_troposphere": {
+              "maximum": 5.776514653316948e-07,
+              "minimum": 3.4774423185794047e-08,
+              "sample_count": 167053,
+              "weighted_mean": 1.028032825051015e-07,
+              "weighted_median": 7.340871263889889e-08,
+              "weighted_p01": 4.327350787195201e-08,
+              "weighted_p95": 2.8279666614987723e-07,
+              "weighted_p99": 3.647755498069403e-07
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qO3"
+        },
+        "OH": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 9.4927940797787e-12,
+              "minimum": 1.8780653407989958e-30,
+              "sample_count": 593124,
+              "weighted_mean": 4.399821864369651e-13,
+              "weighted_median": 9.25860320332589e-14,
+              "weighted_p01": 3.0471879349987734e-23,
+              "weighted_p95": 2.43991247346666e-12,
+              "weighted_p99": 6.471871870189168e-12
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1.5372338676994848e-12,
+              "minimum": 4.4797944648102967e-42,
+              "sample_count": 471888,
+              "weighted_mean": 1.0445925373046527e-13,
+              "weighted_median": 5.747619191390191e-15,
+              "weighted_p01": 8.022747179315222e-34,
+              "weighted_p95": 4.186973311702912e-13,
+              "weighted_p99": 6.146921761084896e-13
+            },
+            "lower_troposphere": {
+              "maximum": 1.427963385123177e-12,
+              "minimum": 4.4797944648102967e-42,
+              "sample_count": 304835,
+              "weighted_mean": 9.574361077640094e-14,
+              "weighted_median": 4.251222626743718e-15,
+              "weighted_p01": 1.5699451830704918e-35,
+              "weighted_p95": 3.982011163414223e-13,
+              "weighted_p99": 5.34255368349865e-13
+            },
+            "upper_troposphere": {
+              "maximum": 1.5372338676994848e-12,
+              "minimum": 3.355144429764602e-32,
+              "sample_count": 167053,
+              "weighted_mean": 1.167937497130575e-13,
+              "weighted_median": 7.879821969725376e-15,
+              "weighted_p01": 8.161867965119782e-26,
+              "weighted_p95": 4.568825827464031e-13,
+              "weighted_p99": 7.35224229424962e-13
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "number_density_bands": {
+            "above_150_hpa": {
+              "maximum": 3737569.0656357748,
+              "minimum": 6.921758863256762e-12,
+              "sample_count": 593124,
+              "weighted_mean": 431512.14063266804,
+              "weighted_median": 147132.38871951998,
+              "weighted_p01": 0.002418963796083748,
+              "weighted_p95": 1664124.6703890706,
+              "weighted_p99": 2056653.4027805037
+            },
+            "diagnostic_troposphere": {
+              "maximum": 33799095.44377621,
+              "minimum": 1.0524585782852602e-22,
+              "sample_count": 471888,
+              "weighted_mean": 1320210.5032430259,
+              "weighted_median": 82278.7649668796,
+              "weighted_p01": 1.4029940787739015e-12,
+              "weighted_p95": 5907197.983510411,
+              "weighted_p99": 8569086.741538618
+            },
+            "lower_troposphere": {
+              "maximum": 33799095.44377621,
+              "minimum": 1.0524585782852602e-22,
+              "sample_count": 304835,
+              "weighted_mean": 1765785.6538245666,
+              "weighted_median": 94978.62373842664,
+              "weighted_p01": 1.005594323004819e-15,
+              "weighted_p95": 7420178.967078228,
+              "weighted_p99": 9134346.600166414
+            },
+            "upper_troposphere": {
+              "maximum": 11408407.830455476,
+              "minimum": 4.4147210678148666e-13,
+              "sample_count": 167053,
+              "weighted_mean": 1022987.6736171059,
+              "weighted_median": 77298.1710996618,
+              "weighted_p01": 1.7059255218934228e-06,
+              "weighted_p95": 4174689.8003986194,
+              "weighted_p99": 6695575.708259026
+            }
+          },
+          "number_density_unit": "molecule cm-3",
+          "source_variable": "qOH"
+        }
+      },
+      "tier": "expanded",
+      "variant": "no_miem_control"
+    },
+    "reduced_continuous": {
+      "geometry": {
+        "cell_count": 40962,
+        "density_maximum_kg_m-3": 1.4354015749952882,
+        "density_minimum_kg_m-3": 0.0010075785926010033,
+        "dry_air_mass_kg": 5.111229491069485e+18,
+        "hydrostatic_equivalent_pressure_pa": 98262.94426717413,
+        "level_count": 26,
+        "mean_column_mass_kg_m-2": 10020.031740418402,
+        "mesh_area_m2": 510101127769088.0,
+        "pressure_maximum_pa": 103156.48410994538,
+        "pressure_minimum_pa": 72.59130084798056
+      },
+      "species": {
+        "H2O": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 0.0002390391929932214,
+              "minimum": 6.369987071335532e-07,
+              "sample_count": 593242,
+              "weighted_mean": 2.7714680951005962e-06,
+              "weighted_median": 2.4677903011177534e-06,
+              "weighted_p01": 1.1513085223818406e-06,
+              "weighted_p95": 4.7996317328567155e-06,
+              "weighted_p99": 9.255255797914214e-06
+            },
+            "diagnostic_troposphere": {
+              "maximum": 0.03615552644992567,
+              "minimum": 4.523496284175616e-08,
+              "sample_count": 471770,
+              "weighted_mean": 0.005082370557892235,
+              "weighted_median": 0.001994948747734948,
+              "weighted_p01": 1.7146011087612711e-06,
+              "weighted_p95": 0.020157373956466884,
+              "weighted_p99": 0.0268534410102982
+            },
+            "lower_troposphere": {
+              "maximum": 0.03615552644992567,
+              "minimum": 5.0242558659421807e-08,
+              "sample_count": 304476,
+              "weighted_mean": 0.008182542030056368,
+              "weighted_median": 0.006266726186275087,
+              "weighted_p01": 7.233412070949095e-05,
+              "weighted_p95": 0.02320497172903416,
+              "weighted_p99": 0.0278286878683569
+            },
+            "upper_troposphere": {
+              "maximum": 0.0135984479590088,
+              "minimum": 4.523496284175616e-08,
+              "sample_count": 167294,
+              "weighted_mean": 0.0007211858591089564,
+              "weighted_median": 0.0001987875459883945,
+              "weighted_p01": 1.3075541802406867e-06,
+              "weighted_p95": 0.0032617727806983515,
+              "weighted_p99": 0.006157973542519366
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qv"
+        },
+        "NO": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 9.178521685401808e-11,
+              "minimum": 3.7813291730449867e-93,
+              "sample_count": 593242,
+              "weighted_mean": 1.4357872401776108e-11,
+              "weighted_median": 1.2259017263682267e-11,
+              "weighted_p01": 5.56782296955084e-76,
+              "weighted_p95": 4.0090095914261325e-11,
+              "weighted_p99": 4.7830699387906284e-11
+            },
+            "diagnostic_troposphere": {
+              "maximum": 8.029769316843766e-08,
+              "minimum": 1.0160237838726438e-83,
+              "sample_count": 471770,
+              "weighted_mean": 8.318106337379581e-11,
+              "weighted_median": 1.0089122727731865e-11,
+              "weighted_p01": 1.3113276499196607e-67,
+              "weighted_p95": 3.120095343820017e-10,
+              "weighted_p99": 4.285912156414859e-10
+            },
+            "lower_troposphere": {
+              "maximum": 8.029769316843766e-08,
+              "minimum": 1.0160237838726438e-83,
+              "sample_count": 304476,
+              "weighted_mean": 1.173916386717447e-10,
+              "weighted_median": 1.7713736942631653e-11,
+              "weighted_p01": 6.351016540858062e-64,
+              "weighted_p95": 3.5955253969975475e-10,
+              "weighted_p99": 4.719534389282986e-10
+            },
+            "upper_troposphere": {
+              "maximum": 4.4649687337425756e-10,
+              "minimum": 4.20207565590888e-83,
+              "sample_count": 167294,
+              "weighted_mean": 3.5055132642023374e-11,
+              "weighted_median": 5.266513287161513e-13,
+              "weighted_p01": 9.53780513115377e-70,
+              "weighted_p95": 1.1405781364333274e-10,
+              "weighted_p99": 1.64269126468733e-10
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qNO"
+        },
+        "NO2": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 9.597172681022502e-11,
+              "minimum": 8.143174616313382e-14,
+              "sample_count": 593242,
+              "weighted_mean": 3.914024721634062e-11,
+              "weighted_median": 4.028338657158257e-11,
+              "weighted_p01": 2.913807252596247e-12,
+              "weighted_p95": 5.885455273397951e-11,
+              "weighted_p99": 6.515329207778774e-11
+            },
+            "diagnostic_troposphere": {
+              "maximum": 3.9767872532091726e-08,
+              "minimum": 9.269163296564078e-12,
+              "sample_count": 471770,
+              "weighted_mean": 3.2243504140688425e-10,
+              "weighted_median": 1.9950047981140507e-10,
+              "weighted_p01": 1.5879948079478173e-11,
+              "weighted_p95": 8.469145187081265e-10,
+              "weighted_p99": 1.335253539176318e-09
+            },
+            "lower_troposphere": {
+              "maximum": 3.9767872532091726e-08,
+              "minimum": 1.0021054139978147e-11,
+              "sample_count": 304476,
+              "weighted_mean": 4.897186538335568e-10,
+              "weighted_median": 3.861893416407871e-10,
+              "weighted_p01": 7.368604350733623e-11,
+              "weighted_p95": 9.447136117340804e-10,
+              "weighted_p99": 2.007519958717573e-09
+            },
+            "upper_troposphere": {
+              "maximum": 9.733221206381947e-10,
+              "minimum": 9.269163296564078e-12,
+              "sample_count": 167294,
+              "weighted_mean": 8.710782243756784e-11,
+              "weighted_median": 7.056962321899177e-11,
+              "weighted_p01": 1.4480814225415214e-11,
+              "weighted_p95": 2.1831966979650037e-10,
+              "weighted_p99": 3.2062162025953604e-10
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qNO2"
+        },
+        "O3": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 6.080456722614756e-06,
+              "minimum": 1.0087238479229172e-07,
+              "sample_count": 593242,
+              "weighted_mean": 2.1052372676475795e-06,
+              "weighted_median": 1.425745020443862e-06,
+              "weighted_p01": 1.7369019366773315e-07,
+              "weighted_p95": 5.686397837906192e-06,
+              "weighted_p99": 6.055127832589888e-06
+            },
+            "diagnostic_troposphere": {
+              "maximum": 5.316985954193886e-07,
+              "minimum": 2.467023788365881e-21,
+              "sample_count": 471770,
+              "weighted_mean": 6.467937391371069e-08,
+              "weighted_median": 4.5061482688905876e-08,
+              "weighted_p01": 2.993839033903669e-08,
+              "weighted_p95": 1.686046034841844e-07,
+              "weighted_p99": 3.2386278336902676e-07
+            },
+            "lower_troposphere": {
+              "maximum": 8.179013966576756e-08,
+              "minimum": 2.467023788365881e-21,
+              "sample_count": 304476,
+              "weighted_mean": 3.844820425912024e-08,
+              "weighted_median": 3.742145742078551e-08,
+              "weighted_p01": 2.9629285719278682e-08,
+              "weighted_p95": 4.9487826685418906e-08,
+              "weighted_p99": 5.492452271483514e-08
+            },
+            "upper_troposphere": {
+              "maximum": 5.316985954193886e-07,
+              "minimum": 3.464387729078025e-08,
+              "sample_count": 167294,
+              "weighted_mean": 1.0158022819095166e-07,
+              "weighted_median": 7.277193662173966e-08,
+              "weighted_p01": 4.257129834281538e-08,
+              "weighted_p95": 2.8785315366647123e-07,
+              "weighted_p99": 3.5328510338426336e-07
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qO3"
+        }
+      },
+      "tier": "reduced",
+      "variant": "continuous"
+    },
+    "reduced_no_miem_control": {
+      "geometry": {
+        "cell_count": 40962,
+        "density_maximum_kg_m-3": 1.4354015749952882,
+        "density_minimum_kg_m-3": 0.0010075785926010033,
+        "dry_air_mass_kg": 5.111229491069485e+18,
+        "hydrostatic_equivalent_pressure_pa": 98262.94426717413,
+        "level_count": 26,
+        "mean_column_mass_kg_m-2": 10020.031740418402,
+        "mesh_area_m2": 510101127769088.0,
+        "pressure_maximum_pa": 103156.48410994538,
+        "pressure_minimum_pa": 72.59130084798056
+      },
+      "species": {
+        "H2O": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 0.0002390391929932214,
+              "minimum": 6.369987071335532e-07,
+              "sample_count": 593242,
+              "weighted_mean": 2.7714680951005962e-06,
+              "weighted_median": 2.4677903011177534e-06,
+              "weighted_p01": 1.1513085223818406e-06,
+              "weighted_p95": 4.7996317328567155e-06,
+              "weighted_p99": 9.255255797914214e-06
+            },
+            "diagnostic_troposphere": {
+              "maximum": 0.03615552644992567,
+              "minimum": 4.523496284175616e-08,
+              "sample_count": 471770,
+              "weighted_mean": 0.005082370557892235,
+              "weighted_median": 0.001994948747734948,
+              "weighted_p01": 1.7146011087612711e-06,
+              "weighted_p95": 0.020157373956466884,
+              "weighted_p99": 0.0268534410102982
+            },
+            "lower_troposphere": {
+              "maximum": 0.03615552644992567,
+              "minimum": 5.0242558659421807e-08,
+              "sample_count": 304476,
+              "weighted_mean": 0.008182542030056368,
+              "weighted_median": 0.006266726186275087,
+              "weighted_p01": 7.233412070949095e-05,
+              "weighted_p95": 0.02320497172903416,
+              "weighted_p99": 0.0278286878683569
+            },
+            "upper_troposphere": {
+              "maximum": 0.0135984479590088,
+              "minimum": 4.523496284175616e-08,
+              "sample_count": 167294,
+              "weighted_mean": 0.0007211858591089564,
+              "weighted_median": 0.0001987875459883945,
+              "weighted_p01": 1.3075541802406867e-06,
+              "weighted_p95": 0.0032617727806983515,
+              "weighted_p99": 0.006157973542519366
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qv"
+        },
+        "NO": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 9.178508738595838e-11,
+              "minimum": 0.0,
+              "sample_count": 593242,
+              "weighted_mean": 1.435787203365771e-11,
+              "weighted_median": 1.2259017244441357e-11,
+              "weighted_p01": 0.0,
+              "weighted_p95": 4.009009726889536e-11,
+              "weighted_p99": 4.783069925591644e-11
+            },
+            "diagnostic_troposphere": {
+              "maximum": 5.257807410516286e-10,
+              "minimum": 0.0,
+              "sample_count": 471770,
+              "weighted_mean": 7.310435459757107e-11,
+              "weighted_median": 9.530526445385305e-12,
+              "weighted_p01": 0.0,
+              "weighted_p95": 3.0979950288598115e-10,
+              "weighted_p99": 4.0449267987072714e-10
+            },
+            "lower_troposphere": {
+              "maximum": 5.257807410516286e-10,
+              "minimum": 0.0,
+              "sample_count": 304476,
+              "weighted_mean": 1.0014891386254504e-10,
+              "weighted_median": 1.7309639131205264e-11,
+              "weighted_p01": 0.0,
+              "weighted_p95": 3.5215407693293604e-10,
+              "weighted_p99": 4.22367584385767e-10
+            },
+            "upper_troposphere": {
+              "maximum": 4.4756761052490983e-10,
+              "minimum": 7.432809273724082e-100,
+              "sample_count": 167294,
+              "weighted_mean": 3.5059259637256705e-11,
+              "weighted_median": 5.266187090247682e-13,
+              "weighted_p01": 1.3723884088105716e-81,
+              "weighted_p95": 1.1405832395853176e-10,
+              "weighted_p99": 1.6425327529250684e-10
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qNO"
+        },
+        "NO2": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 9.597172681018723e-11,
+              "minimum": 8.143174069332223e-14,
+              "sample_count": 593242,
+              "weighted_mean": 3.914024973580807e-11,
+              "weighted_median": 4.0283390165469495e-11,
+              "weighted_p01": 2.913805785610581e-12,
+              "weighted_p95": 5.885456351859177e-11,
+              "weighted_p99": 6.515329207773328e-11
+            },
+            "diagnostic_troposphere": {
+              "maximum": 1.0581720229040998e-09,
+              "minimum": 9.269160634601328e-12,
+              "sample_count": 471770,
+              "weighted_mean": 2.875918000745543e-10,
+              "weighted_median": 1.998837205086146e-10,
+              "weighted_p01": 1.5886849812153435e-11,
+              "weighted_p95": 8.342304707276146e-10,
+              "weighted_p99": 9.91043621792663e-10
+            },
+            "lower_troposphere": {
+              "maximum": 1.0581720229040998e-09,
+              "minimum": 4.7774783170973737e-11,
+              "sample_count": 304476,
+              "weighted_mean": 4.3010502563075856e-10,
+              "weighted_median": 3.895110616690888e-10,
+              "weighted_p01": 7.389404392343435e-11,
+              "weighted_p95": 9.076272776910969e-10,
+              "weighted_p99": 1.0106481098812488e-09
+            },
+            "upper_troposphere": {
+              "maximum": 7.260155727723935e-10,
+              "minimum": 9.269160634601328e-12,
+              "sample_count": 167294,
+              "weighted_mean": 8.711047049309742e-11,
+              "weighted_median": 7.057359110040659e-11,
+              "weighted_p01": 1.4480818137357467e-11,
+              "weighted_p95": 2.1838221310675198e-10,
+              "weighted_p99": 3.2059489312417886e-10
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qNO2"
+        },
+        "O3": {
+          "bands": {
+            "above_150_hpa": {
+              "maximum": 6.080456722847086e-06,
+              "minimum": 1.0087238472636964e-07,
+              "sample_count": 593242,
+              "weighted_mean": 2.105237267645475e-06,
+              "weighted_median": 1.4257450204418103e-06,
+              "weighted_p01": 1.736901937032529e-07,
+              "weighted_p95": 5.686397837909835e-06,
+              "weighted_p99": 6.055127832571252e-06
+            },
+            "diagnostic_troposphere": {
+              "maximum": 5.316985955410352e-07,
+              "minimum": 2.970083747502883e-08,
+              "sample_count": 471770,
+              "weighted_mean": 6.471118202323283e-08,
+              "weighted_median": 4.5062677092597064e-08,
+              "weighted_p01": 3.0201783103362446e-08,
+              "weighted_p95": 1.6860460348577216e-07,
+              "weighted_p99": 3.2386278337061363e-07
+            },
+            "lower_troposphere": {
+              "maximum": 8.179014007920651e-08,
+              "minimum": 2.970083747502883e-08,
+              "sample_count": 304476,
+              "weighted_mean": 3.850262538070662e-08,
+              "weighted_median": 3.742146653957915e-08,
+              "weighted_p01": 3.003162354678088e-08,
+              "weighted_p95": 4.948775001118705e-08,
+              "weighted_p99": 5.4924512905666434e-08
+            },
+            "upper_troposphere": {
+              "maximum": 5.316985955410352e-07,
+              "minimum": 3.464387754996398e-08,
+              "sample_count": 167294,
+              "weighted_mean": 1.0158022531095486e-07,
+              "weighted_median": 7.277193659362235e-08,
+              "weighted_p01": 4.257119911938151e-08,
+              "weighted_p95": 2.8785315366606275e-07,
+              "weighted_p99": 3.532851033836113e-07
+            }
+          },
+          "mixing_ratio_unit": "mol mol-1 dry air",
+          "source_variable": "qO3"
+        }
+      },
+      "tier": "reduced",
+      "variant": "no_miem_control"
+    }
+  }
+}

@@ -1,0 +1,418 @@
+{
+  "assertions": [
+    {
+      "name": "micm_convergence",
+      "passed": true
+    },
+    {
+      "name": "micm_finite_nonnegative",
+      "passed": true
+    },
+    {
+      "name": "scipy_finite_nonnegative",
+      "passed": true
+    },
+    {
+      "name": "all_state_parity",
+      "passed": true
+    },
+    {
+      "name": "major_state_and_ledger_parity",
+      "passed": true
+    },
+    {
+      "name": "elemental_conservation",
+      "passed": true
+    }
+  ],
+  "comparisons": {
+    "C2H5O2": {
+      "absolute_difference_mol_m-3": 6.30458614094539e-19,
+      "major_species_passed": null,
+      "micm_mol_m-3": 2.2231666985613223e-12,
+      "passed": true,
+      "relative_difference": 2.8358592870778397e-07,
+      "scipy_mol_m-3": 2.2231660681027082e-12
+    },
+    "C2H5OOH": {
+      "absolute_difference_mol_m-3": 3.0003571279139775e-16,
+      "major_species_passed": null,
+      "micm_mol_m-3": 6.261535727009707e-10,
+      "passed": true,
+      "relative_difference": 4.79172953156147e-07,
+      "scipy_mol_m-3": 6.261532726652579e-10
+    },
+    "C2H6": {
+      "absolute_difference_mol_m-3": 1.4980229246632306e-15,
+      "major_species_passed": null,
+      "micm_mol_m-3": 3.557682956404606e-08,
+      "passed": true,
+      "relative_difference": 4.2106699218086924e-08,
+      "scipy_mol_m-3": 3.5576831062068983e-08
+    },
+    "C3H6": {
+      "absolute_difference_mol_m-3": 1.89337890005082e-24,
+      "major_species_passed": null,
+      "micm_mol_m-3": 4.213097317135155e-19,
+      "passed": true,
+      "relative_difference": 4.494010578596077e-06,
+      "scipy_mol_m-3": 4.2131162509241554e-19
+    },
+    "C3H7O2": {
+      "absolute_difference_mol_m-3": 8.0224080285285635e-19,
+      "major_species_passed": null,
+      "micm_mol_m-3": 1.705716408626132e-12,
+      "passed": true,
+      "relative_difference": 4.703250646530266e-07,
+      "scipy_mol_m-3": 1.705715606385329e-12
+    },
+    "C3H7OOH": {
+      "absolute_difference_mol_m-3": 2.9219574530023994e-16,
+      "major_species_passed": null,
+      "micm_mol_m-3": 5.946995711251833e-10,
+      "passed": true,
+      "relative_difference": 4.913336128912802e-07,
+      "scipy_mol_m-3": 5.94699278929438e-10
+    },
+    "C3H8": {
+      "absolute_difference_mol_m-3": 8.061601515886811e-16,
+      "major_species_passed": null,
+      "micm_mol_m-3": 4.013025245066432e-09,
+      "passed": true,
+      "relative_difference": 2.0088585055217318e-07,
+      "scipy_mol_m-3": 4.013026051226583e-09
+    },
+    "CH2O": {
+      "absolute_difference_mol_m-3": 4.14030138060543e-15,
+      "major_species_passed": null,
+      "micm_mol_m-3": 1.6562829416815082e-08,
+      "passed": true,
+      "relative_difference": 2.499755513617855e-07,
+      "scipy_mol_m-3": 1.6562825276513702e-08
+    },
+    "CH3CHO": {
+      "absolute_difference_mol_m-3": 4.67259016918067e-17,
+      "major_species_passed": null,
+      "micm_mol_m-3": 5.170344959304665e-10,
+      "passed": true,
+      "relative_difference": 9.037288195822091e-08,
+      "scipy_mol_m-3": 5.170345426563682e-10
+    },
+    "CH3CO3": {
+      "absolute_difference_mol_m-3": 2.5271171548873464e-19,
+      "major_species_passed": null,
+      "micm_mol_m-3": 3.3266814943991077e-12,
+      "passed": true,
+      "relative_difference": 7.596510117272602e-08,
+      "scipy_mol_m-3": 3.3266817471108232e-12
+    },
+    "CH3COOOH": {
+      "absolute_difference_mol_m-3": 4.757017057368512e-16,
+      "major_species_passed": null,
+      "micm_mol_m-3": 2.278634956295596e-09,
+      "passed": true,
+      "relative_difference": 2.0876613155299356e-07,
+      "scipy_mol_m-3": 2.27863448059389e-09
+    },
+    "CH3O2": {
+      "absolute_difference_mol_m-3": 1.0365176163626761e-16,
+      "major_species_passed": null,
+      "micm_mol_m-3": 1.0039716477600216e-10,
+      "passed": true,
+      "relative_difference": 1.0324182847145239e-06,
+      "scipy_mol_m-3": 1.0039706112424052e-10
+    },
+    "CH3OH": {
+      "absolute_difference_mol_m-3": 1.2839045827433642e-17,
+      "major_species_passed": null,
+      "micm_mol_m-3": 1.318465891234582e-08,
+      "passed": true,
+      "relative_difference": 9.737867244262917e-10,
+      "scipy_mol_m-3": 1.3184658925184866e-08
+    },
+    "CH3OOH": {
+      "absolute_difference_mol_m-3": 1.6537192399756133e-14,
+      "major_species_passed": null,
+      "micm_mol_m-3": 2.7441222584050805e-08,
+      "passed": true,
+      "relative_difference": 6.026408741480729e-07,
+      "scipy_mol_m-3": 2.7441206046858405e-08
+    },
+    "CH4": {
+      "absolute_difference_mol_m-3": 7.614393870199881e-14,
+      "major_species_passed": true,
+      "micm_mol_m-3": 7.426172668284148e-05,
+      "passed": true,
+      "relative_difference": 1.0253456528033892e-09,
+      "scipy_mol_m-3": 7.426172675898542e-05
+    },
+    "CH4_LOSS_O1D": {
+      "absolute_difference_mol_m-3": 3.556493597655619e-18,
+      "major_species_passed": true,
+      "micm_mol_m-3": 4.053442510912599e-11,
+      "passed": true,
+      "relative_difference": 8.774006973168857e-08,
+      "scipy_mol_m-3": 4.053442866561959e-11
+    },
+    "CH4_LOSS_OH": {
+      "absolute_difference_mol_m-3": 7.614688552962231e-14,
+      "major_species_passed": true,
+      "micm_mol_m-3": 2.7504465936443483e-07,
+      "passed": true,
+      "relative_difference": 2.7685288195402545e-07,
+      "scipy_mol_m-3": 2.750445832175493e-07
+    },
+    "CO": {
+      "absolute_difference_mol_m-3": 9.18044123793954e-14,
+      "major_species_passed": null,
+      "micm_mol_m-3": 4.692642639881785e-06,
+      "passed": true,
+      "relative_difference": 1.9563477901162854e-08,
+      "scipy_mol_m-3": 4.692642731686197e-06
+    },
+    "C_TERMINAL": {
+      "absolute_difference_mol_m-3": 1.5043891512382023e-13,
+      "major_species_passed": true,
+      "micm_mol_m-3": 5.884383300378134e-07,
+      "passed": true,
+      "relative_difference": 2.5565797791429014e-07,
+      "scipy_mol_m-3": 5.884381795988983e-07
+    },
+    "DMS": {
+      "absolute_difference_mol_m-3": 5.446114462842419e-32,
+      "major_species_passed": null,
+      "micm_mol_m-3": 1.6854471425428081e-29,
+      "passed": true,
+      "relative_difference": 0.0032417328155249147,
+      "scipy_mol_m-3": 1.6800010280799657e-29
+    },
+    "H2": {
+      "absolute_difference_mol_m-3": 1.5852838247849832e-14,
+      "major_species_passed": null,
+      "micm_mol_m-3": 2.1945624822553174e-05,
+      "passed": true,
+      "relative_difference": 7.223689625873182e-10,
+      "scipy_mol_m-3": 2.1945624838406013e-05
+    },
+    "H2O2": {
+      "absolute_difference_mol_m-3": 3.885709739822944e-14,
+      "major_species_passed": null,
+      "micm_mol_m-3": 1.0510291990259425e-07,
+      "passed": true,
+      "relative_difference": 3.6970534976495086e-07,
+      "scipy_mol_m-3": 1.0510288104549686e-07
+    },
+    "HNO3": {
+      "absolute_difference_mol_m-3": 8.7951252487844e-16,
+      "major_species_passed": null,
+      "micm_mol_m-3": 4.610327431991808e-08,
+      "passed": true,
+      "relative_difference": 1.9077008187180542e-08,
+      "scipy_mol_m-3": 4.610327344040555e-08
+    },
+    "HO2": {
+      "absolute_difference_mol_m-3": 2.8961661043532104e-18,
+      "major_species_passed": true,
+      "micm_mol_m-3": 4.423051105070952e-12,
+      "passed": true,
+      "relative_difference": 6.547896309432957e-07,
+      "scipy_mol_m-3": 4.423048208904848e-12
+    },
+    "HO2NO2": {
+      "absolute_difference_mol_m-3": 9.644776803481005e-20,
+      "major_species_passed": null,
+      "micm_mol_m-3": 2.2966882290243607e-13,
+      "passed": true,
+      "relative_difference": 4.199429740550544e-07,
+      "scipy_mol_m-3": 2.2966872645466803e-13
+    },
+    "N2O5": {
+      "absolute_difference_mol_m-3": 4.8984455010442394e-17,
+      "major_species_passed": null,
+      "micm_mol_m-3": 5.850347616404722e-11,
+      "passed": true,
+      "relative_difference": 8.372906570348174e-07,
+      "scipy_mol_m-3": 5.850352514850223e-11
+    },
+    "NO": {
+      "absolute_difference_mol_m-3": 3.5542316077053114e-34,
+      "major_species_passed": true,
+      "micm_mol_m-3": 7.227743517130017e-28,
+      "passed": true,
+      "relative_difference": 4.917486829838885e-07,
+      "scipy_mol_m-3": 7.227739962898409e-28
+    },
+    "NO2": {
+      "absolute_difference_mol_m-3": 3.58452431670404e-16,
+      "major_species_passed": true,
+      "micm_mol_m-3": 1.5005555191674457e-09,
+      "passed": true,
+      "relative_difference": 2.3887976250439077e-07,
+      "scipy_mol_m-3": 1.5005558776198774e-09
+    },
+    "NO3": {
+      "absolute_difference_mol_m-3": 3.530008367354055e-16,
+      "major_species_passed": null,
+      "micm_mol_m-3": 5.786364557944245e-10,
+      "passed": true,
+      "relative_difference": 6.100559649331048e-07,
+      "scipy_mol_m-3": 5.786368087952612e-10
+    },
+    "N_TERMINAL": {
+      "absolute_difference_mol_m-3": 1.1771037679992818e-17,
+      "major_species_passed": true,
+      "micm_mol_m-3": 1.9289258090848392e-10,
+      "passed": true,
+      "relative_difference": 6.102380061932466e-08,
+      "scipy_mol_m-3": 1.9289256913744624e-10
+    },
+    "O": {
+      "absolute_difference_mol_m-3": 8.511644359422878e-34,
+      "major_species_passed": null,
+      "micm_mol_m-3": 1.9814905357355156e-27,
+      "passed": true,
+      "relative_difference": 4.2955784356078235e-07,
+      "scipy_mol_m-3": 1.9814896845710797e-27
+    },
+    "O1D": {
+      "absolute_difference_mol_m-3": 0.0,
+      "major_species_passed": null,
+      "micm_mol_m-3": 0.0,
+      "passed": true,
+      "relative_difference": 0.0,
+      "scipy_mol_m-3": 0.0
+    },
+    "O3": {
+      "absolute_difference_mol_m-3": 2.1577879050606666e-13,
+      "major_species_passed": true,
+      "micm_mol_m-3": 1.6106911284363455e-06,
+      "passed": true,
+      "relative_difference": 1.3396656738800082e-07,
+      "scipy_mol_m-3": 1.610691344215136e-06
+    },
+    "OH": {
+      "absolute_difference_mol_m-3": 2.785433397313331e-21,
+      "major_species_passed": true,
+      "micm_mol_m-3": 1.2519321529121986e-14,
+      "passed": true,
+      "relative_difference": 2.224908123469228e-07,
+      "scipy_mol_m-3": 1.2519318743688588e-14
+    },
+    "PAN": {
+      "absolute_difference_mol_m-3": 8.195681128026843e-17,
+      "major_species_passed": true,
+      "micm_mol_m-3": 3.7455142571661666e-10,
+      "passed": true,
+      "relative_difference": 2.1881319284857e-07,
+      "scipy_mol_m-3": 3.7455150767342794e-10
+    },
+    "PO2": {
+      "absolute_difference_mol_m-3": 6.142737003870031e-21,
+      "major_species_passed": null,
+      "micm_mol_m-3": 8.46260881515956e-15,
+      "passed": true,
+      "relative_difference": 7.258674812019152e-07,
+      "scipy_mol_m-3": 8.462614957896564e-15
+    },
+    "POOH": {
+      "absolute_difference_mol_m-3": 6.2636404477846286e-18,
+      "major_species_passed": null,
+      "micm_mol_m-3": 7.646825447756619e-12,
+      "passed": true,
+      "relative_difference": 8.191157703195052e-07,
+      "scipy_mol_m-3": 7.646831711397066e-12
+    },
+    "SO2": {
+      "absolute_difference_mol_m-3": 3.442198807803214e-16,
+      "major_species_passed": null,
+      "micm_mol_m-3": 2.5377792314905435e-09,
+      "passed": true,
+      "relative_difference": 1.3563821069210107e-07,
+      "scipy_mol_m-3": 2.5377795757104242e-09
+    },
+    "SO4": {
+      "absolute_difference_mol_m-3": 3.4435832351790257e-16,
+      "major_species_passed": null,
+      "micm_mol_m-3": 2.42835149759678e-09,
+      "passed": true,
+      "relative_difference": 1.4180746596663552e-07,
+      "scipy_mol_m-3": 2.4283511532384565e-09
+    },
+    "S_TERMINAL": {
+      "absolute_difference_mol_m-3": 1.3843352752280904e-19,
+      "major_species_passed": true,
+      "micm_mol_m-3": 2.9885241274059916e-12,
+      "passed": true,
+      "relative_difference": 4.632170101651194e-08,
+      "scipy_mol_m-3": 2.988524265839519e-12
+    }
+  },
+  "conditions": {
+    "H2O": 0.3519072804826656,
+    "M": 41.76123439060512,
+    "N2": 32.33240260758362,
+    "O2": 8.675254029570654,
+    "latitude_deg": 35.86,
+    "pressure_pa": 100000.0,
+    "solar_declination_deg": 23.44,
+    "temperature_k": 288.0
+  },
+  "duration_seconds": 172800,
+  "elemental_conservation": {
+    "C": {
+      "initial_mol_m-3": 7.969270552602891e-05,
+      "micm_final_mol_m-3": 7.969270552602807e-05,
+      "micm_relative_drift": 1.0543708839221486e-14,
+      "passed": true,
+      "scipy_final_mol_m-3": 7.969270552602865e-05,
+      "scipy_relative_drift": 3.231136579761423e-15
+    },
+    "N": {
+      "initial_mol_m-3": 4.8867146922655516e-08,
+      "micm_final_mol_m-3": 4.886714692265604e-08,
+      "micm_relative_drift": 1.0697946985956447e-14,
+      "passed": true,
+      "scipy_final_mol_m-3": 4.886714692265503e-08,
+      "scipy_relative_drift": 1.0020861733680723e-14
+    },
+    "S": {
+      "initial_mol_m-3": 4.969119253214696e-09,
+      "micm_final_mol_m-3": 4.969119253214729e-09,
+      "micm_relative_drift": 6.658569218421521e-15,
+      "passed": true,
+      "scipy_final_mol_m-3": 4.9691192532147205e-09,
+      "scipy_relative_drift": 4.993926913816141e-15
+    }
+  },
+  "inputs": {
+    "independent_driver": {
+      "path": "scripts/qualify_mozart35_box.py",
+      "sha256": "240b3cbe0b87fa728d36676ff8368a78261baae59252e094c2fd7316867a16bd"
+    },
+    "mechanism": {
+      "path": "global_cams_mozart35.yaml",
+      "sha256": "2c5c6660ebbd460a22adfe738ce371438b31f793537193e81eaf2f0ba5285216"
+    },
+    "micm_driver": {
+      "path": "tests/cpp/qualify_mozart35_box.cpp",
+      "sha256": "0f8866d668d572be31741796cf90a9edde990444757e7b93884aa97ab8cc73c1"
+    },
+    "source": {
+      "path": "mozart35.yaml",
+      "sha256": "1b8c3ee939b113c5d05d30d131d358716edd066449929cf8c960a4f9ec93c559"
+    }
+  },
+  "overall_pass": true,
+  "photolysis_method": "piecewise-constant 900 s midpoint solar scaling",
+  "schema_version": "chempas-mozart35-box-qualification-v1",
+  "solver": {
+    "independent": "SciPy solve_ivp BDF with independently assembled RHS and Jacobian",
+    "micm": "MUSICA MICM RosenbrockStandardOrder",
+    "micm_executable": {
+      "sha256": "c1472326471c9fb20913b84c30aaa2b043243f9b52c35a936354fd8c8a19d166",
+      "size_bytes": 3150856
+    },
+    "micm_internal_steps": 42740,
+    "scipy_function_evaluations": 45525
+  }
+}

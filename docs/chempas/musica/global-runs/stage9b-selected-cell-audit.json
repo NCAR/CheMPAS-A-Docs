@@ -1,0 +1,588 @@
+{
+  "assertions": [
+    {
+      "detail": "eight ranks own 40962 unique global cells",
+      "name": "partition_covers_global_grid_once",
+      "passed": true
+    },
+    {
+      "detail": "selected MIEM object size equals partition ownership on every rank",
+      "name": "selected_objects_are_rank_local",
+      "passed": true
+    },
+    {
+      "detail": "full MIEM object size equals 40,962 cells on every rank",
+      "name": "full_objects_are_global",
+      "passed": true
+    },
+    {
+      "detail": "all eight rank streams match byte-for-byte at five sample times",
+      "name": "full_selected_streams_are_bitwise_equal",
+      "passed": true
+    },
+    {
+      "detail": "NO and NO2 equal the independent sum of 13 linearly interpolated sectors",
+      "name": "miem_matches_independent_sector_interpolation",
+      "passed": true
+    },
+    {
+      "detail": "2024-07-01T00:00:00Z, 2024-07-08T18:00:00Z, 2024-07-16T12:00:00Z, 2024-07-24T06:00:00Z, 2024-08-01T00:00:00Z",
+      "name": "inventory_endpoints_and_midpoints_are_sampled",
+      "passed": true
+    },
+    {
+      "detail": "science MIEM configuration consumes the pre-remapped exact-grid inventory",
+      "name": "runtime_regridding_is_disabled",
+      "passed": true
+    }
+  ],
+  "case": {
+    "global_cells": 40962,
+    "mechanism_species": [
+      "NO",
+      "NO2"
+    ],
+    "mesh": "x1.40962",
+    "mpi_ranks": 8,
+    "retained_sectors": [
+      "agl",
+      "ags",
+      "awb",
+      "com",
+      "ene",
+      "fef",
+      "ind",
+      "ref",
+      "res",
+      "shp",
+      "swd",
+      "tnr",
+      "tro"
+    ],
+    "sample_epochs": [
+      1719792000,
+      1720461600,
+      1721131200,
+      1721800800,
+      1722470400
+    ],
+    "sample_times_utc": [
+      "2024-07-01T00:00:00Z",
+      "2024-07-08T18:00:00Z",
+      "2024-07-16T12:00:00Z",
+      "2024-07-24T06:00:00Z",
+      "2024-08-01T00:00:00Z"
+    ],
+    "vertical_levels": 26
+  },
+  "configuration_contract": {
+    "inventory_fields": [
+      "no_anth_agl",
+      "no2_anth_agl",
+      "no_anth_ags",
+      "no2_anth_ags",
+      "no_anth_awb",
+      "no2_anth_awb",
+      "no_anth_com",
+      "no2_anth_com",
+      "no_anth_ene",
+      "no2_anth_ene",
+      "no_anth_fef",
+      "no2_anth_fef",
+      "no_anth_ind",
+      "no2_anth_ind",
+      "no_anth_ref",
+      "no2_anth_ref",
+      "no_anth_res",
+      "no2_anth_res",
+      "no_anth_shp",
+      "no2_anth_shp",
+      "no_anth_swd",
+      "no2_anth_swd",
+      "no_anth_tnr",
+      "no2_anth_tnr",
+      "no_anth_tro",
+      "no2_anth_tro"
+    ],
+    "mechanism_species": [
+      "NO",
+      "NO2"
+    ],
+    "runtime_regridding": "none",
+    "sectors": [
+      "agl",
+      "ags",
+      "awb",
+      "com",
+      "ene",
+      "fef",
+      "ind",
+      "ref",
+      "res",
+      "shp",
+      "swd",
+      "tnr",
+      "tro"
+    ],
+    "vertical_injection": [
+      "surface"
+    ]
+  },
+  "inputs": {
+    "benchmark_executable": {
+      "path": "benchmark_miem_scalability",
+      "sha256": "7912e376f51b460c2436f3685aa21a73028e89f6242180d7498930fda2925dbc",
+      "size_bytes": 2593528
+    },
+    "configuration": {
+      "path": "miem_configs/global_cams_nox.yaml",
+      "sha256": "7d16e7f8186eeaeb4c6600f02e24f691e4b1d6390b611e1ffe14b98e311272b3",
+      "size_bytes": 7012
+    },
+    "inventory": {
+      "path": "inventory/cams-glob-ant-v6.2-x1.40962/miem_inventory.cams-glob-ant-v6.2-x1.40962.nc",
+      "sha256": "d213866000e8a633954d0c730ba5524f729f26a97d02cc5a13d8b405aa6c8e9c",
+      "size_bytes": 20758020
+    },
+    "mesh": {
+      "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+      "path": "raw/mpas-x1.40962/x1.40962.static.nc",
+      "sha256": "cf1a47d4168327f06a8403555d6ed8b2fe1aff7f8b916bb7f6a754c34a10ac82",
+      "size_bytes": 94766584
+    },
+    "normalized_partition": {
+      "path": "x1.40962.global-id.part.8",
+      "sha256": "f56e75e1f408b632fd5cd22ad05cc59fdbb54daf1e2f8f3d6298147a1e7f577b",
+      "size_bytes": 81924
+    },
+    "partition": {
+      "path": "partitions/x1.40962.graph.info.part.8",
+      "sha256": "f56e75e1f408b632fd5cd22ad05cc59fdbb54daf1e2f8f3d6298147a1e7f577b",
+      "size_bytes": 81924
+    }
+  },
+  "inventory_validation": {
+    "fields": [
+      "no_anth_agl",
+      "no2_anth_agl",
+      "no_anth_ags",
+      "no2_anth_ags",
+      "no_anth_awb",
+      "no2_anth_awb",
+      "no_anth_com",
+      "no2_anth_com",
+      "no_anth_ene",
+      "no2_anth_ene",
+      "no_anth_fef",
+      "no2_anth_fef",
+      "no_anth_ind",
+      "no2_anth_ind",
+      "no_anth_ref",
+      "no2_anth_ref",
+      "no_anth_res",
+      "no2_anth_res",
+      "no_anth_shp",
+      "no2_anth_shp",
+      "no_anth_swd",
+      "no2_anth_swd",
+      "no_anth_tnr",
+      "no2_anth_tnr",
+      "no_anth_tro",
+      "no2_anth_tro",
+      "no_anth_sum",
+      "no2_anth_sum"
+    ],
+    "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+    "n_cells": 40962,
+    "sector_to_aggregate_closure": {
+      "no2_maximum_absolute_kg_m-2_s-1": 2.5849394142282115e-26,
+      "no2_maximum_relative": 2.1332688833297536e-16,
+      "no_maximum_absolute_kg_m-2_s-1": 2.0679515313825692e-25,
+      "no_maximum_relative": 1.8962390074042258e-16
+    },
+    "start_time": "2024-07-01_00:00:00",
+    "stop_time": "2024-08-01_00:00:00"
+  },
+  "overall_pass": true,
+  "provenance": {
+    "chempas_commit": "e9c68693c47e692394191c460063bf9c143e0f59",
+    "compile_command": "'$HOME/miniforge3/envs/mpas/bin/mpifort' -O3 -ffree-form -ffree-line-length-none '$REPO_ROOT/tests/fortran/benchmark_miem_scalability.F90' '-I$HOME/software/musica-1403e3d22717bc87f3bf9d0aa591caf039c92bbc/include/musica/fortran' '-I$HOME/miniforge3/envs/mpas/include' '-L$HOME/software/musica-1403e3d22717bc87f3bf9d0aa591caf039c92bbc/lib' '-L$HOME/miniforge3/envs/mpas/lib' -lmusica-fortran -lmusica -lmiem -lmechanism_configuration -lyaml-cpp -ldl -lnetcdff -lnetcdf -lstdc++ -lnetcdff -lnetcdf -o '$WORK_DIR/benchmark_miem_scalability'",
+    "dependency_revisions": {
+      "mechanism_configuration": "82c159ae6d74934318ffd6c405a45c2159065b12",
+      "micm": "bb57684a2047f0e58f30b199366294af879e8597",
+      "miem": "9fdf14a189262eecb677862d877ab72b06c95e21",
+      "musica": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc",
+      "tuvx": "bbf7dd9a144fa0f0294b3779f3f993818638e20c"
+    },
+    "fortran_compiler": "GNU Fortran (conda-forge gcc 15.2.0-19) 15.2.0",
+    "generated_at_utc": "2026-08-06T14:56:24+00:00",
+    "hostname": "Orion",
+    "mpi_launcher": "mpiexec (Open MPI) 5.0.10",
+    "musica_version": "0.16.5",
+    "platform": "Linux-6.17.9-76061709-generic-x86_64-with-glibc2.39",
+    "run_command_contract": "mpiexec -n 8 benchmark_miem_scalability {full|selected} miem.yaml 40962 26 x1.40962.global-id.part.8 3 1719792000 1722470400 .true."
+  },
+  "ranks": [
+    {
+      "coalesced_global_id_runs": 329,
+      "full": {
+        "construction_seconds": 0.005,
+        "first_open_run_seconds": 0.339,
+        "flux_stream": {
+          "path": "flux.full.rank0000.bin",
+          "sha256": "8b09226ef46cde6691fbd6bf1cd4b73a9d1e75a58660138e24ffd116f59410cd",
+          "size_bytes": 819040
+        },
+        "object_cells": 40962,
+        "peak_rss_kib": 235108,
+        "warm_step_average_seconds": 0.05666666666666667
+      },
+      "full_selected_bitwise_equal": true,
+      "independent_interpolation": {
+        "atol_kg_m-2_s-1": 1e-24,
+        "no": {
+          "maximum_absolute_kg_m-2_s-1": 3.877409121342317e-26,
+          "maximum_relative": 1.273834323864872e-14
+        },
+        "no2": {
+          "maximum_absolute_kg_m-2_s-1": 3.2311742677852644e-27,
+          "maximum_relative": 3.032060910357438e-14
+        },
+        "passed": true,
+        "rtol": 2e-14
+      },
+      "owned_cells": 5119,
+      "owned_global_id_max": 40941,
+      "owned_global_id_min": 4,
+      "rank": 0,
+      "selected": {
+        "construction_seconds": 0.005,
+        "first_open_run_seconds": 6.879,
+        "flux_stream": {
+          "path": "flux.selected.rank0000.bin",
+          "sha256": "8b09226ef46cde6691fbd6bf1cd4b73a9d1e75a58660138e24ffd116f59410cd",
+          "size_bytes": 819040
+        },
+        "object_cells": 5119,
+        "peak_rss_kib": 84608,
+        "warm_step_average_seconds": 0.005666666666666667
+      }
+    },
+    {
+      "coalesced_global_id_runs": 351,
+      "full": {
+        "construction_seconds": 0.005,
+        "first_open_run_seconds": 0.339,
+        "flux_stream": {
+          "path": "flux.full.rank0001.bin",
+          "sha256": "b9a6745d1fd76cc1291e60855227f95d1eadb239ba29df15b9530d8ba85e1ee2",
+          "size_bytes": 819520
+        },
+        "object_cells": 40962,
+        "peak_rss_kib": 234708,
+        "warm_step_average_seconds": 0.05666666666666667
+      },
+      "full_selected_bitwise_equal": true,
+      "independent_interpolation": {
+        "atol_kg_m-2_s-1": 1e-24,
+        "no": {
+          "maximum_absolute_kg_m-2_s-1": 1.0339757656912846e-25,
+          "maximum_relative": 4.696319906688535e-16
+        },
+        "no2": {
+          "maximum_absolute_kg_m-2_s-1": 1.2924697071141057e-26,
+          "maximum_relative": 4.768515985985405e-16
+        },
+        "passed": true,
+        "rtol": 2e-14
+      },
+      "owned_cells": 5122,
+      "owned_global_id_max": 40950,
+      "owned_global_id_min": 10,
+      "rank": 1,
+      "selected": {
+        "construction_seconds": 0.005,
+        "first_open_run_seconds": 7.493,
+        "flux_stream": {
+          "path": "flux.selected.rank0001.bin",
+          "sha256": "b9a6745d1fd76cc1291e60855227f95d1eadb239ba29df15b9530d8ba85e1ee2",
+          "size_bytes": 819520
+        },
+        "object_cells": 5122,
+        "peak_rss_kib": 84728,
+        "warm_step_average_seconds": 0.007333333333333333
+      }
+    },
+    {
+      "coalesced_global_id_runs": 322,
+      "full": {
+        "construction_seconds": 0.005,
+        "first_open_run_seconds": 0.339,
+        "flux_stream": {
+          "path": "flux.full.rank0002.bin",
+          "sha256": "9f83c391b858abc10ce5429b903282a9877b0d573e8ea97615a6ddc8445dd363",
+          "size_bytes": 816320
+        },
+        "object_cells": 40962,
+        "peak_rss_kib": 235340,
+        "warm_step_average_seconds": 0.05633333333333334
+      },
+      "full_selected_bitwise_equal": true,
+      "independent_interpolation": {
+        "atol_kg_m-2_s-1": 1e-24,
+        "no": {
+          "maximum_absolute_kg_m-2_s-1": 5.169878828456423e-26,
+          "maximum_relative": 1.902621759797485e-15
+        },
+        "no2": {
+          "maximum_absolute_kg_m-2_s-1": 6.462348535570529e-27,
+          "maximum_relative": 5.64877628448773e-15
+        },
+        "passed": true,
+        "rtol": 2e-14
+      },
+      "owned_cells": 5102,
+      "owned_global_id_max": 40926,
+      "owned_global_id_min": 2,
+      "rank": 2,
+      "selected": {
+        "construction_seconds": 0.005,
+        "first_open_run_seconds": 6.718,
+        "flux_stream": {
+          "path": "flux.selected.rank0002.bin",
+          "sha256": "9f83c391b858abc10ce5429b903282a9877b0d573e8ea97615a6ddc8445dd363",
+          "size_bytes": 816320
+        },
+        "object_cells": 5102,
+        "peak_rss_kib": 84588,
+        "warm_step_average_seconds": 0.006333333333333333
+      }
+    },
+    {
+      "coalesced_global_id_runs": 338,
+      "full": {
+        "construction_seconds": 0.005,
+        "first_open_run_seconds": 0.339,
+        "flux_stream": {
+          "path": "flux.full.rank0003.bin",
+          "sha256": "57337de875f59ced46d6a9eebc0777989d1f6ef36477bb9079e9a004e188b4de",
+          "size_bytes": 818880
+        },
+        "object_cells": 40962,
+        "peak_rss_kib": 235240,
+        "warm_step_average_seconds": 0.05666666666666667
+      },
+      "full_selected_bitwise_equal": true,
+      "independent_interpolation": {
+        "atol_kg_m-2_s-1": 1e-24,
+        "no": {
+          "maximum_absolute_kg_m-2_s-1": 1.2924697071141057e-26,
+          "maximum_relative": 4.145793114016387e-11
+        },
+        "no2": {
+          "maximum_absolute_kg_m-2_s-1": 1.6155871338926322e-27,
+          "maximum_relative": 1.2150652067595548e-11
+        },
+        "passed": true,
+        "rtol": 2e-14
+      },
+      "owned_cells": 5118,
+      "owned_global_id_max": 40917,
+      "owned_global_id_min": 3,
+      "rank": 3,
+      "selected": {
+        "construction_seconds": 0.006,
+        "first_open_run_seconds": 7.106,
+        "flux_stream": {
+          "path": "flux.selected.rank0003.bin",
+          "sha256": "57337de875f59ced46d6a9eebc0777989d1f6ef36477bb9079e9a004e188b4de",
+          "size_bytes": 818880
+        },
+        "object_cells": 5118,
+        "peak_rss_kib": 84648,
+        "warm_step_average_seconds": 0.005666666666666667
+      }
+    },
+    {
+      "coalesced_global_id_runs": 332,
+      "full": {
+        "construction_seconds": 0.005,
+        "first_open_run_seconds": 0.339,
+        "flux_stream": {
+          "path": "flux.full.rank0004.bin",
+          "sha256": "b9e28f04653f6b0c39f1cd8cfd63d7d20774f3c7c298c63e81cc3c062a24f8ba",
+          "size_bytes": 822240
+        },
+        "object_cells": 40962,
+        "peak_rss_kib": 235236,
+        "warm_step_average_seconds": 0.05633333333333334
+      },
+      "full_selected_bitwise_equal": true,
+      "independent_interpolation": {
+        "atol_kg_m-2_s-1": 1e-24,
+        "no": {
+          "maximum_absolute_kg_m-2_s-1": 2.0679515313825692e-25,
+          "maximum_relative": 1.1136346128413324e-13
+        },
+        "no2": {
+          "maximum_absolute_kg_m-2_s-1": 2.5849394142282115e-26,
+          "maximum_relative": 5.2782753782831414e-14
+        },
+        "passed": true,
+        "rtol": 2e-14
+      },
+      "owned_cells": 5139,
+      "owned_global_id_max": 40911,
+      "owned_global_id_min": 1,
+      "rank": 4,
+      "selected": {
+        "construction_seconds": 0.005,
+        "first_open_run_seconds": 6.986,
+        "flux_stream": {
+          "path": "flux.selected.rank0004.bin",
+          "sha256": "b9e28f04653f6b0c39f1cd8cfd63d7d20774f3c7c298c63e81cc3c062a24f8ba",
+          "size_bytes": 822240
+        },
+        "object_cells": 5139,
+        "peak_rss_kib": 84880,
+        "warm_step_average_seconds": 0.005333333333333333
+      }
+    },
+    {
+      "coalesced_global_id_runs": 335,
+      "full": {
+        "construction_seconds": 0.005,
+        "first_open_run_seconds": 0.339,
+        "flux_stream": {
+          "path": "flux.full.rank0005.bin",
+          "sha256": "3c81f2df914f1b6443312bf8db2288cef57a502dfd287e32ce88dc6ada4ada82",
+          "size_bytes": 822400
+        },
+        "object_cells": 40962,
+        "peak_rss_kib": 235160,
+        "warm_step_average_seconds": 0.05666666666666667
+      },
+      "full_selected_bitwise_equal": true,
+      "independent_interpolation": {
+        "atol_kg_m-2_s-1": 1e-24,
+        "no": {
+          "maximum_absolute_kg_m-2_s-1": 1.0339757656912846e-25,
+          "maximum_relative": 2.956145933316934e-11
+        },
+        "no2": {
+          "maximum_absolute_kg_m-2_s-1": 1.2924697071141057e-26,
+          "maximum_relative": 3.3893322735319753e-11
+        },
+        "passed": true,
+        "rtol": 2e-14
+      },
+      "owned_cells": 5140,
+      "owned_global_id_max": 40956,
+      "owned_global_id_min": 5,
+      "rank": 5,
+      "selected": {
+        "construction_seconds": 0.005,
+        "first_open_run_seconds": 7.008,
+        "flux_stream": {
+          "path": "flux.selected.rank0005.bin",
+          "sha256": "3c81f2df914f1b6443312bf8db2288cef57a502dfd287e32ce88dc6ada4ada82",
+          "size_bytes": 822400
+        },
+        "object_cells": 5140,
+        "peak_rss_kib": 84760,
+        "warm_step_average_seconds": 0.005666666666666667
+      }
+    },
+    {
+      "coalesced_global_id_runs": 313,
+      "full": {
+        "construction_seconds": 0.003,
+        "first_open_run_seconds": 0.355,
+        "flux_stream": {
+          "path": "flux.full.rank0006.bin",
+          "sha256": "72f775454f5adcef4cc0a02e6531a43bbef74dbd1945c91785a8b930ca6c59ec",
+          "size_bytes": 819200
+        },
+        "object_cells": 40962,
+        "peak_rss_kib": 235216,
+        "warm_step_average_seconds": 0.059666666666666666
+      },
+      "full_selected_bitwise_equal": true,
+      "independent_interpolation": {
+        "atol_kg_m-2_s-1": 1e-24,
+        "no": {
+          "maximum_absolute_kg_m-2_s-1": 2.0679515313825692e-25,
+          "maximum_relative": 1.259846250489281e-12
+        },
+        "no2": {
+          "maximum_absolute_kg_m-2_s-1": 1.2924697071141057e-26,
+          "maximum_relative": 1.7636140523082385e-12
+        },
+        "passed": true,
+        "rtol": 2e-14
+      },
+      "owned_cells": 5120,
+      "owned_global_id_max": 40953,
+      "owned_global_id_min": 9,
+      "rank": 6,
+      "selected": {
+        "construction_seconds": 0.003,
+        "first_open_run_seconds": 4.765,
+        "flux_stream": {
+          "path": "flux.selected.rank0006.bin",
+          "sha256": "72f775454f5adcef4cc0a02e6531a43bbef74dbd1945c91785a8b930ca6c59ec",
+          "size_bytes": 819200
+        },
+        "object_cells": 5120,
+        "peak_rss_kib": 84016,
+        "warm_step_average_seconds": 0.0033333333333333335
+      }
+    },
+    {
+      "coalesced_global_id_runs": 326,
+      "full": {
+        "construction_seconds": 0.003,
+        "first_open_run_seconds": 0.355,
+        "flux_stream": {
+          "path": "flux.full.rank0007.bin",
+          "sha256": "81f1908597ba4799828db2272c9bfa04cfb8a79e7d6cd162cd83c0641bc84d95",
+          "size_bytes": 816320
+        },
+        "object_cells": 40962,
+        "peak_rss_kib": 235216,
+        "warm_step_average_seconds": 0.06
+      },
+      "full_selected_bitwise_equal": true,
+      "independent_interpolation": {
+        "atol_kg_m-2_s-1": 1e-24,
+        "no": {
+          "maximum_absolute_kg_m-2_s-1": 2.5849394142282115e-26,
+          "maximum_relative": 3.0275212031259288e-12
+        },
+        "no2": {
+          "maximum_absolute_kg_m-2_s-1": 3.2311742677852644e-27,
+          "maximum_relative": 3.0276418791942933e-12
+        },
+        "passed": true,
+        "rtol": 2e-14
+      },
+      "owned_cells": 5102,
+      "owned_global_id_max": 40962,
+      "owned_global_id_min": 6,
+      "rank": 7,
+      "selected": {
+        "construction_seconds": 0.003,
+        "first_open_run_seconds": 4.965,
+        "flux_stream": {
+          "path": "flux.selected.rank0007.bin",
+          "sha256": "81f1908597ba4799828db2272c9bfa04cfb8a79e7d6cd162cd83c0641bc84d95",
+          "size_bytes": 816320
+        },
+        "object_cells": 5102,
+        "peak_rss_kib": 84188,
+        "warm_step_average_seconds": 0.004333333333333334
+      }
+    }
+  ],
+  "schema_version": "chempas-global-miem-selected-cell-audit-v1"
+}

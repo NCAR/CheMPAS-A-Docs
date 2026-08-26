@@ -1,0 +1,54 @@
+version: 1.0.0
+species: []
+phases: []
+reactions: []
+
+# Member C: the same harmonized CAMS source group as member B plus a physically
+# separate FINN fire inventory. CAMS awb is absent from the CAMS package and
+# from this configuration; FINN alone represents open burning.
+emissions:
+  inventories:
+    - name: CAMS-GLOB-ANT v6.2 harmonized non-fire NO NO2 CO
+      directory: ""
+      file pattern: "miem_inventory.cams.nc"
+      convention: uptempo
+    - name: FINNv2.5.1 fire NO NO2 CO
+      directory: ""
+      file pattern: "miem_inventory.finn.nc"
+      convention: uptempo
+  species maps:
+    - name: CAMS harmonized explicit species
+      mappings:
+        - {inventory species: no_anth_sum, mechanism species: "NO", scaling factor: 1.0}
+        - {inventory species: no2_anth_sum, mechanism species: NO2, scaling factor: 1.0}
+        - {inventory species: co_anth_sum, mechanism species: CO, scaling factor: 1.0}
+    - name: FINN direct provider species
+      mappings:
+        - {inventory species: no_fire, mechanism species: "NO", scaling factor: 1.0}
+        - {inventory species: no2_fire, mechanism species: NO2, scaling factor: 1.0}
+        - {inventory species: co_fire, mechanism species: CO, scaling factor: 1.0}
+  regridding:
+    type: none
+  sources:
+    - name: CAMS harmonized anthropogenic sources
+      mode: offline
+      type: anthropogenic
+      inventory: CAMS-GLOB-ANT v6.2 harmonized non-fire NO NO2 CO
+      species map: CAMS harmonized explicit species
+      temporal interpolation: linear
+      vertical injection: surface
+      category: 0
+      hierarchy: 1
+      scaling factor: 1.0
+      sector: cams_harmonized_no_awb
+    - name: FINN fire sources
+      mode: offline
+      type: fire
+      inventory: FINNv2.5.1 fire NO NO2 CO
+      species map: FINN direct provider species
+      temporal interpolation: nearest
+      vertical injection: surface
+      category: 100
+      hierarchy: 1
+      scaling factor: 1.0
+      sector: finn_fire

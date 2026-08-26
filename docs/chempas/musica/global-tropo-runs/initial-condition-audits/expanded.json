@@ -1,0 +1,322 @@
+{
+  "assertions": {
+    "all_non_chemistry_arrays_preserved_bitwise": true,
+    "clock_preserved": true,
+    "date_matched_meteorology": true,
+    "finite_nonnegative_chemistry": true,
+    "mesh_identity_preserved": true,
+    "no_qH2O": true,
+    "no_qM": true,
+    "production_ready_concentrations": false,
+    "qv_preserved_bitwise": true
+  },
+  "mechanism_tier": "expanded",
+  "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+  "micm_mechanism": "global_cams_tropo_ch4nox.yaml",
+  "output": {
+    "logical_path": "initial_conditions/noaa-gfs-20240701T00Z/x1.40962.gfs-20240701T00Z.expanded-tropo.init.nc",
+    "sha256": "7ccb0670cb49374de78187761cf410690a4b8fc4d4a27533a5ba97deed907e78",
+    "size_bytes": 572335744
+  },
+  "overall_pass": true,
+  "preservation": {
+    "all_non_chemistry_arrays_bitwise_preserved": true,
+    "clock_bitwise_preserved": true,
+    "dimensions_preserved": true,
+    "non_chemistry_variable_count": 137,
+    "non_chemistry_variables_sha256": "1a7774055170bb9ab08890caba303be9f68faae466316ad76228c745f0c754da",
+    "qv_bitwise_preserved": true,
+    "qv_sha256": "52dff9df122718069606cd924ad6d28a7cbc27e16881df8ea17f56a6eee9772a",
+    "source_global_attributes_preserved": true,
+    "xtime_sha256": "d524b5b41fc48b763aa759dd25d79ae93a56fb44a1fec9cb881f2f0602dfb268"
+  },
+  "profile_contract": {
+    "CH2O_vmr": "0.3e-9*exp(-z_agl_km/4)",
+    "CH3OOH_vmr": "0.1e-9*exp(-z_agl_km/4)",
+    "CH4_vmr": 1.9e-06,
+    "CO_vmr": "50e-9+70e-9*exp(-z_agl_km/5)",
+    "H2O2_vmr": "1e-9*exp(-z_agl_km/5)",
+    "HNO3_vmr": "0.1e-9*exp(-z_agl_km/6)",
+    "NO2_fraction": 0.7,
+    "NO_fraction": 0.3,
+    "NOx_vmr": "1e-9*exp(-z_agl_km/3)+0.05e-9",
+    "O2_vmr": 0.2095,
+    "O3_vmr": "30e-9*exp(min(z_km,12)/12)+6e-6*exp(-0.5*((z_km-27)/5)^2)",
+    "host_bound_species": {
+      "H2O": "qv (read-only)",
+      "M": "cell air density"
+    },
+    "molar_masses_kg_mol": {
+      "CH2O": 0.03,
+      "CH3O2": 0.047,
+      "CH3OOH": 0.048,
+      "CH4": 0.016,
+      "CO": 0.028,
+      "H2O": 0.018,
+      "H2O2": 0.034,
+      "HNO3": 0.063,
+      "HO2": 0.033,
+      "NO": 0.03,
+      "NO2": 0.046,
+      "O": 0.016,
+      "O1D": 0.016,
+      "O2": 0.032,
+      "O3": 0.048,
+      "OH": 0.017
+    },
+    "vertical_coordinates": {
+      "altitude": "0.5*(zgrid(k)+zgrid(k+1))",
+      "height_agl": "altitude-zgrid(surface)"
+    },
+    "vmr_to_mmr": "mmr=vmr*(species_molar_mass/0.02897)",
+    "zero_fast_radicals": [
+      "O",
+      "O1D",
+      "OH",
+      "HO2",
+      "CH3O2"
+    ]
+  },
+  "schema_version": "chempas-global-tropo-initial-condition-v1",
+  "science_audit": {
+    "family_burdens": {
+      "NOx": {
+        "above_150_hpa_moles": 1344763280.5116467,
+        "below_150_hpa_moles": 54425271792.43045,
+        "global_moles": 55770035072.9421,
+        "northern_moles": 27426450534.429893,
+        "southern_moles": 28343584538.512203
+      },
+      "NOy": {
+        "above_150_hpa_moles": 1468849290.5533988,
+        "below_150_hpa_moles": 61849855770.561646,
+        "global_moles": 63318705061.11505,
+        "northern_moles": 31143488359.30672,
+        "southern_moles": 32175216701.808327
+      },
+      "Ox": {
+        "above_150_hpa_moles": 53787329523010.43,
+        "below_150_hpa_moles": 9937997205503.46,
+        "global_moles": 63725326728513.9,
+        "northern_moles": 32840632363181.234,
+        "southern_moles": 30884694365332.664
+      }
+    },
+    "ozone": {
+      "column_du": {
+        "area_weighted_mean": 279.8162207908469,
+        "maximum": 297.64628954015853,
+        "median": 286.491745462282,
+        "minimum": 201.44371661576767
+      },
+      "surface_layer_vmr_ppb": {
+        "area_weighted_mean": 30.836909597221503,
+        "maximum": 47.83443346400301,
+        "median": 30.19949115326771,
+        "minimum": 29.873911800416458
+      }
+    },
+    "species_burdens": {
+      "CH2O": {
+        "above_150_hpa_moles": 95324918.85661435,
+        "below_150_hpa_moles": 17298417099.095856,
+        "global_moles": 17393742017.95247,
+        "northern_moles": 8546905256.039492,
+        "southern_moles": 8846836761.912981
+      },
+      "CH3O2": {
+        "above_150_hpa_moles": 0.0,
+        "below_150_hpa_moles": 0.0,
+        "global_moles": 0.0,
+        "northern_moles": 0.0,
+        "southern_moles": 0.0
+      },
+      "CH3OOH": {
+        "above_150_hpa_moles": 31774972.952204783,
+        "below_150_hpa_moles": 5766139033.031953,
+        "global_moles": 5797914005.984157,
+        "northern_moles": 2848968418.6798306,
+        "southern_moles": 2948945587.3043265
+      },
+      "CH4": {
+        "above_150_hpa_moles": 47825429892128.33,
+        "below_150_hpa_moles": 287395006180775.44,
+        "global_moles": 335220436072903.75,
+        "northern_moles": 166744735499666.8,
+        "southern_moles": 168475700573236.94
+      },
+      "CO": {
+        "above_150_hpa_moles": 1308536909492.9045,
+        "below_150_hpa_moles": 12230402063280.242,
+        "global_moles": 13538938972773.148,
+        "northern_moles": 6708654674180.428,
+        "southern_moles": 6830284298592.719
+      },
+      "H2O2": {
+        "above_150_hpa_moles": 713899499.4744568,
+        "below_150_hpa_moles": 66676794069.12549,
+        "global_moles": 67390693568.599945,
+        "northern_moles": 33151933127.514835,
+        "southern_moles": 34238760441.085114
+      },
+      "HNO3": {
+        "above_150_hpa_moles": 124086010.04175232,
+        "below_150_hpa_moles": 7424583978.131197,
+        "global_moles": 7548669988.172949,
+        "northern_moles": 3717037824.8768296,
+        "southern_moles": 3831632163.2961197
+      },
+      "HO2": {
+        "above_150_hpa_moles": 0.0,
+        "below_150_hpa_moles": 0.0,
+        "global_moles": 0.0,
+        "northern_moles": 0.0,
+        "southern_moles": 0.0
+      },
+      "NO": {
+        "above_150_hpa_moles": 403428984.153494,
+        "below_150_hpa_moles": 16327581537.729137,
+        "global_moles": 16731010521.88263,
+        "northern_moles": 8227935160.328968,
+        "southern_moles": 8503075361.553662
+      },
+      "NO2": {
+        "above_150_hpa_moles": 941334296.3581526,
+        "below_150_hpa_moles": 38097690254.70131,
+        "global_moles": 39039024551.05946,
+        "northern_moles": 19198515374.100925,
+        "southern_moles": 19840509176.95854
+      },
+      "O": {
+        "above_150_hpa_moles": 0.0,
+        "below_150_hpa_moles": 0.0,
+        "global_moles": 0.0,
+        "northern_moles": 0.0,
+        "southern_moles": 0.0
+      },
+      "O1D": {
+        "above_150_hpa_moles": 0.0,
+        "below_150_hpa_moles": 0.0,
+        "global_moles": 0.0,
+        "northern_moles": 0.0,
+        "southern_moles": 0.0
+      },
+      "O2": {
+        "above_150_hpa_moles": 5.273382927579412e+18,
+        "below_150_hpa_moles": 3.1689080944669712e+19,
+        "global_moles": 3.696246387224912e+19,
+        "northern_moles": 1.8385801098515894e+19,
+        "southern_moles": 1.857666277373323e+19
+      },
+      "O3": {
+        "above_150_hpa_moles": 53786388188714.07,
+        "below_150_hpa_moles": 9899899515248.762,
+        "global_moles": 63686287703962.84,
+        "northern_moles": 32821433847807.133,
+        "southern_moles": 30864853856155.703
+      },
+      "OH": {
+        "above_150_hpa_moles": 0.0,
+        "below_150_hpa_moles": 0.0,
+        "global_moles": 0.0,
+        "northern_moles": 0.0,
+        "southern_moles": 0.0
+      }
+    },
+    "tropopause": {
+      "above_mask_cell_levels": 591240,
+      "below_mask_cell_levels": 473772,
+      "fixed_pressure_simplification": true,
+      "maximum_layer_pressure_pa": 102871.17699095584,
+      "minimum_layer_pressure_pa": 54.27454567987478,
+      "pressure_formula": "p_center(k)=p_edge(k)-0.5*rho(k)*g*dz(k)",
+      "rule": "hydrostatically reconstructed layer pressure >= 150 hPa",
+      "threshold_pa": 15000.0
+    }
+  },
+  "source": {
+    "logical_path": "initial_conditions/noaa-gfs-20240701T00Z/x1.40962.gfs-20240701T00Z.init.nc",
+    "sha256": "4178605ca4a813ceeb0ddbc5a6814c4d78ddd6c3be8ccc06a88fab58dd69728d",
+    "size_bytes": 444532092
+  },
+  "start_time": "2024-07-01_00:00:00",
+  "tracer_ranges_kg_kg": {
+    "qCH2O": {
+      "maximum": 3.046882385655405e-10,
+      "minimum": 5.104333118739052e-15
+    },
+    "qCH3O2": {
+      "maximum": 0.0,
+      "minimum": 0.0
+    },
+    "qCH3OOH": {
+      "maximum": 1.625003939016216e-10,
+      "minimum": 2.722310996660827e-15
+    },
+    "qCH4": {
+      "maximum": 1.0493614083534692e-06,
+      "minimum": 1.0493614083534692e-06
+    },
+    "qCO": {
+      "maximum": 1.14938535874698e-07,
+      "minimum": 4.833591955903211e-08
+    },
+    "qH2O2": {
+      "maximum": 1.1555261083925669e-09,
+      "minimum": 1.746008759139986e-13
+    },
+    "qHNO3": {
+      "maximum": 2.14667601957817e-10,
+      "minimum": 1.4054715248079315e-13
+    },
+    "qHO2": {
+      "maximum": 0.0,
+      "minimum": 0.0
+    },
+    "qNO": {
+      "maximum": 3.182545654682697e-10,
+      "minimum": 1.553344008495712e-11
+    },
+    "qNO2": {
+      "maximum": 1.1386441120086981e-09,
+      "minimum": 5.5575196748402124e-11
+    },
+    "qO": {
+      "maximum": 0.0,
+      "minimum": 0.0
+    },
+    "qO1D": {
+      "maximum": 0.0,
+      "minimum": 0.0
+    },
+    "qO2": {
+      "maximum": 0.231411805315844,
+      "minimum": 0.231411805315844
+    },
+    "qO3": {
+      "maximum": 1.0074642457795938e-05,
+      "minimum": 4.9497679199861584e-08
+    },
+    "qOH": {
+      "maximum": 0.0,
+      "minimum": 0.0
+    }
+  },
+  "tracers_written": [
+    "qO2",
+    "qO",
+    "qO1D",
+    "qO3",
+    "qOH",
+    "qHO2",
+    "qH2O2",
+    "qNO",
+    "qNO2",
+    "qHNO3",
+    "qCO",
+    "qCH4",
+    "qCH3O2",
+    "qCH3OOH",
+    "qCH2O"
+  ]
+}

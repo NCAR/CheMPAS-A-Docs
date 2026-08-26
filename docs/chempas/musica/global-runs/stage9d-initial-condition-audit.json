@@ -1,0 +1,54 @@
+{
+  "assertions": {
+    "date_matched_meteorology_required": true,
+    "explicit_o1d_seed": true,
+    "finite_nonnegative_tracers": true,
+    "gregorian_clock_set": true,
+    "mesh_identity_preserved": true
+  },
+  "chemistry_background": {
+    "description": "Idealized Chapman-NOx background; not chemically assimilated, spun up, or production-ready",
+    "production_ready_concentrations": false
+  },
+  "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+  "output": {
+    "logical_path": "initial_conditions/noaa-gfs-20240701T00Z/x1.40962.gfs-20240701T00Z.chapman-nox.init.nc",
+    "sha256": "ef4ca61aa25fce55e6b9691a25b4ace5dfc742a97ace880fef2bad1e8213a7f1",
+    "size_bytes": 495653696
+  },
+  "overall_pass": true,
+  "purpose": "science-acceptance",
+  "schema_version": "chempas-global-miem-chemistry-initial-condition-v1",
+  "source": {
+    "logical_path": "initial_conditions/noaa-gfs-20240701T00Z/x1.40962.gfs-20240701T00Z.init.nc",
+    "sha256": "4178605ca4a813ceeb0ddbc5a6814c4d78ddd6c3be8ccc06a88fab58dd69728d",
+    "size_bytes": 444532092
+  },
+  "start_time": "2024-07-01_00:00:00",
+  "tracer_ranges_kg_kg": {
+    "qNO": {
+      "maximum": 1.0355540214014498e-09,
+      "minimum": 1.0355540214014498e-09
+    },
+    "qNO2": {
+      "maximum": 1.587849499482223e-09,
+      "minimum": 1.587849499482223e-09
+    },
+    "qO": {
+      "maximum": 1e-12,
+      "minimum": 1e-12
+    },
+    "qO1D": {
+      "maximum": 0.0,
+      "minimum": 0.0
+    },
+    "qO2": {
+      "maximum": 0.23196410079392477,
+      "minimum": 0.23196410079392477
+    },
+    "qO3": {
+      "maximum": 9.995009917406921e-06,
+      "minimum": 1.6550796215484412e-08
+    }
+  }
+}

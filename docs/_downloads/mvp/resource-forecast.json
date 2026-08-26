@@ -1,0 +1,72 @@
+{
+  "schema_version": "chempas-mvp-resource-forecast-v1",
+  "basis": {
+    "mesh": "x1.40962",
+    "mpi_ranks": 8,
+    "mechanism": "Tier C Ox-HOx-NOx-CO-CH4",
+    "history_envelope_mib_per_frame": 180.0,
+    "restart_envelope_mib": 1000.0,
+    "peak_rss_envelope_gib": 4.5,
+    "forecast_multiplier": 1.25,
+    "disk_reserve_gib": 20.0,
+    "wall_time_basis": "accepted Tier C/TUV-x global runs on this host; rounded upward",
+    "retention_policy": "run gates sequentially; after a gate is hash-audited, retain compact reports and promoted evidence but remove replaceable histories, restarts, logs, and staged executables before the next storage-limited gate"
+  },
+  "gates": [
+    {
+      "id": "M0",
+      "duration_seconds_per_member": 900,
+      "members": 2,
+      "output_interval_seconds": 900,
+      "history_frames_total": 4,
+      "restart_files": 0,
+      "predicted_output_bytes": 754974720,
+      "allowed_output_envelope_bytes": 943718400,
+      "predicted_wall_seconds": 1200,
+      "predicted_cpu_rank_hours": 2.667
+    },
+    {
+      "id": "M1",
+      "duration_seconds_per_member": 3600,
+      "members": 1,
+      "output_interval_seconds": 900,
+      "history_frames_total": 5,
+      "restart_files": 0,
+      "predicted_output_bytes": 943718400,
+      "allowed_output_envelope_bytes": 1179648000,
+      "predicted_wall_seconds": 420,
+      "predicted_cpu_rank_hours": 0.933
+    },
+    {
+      "id": "M2",
+      "duration_seconds_per_member": 21600,
+      "members": 3,
+      "member_definition": "one 6 h continuous member and a 3+3 h restart pair",
+      "output_interval_seconds": 3600,
+      "history_frames_total": 15,
+      "restart_files": 1,
+      "predicted_output_bytes": 3879731200,
+      "allowed_output_envelope_bytes": 4849664000,
+      "predicted_wall_seconds": 1800,
+      "predicted_cpu_rank_hours": 4.0
+    },
+    {
+      "id": "M3",
+      "duration_seconds_per_member": 86400,
+      "members": 3,
+      "output_interval_seconds": 10800,
+      "history_frames_total": 27,
+      "restart_files": 0,
+      "predicted_output_bytes": 5096079360,
+      "allowed_output_envelope_bytes": 6370099200,
+      "predicted_wall_seconds": 7200,
+      "predicted_cpu_rank_hours": 16.0
+    }
+  ],
+  "promotion_limits": {
+    "maximum_gate_output_envelope_bytes": 6370099200,
+    "required_free_bytes_before_gate": 27844935680,
+    "required_available_memory_bytes": 4831838208,
+    "minimum_retained_free_bytes_after_gate": 21474836480
+  }
+}

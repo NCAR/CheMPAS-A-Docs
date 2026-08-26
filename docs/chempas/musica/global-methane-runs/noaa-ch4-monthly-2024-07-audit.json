@@ -1,0 +1,32 @@
+{
+  "assertions": {
+    "benchmark_not_initializer_or_tuning_target": true,
+    "dry_air_ppb_semantics": true,
+    "finite_positive_values": true,
+    "pinned_size_and_sha256": true,
+    "single_selected_month": true
+  },
+  "overall_pass": true,
+  "schema_version": "chempas-noaa-methane-benchmark-audit-v1",
+  "selection": {
+    "decimal_year": 2024.542,
+    "month": 7,
+    "monthly_mean_ppb": 1920.4,
+    "monthly_mean_uncertainty_ppb": 1.26,
+    "seasonally_adjusted_trend_ppb": 1929.87,
+    "trend_uncertainty_ppb": 0.64,
+    "year": 2024
+  },
+  "semantics": {
+    "quantity": "CH4 mole fraction in dry air",
+    "role": "independent scalar plausibility benchmark; not initialization or tuning",
+    "units": "ppb (nanomol mol-1)"
+  },
+  "snapshot": {
+    "file_creation_metadata": "Wed Aug 5 10:23:12 2026",
+    "path": "raw/noaa-gml/ch4_mm_gl-retrieved-2026-08-15.txt",
+    "retrieval_date": "2026-08-15",
+    "sha256": "cb416d675c6ff21cc142e5cbe27428ece0fd8604ecaecac9a9de818eccff82e6",
+    "size_bytes": 45904
+  }
+}

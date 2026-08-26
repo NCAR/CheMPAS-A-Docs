@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mpas-dev.github.io/chempas/schemas/miem-scalability-report-v1.json",
+  "title": "CheMPAS-A MIEM production-mesh scalability benchmark",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "case",
+    "inputs",
+    "provenance",
+    "reader_accounting_contract",
+    "ranks",
+    "aggregates",
+    "assertions",
+    "overall_pass"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "chempas-miem-scalability-benchmark-v1"
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "mesh_class",
+        "geometry",
+        "global_cells",
+        "vertical_levels",
+        "mpi_ranks",
+        "warm_steps",
+        "sample_epoch_range",
+        "inventory_times",
+        "species"
+      ],
+      "properties": {
+        "name": {"enum": ["regional", "global"]},
+        "mesh_class": {"enum": ["regional", "global"]},
+        "geometry": {"enum": ["planar", "spherical"]},
+        "global_cells": {"type": "integer", "minimum": 1},
+        "vertical_levels": {"type": "integer", "minimum": 1},
+        "mpi_ranks": {"const": 8},
+        "warm_steps": {"type": "integer", "minimum": 1},
+        "sample_epoch_range": {
+          "type": "array",
+          "prefixItems": [
+            {"type": "integer"},
+            {"type": "integer"}
+          ],
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "inventory_times": {
+          "type": "array",
+          "items": {"type": "string"},
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "species": {
+          "const": ["NO", "NO2"]
+        }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/$defs/fileRecord"},
+      "required": [
+        "mesh",
+        "source_partition",
+        "normalized_partition",
+        "synthetic_exact_grid_inventory",
+        "miem_configuration",
+        "benchmark_executable"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "generated_at_utc",
+        "hostname",
+        "platform",
+        "chempas_commit",
+        "dependency_revisions",
+        "musica_version",
+        "musica_prefix",
+        "fortran_compiler",
+        "mpi_launcher",
+        "compile_command",
+        "benchmark_command_contract"
+      ]
+    },
+    "reader_accounting_contract": {
+      "type": "object",
+      "required": [
+        "inventory_bracket_fields",
+        "grid_metadata_fields",
+        "bytes_per_value",
+        "hyperslab_definition",
+        "payload_definition",
+        "persistent_state_definition"
+      ]
+    },
+    "ranks": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {"$ref": "#/$defs/rankRecord"}
+    },
+    "aggregates": {
+      "type": "object",
+      "required": ["full", "selected", "selected_to_full_ratios"]
+    },
+    "assertions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "passed", "detail"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "passed": {"type": "boolean"},
+          "detail": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "overall_pass": {"type": "boolean"}
+  },
+  "$defs": {
+    "fileRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "size_bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "size_bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "readerRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requested_cells",
+        "coalesced_cell_runs",
+        "fields_read",
+        "coalesced_hyperslab_reads",
+        "modeled_netcdf_payload_bytes"
+      ],
+      "properties": {
+        "requested_cells": {"type": "integer", "minimum": 1},
+        "coalesced_cell_runs": {"type": "integer", "minimum": 1},
+        "fields_read": {"type": "integer", "minimum": 1},
+        "coalesced_hyperslab_reads": {"type": "integer", "minimum": 1},
+        "modeled_netcdf_payload_bytes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "modeRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "object_cells",
+        "surface_flux_elements",
+        "layer_flux_elements",
+        "modeled_bracket_cache_elements",
+        "modeled_grid_metadata_elements",
+        "modeled_global_id_elements",
+        "modeled_persistent_cell_elements",
+        "construction_seconds",
+        "first_open_run_seconds",
+        "warm_step_average_seconds",
+        "warm_steps",
+        "peak_rss_kib",
+        "reader"
+      ],
+      "properties": {
+        "object_cells": {"type": "integer", "minimum": 1},
+        "surface_flux_elements": {"type": "integer", "minimum": 1},
+        "layer_flux_elements": {"type": "integer", "minimum": 1},
+        "modeled_bracket_cache_elements": {"type": "integer", "minimum": 1},
+        "modeled_grid_metadata_elements": {"type": "integer", "minimum": 1},
+        "modeled_global_id_elements": {"type": "integer", "minimum": 1},
+        "modeled_persistent_cell_elements": {"type": "integer", "minimum": 1},
+        "construction_seconds": {"type": "number", "minimum": 0},
+        "first_open_run_seconds": {"type": "number", "minimum": 0},
+        "warm_step_average_seconds": {"type": "number", "minimum": 0},
+        "warm_steps": {"type": "integer", "minimum": 1},
+        "peak_rss_kib": {"type": "integer", "minimum": 1},
+        "reader": {"$ref": "#/$defs/readerRecord"}
+      }
+    },
+    "rankRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rank",
+        "owned_cells",
+        "owned_global_id_min",
+        "owned_global_id_max",
+        "modes",
+        "flux_equivalence"
+      ],
+      "properties": {
+        "rank": {"type": "integer", "minimum": 0, "maximum": 7},
+        "owned_cells": {"type": "integer", "minimum": 1},
+        "owned_global_id_min": {"type": "integer", "minimum": 1},
+        "owned_global_id_max": {"type": "integer", "minimum": 1},
+        "modes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["full", "selected"],
+          "properties": {
+            "full": {"$ref": "#/$defs/modeRecord"},
+            "selected": {"$ref": "#/$defs/modeRecord"}
+          }
+        },
+        "flux_equivalence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "samples",
+            "expected_stream_bytes",
+            "full",
+            "selected",
+            "bitwise_equal"
+          ],
+          "properties": {
+            "samples": {"type": "integer", "minimum": 2},
+            "expected_stream_bytes": {"type": "integer", "minimum": 1},
+            "full": {"$ref": "#/$defs/fileRecord"},
+            "selected": {"$ref": "#/$defs/fileRecord"},
+            "bitwise_equal": {"type": "boolean"}
+          }
+        }
+      }
+    }
+  }
+}

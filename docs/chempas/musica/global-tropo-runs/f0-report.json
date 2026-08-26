@@ -1,0 +1,521 @@
+{
+  "assertions": [
+    {
+      "detail": "the expanded mechanism exposes exactly eight PHOTO rates and zeroable NO/NO2 EMIS rates",
+      "name": "rate_parameter_contract",
+      "passed": true
+    },
+    {
+      "detail": "MICM and the independent JPL expression agree at 16 T/P points and respond to cell pressure",
+      "name": "troe_pressure_temperature_matrix",
+      "passed": true
+    },
+    {
+      "detail": "day, night, low-NOx, high-NOx, and upper-troposphere boxes converge",
+      "name": "box_solver_convergence",
+      "passed": true
+    },
+    {
+      "detail": "every qualified box species remains finite and nonnegative",
+      "name": "box_finite_nonnegative_state",
+      "passed": true
+    },
+    {
+      "detail": "NO+NO2+HNO3 is conserved in every zero-emission box",
+      "name": "box_elemental_nitrogen_conservation",
+      "passed": true
+    },
+    {
+      "detail": "daylight produces positive OH and HO2 above the dark control",
+      "name": "daytime_radical_spinup",
+      "passed": true
+    },
+    {
+      "detail": "the high-NOx daylight box transfers reactive nitrogen into HNO3",
+      "name": "high_nox_to_hno3_transfer",
+      "passed": true
+    },
+    {
+      "detail": "all three representative column levels converge for 24 hourly solves",
+      "name": "column_solver_convergence",
+      "passed": true
+    },
+    {
+      "detail": "the lower-, middle-, and upper-troposphere column stays finite and nonnegative",
+      "name": "column_finite_nonnegative_state",
+      "passed": true
+    },
+    {
+      "detail": "OH and HO2 at every column level have positive daylight maxima above night minima",
+      "name": "column_radical_diurnal_cycle",
+      "passed": true
+    },
+    {
+      "detail": "each independently integrated column level conserves NOy",
+      "name": "column_elemental_nitrogen_conservation",
+      "passed": true
+    }
+  ],
+  "gate": "F0",
+  "inputs": {
+    "kernel_executable": {
+      "path": "qualify_global_tropo_chemistry",
+      "sha256": "124af2fd50a151d02bd33e29b43e9cfc682b9624d62101c59a82ee7f5432b812",
+      "size_bytes": 3187560
+    },
+    "kernel_source": {
+      "path": "tests/cpp/qualify_global_tropo_chemistry.cpp",
+      "sha256": "a85633a03ea33fe8f48cef754e7a44d7fda731a0eae1b21e7684d13bad926903",
+      "size_bytes": 21842
+    },
+    "mechanism": {
+      "path": "micm_configs/global_cams_tropo_ch4nox.yaml",
+      "sha256": "ee32e2142ca523e4a0b7ac8afe28197d8252d03713abf3a973977c452258c08c",
+      "size_bytes": 20244
+    },
+    "mechanism_configuration_library": {
+      "path": "lib/libmechanism_configuration.a",
+      "sha256": "1e114df0c3adc535eb00c07bee9ecb5271d6a72968616ea192b6273f1465da93",
+      "size_bytes": 7083374
+    },
+    "musica_library": {
+      "path": "lib/libmusica.a",
+      "sha256": "93f205cf3f85cdbeb212621563d40600d9ef7728aa936c5eb812de90db61a535",
+      "size_bytes": 5852434
+    },
+    "report_schema": {
+      "path": "test_cases/global_tropo_miem/f0-report.schema.json",
+      "sha256": "e969cb73962d56621a4a165f44248e10c48b871a69635d4093c0414db11b74c4",
+      "size_bytes": 1364
+    }
+  },
+  "kernel": {
+    "assertions": [
+      {
+        "name": "rate_parameter_contract",
+        "passed": true
+      },
+      {
+        "name": "troe_pressure_temperature_matrix",
+        "passed": true
+      },
+      {
+        "name": "box_solver_convergence",
+        "passed": true
+      },
+      {
+        "name": "box_finite_nonnegative_state",
+        "passed": true
+      },
+      {
+        "name": "box_elemental_nitrogen_conservation",
+        "passed": true
+      },
+      {
+        "name": "daytime_radical_spinup",
+        "passed": true
+      },
+      {
+        "name": "high_nox_to_hno3_transfer",
+        "passed": true
+      },
+      {
+        "name": "column_solver_convergence",
+        "passed": true
+      },
+      {
+        "name": "column_finite_nonnegative_state",
+        "passed": true
+      },
+      {
+        "name": "column_radical_diurnal_cycle",
+        "passed": true
+      },
+      {
+        "name": "column_elemental_nitrogen_conservation",
+        "passed": true
+      }
+    ],
+    "box_cases": [
+      {
+        "converged": true,
+        "daylight": true,
+        "final_mol_m-3": {
+          "CH4": 7.134550018473861e-05,
+          "CO": 4.380599993832546e-06,
+          "HNO3": 2.9734262892285108e-08,
+          "HO2": 6.988090310847255e-10,
+          "NO": 2.601287855534649e-09,
+          "NO2": 7.12881575057466e-09,
+          "O3": 1.7780184236881077e-06,
+          "OH": 1.1412031680963943e-11
+        },
+        "final_noy_mol_m-3": 3.946436649839442e-08,
+        "finite_nonnegative": true,
+        "h2o_vmr": 0.01,
+        "initial_mol_m-3": {
+          "CH4": 7.14117108066186e-05,
+          "CO": 4.510213314102226e-06,
+          "HNO3": 1.8792555475425943e-09,
+          "HO2": 0,
+          "NO": 1.1275533285255566e-08,
+          "NO2": 2.6309577665596322e-08,
+          "O3": 1.5034044380340756e-06,
+          "OH": 0
+        },
+        "initial_noy_mol_m-3": 3.9464366498394483e-08,
+        "internal_steps": 4766,
+        "name": "daytime_background",
+        "nitrogen_relative_residual": 1.676815184830963e-15,
+        "nox_vmr": 1e-09,
+        "pressure_pa": 90000,
+        "temperature_k": 288
+      },
+      {
+        "converged": true,
+        "daylight": false,
+        "final_mol_m-3": {
+          "CH4": 7.14117108066186e-05,
+          "CO": 4.510213314102226e-06,
+          "HNO3": 1.8792555475425943e-09,
+          "HO2": 0,
+          "NO": 4.115842778149959e-24,
+          "NO2": 3.758511095085206e-08,
+          "O3": 1.4921289047488226e-06,
+          "OH": 0
+        },
+        "final_noy_mol_m-3": 3.946436649839466e-08,
+        "finite_nonnegative": true,
+        "h2o_vmr": 0.01,
+        "initial_mol_m-3": {
+          "CH4": 7.14117108066186e-05,
+          "CO": 4.510213314102226e-06,
+          "HNO3": 1.8792555475425943e-09,
+          "HO2": 0,
+          "NO": 1.1275533285255566e-08,
+          "NO2": 2.6309577665596322e-08,
+          "O3": 1.5034044380340756e-06,
+          "OH": 0
+        },
+        "initial_noy_mol_m-3": 3.9464366498394483e-08,
+        "internal_steps": 1544,
+        "name": "nighttime_background",
+        "nitrogen_relative_residual": 4.5274009990436e-15,
+        "nox_vmr": 1e-09,
+        "pressure_pa": 90000,
+        "temperature_k": 288
+      },
+      {
+        "converged": true,
+        "daylight": true,
+        "final_mol_m-3": {
+          "CH4": 7.138939641353113e-05,
+          "CO": 4.463411574073768e-06,
+          "HNO3": 2.5682912433149298e-09,
+          "HO2": 7.038520299928094e-10,
+          "NO": 3.434590548463323e-10,
+          "NO2": 8.467607969239116e-10,
+          "O3": 1.4981118998125256e-06,
+          "OH": 4.367894162161478e-12
+        },
+        "final_noy_mol_m-3": 3.758511095085174e-09,
+        "finite_nonnegative": true,
+        "h2o_vmr": 0.01,
+        "initial_mol_m-3": {
+          "CH4": 7.14117108066186e-05,
+          "CO": 4.510213314102226e-06,
+          "HNO3": 1.8792555475425943e-09,
+          "HO2": 0,
+          "NO": 5.637766642627783e-10,
+          "NO2": 1.3154788832798163e-09,
+          "O3": 1.5034044380340756e-06,
+          "OH": 0
+        },
+        "initial_noy_mol_m-3": 3.758511095085189e-09,
+        "internal_steps": 1317,
+        "name": "daytime_low_nox",
+        "nitrogen_relative_residual": 4.181557867172213e-15,
+        "nox_vmr": 5e-11,
+        "pressure_pa": 90000,
+        "temperature_k": 288
+      },
+      {
+        "converged": true,
+        "daylight": true,
+        "final_mol_m-3": {
+          "CH4": 7.140341461088609e-05,
+          "CO": 4.498974404001988e-06,
+          "HNO3": 5.654976514948289e-08,
+          "HO2": 3.741438609740966e-12,
+          "NO": 1.1095955130733951e-07,
+          "NO2": 2.102210485992374e-07,
+          "O3": 1.5320472140271665e-06,
+          "OH": 1.8133292769124152e-12
+        },
+        "final_noy_mol_m-3": 3.777303650560598e-07,
+        "finite_nonnegative": true,
+        "h2o_vmr": 0.01,
+        "initial_mol_m-3": {
+          "CH4": 7.14117108066186e-05,
+          "CO": 4.510213314102226e-06,
+          "HNO3": 1.8792555475425943e-09,
+          "HO2": 0,
+          "NO": 1.1275533285255566e-07,
+          "NO2": 2.630957766559632e-07,
+          "O3": 1.5034044380340756e-06,
+          "OH": 0
+        },
+        "initial_noy_mol_m-3": 3.777303650560615e-07,
+        "internal_steps": 1501,
+        "name": "daytime_high_nox",
+        "nitrogen_relative_residual": 4.484854942115054e-15,
+        "nox_vmr": 1e-08,
+        "pressure_pa": 90000,
+        "temperature_k": 288
+      },
+      {
+        "converged": true,
+        "daylight": true,
+        "final_mol_m-3": {
+          "CH4": 2.0311531746434905e-05,
+          "CO": 1.273263336139425e-06,
+          "HNO3": 6.337914467775566e-10,
+          "HO2": 1.1779843691263473e-10,
+          "NO": 7.870842491725924e-10,
+          "NO2": 1.827557046195305e-10,
+          "O3": 4.4297178291561827e-07,
+          "OH": 4.260815965148478e-12
+        },
+        "final_noy_mol_m-3": 1.6036314005696795e-09,
+        "finite_nonnegative": true,
+        "h2o_vmr": 1e-05,
+        "initial_mol_m-3": {
+          "CH4": 2.0312664407215956e-05,
+          "CO": 1.2829051204557444e-06,
+          "HNO3": 5.345438001898935e-10,
+          "HO2": 0,
+          "NO": 3.2072628011393613e-10,
+          "NO2": 7.483613202658511e-10,
+          "O3": 4.2763504015191487e-07,
+          "OH": 0
+        },
+        "initial_noy_mol_m-3": 1.6036314005696807e-09,
+        "internal_steps": 1199,
+        "name": "daytime_upper_troposphere",
+        "nitrogen_relative_residual": 7.737257566724903e-16,
+        "nox_vmr": 1e-10,
+        "pressure_pa": 20000,
+        "temperature_k": 225
+      }
+    ],
+    "column": {
+      "converged": true,
+      "duration_hours": 24,
+      "finite_nonnegative": true,
+      "internal_steps": 14158,
+      "levels": [
+        {
+          "final_noy_mol_m-3": 3.9464366498394775e-08,
+          "h2o_vmr": 0.01,
+          "initial_noy_mol_m-3": 3.9464366498394483e-08,
+          "maximum_day_ho2_mol_m-3": 6.673548066782954e-10,
+          "maximum_day_oh_mol_m-3": 1.3681626762564005e-11,
+          "minimum_night_ho2_mol_m-3": 0,
+          "minimum_night_oh_mol_m-3": 0,
+          "nitrogen_relative_residual": 7.377986813256238e-15,
+          "pressure_pa": 90000,
+          "temperature_k": 288
+        },
+        {
+          "final_noy_mol_m-3": 1.272111447567302e-08,
+          "h2o_vmr": 0.002,
+          "initial_noy_mol_m-3": 1.2721114475672948e-08,
+          "maximum_day_ho2_mol_m-3": 2.317151015845948e-10,
+          "maximum_day_oh_mol_m-3": 1.0445745112356222e-11,
+          "minimum_night_ho2_mol_m-3": 0,
+          "minimum_night_oh_mol_m-3": 0,
+          "nitrogen_relative_residual": 5.7221318182356615e-15,
+          "pressure_pa": 50000,
+          "temperature_k": 260
+        },
+        {
+          "final_noy_mol_m-3": 1.603631400569682e-09,
+          "h2o_vmr": 1e-05,
+          "initial_noy_mol_m-3": 1.6036314005696807e-09,
+          "maximum_day_ho2_mol_m-3": 1.286152895750608e-10,
+          "maximum_day_oh_mol_m-3": 4.487707802858696e-12,
+          "minimum_night_ho2_mol_m-3": 0,
+          "minimum_night_oh_mol_m-3": 0,
+          "nitrogen_relative_residual": 7.737257566724903e-16,
+          "pressure_pa": 20000,
+          "temperature_k": 225
+        }
+      ]
+    },
+    "mechanism": "${CHEMPAS_REPOSITORY_ROOT}/micm_configs/global_cams_tropo_ch4nox.yaml",
+    "overall_pass": true,
+    "rate_parameters": [
+      "EMIS.NO",
+      "EMIS.NO2",
+      "PHOTO.jCH2O_a",
+      "PHOTO.jCH2O_b",
+      "PHOTO.jCH3OOH",
+      "PHOTO.jH2O2",
+      "PHOTO.jHNO3",
+      "PHOTO.jNO2",
+      "PHOTO.jO3_O",
+      "PHOTO.jO3_O1D"
+    ],
+    "schema_version": "chempas-global-tropo-f0-kernel-v1",
+    "solver_contract": {
+      "absolute_tolerance_mol_m-3": 1e-18,
+      "purpose": "strict chemical qualification; production tolerances are calibrated separately by F-CAL",
+      "relative_tolerance": 1e-10,
+      "type": "RosenbrockStandardOrder"
+    },
+    "troe_matrix": [
+      {
+        "independent_m3_mol-1_s-1": 3658386.3011241914,
+        "micm_m3_mol-1_s-1": 3658386.301124192,
+        "pressure_hpa": 100,
+        "relative_error": 1.2728598047850917e-16,
+        "temperature_k": 220
+      },
+      {
+        "independent_m3_mol-1_s-1": 6373031.741008007,
+        "micm_m3_mol-1_s-1": 6373031.741008009,
+        "pressure_hpa": 300,
+        "relative_error": 2.9226986855338435e-16,
+        "temperature_k": 220
+      },
+      {
+        "independent_m3_mol-1_s-1": 9070998.199680667,
+        "micm_m3_mol-1_s-1": 9070998.199680666,
+        "pressure_hpa": 700,
+        "relative_error": 2.0534070322012952e-16,
+        "temperature_k": 220
+      },
+      {
+        "independent_m3_mol-1_s-1": 10184406.869618846,
+        "micm_m3_mol-1_s-1": 10184406.869618846,
+        "pressure_hpa": 1000,
+        "relative_error": 0,
+        "temperature_k": 220
+      },
+      {
+        "independent_m3_mol-1_s-1": 2721478.4018880427,
+        "micm_m3_mol-1_s-1": 2721478.401888043,
+        "pressure_hpa": 100,
+        "relative_error": 1.7110600142359527e-16,
+        "temperature_k": 250
+      },
+      {
+        "independent_m3_mol-1_s-1": 4970418.2680623345,
+        "micm_m3_mol-1_s-1": 4970418.2680623345,
+        "pressure_hpa": 300,
+        "relative_error": 0,
+        "temperature_k": 250
+      },
+      {
+        "independent_m3_mol-1_s-1": 7414414.654938582,
+        "micm_m3_mol-1_s-1": 7414414.654938583,
+        "pressure_hpa": 700,
+        "relative_error": 1.2560972348574334e-16,
+        "temperature_k": 250
+      },
+      {
+        "independent_m3_mol-1_s-1": 8570508.932567958,
+        "micm_m3_mol-1_s-1": 8570508.93256796,
+        "pressure_hpa": 1000,
+        "relative_error": 2.173319185460387e-16,
+        "temperature_k": 250
+      },
+      {
+        "independent_m3_mol-1_s-1": 2025126.2620992295,
+        "micm_m3_mol-1_s-1": 2025126.26209923,
+        "pressure_hpa": 100,
+        "relative_error": 2.299418540081735e-16,
+        "temperature_k": 280
+      },
+      {
+        "independent_m3_mol-1_s-1": 3932790.129590792,
+        "micm_m3_mol-1_s-1": 3932790.129590794,
+        "pressure_hpa": 300,
+        "relative_error": 4.736192595725328e-16,
+        "temperature_k": 280
+      },
+      {
+        "independent_m3_mol-1_s-1": 6029305.948468724,
+        "micm_m3_mol-1_s-1": 6029305.948468725,
+        "pressure_hpa": 700,
+        "relative_error": 1.5446596715696744e-16,
+        "temperature_k": 280
+      },
+      {
+        "independent_m3_mol-1_s-1": 7107664.254369661,
+        "micm_m3_mol-1_s-1": 7107664.254369663,
+        "pressure_hpa": 1000,
+        "relative_error": 2.620614990481348e-16,
+        "temperature_k": 280
+      },
+      {
+        "independent_m3_mol-1_s-1": 1663724.527577174,
+        "micm_m3_mol-1_s-1": 1663724.5275771744,
+        "pressure_hpa": 100,
+        "relative_error": 2.7989085908703046e-16,
+        "temperature_k": 300
+      },
+      {
+        "independent_m3_mol-1_s-1": 3381362.5561361625,
+        "micm_m3_mol-1_s-1": 3381362.5561361625,
+        "pressure_hpa": 300,
+        "relative_error": 0,
+        "temperature_k": 300
+      },
+      {
+        "independent_m3_mol-1_s-1": 5271671.871382177,
+        "micm_m3_mol-1_s-1": 5271671.871382177,
+        "pressure_hpa": 700,
+        "relative_error": 0,
+        "temperature_k": 300
+      },
+      {
+        "independent_m3_mol-1_s-1": 6264402.766328378,
+        "micm_m3_mol-1_s-1": 6264402.766328379,
+        "pressure_hpa": 1000,
+        "relative_error": 1.4866901273037634e-16,
+        "temperature_k": 300
+      }
+    ]
+  },
+  "overall_pass": true,
+  "promotable": true,
+  "purpose": "Strict-solver chemical qualification for the experimental expanded mechanism; it is not a production air-quality mechanism or a global integration.",
+  "schema_version": "chempas-global-tropo-f0-report-v1",
+  "software": {
+    "chempas_clean": true,
+    "chempas_commit": "caa0c12dde7b862ce14a49021e25a45cc00b337f",
+    "chempas_status": [],
+    "compile_command": [
+      "c++",
+      "-std=c++23",
+      "-O2",
+      "-w",
+      "-I${MUSICA_PREFIX}/include",
+      "-o",
+      "${CHEMPAS_F0_BUILD_ROOT}/qualify_global_tropo_chemistry",
+      "${CHEMPAS_REPOSITORY_ROOT}/tests/cpp/qualify_global_tropo_chemistry.cpp",
+      "-L${MUSICA_PREFIX}/lib",
+      "-lmusica",
+      "-lmechanism_configuration",
+      "-lyaml-cpp"
+    ],
+    "compiler": "c++ (conda-forge gcc 15.2.0-19) 15.2.0",
+    "mechanism_configuration_revision": "82c159ae6d74934318ffd6c405a45c2159065b12",
+    "micm_revision": "bb57684a2047f0e58f30b199366294af879e8597",
+    "miem_revision": "9fdf14a189262eecb677862d877ab72b06c95e21",
+    "musica_prefix": "${MUSICA_PREFIX}",
+    "musica_revision": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc"
+  },
+  "tier": "expanded"
+}

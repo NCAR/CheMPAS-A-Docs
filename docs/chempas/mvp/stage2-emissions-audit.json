@@ -1,0 +1,64 @@
+{
+  "schema_version": "chempas-mvp-stage2-evidence-v1",
+  "implementation_commit": "eb0c3d6aa6e8a7808fe955629b37927f95402937",
+  "mechanism": {
+    "normal_sha256": "223669c4be766bac06de57c3de298c9f9cfa1547fa77ca5330ad4a36874334ec",
+    "strict_sha256": "61a8d620cb2efbf306ebdea49f9f55e8b90718b88b5c54b7e2906cf680e3df72",
+    "emission_parameters": ["EMIS.NO", "EMIS.NO2", "EMIS.CO"],
+    "zero_co_baseline": {
+      "accepted_report_sha256": "86ffaa0ef7abd2b2ceec5f9d340161dc479a8717b6cf8888695c057e302dbef3",
+      "current_report_sha256": "c5d70c999d4c620dded20ea451244fdc4f08b08f0224f2c0e8698ad6102e9abb",
+      "box_cases_bitwise_equal": true,
+      "column_bitwise_equal": true,
+      "troe_matrix_bitwise_equal": true
+    },
+    "analytic_co_mass_and_carbon": "pass"
+  },
+  "cams": {
+    "report_sha256": "dbe3375a27d0a0580e3a9c61536cf73fb171e42f79728bdf8092bf58c041fd43",
+    "packaged_size_bytes": 26686361,
+    "packaged_sha256": "39ab42133bdc255a74c5082e8a20dd3111ad5bde6f67d270828123712c1670bf",
+    "retained_nox_sectors": 12,
+    "retained_co_sectors": 10,
+    "withheld_sector": "awb",
+    "source_cells": 6480000,
+    "destination_cells": 40962,
+    "sparse_weights": 7773510,
+    "unmapped_destination_cells": 0,
+    "unrepresented_source_cells": 0,
+    "maximum_source_area_relative_error": 2.0231421346296964e-12,
+    "maximum_provider_sector_sum_relative_difference": 2.365017092438672e-09,
+    "overall_pass": true
+  },
+  "finn": {
+    "report_sha256": "ad81bbb2c365e5f68663e66d359fc60c74bc0196e01d832959c49c8b937045a7",
+    "packaged_size_bytes": 5271798,
+    "packaged_sha256": "dfb3eef24f5a76ec4b41a9cb1837454a52239f69d12514547992e5821364a8f1",
+    "provider_records": [65462, 63419],
+    "runtime_records": 3,
+    "scientific_noon_anchors": 2,
+    "start_coverage_guard": "duplicate of first field at 2024-07-01T00:00:00Z",
+    "provider_species": ["CO", "NO", "NO2"],
+    "ignored_provider_field": "NOXasNO",
+    "maximum_amount_relative_difference": 2.549412657069393e-16,
+    "maximum_allocation_distance_km": 70.02876341966865,
+    "overall_pass": true
+  },
+  "runtime_sum": {
+    "report_sha256": "7f8a24f3e6006332f1d0819577a7f580c409dad8d963b0710086e265a981248c",
+    "timestamp": "2024-07-01T12:00:00Z",
+    "selected_cell_interpolation": "pass",
+    "global_mass": "pass",
+    "actual_miem_cams_only": "pass",
+    "actual_miem_cams_plus_finn": "pass",
+    "overall_pass": true
+  },
+  "commands": [
+    "conda run -n mpas python -m unittest tests.test_prepare_mvp_emissions tests.test_global_tropo_mechanisms tests.test_global_tropo_miem_harness",
+    "conda run -n mpas bash scripts/test_mvp_co_source.sh",
+    "conda run -n mpas bash scripts/test_musica_emission_contracts.sh .",
+    "conda run -n mpas python scripts/prepare_mvp_emissions.py all --manifest test_cases/global_mvp/external-inputs.json --data-root $CHEMPAS_EMISSIONS_DATA_ROOT",
+    "conda run -n mpas bash scripts/test_mvp_multiple_inventories.sh $CHEMPAS_EMISSIONS_DATA_ROOT"
+  ],
+  "overall_pass": true
+}

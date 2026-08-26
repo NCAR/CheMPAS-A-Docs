@@ -1,0 +1,61 @@
+{
+  "schema_version": "chempas-mvp-stage-audit-v1",
+  "stage": 1,
+  "stage_name": "Prescribed-Field Provider and Spatial O3",
+  "implementation_commit": "8c38297c5906d3fd615d004766bcd39e274b603e",
+  "overall_pass": true,
+  "source_and_remap": {
+    "merra2_source_sha256": "88c0786141712b3264fdd85687dbeecd69a5cea073adba4db851b81f8f187520",
+    "reference_profile_sha256": "851b0ff3549bca691e0c49a8727bcdbaae001c9a34a7b1f7696f975ddd0b5954",
+    "weights_sha256": "d9a862a11fb1c17c99baca5545400df7723c2b829255e08f7de2247e2a58e727",
+    "source_cells": 207936,
+    "destination_cells": 40962,
+    "sparse_weights": 469356,
+    "unmapped_destination_cells": 0,
+    "unrepresented_source_cells": 0,
+    "maximum_source_area_relative_error": 1.0309001275530112e-12,
+    "maximum_constant_field_row_sum_error": 2.4750060747757985e-05
+  },
+  "runtime_package": {
+    "logical_path": "prescribed/merra2-o3-v5.12.4-x1.40962/merra2-o3-monthly-climatology.x1.40962.nc",
+    "size_bytes": 39423729,
+    "sha256": "a6ecbb5b57fc72485d76ed8cb652666f58c26535bc1f3dbf443b9bc615938301",
+    "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+    "maximum_horizontal_column_relative_error": 3.135423507836696e-16,
+    "maximum_vertical_merra2_column_relative_error": 7.602280855080734e-16,
+    "maximum_density_column_relative_error": 1.1641521381116643e-16,
+    "minimum_reference_tail_fraction": 0.043496888902576226,
+    "maximum_reference_tail_fraction": 0.5404357293606343,
+    "minimum_global_mean_prescribed_column_molecule_cm-2": 7.366501012973104e16,
+    "maximum_global_mean_prescribed_column_molecule_cm-2": 7.821941707074e16
+  },
+  "verification": {
+    "clean_build": "pass",
+    "python_unit_tests": 6,
+    "legacy_tuvx_contract": "pass",
+    "synthetic_provider_one_rank": "pass",
+    "synthetic_provider_eight_ranks": "pass",
+    "cyclic_december_january": "pass",
+    "gregorian_leap_and_century_rules": "pass",
+    "selected_cell_mapping": "pass",
+    "restart_bitwise_identity": "pass",
+    "uniform_legacy_profile_equivalence_relative_tolerance": 2e-13,
+    "model_top_seam_tolerance_m": 0.5,
+    "spatial_photolysis_sensitivity": "pass",
+    "prognostic_qO3_unchanged": "pass",
+    "failure_paths": [
+      "calendar",
+      "density-column closure",
+      "mesh",
+      "missing spatial profile",
+      "mode ambiguity",
+      "units",
+      "vertical coordinate"
+    ]
+  },
+  "tested_executable": {
+    "path": "atmosphere_model",
+    "size_bytes": 14165560,
+    "sha256": "2c04e7af6d7a3a1a56101d313ec4ca6028695e6b7b218b325c56050a111df6b8"
+  }
+}

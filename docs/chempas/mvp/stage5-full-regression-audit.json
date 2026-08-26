@@ -1,0 +1,180 @@
+{
+  "assertions": {
+    "all_json_yaml_and_schemas_valid": true,
+    "all_python_tests_passed": true,
+    "all_shell_contracts_passed": true,
+    "bash_syntax_passed": true,
+    "clean_build_passed": true,
+    "disabled_baselines_bitwise_identical": true,
+    "git_diff_check_passed": true,
+    "one_and_eight_rank_coverage_passed": true,
+    "python_compileall_passed": true
+  },
+  "candidate_commit": "a2ae24da87d74ae19a615363ba793b6268f3c253",
+  "candidate_tree": "7f8663cb487090aa8f25496c770a758c9e0c4cfe",
+  "clean_build": {
+    "atmosphere_model": {
+      "sha256": "0049e8968273f95ec7404a4c123fa514458b29681fd2c8f117634b78d4d0988a",
+      "size_bytes": 14165560
+    },
+    "preflight_passed": true,
+    "wall_seconds": 100.02
+  },
+  "dependencies": {
+    "gfortran": "15.2.0",
+    "matplotlib": "3.11.0",
+    "miem_revision": "9fdf14a189262eecb677862d877ab72b06c95e21",
+    "musica_fortran": "0.16.5",
+    "musica_revision": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc",
+    "netCDF4": "1.7.4",
+    "numpy": "2.5.1",
+    "open_mpi": "5.0.10",
+    "python": "3.14.6",
+    "pyyaml": "6.0.3",
+    "scipy": "1.18.0"
+  },
+  "external_log_root": "reports/mvp-regression/a2ae24da",
+  "external_logs": {
+    "clean_build": {
+      "path": "chempas-mvp-stage5-clean-build.log",
+      "sha256": "e88e02035f5d141c58f84006033c1849ce9f4a2910112c6b1e1d65d4ed10f3db",
+      "size_bytes": 440848
+    },
+    "clean_build_time": {
+      "path": "chempas-mvp-stage5-clean-build.time",
+      "sha256": "fd02bfee136f6174c3789b5d13eb40ff972cadb243c0f4e7061c753466bb9872",
+      "size_bytes": 32
+    },
+    "global_tropo_f0": {
+      "path": "chempas-mvp-stage5-global_tropo_f0.log",
+      "sha256": "561ed81bf281b1b5fdf19673333d9e9127e7abc158da9dbd74151509050ad0a1",
+      "size_bytes": 153
+    },
+    "global_tropo_troe": {
+      "path": "chempas-mvp-stage5-global_tropo_troe.log",
+      "sha256": "b75c57879b5e4a4895008dafb7d5ec36c2c5f2c1932b1cf1abe2bb4a775cfe4b",
+      "size_bytes": 1796
+    },
+    "miem_disabled_baselines": {
+      "path": "chempas-mvp-stage5-miem_disabled_baselines.log",
+      "sha256": "b6db0b10bc09fab5cd3b4719fa26c730fda59c98fc00f675047d2b8de313e9e0",
+      "size_bytes": 504
+    },
+    "miem_failure_paths": {
+      "path": "chempas-mvp-stage5-miem_failure_paths.log",
+      "sha256": "ff21e00ee918285b96077e6cd74b75b822f0f63886ce571011bcf6a03897df89",
+      "size_bytes": 1742
+    },
+    "miem_integration": {
+      "path": "chempas-mvp-stage5-miem_integration.log",
+      "sha256": "f60017647de9f6d876e5e138fb2a8cf9571a9ffe15ef6b9ac12eee9a5d2b8c19",
+      "size_bytes": 4943
+    },
+    "miem_mpi_mapping": {
+      "path": "chempas-mvp-stage5-miem_mpi_mapping.log",
+      "sha256": "91ad6f8a704628738275a1b9f4154eb76f791eb56e70a3cade84daf5e83da6fa",
+      "size_bytes": 103
+    },
+    "miem_net_flux": {
+      "path": "chempas-mvp-stage5-miem_net_flux.log",
+      "sha256": "24286aaf0d6b9f38d75cd9b9561993933a150c7d3dd915fb7785df278ac06e38",
+      "size_bytes": 1102
+    },
+    "mozart35_box": {
+      "path": "chempas-mvp-stage5-mozart35_box.log",
+      "sha256": "66b0fa472159bc6eca9dca8368961db1d107a6a9f984b94c73aade23c84e01c6",
+      "size_bytes": 76
+    },
+    "mozart35_tuvx": {
+      "path": "chempas-mvp-stage5-mozart35_tuvx.log",
+      "sha256": "af740357397398958e3165a7ae1983fc08e4da500b08b56122fb49fbb2afc82e",
+      "size_bytes": 66
+    },
+    "musica_emission_contracts": {
+      "path": "chempas-mvp-stage5-musica_emission_contracts.log",
+      "sha256": "688215b6d35d10051193b1f583746d2da3d96a91dde0cac63e3e5f43de702fa4",
+      "size_bytes": 492
+    },
+    "musica_multiple_inventories": {
+      "path": "chempas-mvp-stage5-musica_multiple_inventories.log",
+      "sha256": "a4996f8e1056f032491da2fb045f30c273919a50ef113b40c5fc8c769c0631b7",
+      "size_bytes": 203
+    },
+    "mvp_co_source": {
+      "path": "chempas-mvp-stage5-mvp_co_source.log",
+      "sha256": "206a50e2aa26cfbe4ff4e1cbce246c5eece64bd9b6bae10cdcb8ab93106f28f1",
+      "size_bytes": 6033
+    },
+    "mvp_local_integration": {
+      "path": "chempas-mvp-stage5-mvp_local_integration.log",
+      "sha256": "8e43393b64fe9a19af01624fc47610ad4b2abee0906c3ad1e3a799257cfae4d7",
+      "size_bytes": 121
+    },
+    "mvp_multiple_inventories": {
+      "path": "chempas-mvp-stage5-mvp_multiple_inventories.log",
+      "sha256": "bed10b4026bee8d30dda48eb77bfd7c5a1984e6704d871545d8e1c8efb176a93",
+      "size_bytes": 136
+    },
+    "mvp_prescribed_fields": {
+      "path": "chempas-mvp-stage5-mvp_prescribed_fields.log",
+      "sha256": "ffcdd5aeec7f8a7a2ee69473c6c8080bf49bdd8c47c4332c8e0d8f8c672c2056",
+      "size_bytes": 126
+    },
+    "mvp_tier_c_sources": {
+      "path": "chempas-mvp-stage5-mvp_tier_c_sources.log",
+      "sha256": "f04096b961566bc32c48b1aca55e12349fda7102f64fbc25a86a497ca5fcfc0d",
+      "size_bytes": 6157
+    },
+    "python": {
+      "path": "chempas-mvp-stage5-python.log",
+      "sha256": "6331d324df360003be3f87d10439b59b14e60d74ae7e2656caf1e6046fdd1c13",
+      "size_bytes": 46861
+    },
+    "python_time": {
+      "path": "chempas-mvp-stage5-python.time",
+      "sha256": "662873f1e4c490719ebe0303f283acfd3de31470553075d1e3c489832ee4fbd2",
+      "size_bytes": 26
+    }
+  },
+  "historical_static_profile_migration": {
+    "focused_unit_tests": 2,
+    "runtime_validation_weakened": false,
+    "staged_copy_only": true
+  },
+  "overall_pass": true,
+  "python_suite": {
+    "count": 268,
+    "reported_seconds": 27.66,
+    "wall_seconds": 28.42
+  },
+  "recorded_local_date": "2026-08-16",
+  "schema_version": "chempas-mvp-stage5-full-regression-v1",
+  "shell_contracts": {
+    "approximate_total_wall_seconds": 562,
+    "count": 16,
+    "results": [
+      {"name": "test_global_tropo_f0.sh", "passed": true, "wall_seconds": 5},
+      {"name": "test_global_tropo_troe.sh", "passed": true, "wall_seconds": 2},
+      {"name": "test_mvp_co_source.sh", "passed": true, "wall_seconds": 3},
+      {"name": "test_mvp_tier_c_sources.sh", "passed": true, "wall_seconds": 2},
+      {"name": "test_mozart35_box.sh", "passed": true, "wall_seconds": 19},
+      {"name": "test_mozart35_tuvx.sh", "passed": true, "wall_seconds": 1},
+      {"name": "test_musica_emission_contracts.sh", "passed": true, "wall_seconds": 2},
+      {"name": "test_musica_multiple_inventories.sh", "passed": true, "wall_seconds": 1},
+      {"name": "test_miem_net_flux.sh", "passed": true, "wall_seconds": 2},
+      {"name": "test_miem_mpi_mapping.sh", "passed": true, "wall_seconds": 20},
+      {"name": "test_mvp_multiple_inventories.sh", "passed": true, "wall_seconds": 1},
+      {"name": "test_mvp_prescribed_fields.sh", "passed": true, "wall_seconds": 3},
+      {"name": "test_miem_failure_paths.sh", "passed": true, "wall_seconds": 14},
+      {"name": "test_miem_disabled_baselines.sh", "passed": true, "wall_seconds": 436},
+      {"name": "test_mvp_local_integration.sh", "passed": true, "wall_seconds": 5},
+      {"name": "test_miem_integration.sh", "passed": true, "wall_seconds": 46}
+    ]
+  },
+  "static_validation": {
+    "bash_files": 22,
+    "json_files": 114,
+    "json_schema_dialect": "https://json-schema.org/draft/2020-12/schema",
+    "yaml_files": 43
+  }
+}

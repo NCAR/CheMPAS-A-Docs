@@ -1,0 +1,122 @@
+{
+  "assertions": {
+    "all_gate_assertions_passed": true,
+    "all_gates_promotable": true,
+    "all_resources_within_bounds": true,
+    "carbon_input_ledgers_passed": true,
+    "complete_diurnal_photolysis_passed": true,
+    "diagnostic_columns_passed": true,
+    "finite_nonnegative_state_passed": true,
+    "matched_m3_initial_state": true,
+    "reactive_nitrogen_ledgers_passed": true,
+    "restart_equivalence_passed": true,
+    "source_attribution_passed": true,
+    "source_diagnostics_and_mass_passed": true
+  },
+  "gates": {
+    "M0": {
+      "aggregate_output_bytes": 910402312,
+      "assertions_passed": 10,
+      "maximum_member_wall_seconds": 924.19,
+      "maximum_peak_rss_kib": 1215708,
+      "overall_pass": true,
+      "promotable": true,
+      "report": {
+        "logical_path": "reports/global-mvp/9f703f505051b8eb3700e9ecae927fc1c84746ca/m0-report.json",
+        "sha256": "9c141fd00acb64783f66c0a56dd940b1cb45ab02a242f5674f9c30933c5021b1",
+        "size_bytes": 127423
+      },
+      "run_count": 2,
+      "simulation_seconds": 900
+    },
+    "M1": {
+      "aggregate_output_bytes": 1138002880,
+      "assertions_passed": 10,
+      "maximum_member_wall_seconds": 202.14,
+      "maximum_peak_rss_kib": 1239348,
+      "overall_pass": true,
+      "promotable": true,
+      "report": {
+        "logical_path": "reports/global-mvp/9f703f505051b8eb3700e9ecae927fc1c84746ca/m1-report.json",
+        "sha256": "d4d48ff08cb83c57186e229f777891f0237e845329b471ab70607fd1c79dc839",
+        "size_bytes": 78054
+      },
+      "run_count": 1,
+      "simulation_seconds": 3600
+    },
+    "M2": {
+      "aggregate_output_bytes": 4019276800,
+      "assertions_passed": 11,
+      "maximum_member_wall_seconds": 1235.31,
+      "maximum_peak_rss_kib": 1379864,
+      "overall_pass": true,
+      "promotable": true,
+      "report": {
+        "logical_path": "reports/global-mvp/9f703f505051b8eb3700e9ecae927fc1c84746ca/m2-report.json",
+        "sha256": "722ccd46be6d4d8729bca39402443c715259618bc9f6734c3165cd69e2965418",
+        "size_bytes": 314577
+      },
+      "run_count": 3,
+      "simulation_seconds": 21600
+    },
+    "M3": {
+      "aggregate_output_bytes": 6083247132,
+      "assertions_passed": 14,
+      "maximum_member_wall_seconds": 5565.0,
+      "maximum_peak_rss_kib": 1269976,
+      "overall_pass": true,
+      "promotable": true,
+      "report": {
+        "logical_path": "reports/global-mvp/9f703f505051b8eb3700e9ecae927fc1c84746ca/m3-report.json",
+        "sha256": "931913f02d33cc14db1ede6a093140755c492e02686ccc2ea4718e3f294daae5",
+        "size_bytes": 275750
+      },
+      "run_count": 3,
+      "simulation_seconds": 86400
+    }
+  },
+  "implementation_commit": "9f703f505051b8eb3700e9ecae927fc1c84746ca",
+  "m3": {
+    "member_labels": {
+      "A": "A Target Surface Sources Withheld",
+      "B": "B Anthropogenic Sources Applied",
+      "C": "C Anthropogenic and Fire Sources Applied"
+    },
+    "nitrogen_ledgers_mol": {
+      "A": {
+        "allowed_residual": 0.3175935253055752,
+        "initial_burden": 63318705061.11504,
+        "residual": 0.08688935309965018
+      },
+      "B": {
+        "allowed_residual": 331077.9285383844,
+        "residual": -0.000095367431640625
+      },
+      "C": {
+        "allowed_residual": 436634.7523244868,
+        "residual": -0.00009918212890625
+      }
+    },
+    "paired_source_ledgers_mol": {
+      "B-A": {
+        "allowed_residual": 331077.6119448591,
+        "label": "B−A Anthropogenic Source Contribution",
+        "residual": -0.08698463439941406
+      },
+      "C-B": {
+        "allowed_residual": 105556.82478610234,
+        "label": "C−B Fire Source Contribution",
+        "residual": -7.152557373046875e-7
+      }
+    },
+    "retained_history_count": 27,
+    "source_free_background_relative_tolerance": 5e-12,
+    "source_free_one_mole_perturbation_rejected": true
+  },
+  "overall_pass": true,
+  "schema_version": "chempas-mvp-stage4-global-ladder-v1",
+  "software": {
+    "checker_sha256": "96d15f25deffcf0e60f805d12c9580a3a4ff66576619a15214770222421c140a",
+    "executable_sha256": "0049e8968273f95ec7404a4c123fa514458b29681fd2c8f117634b78d4d0988a"
+  }
+}

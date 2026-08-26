@@ -1,0 +1,376 @@
+{
+  "artifacts": {
+    "analysis": {
+      "id": "noaa-gfs-v16.3-20240701t00z-pgrb2-0p25-f000",
+      "license": "NOAA Open Data Dissemination data are open to the public; attribution requested",
+      "logical_path": "raw/noaa-gfs/2024-07-01T00Z/gfs.t00z.pgrb2.0p25.f000",
+      "provider_checksum": {
+        "status": "verified",
+        "value": "AWS ETag/MD5 de6a8a61db0a4a6cf01f9cc7bbd48c8b"
+      },
+      "role": "meteorological_analysis",
+      "sha256": "69d71c821486c6575591e8fb63471fd01af73e3a3f9480dd6bd2a892a3554676",
+      "size_bytes": 513310010,
+      "source_url": "https://noaa-gfs-bdp-pds.s3.amazonaws.com/gfs.20240701/00/atmos/gfs.t00z.pgrb2.0p25.f000"
+    },
+    "chemistry": {
+      "id": "mpas-x1.40962-gfs-20240701t00z-chapman-nox-state",
+      "license": "Derived from NOAA public data and MPAS-Model BSD-3-Clause mesh data",
+      "logical_path": "initial_conditions/noaa-gfs-20240701T00Z/x1.40962.gfs-20240701T00Z.chapman-nox.init.nc",
+      "provider_checksum": {
+        "status": "not-applicable-derived-artifact",
+        "value": null
+      },
+      "role": "model_initial_condition",
+      "sha256": "ef4ca61aa25fce55e6b9691a25b4ace5dfc742a97ace880fef2bad1e8213a7f1",
+      "size_bytes": 495653696,
+      "source_url": null
+    },
+    "index": {
+      "id": "noaa-gfs-v16.3-20240701t00z-pgrb2-0p25-f000-index",
+      "license": "NOAA Open Data Dissemination data are open to the public; attribution requested",
+      "logical_path": "raw/noaa-gfs/2024-07-01T00Z/gfs.t00z.pgrb2.0p25.f000.idx",
+      "provider_checksum": {
+        "status": "verified",
+        "value": "AWS ETag/MD5 2fafcfc3f01cbd7ecf989c7ce77a073a"
+      },
+      "role": "meteorological_analysis_index",
+      "sha256": "47894c8851b22073808ec257c62450811fe0e9b7c5fe5a75f9fca774535d8cd5",
+      "size_bytes": 31817,
+      "source_url": "https://noaa-gfs-bdp-pds.s3.amazonaws.com/gfs.20240701/00/atmos/gfs.t00z.pgrb2.0p25.f000.idx"
+    },
+    "intermediate": {
+      "id": "noaa-gfs-v16.3-20240701t00z-wps-intermediate",
+      "license": "Derived from NOAA public data; WPS and bundled dependency license terms apply",
+      "logical_path": "meteorology/noaa-gfs-20240701T00Z/wps-intermediate/GFS:2024-07-01_00",
+      "provider_checksum": {
+        "status": "not-applicable-derived-artifact",
+        "value": null
+      },
+      "role": "meteorological_intermediate",
+      "sha256": "dde20db8efa58be94f791280aa54034aec3462292ddc36fd29b9c98e8cc71505",
+      "size_bytes": 959387352,
+      "source_url": null
+    },
+    "meteorology": {
+      "id": "mpas-x1.40962-gfs-20240701t00z-state",
+      "license": "Derived from NOAA public data and MPAS-Model BSD-3-Clause mesh data",
+      "logical_path": "initial_conditions/noaa-gfs-20240701T00Z/x1.40962.gfs-20240701T00Z.init.nc",
+      "provider_checksum": {
+        "status": "not-applicable-derived-artifact",
+        "value": null
+      },
+      "role": "model_initial_condition",
+      "sha256": "4178605ca4a813ceeb0ddbc5a6814c4d78ddd6c3be8ccc06a88fab58dd69728d",
+      "size_bytes": 444532092,
+      "source_url": null
+    },
+    "partition": {
+      "id": "mpas-x1.40962-eight-rank-partition",
+      "license": "Derived from MPAS-Model BSD-3-Clause mesh ancillary data",
+      "logical_path": "partitions/x1.40962.graph.info.part.8",
+      "provider_checksum": {
+        "status": "not-applicable-derived-artifact",
+        "value": null
+      },
+      "role": "partition",
+      "sha256": "f56e75e1f408b632fd5cd22ad05cc59fdbb54daf1e2f8f3d6298147a1e7f577b",
+      "size_bytes": 81924,
+      "source_url": null
+    },
+    "static": {
+      "id": "mpas-x1.40962-static",
+      "license": "MPAS-Model BSD-3-Clause; official mesh ancillary data",
+      "logical_path": "raw/mpas-x1.40962/x1.40962.static.nc",
+      "provider_checksum": {
+        "status": "not-applicable-derived-artifact",
+        "value": null
+      },
+      "role": "destination_static",
+      "sha256": "cf1a47d4168327f06a8403555d6ed8b2fe1aff7f8b916bb7f6a754c34a10ac82",
+      "size_bytes": 94766584,
+      "source_url": null
+    }
+  },
+  "assertions": [
+    {
+      "detail": "all seven Stage 9D artifacts match size and SHA-256",
+      "name": "manifest_artifacts",
+      "passed": true
+    },
+    {
+      "detail": "NOAA/AWS single-part ETags equal local MD5 values",
+      "name": "provider_checksums",
+      "passed": true
+    },
+    {
+      "detail": "WPS commit, ungrib, Vtable, and MPAS initializer hashes match the manifest",
+      "name": "pinned_preprocessing_tools",
+      "passed": true
+    },
+    {
+      "detail": "temperature, wind, RH, and specific humidity cover all 34 retained pressure levels",
+      "name": "intermediate_pressure_levels",
+      "passed": true
+    },
+    {
+      "detail": "date-matched pressure, SST/skin, sea-ice, snow/land, and four-layer soil inputs are present",
+      "name": "intermediate_surface_state",
+      "passed": true
+    },
+    {
+      "detail": "the pinned WPS reader traverses the complete intermediate file",
+      "name": "intermediate_readable",
+      "passed": true
+    },
+    {
+      "detail": "real-data state uses x1.40962, 26 atmospheric levels, four soil levels, and a 45-km top",
+      "name": "exact_mesh_and_dimensions",
+      "passed": true
+    },
+    {
+      "detail": "MPAS initial clock equals the GFS analysis and emissions-run start",
+      "name": "date_matched_clock",
+      "passed": true
+    },
+    {
+      "detail": "required atmospheric and surface fields are finite; density, temperature, pressure, and humidity bounds pass",
+      "name": "finite_bounded_meteorology",
+      "passed": true
+    },
+    {
+      "detail": "augmentation adds finite nonnegative Chapman-NOx tracers without changing any meteorological or mesh array",
+      "name": "chemistry_augmentation",
+      "passed": true
+    },
+    {
+      "detail": "metadata explicitly excludes production-ready or spun-up concentration interpretation",
+      "name": "interpretation_scope",
+      "passed": true
+    }
+  ],
+  "external_manifest": {
+    "logical_path": "test_cases/global_miem/external-inputs.cams-glob-ant-v6.2-2024-07.json",
+    "sha256": "6d5be3455a2f827b2e1013ae0c6f5fdf82699657b7508f527172ed872e0ce9ed"
+  },
+  "intermediate_audit": {
+    "field_counts": {
+      "GHT": 33,
+      "HGTMAXW": 1,
+      "HGTTROP": 1,
+      "LANDSEA": 1,
+      "PMAXW": 1,
+      "PMAXWNN": 1,
+      "PMSL": 1,
+      "PSFC": 1,
+      "PTROP": 1,
+      "PTROPNN": 1,
+      "RH": 34,
+      "SEAICE": 1,
+      "SKINTEMP": 1,
+      "SM000010": 1,
+      "SM010040": 1,
+      "SM040100": 1,
+      "SM100200": 1,
+      "SNOW": 1,
+      "SNOWH": 1,
+      "SOILHGT": 1,
+      "SPECHUMD": 34,
+      "ST000010": 1,
+      "ST010040": 1,
+      "ST040100": 1,
+      "ST100200": 1,
+      "TMAXW": 1,
+      "TT": 34,
+      "TTROP": 1,
+      "UMAXW": 1,
+      "UTROP": 1,
+      "UU": 34,
+      "VMAXW": 1,
+      "VTROP": 1,
+      "VV": 34
+    },
+    "pressure_level_contract": {
+      "GHT": 33,
+      "RH": 34,
+      "SPECHUMD": 34,
+      "TT": 34,
+      "UU": 34,
+      "VV": 34
+    },
+    "pressure_levels_pass": true,
+    "required_surface_fields": [
+      "PSFC",
+      "PMSL",
+      "SKINTEMP",
+      "SEAICE",
+      "LANDSEA",
+      "SOILHGT",
+      "SM000010",
+      "SM010040",
+      "SM040100",
+      "SM100200",
+      "ST000010",
+      "ST010040",
+      "ST040100",
+      "ST100200",
+      "SNOW",
+      "SNOWH"
+    ],
+    "successful_reader_completion": true,
+    "surface_fields_pass": true
+  },
+  "overall_pass": true,
+  "processing": {
+    "init_atmosphere_sha256": "b53412276d2e0046eccbea4727f0626b58d1a7178cdd3ba16263860bf8f0b42c",
+    "initializer_resource": {
+      "available": true,
+      "peak_rss_kib": 525068,
+      "wall_clock": "0:11.17"
+    },
+    "periodic_surface_update": false,
+    "periodic_surface_update_rationale": "The acceptance interval is 24 hours; MPAS guidance states invariant SST and sea ice are generally suitable for simulations shorter than a few days.",
+    "specific_humidity_preferred": true,
+    "temperature_extrapolation": "constant only above the highest local GFS geopotential-height sample",
+    "wps": {
+      "commit": "335c76a111f84503e8b963abaf273ea8053645bb",
+      "ungrib_sha256": "7d12a056634463b5a748ca8591baafcc0016ae21a28d27691bb58a0cad6734a1",
+      "version": "4.6.0",
+      "vtable_sha256": "f0e5373213b1bd4b8c4432563e4bec24f9c87af9c656959a7fe4f56d3bb88df7"
+    }
+  },
+  "schema_version": "chempas-global-miem-meteorology-audit-v1",
+  "simulation_time": "2024-07-01T00:00:00Z",
+  "state_audit": {
+    "chemistry_background": "Idealized Chapman-NOx background; not chemically assimilated, spun up, or production-ready",
+    "chemistry_ranges": {
+      "qNO": {
+        "finite": true,
+        "maximum": 1.0355540214014498e-09,
+        "minimum": 1.0355540214014498e-09,
+        "missing": false,
+        "negative_count": 0
+      },
+      "qNO2": {
+        "finite": true,
+        "maximum": 1.587849499482223e-09,
+        "minimum": 1.587849499482223e-09,
+        "missing": false,
+        "negative_count": 0
+      },
+      "qO": {
+        "finite": true,
+        "maximum": 1e-12,
+        "minimum": 1e-12,
+        "missing": false,
+        "negative_count": 0
+      },
+      "qO1D": {
+        "finite": true,
+        "maximum": 0.0,
+        "minimum": 0.0,
+        "missing": false,
+        "negative_count": 0
+      },
+      "qO2": {
+        "finite": true,
+        "maximum": 0.23196410079392477,
+        "minimum": 0.23196410079392477,
+        "missing": false,
+        "negative_count": 0
+      },
+      "qO3": {
+        "finite": true,
+        "maximum": 9.995009917406921e-06,
+        "minimum": 1.6550796215484412e-08,
+        "missing": false,
+        "negative_count": 0
+      }
+    },
+    "clock": "2024-07-01_00:00:00",
+    "common_variable_comparison": {
+      "bitwise_equal": true,
+      "changed_common_variables": [],
+      "missing_from_augmented_state": [],
+      "variables_checked": 137
+    },
+    "dimensions": {
+      "Time": 1,
+      "nCells": 40962,
+      "nSoilLevels": 4,
+      "nVertLevels": 26
+    },
+    "finite_meteorology_pass": true,
+    "finite_nonnegative_chemistry_pass": true,
+    "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+    "mesh_preserved_by_augmentation": true,
+    "meteorological_ranges": {
+      "qv": {
+        "finite": true,
+        "maximum": 0.023950232294451392,
+        "minimum": 0.0,
+        "missing": false,
+        "negative_count": 0
+      },
+      "rho": {
+        "finite": true,
+        "maximum": 1.4771097064229253,
+        "minimum": 0.0009960656964597598,
+        "missing": false,
+        "negative_count": 0
+      },
+      "seaice": {
+        "finite": true,
+        "maximum": 1.0,
+        "minimum": 0.0,
+        "missing": false,
+        "negative_count": 0
+      },
+      "skintemp": {
+        "finite": true,
+        "maximum": 325.1239992722138,
+        "minimum": 205.23112010654506,
+        "missing": false,
+        "negative_count": 0
+      },
+      "smois": {
+        "finite": true,
+        "maximum": 1.0,
+        "minimum": 0.019999999552965164,
+        "missing": false,
+        "negative_count": 0
+      },
+      "sst": {
+        "finite": true,
+        "maximum": 324.6460573592466,
+        "minimum": 205.50521909233822,
+        "missing": false,
+        "negative_count": 0
+      },
+      "surface_pressure": {
+        "finite": true,
+        "maximum": 103843.87789554066,
+        "minimum": 52888.2214768041,
+        "missing": false,
+        "negative_count": 0
+      },
+      "theta": {
+        "finite": true,
+        "maximum": 1988.5186134211567,
+        "minimum": 231.90989676855378,
+        "missing": false,
+        "negative_count": 0
+      },
+      "tslb": {
+        "finite": true,
+        "maximum": 320.9548257767272,
+        "minimum": 217.91325028456578,
+        "missing": false,
+        "negative_count": 0
+      }
+    },
+    "model_top_m": 45000.0,
+    "physical_bounds_pass": true,
+    "state_purpose": "Phase 9 date-matched coupled science acceptance"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "schema_version": "chempas-prescribed-field-contract-v1",
+  "package_schema": "chempas-prescribed-field-package-v1",
+  "consumer": "TUV-x upper-column O3 adapter",
+  "dimensions": {
+    "Time": 12,
+    "nCells": 40962,
+    "nUpperLevels": 11,
+    "nUpperEdges": 12,
+    "nBounds": 2
+  },
+  "variables": {
+    "Time": {"dtype": "float64", "dimensions": ["Time"], "units": "days since 2000-01-01 00:00:00", "calendar": "gregorian", "climatology": "climatology_bounds"},
+    "climatology_bounds": {"dtype": "float64", "dimensions": ["Time", "nBounds"], "units": "days since 2000-01-01 00:00:00", "calendar": "gregorian"},
+    "climatology_month": {"dtype": "int16", "dimensions": ["Time"], "units": "1", "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]},
+    "indexToCellID": {"dtype": "int32", "dimensions": ["nCells"], "units": "1", "values": "permutation of 1..40962 in exact MPAS mesh order"},
+    "areaCell": {"dtype": "float64", "dimensions": ["nCells"], "units": "m2", "values": "authoritative MPAS mesh values"},
+    "latCell": {"dtype": "float64", "dimensions": ["nCells"], "units": "radian", "values": "authoritative MPAS mesh values"},
+    "lonCell": {"dtype": "float64", "dimensions": ["nCells"], "units": "radian", "values": "authoritative MPAS mesh values"},
+    "upper_edge_height": {"dtype": "float64", "dimensions": ["nUpperEdges"], "units": "m", "positive": "up", "values": [45000.0, 50000.0, 55000.0, 60000.0, 65000.0, 70000.0, 75000.0, 80000.0, 85000.0, 90000.0, 95000.0, 100000.0]},
+    "upper_layer_height": {"dtype": "float64", "dimensions": ["nUpperLevels"], "units": "m", "positive": "up", "bounds": "upper_layer_bounds"},
+    "upper_layer_bounds": {"dtype": "float64", "dimensions": ["nUpperLevels", "nBounds"], "units": "m"},
+    "temperature_at_upper_edge": {"dtype": "float64", "dimensions": ["nUpperEdges"], "units": "K", "source": "US Standard Atmosphere 1976 reference structure"},
+    "air_number_density_at_upper_edge": {"dtype": "float64", "dimensions": ["nUpperEdges"], "units": "molecule cm-3", "source": "US Standard Atmosphere 1976 reference structure"},
+    "O3_layer_column": {"dtype": "float64", "dimensions": ["Time", "nCells", "nUpperLevels"], "units": "molecule cm-2", "valid_min": 0.0},
+    "O3_number_density": {"dtype": "float64", "dimensions": ["Time", "nCells", "nUpperLevels"], "units": "molecule cm-3", "valid_min": 0.0}
+  },
+  "required_global_attributes": [
+    "Conventions",
+    "chempas_schema_version",
+    "chempas_mesh_fingerprint_algorithm",
+    "chempas_mesh_fingerprint",
+    "source_product",
+    "source_version",
+    "source_sha256",
+    "horizontal_remapping",
+    "vertical_remapping",
+    "reference_atmosphere_completion",
+    "temporal_semantics",
+    "missing_value_policy",
+    "negative_value_policy"
+  ],
+  "mesh_contract": {
+    "fingerprint_algorithm": "chempas-mesh-sha256-v1",
+    "fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+    "runtime_selection": "read only rank-owned cells by indexToCellID"
+  },
+  "time_contract": {
+    "record_semantics": "monthly means over the declared Gregorian month bounds",
+    "anchor": "midpoint of each declared month bound",
+    "interpolation": "linear between adjacent anchors with cyclic December-to-January wrap",
+    "calendar": "runtime Gregorian year, including leap-year month lengths",
+    "cache": "two active monthly slabs for rank-owned cells"
+  },
+  "preprocessing_contract": {
+    "source": "MERRA-2 M2IMNPASM v5.12.4 O3 and H at 3, 2, 1, 0.7, 0.5, 0.4, 0.3, and 0.1 hPa",
+    "source_o3_units": "kg kg-1",
+    "horizontal_method": "first-order conservative remapping of air and ozone columns to the exact MPAS mesh; reconstruct ozone mixing ratio only after both remaps",
+    "vertical_method": "pressure-layer ozone columns from log-midpoint pressure bounds are redistributed by overlap of height bounds onto fixed 5 km layers",
+    "source_top_completion": "uncovered target-layer fractions above the MERRA-2 source support use the frozen AFGL mid-latitude-summer O3 reference profile",
+    "source_bottom_clipping": "only source-layer fractions strictly above 45 km contribute to the prescribed column",
+    "structural_fields": "US Standard Atmosphere 1976 supplies height-grid reference temperature and air number density",
+    "o3_molar_mass_kg_mol-1": 0.048,
+    "dry_air_molar_mass_kg_mol-1": 0.0289644,
+    "gravity_m_s-2": 9.80665,
+    "avogadro_molecule_mol-1": 6.02214076e23
+  },
+  "runtime_contract": {
+    "model_column": "prognostic MPAS O3 at and below the model top",
+    "prescribed_column": "interpolated O3_layer_column strictly above the model top",
+    "seam_tolerance_m": 0.5,
+    "fixed_solver_size": true,
+    "prognostic_qO3_mutation": "forbidden",
+    "failure_policy": "fatal on missing field, wrong units or dimensions, duplicate/missing cell IDs, mesh mismatch, invalid climatology time, nonmonotonic vertical coordinate, nonfinite value, negative O3, or uncovered runtime date"
+  },
+  "audit_tolerances": {
+    "horizontal_global_o3_column_relative": 5e-6,
+    "vertical_o3_column_relative": 5e-12,
+    "stored_density_column_relative": 5e-13
+  }
+}

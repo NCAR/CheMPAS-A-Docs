@@ -1,0 +1,136 @@
+{
+  "figures": {
+    "budget": {
+      "pdf": {
+        "path": "miem_emissions_budget.pdf",
+        "sha256": "6ebdfdc84ff71dd89cad31e90e439d1a99e1a021d441f2b88fa6dac7c6452590",
+        "size_bytes": 22934
+      },
+      "png": {
+        "path": "miem_emissions_budget.png",
+        "sha256": "65dc14b62298fd47812f7d3564a63b5b10bda7a1c68c741273edadbd9361a4de",
+        "size_bytes": 330765
+      }
+    },
+    "spatial": {
+      "pdf": {
+        "path": "miem_emissions_spatial.pdf",
+        "sha256": "8daad0c174353a5287beb1da7017f8658e6c65c68547398d940a6148817cde46",
+        "size_bytes": 22653
+      },
+      "png": {
+        "path": "miem_emissions_spatial.png",
+        "sha256": "dd954b7213782d13007a3289544362ba3be530c26b5b88d20e41ded8e90101eb",
+        "size_bytes": 226307
+      }
+    },
+    "vertical": {
+      "pdf": {
+        "path": "miem_emissions_vertical.pdf",
+        "sha256": "a8a554d9a3fcbd47dfe0014e1d4fb79d8f66c4b56e5687a967fcb9d05498e0f5",
+        "size_bytes": 22500
+      },
+      "png": {
+        "path": "miem_emissions_vertical.png",
+        "sha256": "bd94328699af6a401b2aa5ca46e36e785cbaf859f130afa641b0b23dc4077e08",
+        "size_bytes": 249965
+      }
+    }
+  },
+  "inputs": {
+    "budget_output": {
+      "path": "output.nc",
+      "sha256": "46061c5efe4e1bd0adbd9d5c4a99a1ff082c3a0081834b35a6c069385bb9f8b6",
+      "size_bytes": 5789716
+    },
+    "budget_report": {
+      "path": "R2-constant_flux-default.json",
+      "sha256": "886b3e999d9686ee5004c5b78218c8567c6ec08d10962b5e63529f8679563a7e",
+      "size_bytes": 7985
+    },
+    "layered_output": {
+      "path": "output.nc",
+      "sha256": "4f49a82eb69af871ab090b35770a5b62bac7abb71a1d3f11c7ff68b84d4bd00a",
+      "size_bytes": 787408
+    },
+    "layered_report": {
+      "path": "R6-layered_diagnostics-default.json",
+      "sha256": "c60ff73ac7add837ebee55101e91f5bee6e442303f9b1100166aff804db82657",
+      "size_bytes": 10468
+    },
+    "spatial_grid": {
+      "path": "chem_box_grid.nc",
+      "sha256": "89c5338ea39a165a5655ea82ae0c6d0bf7f8fbe87069ddd2a667fa60f5b185ad",
+      "size_bytes": 110856
+    },
+    "spatial_output": {
+      "path": "output.nc",
+      "sha256": "ead78c7e90829b6a4c415c4b2278470dd44347cbce4d7fa016ec97018bd629e4",
+      "size_bytes": 412884
+    },
+    "spatial_report": {
+      "path": "R3-cell_time_signature-exact_start.json",
+      "sha256": "e22d8912c1996c142fc73f55b5f6c52ade820406e53bffd218961f095715215e",
+      "size_bytes": 7592
+    }
+  },
+  "runs": {
+    "budget": {
+      "chemistry_interval_seconds": 3.0,
+      "chemistry_intervals": 600,
+      "duration_seconds": 1800.0,
+      "fixture_pattern": "constant",
+      "mpi_ranks": 8,
+      "output_interval_seconds": 60.0,
+      "scenario_id": "R2",
+      "scenario_name": "constant_flux",
+      "scenario_variant": "default"
+    },
+    "layered": {
+      "chemistry_interval_seconds": 3.0,
+      "chemistry_intervals": 1,
+      "duration_seconds": 3.0,
+      "fixture_pattern": "constant",
+      "mpi_ranks": 8,
+      "output_interval_seconds": 3.0,
+      "scenario_id": "R6",
+      "scenario_name": "layered_diagnostics",
+      "scenario_variant": "default"
+    },
+    "spatial": {
+      "chemistry_interval_seconds": 3.0,
+      "chemistry_intervals": 1,
+      "duration_seconds": 3.0,
+      "fixture_pattern": "cell-time-signature",
+      "mpi_ranks": 8,
+      "output_interval_seconds": 3.0,
+      "scenario_id": "R3",
+      "scenario_name": "cell_time_signature",
+      "scenario_variant": "exact_start"
+    }
+  },
+  "schema_version": "chempas-miem-figure-manifest-v1",
+  "selections": {
+    "budget_frame_count": 31,
+    "budget_uses_all_frames": true,
+    "layered_time": "2026-06-22_12:00:03",
+    "layered_time_index": 1,
+    "spatial_time": "2026-06-22_12:00:03",
+    "spatial_time_index": 1
+  },
+  "validation": {
+    "final_relative_diagnostic_tracer_error": {
+      "NO": 3.863977877410389e-15,
+      "NO2": 4.329587211638343e-14
+    },
+    "layer_and_group_max_absolute_error_kg_m2_s": {
+      "NO": 0.0,
+      "NO2": 0.0
+    },
+    "throughput_reports_passed": {
+      "budget": true,
+      "layered": true,
+      "spatial": true
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "schema_version": "chempas-mvp-external-inputs-v1",
+  "manifest_id": "chempas-mvp-x1.40962-2024-07",
+  "data_root_environment_variable": "CHEMPAS_EMISSIONS_DATA_ROOT",
+  "simulation": {
+    "calendar": "gregorian",
+    "mesh": "x1.40962",
+    "mpi_ranks": 8,
+    "start_time": "2024-07-01T00:00:00Z",
+    "stop_time": "2024-07-02T00:00:00Z"
+  },
+  "science_decisions": {
+    "anthropogenic_fire_overlap": "withhold CAMS awb from A, B, and C; represent open burning with FINN only",
+    "finn_nitrogen_mapping": "map provider NO and NO2 directly; do not use or respeciate NOXasNO",
+    "finn_temporal_interpolation": "provider totals are aggregated by fire-local calendar date; divide by 86400 s and use nearest records anchored at 12:00 UTC as an explicit MVP timing approximation (up to 12 h longitude-dependent displacement)",
+    "fire_vertical_injection": "surface",
+    "merra2_cycle": "repeat the twelve 2024 monthly means as a cyclic climatological year"
+  },
+  "artifacts": [
+    {
+      "id": "merra2-m2imnpasm-v5.12.4-2024-upper-o3-source",
+      "role": "merra2_monthly_o3_source_subset",
+      "logical_path": "raw/merra2-m2imnpasm-v5.12.4/merra2-2024-upper-o3-h.nc",
+      "source_identifier": "MERRA-2 M2IMNPASM v5.12.4 monthly mean pressure-level assimilation",
+      "source_url_template": "https://goldsmr5.gesdisc.eosdis.nasa.gov/opendap/MERRA2_MONTHLY/M2IMNPASM.5.12.4/{year}/MERRA2_400.instM_3d_asm_Np.{yyyymm}.nc4",
+      "source_https_url_template": "https://goldsmr5.gesdisc.eosdis.nasa.gov/data/MERRA2_MONTHLY/M2IMNPASM.5.12.4/{year}/MERRA2_400.instM_3d_asm_Np.{yyyymm}.nc4",
+      "landing_page": "https://disc.gsfc.nasa.gov/datasets/M2IMNPASM_5.12.4/summary",
+      "doi": "10.5067/2E096JV59PK7",
+      "selection": {
+        "year": 2024,
+        "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "variables": ["O3", "H"],
+        "pressure_levels_hpa": [3.0, 2.0, 1.0, 0.7, 0.5, 0.4, 0.3, 0.1],
+        "temporal_semantics": "monthly means over each declared Gregorian calendar month"
+      },
+      "format": "NetCDF-4 deterministic selected-variable subset",
+      "size_bytes": 67892140,
+      "sha256": "88c0786141712b3264fdd85687dbeecd69a5cea073adba4db851b81f8f187520"
+    },
+    {
+      "id": "cams-glob-ant-v6.2-co-2024-07-08-native",
+      "role": "cams_co_native_subset",
+      "logical_path": "raw/cams-glob-ant-v6.2/CAMS-GLOB-ANT_Glb_0.1x0.1_anthro_co_v6.2_2024-07_2024-08.nc",
+      "source_identifier": "CAMS-GLOB-ANT v6.2 monthly anthropogenic CO",
+      "source_url": "https://eccad-thredds.sedoo.fr/thredds/dodsC/eccad/CAMS-GLOB-ANT/CAMS-GLOB-ANT_Glb_0.1x0.1_anthro_co_v6.2_monthly.nc",
+      "subset_service_url": "https://eccad-thredds.sedoo.fr/thredds/ncss/grid/eccad/CAMS-GLOB-ANT/CAMS-GLOB-ANT_Glb_0.1x0.1_anthro_co_v6.2_monthly.nc",
+      "landing_page": "https://permalink.aeris-data.fr/CAMS-GLOB-ANT",
+      "doi": "10.24380/eets-qd81",
+      "selection": {
+        "time_indices": [294, 295],
+        "times": ["2024-07-01T00:00:00Z", "2024-08-01T00:00:00Z"],
+        "variables": ["awb", "com", "ene", "fef", "ind", "ref", "res", "shp", "swd", "tnr", "tro", "sum"],
+        "units": "kg m-2 s-1",
+        "molecular_weight_g_mol-1": 28.0
+      },
+      "format": "NetCDF-4 deterministic OPeNDAP subset",
+      "size_bytes": 73668265,
+      "sha256": "de5f26c721916bc2e35889fc487335d5b0800499ed50db1d38d5aea3664e15c6"
+    },
+    {
+      "id": "finn-v2.5.1-nrt-base-2024-07-01",
+      "role": "finn_daily_source",
+      "logical_path": "raw/finn-v2.5.1-nrt/2024-07/FINNv2.5.1_modvrs_nrt_base_FRP_20240701.txt.gz",
+      "source_identifier": "FINNv2.5.1 MODIS+VIIRS NRT non-VOC fire emissions",
+      "source_url": "https://www.acom.ucar.edu/acresp/MODELING/finn_emis_txt/FINN2nrt_2024/FINNv2.5.1_modvrs_nrt_base_FRP_20240701.txt.gz",
+      "landing_page": "https://www2.acom.ucar.edu/facility/finn",
+      "selection": {
+        "date": "2024-07-01",
+        "fields": ["CO", "NO", "NO2"],
+        "gas_units": "mol species day-1",
+        "record_semantics": "daily total aggregated by fire-local calendar date; runtime approximation divides by 86400 s and anchors the record at 12:00 UTC for nearest interpolation"
+      },
+      "format": "gzip-compressed comma-delimited text",
+      "size_bytes": 4651521,
+      "sha256": "43499864e7510f8b8bf8efdfda693c76372e7de3876043c005abb0fc68a66fbd"
+    },
+    {
+      "id": "finn-v2.5.1-nrt-base-2024-07-02",
+      "role": "finn_daily_source",
+      "logical_path": "raw/finn-v2.5.1-nrt/2024-07/FINNv2.5.1_modvrs_nrt_base_FRP_20240702.txt.gz",
+      "source_identifier": "FINNv2.5.1 MODIS+VIIRS NRT non-VOC fire emissions",
+      "source_url": "https://www.acom.ucar.edu/acresp/MODELING/finn_emis_txt/FINN2nrt_2024/FINNv2.5.1_modvrs_nrt_base_FRP_20240702.txt.gz",
+      "landing_page": "https://www2.acom.ucar.edu/facility/finn",
+      "selection": {
+        "date": "2024-07-02",
+        "fields": ["CO", "NO", "NO2"],
+        "gas_units": "mol species day-1",
+        "record_semantics": "daily total aggregated by fire-local calendar date; runtime approximation divides by 86400 s and anchors the record at 12:00 UTC for nearest interpolation"
+      },
+      "format": "gzip-compressed comma-delimited text",
+      "size_bytes": 4473170,
+      "sha256": "5a58945eed3afaf04023bb223561b984d47a3a4f44452b92fa844c8795b0da89"
+    },
+    {
+      "id": "mpas-x1.40962-static",
+      "role": "destination_mesh",
+      "logical_path": "raw/mpas-x1.40962/x1.40962.static.nc",
+      "selection": {"cells": 40962, "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12"},
+      "format": "MPAS NetCDF",
+      "size_bytes": 94766584,
+      "sha256": "cf1a47d4168327f06a8403555d6ed8b2fe1aff7f8b916bb7f6a754c34a10ac82"
+    },
+    {
+      "id": "mpas-x1.40962-eight-rank-partition",
+      "role": "mesh_partition",
+      "logical_path": "partitions/x1.40962.graph.info.part.8",
+      "format": "Metis partition vector",
+      "size_bytes": 81924,
+      "sha256": "f56e75e1f408b632fd5cd22ad05cc59fdbb54daf1e2f8f3d6298147a1e7f577b"
+    },
+    {
+      "id": "mpas-x1.40962-gfs-20240701t00z-expanded-tropo-state",
+      "role": "model_initial_condition",
+      "logical_path": "initial_conditions/noaa-gfs-20240701T00Z/x1.40962.gfs-20240701T00Z.expanded-tropo.init.nc",
+      "selection": {"analysis_time": "2024-07-01T00:00:00Z", "cells": 40962, "vertical_levels": 26, "model_top_m": 45000.0},
+      "format": "MPAS NetCDF initial condition",
+      "size_bytes": 572335744,
+      "sha256": "7ccb0670cb49374de78187761cf410690a4b8fc4d4a27533a5ba97deed907e78"
+    },
+    {
+      "id": "cams-glob-ant-v6.2-nox-x1.40962-miem-inventory",
+      "role": "accepted_nox_inventory",
+      "logical_path": "inventory/cams-glob-ant-v6.2-x1.40962/miem_inventory.cams-glob-ant-v6.2-x1.40962.nc",
+      "format": "UPTEMPO exact-grid NetCDF",
+      "size_bytes": 20758020,
+      "sha256": "d213866000e8a633954d0c730ba5524f729f26a97d02cc5a13d8b405aa6c8e9c"
+    },
+    {
+      "id": "mvp-cams-harmonized-no-no2-co-x1.40962",
+      "role": "prepared_anthropogenic_inventory",
+      "logical_path": "inventory/mvp-cams-harmonized-x1.40962/miem_inventory.cams.nc",
+      "selection": {
+        "species_fields": ["no_anth_sum", "no2_anth_sum", "co_anth_sum"],
+        "times": ["2024-07-01T00:00:00Z", "2024-08-01T00:00:00Z"],
+        "temporal_interpolation": "linear",
+        "vertical_injection": "surface",
+        "sector": "cams_harmonized_no_awb",
+        "category": 0,
+        "excluded_provider_sector": "awb",
+        "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12"
+      },
+      "format": "UPTEMPO exact-grid NetCDF",
+      "size_bytes": 26686361,
+      "sha256": "39ab42133bdc255a74c5082e8a20dd3111ad5bde6f67d270828123712c1670bf"
+    },
+    {
+      "id": "finn-v2.5.1-nrt-no-no2-co-x1.40962",
+      "role": "prepared_fire_inventory",
+      "logical_path": "inventory/finn-v2.5.1-nrt-x1.40962/miem_inventory.finn.nc",
+      "selection": {
+        "species_fields": ["no_fire", "no2_fire", "co_fire"],
+        "times": [
+          "2024-07-01T00:00:00Z",
+          "2024-07-01T12:00:00Z",
+          "2024-07-02T12:00:00Z"
+        ],
+        "temporal_interpolation": "nearest with equidistant ties resolved to the earlier record; the 2024-07-01 00:00 UTC record duplicates the first daily field to provide explicit pre-noon runtime coverage",
+        "vertical_injection": "surface",
+        "sector": "finn_fire",
+        "category": 100,
+        "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12"
+      },
+      "format": "UPTEMPO exact-grid NetCDF",
+      "size_bytes": 5271798,
+      "sha256": "dfb3eef24f5a76ec4b41a9cb1837454a52239f69d12514547992e5821364a8f1"
+    },
+    {
+      "id": "merra2-o3-v5.12.4-monthly-climatology-x1.40962",
+      "role": "prescribed_upper_o3_climatology",
+      "logical_path": "prescribed/merra2-o3-v5.12.4-x1.40962/merra2-o3-monthly-climatology.x1.40962.nc",
+      "selection": {
+        "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "temporal_interpolation": "cyclic linear interpolation at Gregorian month-bound midpoints",
+        "vertical_edges_m": [45000.0, 50000.0, 55000.0, 60000.0, 65000.0, 70000.0, 75000.0, 80000.0, 85000.0, 90000.0, 95000.0, 100000.0],
+        "species": "O3",
+        "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12"
+      },
+      "format": "CF-1.10 exact-grid prescribed-field NetCDF",
+      "size_bytes": 39423729,
+      "sha256": "a6ecbb5b57fc72485d76ed8cb652666f58c26535bc1f3dbf443b9bc615938301"
+    }
+  ]
+}

@@ -1,0 +1,356 @@
+{
+  "figures": [
+    {
+      "id": "01_upper_o3_climatology",
+      "pdf": {
+        "path": "docs/chempas/mvp/figures/01_upper_o3_climatology.pdf",
+        "sha256": "22807fa4994f33a885c41c4f6edae5e07b69d1bfc87dc8999d37fc7c7e75e7f9",
+        "size_bytes": 487434
+      },
+      "png": {
+        "path": "docs/chempas/mvp/figures/01_upper_o3_climatology.png",
+        "sha256": "0609686e8f11173cc1c37ad6dcc207584f6e9c5af8a59fcf560e5b6e55d31214",
+        "size_bytes": 3155672
+      },
+      "quantity": "spatial prescribed O3 layer and complete overhead molecular columns",
+      "subtitle": "M3 | Valid 2024-07-01 12:00 UTC | Global, 45\u2013100 km | Cyclic Monthly Interpolation | Source Anchors 2024-06-16 00:00\u20132024-07-16 12:00 UTC",
+      "time_semantics": "instantaneous",
+      "title": "Prescribed Upper-Atmosphere O3 Climatology",
+      "vertical_domain": "45-100 km prescribed atmosphere",
+      "visual_inspection": "passed"
+    },
+    {
+      "id": "02_surface_source_fluxes",
+      "pdf": {
+        "path": "docs/chempas/mvp/figures/02_surface_source_fluxes.pdf",
+        "sha256": "0a6f9f11a90ac8c2fc8447f5947f450812e1fbe47691d78df8fa186ba58e9062",
+        "size_bytes": 899805
+      },
+      "png": {
+        "path": "docs/chempas/mvp/figures/02_surface_source_fluxes.png",
+        "sha256": "a29d9543bfe893d2271c7c1a8e57f5f08c35353c814c582249993147e3fff16e",
+        "size_bytes": 1710563
+      },
+      "quantity": "CAMS non-AWB anthropogenic and FINN fire surface mass fluxes",
+      "subtitle": "M3 | 2024-07-01 00:00\u20132024-07-02 00:00 UTC | Global Surface | Model-Step Time-Weighted Daily Mean | CAMS Bracket 2024-07-01 00:00\u20132024-08-01 00:00 UTC; FINN Records 2024-07-01 00:00 and 12:00, plus 2024-07-02 12:00 UTC",
+      "time_semantics": "time_weighted_daily_mean",
+      "title": "CAMS and FINN Surface Source Fluxes",
+      "vertical_domain": "surface",
+      "visual_inspection": "passed"
+    },
+    {
+      "id": "03_daily_mean_absolute_columns",
+      "pdf": {
+        "path": "docs/chempas/mvp/figures/03_daily_mean_absolute_columns.pdf",
+        "sha256": "046fb215afd6c7dfa8af57454b9a1eeb463e48415da18c122c60e872987fefb0",
+        "size_bytes": 2903224
+      },
+      "png": {
+        "path": "docs/chempas/mvp/figures/03_daily_mean_absolute_columns.png",
+        "sha256": "fece4dc7e37486fb6f567e5ba5eb215aa799f634a53afac8cbfc3a17c0adeb6c",
+        "size_bytes": 14574841
+      },
+      "quantity": "absolute NO, NO2, CO, and O3 molecular column burdens for members A/B/C",
+      "subtitle": "M3 | 2024-07-01 00:00\u20132024-07-02 00:00 UTC | Global, Diagnostic Troposphere (p \u2265 150 hPa) | Trapezoidal Time-Weighted Daily Mean | Members A, B, and C",
+      "time_semantics": "time_weighted_daily_mean",
+      "title": "Daily Mean NO, NO2, CO, and O3 Column Burdens",
+      "vertical_domain": "diagnostic troposphere (p >= 150 hPa)",
+      "visual_inspection": "passed"
+    },
+    {
+      "id": "04_daily_mean_column_contributions",
+      "pdf": {
+        "path": "docs/chempas/mvp/figures/04_daily_mean_column_contributions.pdf",
+        "sha256": "c958c03298858bab4b38ba15167cf9a7f9ff4fc15dfc5a92cc53544db3f272b8",
+        "size_bytes": 1337678
+      },
+      "png": {
+        "path": "docs/chempas/mvp/figures/04_daily_mean_column_contributions.png",
+        "sha256": "f673b7e6e59377b9e9b22f79e9c2f59faa66890d7e2ee37dbe930dd4b41a7588",
+        "size_bytes": 4625267
+      },
+      "quantity": "B-A anthropogenic and C-B fire incremental NO, NO2, CO, and O3 columns",
+      "subtitle": "M3 | 2024-07-01 00:00\u20132024-07-02 00:00 UTC | Global, Diagnostic Troposphere (p \u2265 150 hPa) | Trapezoidal Time-Weighted Daily Mean | B\u2212A and C\u2212B",
+      "time_semantics": "time_weighted_daily_mean",
+      "title": "Daily Mean Anthropogenic and Fire Column Contributions",
+      "vertical_domain": "diagnostic troposphere (p >= 150 hPa)",
+      "visual_inspection": "passed"
+    },
+    {
+      "id": "05_diurnal_photolysis",
+      "pdf": {
+        "path": "docs/chempas/mvp/figures/05_diurnal_photolysis.pdf",
+        "sha256": "6800a62ba9d458481828cbd21a7ac14021b38bea03b1bf9c14d108f6570f9d2a",
+        "size_bytes": 850033
+      },
+      "png": {
+        "path": "docs/chempas/mvp/figures/05_diurnal_photolysis.png",
+        "sha256": "b9916070f6c08ae5d60f6daa15a83201572b0bd21f36bebd7667701cbb52b757",
+        "size_bytes": 3209633
+      },
+      "quantity": "lowest-model-level jNO2 and jO3_O1D photolysis frequencies",
+      "subtitle": "M3 | Valid 2024-07-01 12:00 and 2024-07-02 00:00 UTC | Global Lowest Model Level | Instantaneous jNO2 and jO3_O1D Rates",
+      "time_semantics": "instantaneous",
+      "title": "Diurnal TUV-x Photolysis Structure",
+      "vertical_domain": "lowest model level",
+      "visual_inspection": "passed"
+    },
+    {
+      "id": "06_source_mass_and_closure",
+      "pdf": {
+        "path": "docs/chempas/mvp/figures/06_source_mass_and_closure.pdf",
+        "sha256": "f93027872bc92f16373f113988446c3f74e085596d634fb1b7b0b9ea1d6ba3d6",
+        "size_bytes": 32150
+      },
+      "png": {
+        "path": "docs/chempas/mvp/figures/06_source_mass_and_closure.png",
+        "sha256": "a9e50175d1e11b93c01f798c4ee46c61c56700047cde9e0a256c0363c1555d8e",
+        "size_bytes": 539245
+      },
+      "quantity": "cumulative source mass, independent/logged source closure, and NOy residual ratios",
+      "subtitle": "M3 | 2024-07-01 00:00\u20132024-07-02 00:00 UTC | Global Surface and Full Model Column | Accumulated Model-Step Sources and Endpoint NOy Ledger",
+      "time_semantics": "accumulated",
+      "title": "Applied Source Mass Histories and Closure",
+      "vertical_domain": "surface sources and full model column",
+      "visual_inspection": "passed"
+    },
+    {
+      "id": "07_model_top_o3_stitch",
+      "pdf": {
+        "path": "docs/chempas/mvp/figures/07_model_top_o3_stitch.pdf",
+        "sha256": "8a61a45643fd58fff7798456cd592078f30324431ceb36462c765a19227023b5",
+        "size_bytes": 27439
+      },
+      "png": {
+        "path": "docs/chempas/mvp/figures/07_model_top_o3_stitch.png",
+        "sha256": "c19b81ba69a7d138c07c96e87a72c7493be3e58cd0f4f8ce7b306a10f0e48459",
+        "size_bytes": 420286
+      },
+      "quantity": "prognostic and cyclic-monthly prescribed O3 number-density profiles",
+      "subtitle": "M3 | Valid 2024-07-01 00:00 UTC | Three Selected Global Cells | Prognostic at and Below 45 km; Prescribed Strictly Above 45 km",
+      "time_semantics": "instantaneous",
+      "title": "Model-Top O3 Profile Stitch",
+      "vertical_domain": "surface to 100 km with 45 km model-top seam",
+      "visual_inspection": "passed"
+    }
+  ],
+  "gate": "M3",
+  "history_manifest": {
+    "path": "docs/chempas/mvp/m3-history-manifest.json",
+    "sha256": "59d802276c17b9615d0894578303dac4c499706cea86bf241955a896918f9da2",
+    "size_bytes": 12044
+  },
+  "o3_seam": {
+    "climatology": {
+      "bounds": [
+        [
+          45000.0,
+          50000.0
+        ],
+        [
+          50000.0,
+          55000.0
+        ],
+        [
+          55000.0,
+          60000.0
+        ],
+        [
+          60000.0,
+          65000.0
+        ],
+        [
+          65000.0,
+          70000.0
+        ],
+        [
+          70000.0,
+          75000.0
+        ],
+        [
+          75000.0,
+          80000.0
+        ],
+        [
+          80000.0,
+          85000.0
+        ],
+        [
+          85000.0,
+          90000.0
+        ],
+        [
+          90000.0,
+          95000.0
+        ],
+        [
+          95000.0,
+          100000.0
+        ]
+      ],
+      "left_anchor_utc": "2024-06-16T00:00:00Z",
+      "left_month": 6,
+      "right_anchor_utc": "2024-07-16T12:00:00Z",
+      "right_month": 7,
+      "weight": 0.4918032786885246
+    },
+    "selected_cells": [
+      {
+        "indexToCellID": 18808,
+        "latitude_degrees": -0.11159748034316647,
+        "longitude_degrees": -0.04296553234507883,
+        "model_top_km": 45.0
+      },
+      {
+        "indexToCellID": 39460,
+        "latitude_degrees": 44.499788933278616,
+        "longitude_degrees": -0.16339542779064686,
+        "model_top_km": 45.0
+      },
+      {
+        "indexToCellID": 39967,
+        "latitude_degrees": -44.499788933278616,
+        "longitude_degrees": 179.83661322363128,
+        "model_top_km": 45.0
+      }
+    ]
+  },
+  "overall_pass": true,
+  "plot_protocol": "chempas-science-plot-v1",
+  "provenance": {
+    "catalog": {
+      "path": "scripts/catalog_global_mvp_histories.py",
+      "sha256": "fab856e1f0b83b4ce169245a76aca86ccd578620b22caae2bc60ad06eb4b0c01",
+      "size_bytes": 7595
+    },
+    "figure_schema": {
+      "path": "test_cases/global_mvp/figure-manifest.schema.json",
+      "sha256": "e5b9a3da2c70c31a6f624fd17c6a3ffe288d961125eeef40c7f66a358eba3f09",
+      "size_bytes": 3048
+    },
+    "history_schema": {
+      "path": "test_cases/global_mvp/history-manifest.schema.json",
+      "sha256": "9ece9db6ddd8732e46b385f000f704233f4253a9a47f611200ac3f5372c097de",
+      "size_bytes": 2550
+    },
+    "plotter": {
+      "path": "scripts/plot_global_mvp.py",
+      "sha256": "9544dba1faa51aef65bb47a35b7f6ed0b178cf45dc15ff3f4e0529965ea09345",
+      "size_bytes": 47867
+    },
+    "protocol": {
+      "path": "docs/chempas/guides/PLOTTING_PROTOCOL.md",
+      "sha256": "bee50daa7002a73d1908a03a11ed9a569686b1eb557d42d6b697352bb2d2e6b0",
+      "size_bytes": 7372
+    },
+    "report_schema": {
+      "path": "test_cases/global_mvp/report.schema.json",
+      "sha256": "0dbd32ba77d41d94be167f50c33082bd46d47d2c5eed3538598652d144a03147",
+      "size_bytes": 2289
+    },
+    "style": {
+      "path": "scripts/style.py",
+      "sha256": "fdcc750fa00c68643d1c0409979258b4b6c88cc16884d161c3b57b2cadab8622",
+      "size_bytes": 13898
+    }
+  },
+  "report": {
+    "logical_path": "reports/global-mvp/9f703f505051b8eb3700e9ecae927fc1c84746ca/m3-report.json",
+    "sha256": "931913f02d33cc14db1ede6a093140755c492e02686ccc2ea4718e3f294daae5",
+    "size_bytes": 275750
+  },
+  "schema_version": "chempas-global-mvp-figure-manifest-v1",
+  "software": {
+    "checker_sha256": "96d15f25deffcf0e60f805d12c9580a3a4ff66576619a15214770222421c140a",
+    "chempas_commit": "9f703f505051b8eb3700e9ecae927fc1c84746ca",
+    "executable_sha256": "0049e8968273f95ec7404a4c123fa514458b29681fd2c8f117634b78d4d0988a"
+  },
+  "source_time_integration": {
+    "end_utc": "2024-07-02T00:00:00Z",
+    "method": "left-endpoint model-step integration matching MIEM application",
+    "model_dt_seconds": 450,
+    "sample_count": 192,
+    "start_utc": "2024-07-01T00:00:00Z"
+  },
+  "time_weighted_daily_mean": {
+    "duration_seconds": 86400.0,
+    "end_utc": "2024-07-02T00:00:00Z",
+    "method": "trapezoidal time integration of instantaneous history records",
+    "source_record_count": 9,
+    "source_record_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "start_utc": "2024-07-01T00:00:00Z",
+    "weights_seconds": [
+      10800.0,
+      10800.0,
+      10800.0,
+      10800.0,
+      10800.0,
+      10800.0,
+      10800.0,
+      10800.0
+    ]
+  },
+  "upper_o3_interpolation": {
+    "bounds": [
+      [
+        45000.0,
+        50000.0
+      ],
+      [
+        50000.0,
+        55000.0
+      ],
+      [
+        55000.0,
+        60000.0
+      ],
+      [
+        60000.0,
+        65000.0
+      ],
+      [
+        65000.0,
+        70000.0
+      ],
+      [
+        70000.0,
+        75000.0
+      ],
+      [
+        75000.0,
+        80000.0
+      ],
+      [
+        80000.0,
+        85000.0
+      ],
+      [
+        85000.0,
+        90000.0
+      ],
+      [
+        90000.0,
+        95000.0
+      ],
+      [
+        95000.0,
+        100000.0
+      ]
+    ],
+    "left_anchor_utc": "2024-06-16T00:00:00Z",
+    "left_month": 6,
+    "right_anchor_utc": "2024-07-16T12:00:00Z",
+    "right_month": 7,
+    "weight": 0.5081967213114754
+  }
+}

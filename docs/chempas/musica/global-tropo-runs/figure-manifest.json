@@ -1,0 +1,178 @@
+{
+  "figures": {
+    "expanded_nox_columns": {
+      "pdf": {
+        "path": "global_tropo_expanded_nox_columns.pdf",
+        "sha256": "15aac0760980f4f7a27f66ebafd18a0fe2b725dd955cb988fef1f9110693694a",
+        "size_bytes": 5465996
+      },
+      "png": {
+        "path": "global_tropo_expanded_nox_columns.png",
+        "sha256": "5385b9817d3714b59623fb4596b74fc3f1cc1b6202479c42b7f2dc23ecfa21a2",
+        "size_bytes": 7291901
+      }
+    },
+    "expanded_partition": {
+      "pdf": {
+        "path": "global_tropo_expanded_partition.pdf",
+        "sha256": "3634fde7789174bb341f956e2a9c2672fea1d144fdaf9e6a00304ed7f4cd6926",
+        "size_bytes": 33282
+      },
+      "png": {
+        "path": "global_tropo_expanded_partition.png",
+        "sha256": "0a72ae6ec8923071c10efd55a19ea3b758344c1ad4cba5eda5048c83ab9f773d",
+        "size_bytes": 715051
+      }
+    },
+    "expanded_response": {
+      "pdf": {
+        "path": "global_tropo_expanded_response.pdf",
+        "sha256": "4cdd4454f11dc288a3c6c83e0dc696967cf9e43ad25f7b7602a84317e57526ac",
+        "size_bytes": 5941440
+      },
+      "png": {
+        "path": "global_tropo_expanded_response.png",
+        "sha256": "f101964eab65476f67afcd9e624c67c8ba0e5fe75ecb1d685593e890ba49a9a8",
+        "size_bytes": 7710538
+      }
+    },
+    "reduced_budget": {
+      "pdf": {
+        "path": "global_tropo_reduced_budget.pdf",
+        "sha256": "ba521306a7aaff4704f77d722f7724e1ae7c4bc2471b78ae6b50b058a4b279a5",
+        "size_bytes": 32571
+      },
+      "png": {
+        "path": "global_tropo_reduced_budget.png",
+        "sha256": "66fcdf85db158f2377202aa2447d4c7f790b0d3ea9ebd05f2a978e75285eed44",
+        "size_bytes": 708144
+      }
+    },
+    "reduced_nox_columns": {
+      "pdf": {
+        "path": "global_tropo_reduced_nox_columns.pdf",
+        "sha256": "c8efb7d1f5d65992cc2e7a3c09bb45006db9fb5e32360b924d8877180b555b19",
+        "size_bytes": 5417784
+      },
+      "png": {
+        "path": "global_tropo_reduced_nox_columns.png",
+        "sha256": "047ed865ff1e27f5b73a98b0d4cb1ecd2fc546ffd87da53c1e899e1da3ce535b",
+        "size_bytes": 7213047
+      }
+    },
+    "resource_comparison": {
+      "pdf": {
+        "path": "global_tropo_resource_comparison.pdf",
+        "sha256": "4b907ba93cf9a1d48818ef6a47637838552697bbce007f12d9b08edada6d26e3",
+        "size_bytes": 21331
+      },
+      "png": {
+        "path": "global_tropo_resource_comparison.png",
+        "sha256": "d0b23df46910e8448ff3b0a654a35ee7c563665ba25dec47d6e69307764e2cc3",
+        "size_bytes": 173103
+      }
+    },
+    "surface_emissions": {
+      "pdf": {
+        "path": "global_tropo_surface_emissions.pdf",
+        "sha256": "d7b9c4b8b081d176a24b1518869a662e3b2980afa283a83823b2a0a9c25c4998",
+        "size_bytes": 2862331
+      },
+      "png": {
+        "path": "global_tropo_surface_emissions.png",
+        "sha256": "f4353114854c7d30e010e4aee21bf6df447370d3bf92f39473a9e5e3a026dbcd",
+        "size_bytes": 3621726
+      }
+    },
+    "vertical_response": {
+      "pdf": {
+        "path": "global_tropo_vertical_response.pdf",
+        "sha256": "360debda096699462de014a435e9d46e873736950591868f372edafcf333938c",
+        "size_bytes": 25180
+      },
+      "png": {
+        "path": "global_tropo_vertical_response.png",
+        "sha256": "3178ab7d858fdc4c59ee87b5911ee2e91c22fc388072b9d1bfbafb707ae93d4d",
+        "size_bytes": 298697
+      }
+    }
+  },
+  "inputs": {
+    "expanded_report": {
+      "path": "f3-report.json",
+      "sha256": "453ad1f40551257c9f1cf2fb7b4e8a6369285e3e6cbbcd1b1f36992783d0ad50",
+      "size_bytes": 1890641
+    },
+    "manifest_schema": {
+      "path": "figure-manifest.schema.json",
+      "sha256": "70fdcbf13965c5ea6c532212e032cae8e1edc24a30e69a21d8a4f54072c87cda",
+      "size_bytes": 4800
+    },
+    "plot_protocol": {
+      "path": "PLOTTING_PROTOCOL.md",
+      "sha256": "bee50daa7002a73d1908a03a11ed9a569686b1eb557d42d6b697352bb2d2e6b0",
+      "size_bytes": 7372
+    },
+    "plot_script": {
+      "path": "plot_global_tropo_miem.py",
+      "sha256": "0dc0504504ebd0434f228bd99bdb261eacb6b6b1b0ca1611bd3ac769e9020d9e",
+      "size_bytes": 52731
+    },
+    "plot_style": {
+      "path": "style.py",
+      "sha256": "fdcc750fa00c68643d1c0409979258b4b6c88cc16884d161c3b57b2cadab8622",
+      "size_bytes": 13898
+    },
+    "reduced_report": {
+      "path": "r3-report.json",
+      "sha256": "cbb497c7e2f6106f12b9e5f57d6c0a69a4aa8d277d3f0c86887d0842f6baa01c",
+      "size_bytes": 816503
+    },
+    "selected_histories": {
+      "expanded_continuous": {
+        "path": "continuous/history.2024-07-03_00.00.00.nc",
+        "sha256": "876e607dbc5af8cad9d5f8421c284751ed4c8b4a5290904529b9fc7f5c7ddc8e",
+        "size_bytes": 287239992
+      },
+      "expanded_no_miem_control": {
+        "path": "no_miem_control/history.2024-07-03_00.00.00.nc",
+        "sha256": "8dec5c8675f4e588a7dc2318d2ea8d616d1cb5c6df9f585519fe33fce5080377",
+        "size_bytes": 283305652
+      },
+      "reduced_continuous": {
+        "path": "continuous/history.2024-07-02_00.00.00.nc",
+        "sha256": "8b80da1e42941391b8ad6e24cd93e6e5e9cb52eaaa4aa00b3822965c308f6512",
+        "size_bytes": 125355648
+      },
+      "reduced_no_miem_control": {
+        "path": "no_miem_control/history.2024-07-02_00.00.00.nc",
+        "sha256": "4c6f2ab837420334dc24322173a1a629dd0fb264df22102d47b6e698441a14c8",
+        "size_bytes": 121421308
+      }
+    }
+  },
+  "interpretation": {
+    "expanded": "all branches share an FS spin-up with CAMS-NOx emissions; instantaneous endpoint states and hourly emissions-continued versus emissions-withheld analysis diagnose the experimental reduced tropospheric mechanism",
+    "production_air_quality": false,
+    "reduced": "instantaneous endpoint states and hourly CAMS-NOx emissions applied versus withheld during analysis; NOx/Ox source closure and Leighton-cycle coupling validation",
+    "upper_column": "reported diagnostically; the tropospheric mechanism is not qualified above the 150 hPa mask"
+  },
+  "overall_pass": true,
+  "provenance": {
+    "chempas_commit": "caa0c12dde7b862ce14a49021e25a45cc00b337f",
+    "executable_sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+    "lightning_enabled": false,
+    "mixed_provenance_rejected": true,
+    "science_inventory_sha256": "d213866000e8a633954d0c730ba5524f729f26a97d02cc5a13d8b405aa6c8e9c"
+  },
+  "rendering": {
+    "dpi": 300,
+    "formats": [
+      "png",
+      "pdf"
+    ],
+    "protocol_version": "chempas-science-plot-v1",
+    "style": "scripts/style.py"
+  },
+  "schema_version": "chempas-global-tropo-figure-manifest-v1"
+}

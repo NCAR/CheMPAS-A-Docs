@@ -1,0 +1,55 @@
+{
+  "artifacts": {
+    "destination_scrip": {
+      "path": "x1.40962.scrip.nc",
+      "sha256": "716133848a9e8f2948fa6b4bfe8c660bf18583c516b6310ce5c79a38e2bec544",
+      "size_bytes": 2787721
+    },
+    "source_scrip": {
+      "path": "cams-glob-ant-v6.2-0.1deg.scrip.nc",
+      "sha256": "0076341f633fba4b92c6ed8af7ca550fbdbccec6270e12a3bb3245c7fc85a014",
+      "size_bytes": 6099141
+    },
+    "weights": {
+      "path": "cams-glob-ant-v6.2-0.1deg-to-x1.40962.conserve.weights.nc",
+      "sha256": "5fdf1f7e5f786449169a8f024edcfa7dd67dbb82af5a534e730b2aada1505712",
+      "size_bytes": 780426736
+    }
+  },
+  "destination_mesh": {
+    "fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+    "path": "x1.40962.static.nc",
+    "sha256": "cf1a47d4168327f06a8403555d6ed8b2fe1aff7f8b916bb7f6a754c34a10ac82",
+    "size_bytes": 94766584
+  },
+  "esmf": {
+    "communication": "mpiuni",
+    "package": "conda-forge esmf-8.9.1-nompi_h0c1e4bb_3",
+    "version": "8.9.1"
+  },
+  "method": "ESMF first-order conservative, dstarea normalization, canonical user areas",
+  "metrics": {
+    "constant_field_report_limit": 0.001,
+    "destination_cells": 40962,
+    "maximum_constant_field_row_sum_error": 1.1360052118991604e-05,
+    "maximum_destination_fraction": 1.0000000000000218,
+    "maximum_source_area_relative_error": 2.0230030583847917e-12,
+    "maximum_source_fraction": 1.0000000000018796,
+    "maximum_weight": 0.012969974373656807,
+    "minimum_destination_fraction": 0.9999999999339473,
+    "minimum_source_fraction": 0.9999999999979772,
+    "minimum_weight": 5.6674958635160444e-15,
+    "physical_area_tolerance": 2e-07,
+    "source_cells": 6480000,
+    "sparse_weights": 7773510,
+    "unmapped_destination_cells": 0,
+    "unrepresented_source_cells": 0
+  },
+  "overall_pass": true,
+  "schema_version": "chempas-global-miem-weight-report-v1",
+  "source_inventory": {
+    "path": "CAMS-GLOB-ANT_Glb_0.1x0.1_anthro_nox_v6.2_2024-07_2024-08.nc",
+    "sha256": "2687ea4f95161119f3e7962f65a1026898a6c3730d509001ef30190fdd83b032",
+    "size_bytes": 95931202
+  }
+}

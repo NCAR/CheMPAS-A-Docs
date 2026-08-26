@@ -1,0 +1,19 @@
+Self-contained documentation assets
+====================================
+
+These files are exact snapshots of small development-tree inputs referenced by
+Sphinx literal-includes or download links. Keeping the copies below docs/
+allows NCAR/CheMPAS-A-Docs to build independently of the private qualification
+repository. They preserve provenance for the rendered documentation; they do
+not expand the supported contents of the public CheMPAS-A MVP source release.
+
+Source mapping:
+
+* tutorial/abba_box.py <- scripts/musica_python/abba_box.py
+* tutorial/abba.yaml <- micm_configs/abba.yaml
+* mvp/* <- the corresponding scripts/, test_cases/global_mvp/, or
+  miem_configs/ file
+* global-methane/scenarios.yaml <- test_cases/global_methane_miem/scenarios.yaml
+
+The files use the project license supplied with the source and documentation
+repositories.

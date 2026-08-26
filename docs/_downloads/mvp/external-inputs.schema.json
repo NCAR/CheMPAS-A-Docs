@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mpas-dev.github.io/chempas/schemas/mvp-external-inputs-v1.json",
+  "title": "CheMPAS-A MVP external-input manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "manifest_id",
+    "data_root_environment_variable",
+    "simulation",
+    "science_decisions",
+    "artifacts"
+  ],
+  "properties": {
+    "schema_version": {"const": "chempas-mvp-external-inputs-v1"},
+    "manifest_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]+$"},
+    "data_root_environment_variable": {"const": "CHEMPAS_EMISSIONS_DATA_ROOT"},
+    "simulation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["calendar", "mesh", "mpi_ranks", "start_time", "stop_time"],
+      "properties": {
+        "calendar": {"const": "gregorian"},
+        "mesh": {"const": "x1.40962"},
+        "mpi_ranks": {"const": 8},
+        "start_time": {"type": "string", "format": "date-time"},
+        "stop_time": {"type": "string", "format": "date-time"}
+      }
+    },
+    "science_decisions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "anthropogenic_fire_overlap",
+        "finn_nitrogen_mapping",
+        "finn_temporal_interpolation",
+        "fire_vertical_injection",
+        "merra2_cycle"
+      ],
+      "properties": {
+        "anthropogenic_fire_overlap": {"type": "string", "minLength": 1},
+        "finn_nitrogen_mapping": {"type": "string", "minLength": 1},
+        "finn_temporal_interpolation": {"type": "string", "minLength": 1},
+        "fire_vertical_injection": {"const": "surface"},
+        "merra2_cycle": {"type": "string", "minLength": 1}
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/artifact"}
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "logicalPath": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+    },
+    "uri": {"type": "string", "format": "uri"},
+    "selection": {"type": "object", "minProperties": 1},
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "role", "logical_path", "format", "size_bytes", "sha256"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]+$"},
+        "role": {
+          "enum": [
+            "merra2_monthly_o3_source_subset",
+            "cams_co_native_subset",
+            "finn_daily_source",
+            "destination_mesh",
+            "mesh_partition",
+            "model_initial_condition",
+            "accepted_nox_inventory",
+            "prepared_anthropogenic_inventory",
+            "prepared_fire_inventory",
+            "prescribed_upper_o3_climatology"
+          ]
+        },
+        "logical_path": {"$ref": "#/$defs/logicalPath"},
+        "source_identifier": {"type": "string", "minLength": 1},
+        "source_url": {"$ref": "#/$defs/uri"},
+        "source_url_template": {"type": "string", "minLength": 1},
+        "source_https_url_template": {"type": "string", "minLength": 1},
+        "subset_service_url": {"$ref": "#/$defs/uri"},
+        "landing_page": {"$ref": "#/$defs/uri"},
+        "doi": {"type": "string", "minLength": 1},
+        "selection": {"$ref": "#/$defs/selection"},
+        "format": {"type": "string", "minLength": 1},
+        "size_bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"role": {"const": "merra2_monthly_o3_source_subset"}}},
+          "then": {"required": ["source_identifier", "source_url_template", "source_https_url_template", "landing_page", "doi", "selection"]}
+        },
+        {
+          "if": {"properties": {"role": {"const": "cams_co_native_subset"}}},
+          "then": {"required": ["source_identifier", "source_url", "subset_service_url", "landing_page", "doi", "selection"]}
+        },
+        {
+          "if": {"properties": {"role": {"const": "finn_daily_source"}}},
+          "then": {"required": ["source_identifier", "source_url", "landing_page", "selection"]}
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "enum": [
+                  "destination_mesh",
+                  "model_initial_condition",
+                  "prepared_anthropogenic_inventory",
+                  "prepared_fire_inventory",
+                  "prescribed_upper_o3_climatology"
+                ]
+              }
+            }
+          },
+          "then": {"required": ["selection"]}
+        }
+      ]
+    }
+  }
+}

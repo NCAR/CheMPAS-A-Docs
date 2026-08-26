@@ -1,0 +1,214 @@
+{
+  "assertions": [
+    {
+      "detail": "history and inventory global-ID sets match exactly",
+      "name": "global_id_mapping",
+      "passed": true
+    },
+    {
+      "detail": "all written fluxes match interval-start inventory samples",
+      "name": "diagnostic_flux",
+      "passed": true
+    },
+    {
+      "detail": "observed NO:NO2 range 8.9999999999999982..9.0000000000000018",
+      "name": "mass_split_ratio",
+      "passed": true
+    },
+    {
+      "detail": "finalize totals match every successful interval integral",
+      "name": "source_mass",
+      "passed": true
+    },
+    {
+      "detail": "validated configured sample clock 2026-06-23_00:00:00",
+      "name": "time_interpolation",
+      "passed": true
+    }
+  ],
+  "diagnostics": {
+    "enabled": true,
+    "species": {
+      "NO": {
+        "dimensions": [
+          "Time",
+          "nCells"
+        ],
+        "expected_max": 1.152e-10,
+        "expected_min": 0.0,
+        "initial_exact_zero": true,
+        "maximum_absolute_error": 0.0,
+        "maximum_relative_error": 0.0,
+        "observed_max": 1.152e-10,
+        "observed_min": 0.0,
+        "units": "kg m^{-2} s^{-1}"
+      },
+      "NO2": {
+        "dimensions": [
+          "Time",
+          "nCells"
+        ],
+        "expected_max": 1.28e-11,
+        "expected_min": 0.0,
+        "initial_exact_zero": true,
+        "maximum_absolute_error": 0.0,
+        "maximum_relative_error": 0.0,
+        "observed_max": 1.28e-11,
+        "observed_min": 0.0,
+        "units": "kg m^{-2} s^{-1}"
+      }
+    }
+  },
+  "inputs": {
+    "config:chem_box.graph.info.part.8": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R3-cell_time_signature-exact_endpoint/chem_box.graph.info.part.8",
+      "sha256": "d587ff5150e846e2b629961c9decb7e96f29cc115dc0d1f2e433a28844cd90d4",
+      "size_bytes": 128
+    },
+    "config:chem_box_init.nc": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R3-cell_time_signature-exact_endpoint/chem_box_init.nc",
+      "sha256": "417dc69968b1bd35864ce5e4eb872f2664a4b9bf7fb91523e34a16337b18dd1b",
+      "size_bytes": 1506538
+    },
+    "config:chem_box_nox.yaml": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R3-cell_time_signature-exact_endpoint/chem_box_nox.yaml",
+      "sha256": "d676fd2faf2cc03e167ca3f0387f4e8286741b04e631786de85e48383ce987e0",
+      "size_bytes": 835
+    },
+    "config:miem_nox.yaml": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R3-cell_time_signature-exact_endpoint/miem_nox.yaml",
+      "sha256": "9338db1cc32c50077d6b6c03794fc47cf0c948e56ff26abd580842b73e2fd1e3",
+      "size_bytes": 980
+    },
+    "config:namelist.atmosphere": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R3-cell_time_signature-exact_endpoint/namelist.atmosphere",
+      "sha256": "18c72c3f3f358b09b29a68e485df539cbd9a96a91563639291408df3a8ed1f93",
+      "size_bytes": 2243
+    },
+    "config:stream_list.atmosphere.output": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R3-cell_time_signature-exact_endpoint/stream_list.atmosphere.output",
+      "sha256": "251ab466b700e21b461b2365e690da3eb3533e5d2bace8094ad78e238d0273e9",
+      "size_bytes": 64
+    },
+    "config:streams.atmosphere": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R3-cell_time_signature-exact_endpoint/streams.atmosphere",
+      "sha256": "b04e327e231705cfa1251b25a3cf42215b80a13216654354dcc7cc441d954eb3",
+      "size_bytes": 1523
+    },
+    "inventory": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R3-cell_time_signature-exact_endpoint/miem_inventory.nc",
+      "sha256": "81285d32019b44809fd034646ef67f82110e3bc7cfcbb485bcfe33dc9dbf8da6",
+      "size_bytes": 27931
+    },
+    "mesh": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R3-cell_time_signature-exact_endpoint/chem_box_init.nc",
+      "sha256": "417dc69968b1bd35864ce5e4eb872f2664a4b9bf7fb91523e34a16337b18dd1b",
+      "size_bytes": 1506538
+    },
+    "run_metadata": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R3-cell_time_signature-exact_endpoint/run-metadata.json",
+      "sha256": "1844f36eeba2cecd73da3ae6462fcebf1cec8d3443d800e4b7047cd459ac4934",
+      "size_bytes": 3041
+    },
+    "scenario_manifest": {
+      "path": "/home/fillmore/EarthSystem/CheMPAS-A-Dev/test_cases/chem_box/miem/scenarios.yaml",
+      "sha256": "cb9d0b8a7798cd4fe615324e759ce91ded1277ac7b942ed96c2e6003b96e16cf",
+      "size_bytes": 4489
+    }
+  },
+  "mass_budget": {
+    "species": {
+      "NO": {
+        "expected_source_kg": 0.0024317993338267042,
+        "logged_source_kg": 0.0024317993338267,
+        "relative_error": 1.783374404958641e-15
+      },
+      "NO2": {
+        "expected_source_kg": 0.0002701999259807448,
+        "logged_source_kg": 0.000270199925980745,
+        "relative_error": 6.018888616735415e-16
+      }
+    }
+  },
+  "outputs": {
+    "history": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R3-cell_time_signature-exact_endpoint/output.nc",
+      "sha256": "05fc314a0522cd562f75ebe65ca2679ec849192dfcbbb441ea1d39020728a67f",
+      "size_bytes": 412884
+    },
+    "rank_zero_log": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R3-cell_time_signature-exact_endpoint/log.atmosphere.0000.out",
+      "sha256": "d6201dd8965fa058564696e0f12a2ec76172c9cd289b987d50e667050234d007",
+      "size_bytes": 42628
+    }
+  },
+  "overall_pass": true,
+  "provenance": {
+    "asset_manifest_sha256": "626abe688fca0a35f470422e4efe0e039a4cc1e57cbc86221346858c85bf1902",
+    "chempas_branch": "develop_emissions",
+    "chempas_commit": "4ffc5da925388f9e83a2a04f2531ba24cc46aed8",
+    "compiler": "GNU Fortran (conda-forge gcc 15.2.0-19) 15.2.0",
+    "configuration_sha256": "9dbc0f70bb458cc18d36927697bc0a9b651fc0f821ae51300e1660aa1f57ed2d",
+    "miem_commit": "9fdf14a189262eecb677862d877ab72b06c95e21",
+    "mpi_ranks": 8,
+    "musica_commit": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc"
+  },
+  "scenario": {
+    "id": "R3",
+    "name": "cell_time_signature",
+    "overrides": {},
+    "resolved": {
+      "chemistry_interval_seconds": 0,
+      "chemistry_reference_solve": false,
+      "chemistry_substeps": 1,
+      "duration_seconds": 3,
+      "emission_diagnostics": {
+        "categories": [],
+        "layered": false,
+        "max_fields": 256,
+        "sectors": []
+      },
+      "fixture_pattern": "cell-time-signature",
+      "lightning": {
+        "enabled": false,
+        "initial_w_m_per_s": null,
+        "source_rate_ppbv_per_s": 0.0,
+        "w_ref_m_per_s": 10.0,
+        "w_threshold_m_per_s": 5.0,
+        "z_max_m": 12000.0,
+        "z_min_m": 5000.0
+      },
+      "micm_config": "micm_configs/miem_nox.yaml",
+      "miem_config": "miem_configs/chem_box_nox.yaml",
+      "miem_enabled": true,
+      "model_dt_seconds": 3,
+      "mpi_ranks": 8,
+      "output_interval_seconds": 3,
+      "photolysis": {
+        "j_no2_max": 0.0,
+        "tuvx_config_file": ""
+      },
+      "start_time": "2026-06-23_00:00:00",
+      "tolerances": {
+        "flux_absolute_kg_m2_s": 1e-27,
+        "flux_relative": 2e-14,
+        "source_mass_absolute_kg": 1e-18,
+        "source_mass_relative": 2e-13,
+        "state_absolute_kg_kg": 1e-29,
+        "state_relative": 2e-14,
+        "tracer_mass_absolute_kg": 1e-18,
+        "tracer_mass_relative": 2e-12
+      }
+    },
+    "variant": "exact_endpoint"
+  },
+  "schema_version": "chempas-miem-throughput-report-v1",
+  "telemetry": {
+    "aggregate_effective_bytes_per_second": 83066171.00371747,
+    "chem_miem_calls": 1,
+    "chem_miem_seconds": 0.00269,
+    "history_bytes": 412884,
+    "inventory_bytes": 27931,
+    "per_rank_effective_bytes_per_second": 10383271.375464683
+  }
+}

@@ -1,0 +1,3144 @@
+{
+  "assertions": [
+    {
+      "detail": "observed 5 of 5 expected frames",
+      "name": "main:history_frames",
+      "passed": true
+    },
+    {
+      "detail": "all emitted, chemistry, and physical output fields are finite and bounded",
+      "name": "main:finite_state",
+      "passed": true
+    },
+    {
+      "detail": "inventory timestep integral agrees with model-reported end-of-run source",
+      "name": "main:source_mass",
+      "passed": true
+    },
+    {
+      "detail": "MIEM exact-grid validation/open lifecycle is singular, or disabled path performs no I/O",
+      "name": "main:exact_grid_lifecycle",
+      "passed": true
+    },
+    {
+      "detail": "MIEM calls=8 expected=8",
+      "name": "main:miem_calls",
+      "passed": true
+    },
+    {
+      "detail": "first-open and warm-step timing counters match the sampled-step count",
+      "name": "main:miem_first_warm_timing",
+      "passed": true
+    },
+    {
+      "detail": "every output diagnostic equals the independently interpolated inventory sample",
+      "name": "main:diagnostic_flux",
+      "passed": true
+    },
+    {
+      "detail": "sector diagnostics sum to the species total",
+      "name": "main:sector_closure",
+      "passed": true
+    },
+    {
+      "detail": "layer fields sum to columns and are zero above level 1",
+      "name": "main:surface_layer_closure",
+      "passed": true
+    },
+    {
+      "detail": "all variants use one SHA-256-pinned executable from a tracked-clean CheMPAS commit",
+      "name": "reproducible_executable",
+      "passed": true
+    },
+    {
+      "detail": "NO+NO2 molar-N residual=5.658e-14",
+      "name": "reactive_noy_budget",
+      "passed": true
+    },
+    {
+      "detail": "24-hour projection is below 4 wall hours and 100 GiB",
+      "name": "acceptance_resource_forecast",
+      "passed": true
+    },
+    {
+      "detail": "every enabled run validates the exact global grid once and disabled G0 performs no MIEM I/O",
+      "name": "scenario:exact_grid_open",
+      "passed": true
+    },
+    {
+      "detail": "every expected output frame matches independent inventory-time interpolation",
+      "name": "scenario:all_frame_interpolation",
+      "passed": true
+    },
+    {
+      "detail": "all diagnostics match independently sampled fluxes and integrated source masses match the model log",
+      "name": "scenario:diagnostic_source_closure",
+      "passed": true
+    },
+    {
+      "detail": "requested sector diagnostics sum to each species total",
+      "name": "scenario:sector_closure",
+      "passed": true
+    },
+    {
+      "detail": "total and requested group layer fields close to their columns and are zero aloft",
+      "name": "scenario:surface_layer_closure",
+      "passed": true
+    },
+    {
+      "detail": "reactive NOy relative residual=5.658e-14",
+      "name": "scenario:reactive_noy_budget",
+      "passed": true
+    },
+    {
+      "detail": "all requested physical, chemistry, photolysis, and emissions fields are finite and bounded",
+      "name": "scenario:finite_state",
+      "passed": true
+    },
+    {
+      "detail": "projected 24-hour wall time is below four hours and history volume is below 100 GiB",
+      "name": "scenario:acceptance_resource_forecast",
+      "passed": true
+    }
+  ],
+  "comparisons": {},
+  "control_response": {},
+  "diagnostics": {
+    "main": {
+      "all_flux_samples_pass": true,
+      "frames": [
+        {
+          "sample_time": null,
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                },
+                "sector:agl": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ags": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:awb": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:com": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ene": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:fef": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ind": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ref": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:res": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:shp": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:swd": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tnr": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tro": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector_sum": {
+                  "bitwise_equal": true,
+                  "complete_set": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                },
+                "sector:agl": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ags": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:awb": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:com": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ene": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:fef": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ind": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ref": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:res": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:shp": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:swd": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tnr": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tro": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector_sum": {
+                  "bitwise_equal": true,
+                  "complete_set": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_00:00:00"
+        },
+        {
+          "sample_time": "2024-07-01_00:07:30",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                },
+                "sector:agl": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ags": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:awb": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:com": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ene": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:fef": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ind": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ref": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:res": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:shp": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:swd": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tnr": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tro": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector_sum": {
+                  "bitwise_equal": true,
+                  "complete_set": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                },
+                "sector:agl": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ags": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:awb": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:com": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ene": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:fef": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ind": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ref": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:res": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:shp": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:swd": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tnr": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tro": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector_sum": {
+                  "bitwise_equal": true,
+                  "complete_set": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_00:15:00"
+        },
+        {
+          "sample_time": "2024-07-01_00:22:30",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                },
+                "sector:agl": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ags": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:awb": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:com": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ene": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:fef": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ind": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ref": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:res": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:shp": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:swd": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tnr": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tro": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector_sum": {
+                  "bitwise_equal": true,
+                  "complete_set": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                },
+                "sector:agl": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ags": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:awb": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:com": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ene": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:fef": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ind": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ref": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:res": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:shp": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:swd": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tnr": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tro": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector_sum": {
+                  "bitwise_equal": true,
+                  "complete_set": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_00:30:00"
+        },
+        {
+          "sample_time": "2024-07-01_00:37:30",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                },
+                "sector:agl": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ags": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:awb": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:com": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ene": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:fef": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ind": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ref": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:res": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:shp": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:swd": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tnr": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tro": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector_sum": {
+                  "bitwise_equal": true,
+                  "complete_set": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                },
+                "sector:agl": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ags": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:awb": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:com": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ene": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:fef": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ind": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ref": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:res": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:shp": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:swd": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tnr": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tro": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector_sum": {
+                  "bitwise_equal": true,
+                  "complete_set": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_00:45:00"
+        },
+        {
+          "sample_time": "2024-07-01_00:52:30",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                },
+                "sector:agl": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ags": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:awb": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:com": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ene": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:fef": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ind": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ref": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:res": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:shp": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:swd": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tnr": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tro": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector_sum": {
+                  "bitwise_equal": true,
+                  "complete_set": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                },
+                "sector:agl": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ags": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:awb": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:com": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ene": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:fef": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ind": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:ref": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:res": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:shp": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:swd": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tnr": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector:tro": {
+                  "bitwise_equal": true,
+                  "layer_sum": {
+                    "bitwise_equal": true,
+                    "maximum_absolute": 0.0,
+                    "maximum_relative": 0.0,
+                    "passed": true,
+                    "upper_layer_maximum_absolute": 0.0
+                  },
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                },
+                "sector_sum": {
+                  "bitwise_equal": true,
+                  "complete_set": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_01:00:00"
+        }
+      ],
+      "run": "main",
+      "sector_closure_applicable": true,
+      "sector_closure_pass": true,
+      "surface_layer_closure_pass": true
+    }
+  },
+  "gate": "G3",
+  "inputs": {
+    "checker": {
+      "path": "scripts/check_global_miem_throughput.py",
+      "sha256": "75122462d208f5b22b5a8f9e13e77f9ac5550ccc509a90fbeb639356dc0ae66e",
+      "size_bytes": 89749
+    },
+    "external_manifest": {
+      "path": "external-inputs.cams-glob-ant-v6.2-2024-07.json",
+      "sha256": "6d5be3455a2f827b2e1013ae0c6f5fdf82699657b7508f527172ed872e0ce9ed",
+      "size_bytes": 22725
+    },
+    "inventory": {
+      "path": "inventory/cams-glob-ant-v6.2-x1.40962/miem_inventory.cams-glob-ant-v6.2-x1.40962.nc",
+      "sha256": "d213866000e8a633954d0c730ba5524f729f26a97d02cc5a13d8b405aa6c8e9c",
+      "size_bytes": 20758020
+    },
+    "scenario_manifest": {
+      "path": "test_cases/global_miem/scenarios.yaml",
+      "sha256": "3d30b5d39b09bea0bae74748dac4a032677f709a535781ce8dcb46a7275cdfc0",
+      "size_bytes": 7215
+    },
+    "throughput_schema": {
+      "path": "test_cases/global_miem/throughput-report.schema.json",
+      "sha256": "c34ae1aa77c752bfe3406f311df100b80179051c6d84fa07cce1f818c31ac78e",
+      "size_bytes": 1993
+    }
+  },
+  "overall_pass": true,
+  "performance": {},
+  "photolysis": {
+    "distinct_maxima": 5,
+    "jNO2_global_maxima": [
+      0.0,
+      0.013014438825685648,
+      0.013013169797031938,
+      0.013012044013957252,
+      0.013010889492288204
+    ]
+  },
+  "reactive_noy_budget": {
+    "cumulative_frames": [
+      {
+        "emitted_noy_moles": 0.0,
+        "final_moles": {
+          "NO": 179656153638.85144,
+          "NO2": 179656153638.8514,
+          "NOy": 359312307277.7029
+        },
+        "initial_moles": {
+          "NO": 179656153638.85144,
+          "NO2": 179656153638.8514,
+          "NOy": 359312307277.7029
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 0.0,
+        "passed": true,
+        "relative_residual": 0.0,
+        "relative_scale_moles": 359312307277.7029,
+        "residual_moles": 0.0,
+        "time": "2024-07-01_00:00:00"
+      },
+      {
+        "emitted_noy_moles": 70583612.9915593,
+        "final_moles": {
+          "NO": 62320404663.87525,
+          "NO2": 297062486226.81915,
+          "NOy": 359382890890.6944
+        },
+        "initial_moles": {
+          "NO": 179656153638.85144,
+          "NO2": 179656153638.8514,
+          "NOy": 359312307277.7029
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 70583612.99151611,
+        "passed": true,
+        "relative_residual": 6.118072355538756e-13,
+        "relative_scale_moles": 70583612.9915593,
+        "residual_moles": -4.318356513977051e-05,
+        "time": "2024-07-01_00:15:00"
+      },
+      {
+        "emitted_noy_moles": 141166951.832651,
+        "final_moles": {
+          "NO": 61470241035.95088,
+          "NO2": 297983233193.5846,
+          "NOy": 359453474229.53546
+        },
+        "initial_moles": {
+          "NO": 179656153638.85144,
+          "NO2": 179656153638.8514,
+          "NOy": 359312307277.7029
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 141166951.83258057,
+        "passed": true,
+        "relative_residual": 4.988624241572359e-13,
+        "relative_scale_moles": 141166951.832651,
+        "residual_moles": -7.042288780212402e-05,
+        "time": "2024-07-01_00:30:00"
+      },
+      {
+        "emitted_noy_moles": 211750016.52327508,
+        "final_moles": {
+          "NO": 61340834400.06501,
+          "NO2": 298183222894.16113,
+          "NOy": 359524057294.22614
+        },
+        "initial_moles": {
+          "NO": 179656153638.85144,
+          "NO2": 179656153638.8514,
+          "NOy": 359312307277.7029
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 211750016.5232544,
+        "passed": true,
+        "relative_residual": 9.767560860986823e-14,
+        "relative_scale_moles": 211750016.52327508,
+        "residual_moles": -2.0682811737060547e-05,
+        "time": "2024-07-01_00:45:00"
+      },
+      {
+        "emitted_noy_moles": 282332807.0634315,
+        "final_moles": {
+          "NO": 61316407450.13908,
+          "NO2": 298278232634.6272,
+          "NOy": 359594640084.7663
+        },
+        "initial_moles": {
+          "NO": 179656153638.85144,
+          "NO2": 179656153638.8514,
+          "NOy": 359312307277.7029
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 282332807.0634155,
+        "passed": true,
+        "relative_residual": 5.6578776536641775e-14,
+        "relative_scale_moles": 282332807.0634315,
+        "residual_moles": -1.5974044799804688e-05,
+        "time": "2024-07-01_01:00:00"
+      }
+    ],
+    "emitted_noy_moles": 282332807.0634315,
+    "final_moles": {
+      "NO": 61316407450.13908,
+      "NO2": 298278232634.6272,
+      "NOy": 359594640084.7663
+    },
+    "initial_moles": {
+      "NO": 179656153638.85144,
+      "NO2": 179656153638.8514,
+      "NOy": 359312307277.7029
+    },
+    "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+    "maximum_cumulative_relative_residual": 6.118072355538756e-13,
+    "maximum_interval_relative_residual": 7.04913812461115e-13,
+    "no_accumulating_drift": true,
+    "noy_delta_moles": 282332807.0634155,
+    "output_intervals": [
+      {
+        "emitted_noy_moles": 70583612.9915593,
+        "final_moles": {
+          "NO": 62320404663.87525,
+          "NO2": 297062486226.81915,
+          "NOy": 359382890890.6944
+        },
+        "initial_moles": {
+          "NO": 179656153638.85144,
+          "NO2": 179656153638.8514,
+          "NOy": 359312307277.7029
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 70583612.99151611,
+        "passed": true,
+        "relative_residual": 6.118072355538756e-13,
+        "relative_scale_moles": 70583612.9915593,
+        "residual_moles": -4.318356513977051e-05,
+        "start_time": "2024-07-01_00:00:00",
+        "stop_time": "2024-07-01_00:15:00"
+      },
+      {
+        "emitted_noy_moles": 70583338.84109168,
+        "final_moles": {
+          "NO": 61470241035.95088,
+          "NO2": 297983233193.5846,
+          "NOy": 359453474229.53546
+        },
+        "initial_moles": {
+          "NO": 62320404663.87525,
+          "NO2": 297062486226.81915,
+          "NOy": 359382890890.6944
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 70583338.84106445,
+        "passed": true,
+        "relative_residual": 3.8570605964746966e-13,
+        "relative_scale_moles": 70583338.84109168,
+        "residual_moles": -2.7224421501159668e-05,
+        "start_time": "2024-07-01_00:15:00",
+        "stop_time": "2024-07-01_00:30:00"
+      },
+      {
+        "emitted_noy_moles": 70583064.69062407,
+        "final_moles": {
+          "NO": 61340834400.06501,
+          "NO2": 298183222894.16113,
+          "NOy": 359524057294.22614
+        },
+        "initial_moles": {
+          "NO": 61470241035.95088,
+          "NO2": 297983233193.5846,
+          "NOy": 359453474229.53546
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 70583064.69067383,
+        "passed": true,
+        "relative_residual": 7.04913812461115e-13,
+        "relative_scale_moles": 70583064.69062407,
+        "residual_moles": 4.9754977226257324e-05,
+        "start_time": "2024-07-01_00:30:00",
+        "stop_time": "2024-07-01_00:45:00"
+      },
+      {
+        "emitted_noy_moles": 70582790.54015644,
+        "final_moles": {
+          "NO": 61316407450.13908,
+          "NO2": 298278232634.6272,
+          "NOy": 359594640084.7663
+        },
+        "initial_moles": {
+          "NO": 61340834400.06501,
+          "NO2": 298183222894.16113,
+          "NOy": 359524057294.22614
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 70582790.54016113,
+        "passed": true,
+        "relative_residual": 6.650156135994008e-14,
+        "relative_scale_moles": 70582790.54015644,
+        "residual_moles": 4.693865776062012e-06,
+        "start_time": "2024-07-01_00:45:00",
+        "stop_time": "2024-07-01_01:00:00"
+      }
+    ],
+    "passed": true,
+    "relative_residual": 5.6578776536641775e-14,
+    "relative_scale_moles": 282332807.0634315,
+    "residual_moles": -1.5974044799804688e-05,
+    "time": "2024-07-01_01:00:00"
+  },
+  "reader_accounting": {},
+  "resource_forecast": {
+    "from_gate": "G3",
+    "projected_24h_history_bytes": 50434854240,
+    "projected_24h_wall_seconds": 1789.6799999999998
+  },
+  "runs": {
+    "main": {
+      "exact_grid_lifecycle_pass": true,
+      "expected_frame_count": 5,
+      "expected_source_mass_kg": {
+        "NO": 7897687.981368963,
+        "NO2": 877520.8868187735
+      },
+      "finite_state": {
+        "fields_checked": [
+          "emis_NO",
+          "emis_NO2",
+          "emis_NO2__sector_agl",
+          "emis_NO2__sector_agl_layer",
+          "emis_NO2__sector_ags",
+          "emis_NO2__sector_ags_layer",
+          "emis_NO2__sector_awb",
+          "emis_NO2__sector_awb_layer",
+          "emis_NO2__sector_com",
+          "emis_NO2__sector_com_layer",
+          "emis_NO2__sector_ene",
+          "emis_NO2__sector_ene_layer",
+          "emis_NO2__sector_fef",
+          "emis_NO2__sector_fef_layer",
+          "emis_NO2__sector_ind",
+          "emis_NO2__sector_ind_layer",
+          "emis_NO2__sector_ref",
+          "emis_NO2__sector_ref_layer",
+          "emis_NO2__sector_res",
+          "emis_NO2__sector_res_layer",
+          "emis_NO2__sector_shp",
+          "emis_NO2__sector_shp_layer",
+          "emis_NO2__sector_swd",
+          "emis_NO2__sector_swd_layer",
+          "emis_NO2__sector_tnr",
+          "emis_NO2__sector_tnr_layer",
+          "emis_NO2__sector_tro",
+          "emis_NO2__sector_tro_layer",
+          "emis_NO2_layer",
+          "emis_NO__sector_agl",
+          "emis_NO__sector_agl_layer",
+          "emis_NO__sector_ags",
+          "emis_NO__sector_ags_layer",
+          "emis_NO__sector_awb",
+          "emis_NO__sector_awb_layer",
+          "emis_NO__sector_com",
+          "emis_NO__sector_com_layer",
+          "emis_NO__sector_ene",
+          "emis_NO__sector_ene_layer",
+          "emis_NO__sector_fef",
+          "emis_NO__sector_fef_layer",
+          "emis_NO__sector_ind",
+          "emis_NO__sector_ind_layer",
+          "emis_NO__sector_ref",
+          "emis_NO__sector_ref_layer",
+          "emis_NO__sector_res",
+          "emis_NO__sector_res_layer",
+          "emis_NO__sector_shp",
+          "emis_NO__sector_shp_layer",
+          "emis_NO__sector_swd",
+          "emis_NO__sector_swd_layer",
+          "emis_NO__sector_tnr",
+          "emis_NO__sector_tnr_layer",
+          "emis_NO__sector_tro",
+          "emis_NO__sector_tro_layer",
+          "emis_NO_layer",
+          "j_jNO2",
+          "j_jO2",
+          "j_jO3_O",
+          "j_jO3_O1D",
+          "pressure",
+          "qNO",
+          "qNO2",
+          "qO",
+          "qO1D",
+          "qO2",
+          "qO3",
+          "qv",
+          "rho",
+          "rho_zz",
+          "surface_pressure",
+          "theta",
+          "u",
+          "w"
+        ],
+        "nonnegative_tracers_and_rates": {
+          "emis_NO": true,
+          "emis_NO2": true,
+          "emis_NO2__sector_agl": true,
+          "emis_NO2__sector_agl_layer": true,
+          "emis_NO2__sector_ags": true,
+          "emis_NO2__sector_ags_layer": true,
+          "emis_NO2__sector_awb": true,
+          "emis_NO2__sector_awb_layer": true,
+          "emis_NO2__sector_com": true,
+          "emis_NO2__sector_com_layer": true,
+          "emis_NO2__sector_ene": true,
+          "emis_NO2__sector_ene_layer": true,
+          "emis_NO2__sector_fef": true,
+          "emis_NO2__sector_fef_layer": true,
+          "emis_NO2__sector_ind": true,
+          "emis_NO2__sector_ind_layer": true,
+          "emis_NO2__sector_ref": true,
+          "emis_NO2__sector_ref_layer": true,
+          "emis_NO2__sector_res": true,
+          "emis_NO2__sector_res_layer": true,
+          "emis_NO2__sector_shp": true,
+          "emis_NO2__sector_shp_layer": true,
+          "emis_NO2__sector_swd": true,
+          "emis_NO2__sector_swd_layer": true,
+          "emis_NO2__sector_tnr": true,
+          "emis_NO2__sector_tnr_layer": true,
+          "emis_NO2__sector_tro": true,
+          "emis_NO2__sector_tro_layer": true,
+          "emis_NO2_layer": true,
+          "emis_NO__sector_agl": true,
+          "emis_NO__sector_agl_layer": true,
+          "emis_NO__sector_ags": true,
+          "emis_NO__sector_ags_layer": true,
+          "emis_NO__sector_awb": true,
+          "emis_NO__sector_awb_layer": true,
+          "emis_NO__sector_com": true,
+          "emis_NO__sector_com_layer": true,
+          "emis_NO__sector_ene": true,
+          "emis_NO__sector_ene_layer": true,
+          "emis_NO__sector_fef": true,
+          "emis_NO__sector_fef_layer": true,
+          "emis_NO__sector_ind": true,
+          "emis_NO__sector_ind_layer": true,
+          "emis_NO__sector_ref": true,
+          "emis_NO__sector_ref_layer": true,
+          "emis_NO__sector_res": true,
+          "emis_NO__sector_res_layer": true,
+          "emis_NO__sector_shp": true,
+          "emis_NO__sector_shp_layer": true,
+          "emis_NO__sector_swd": true,
+          "emis_NO__sector_swd_layer": true,
+          "emis_NO__sector_tnr": true,
+          "emis_NO__sector_tnr_layer": true,
+          "emis_NO__sector_tro": true,
+          "emis_NO__sector_tro_layer": true,
+          "emis_NO_layer": true,
+          "j_jNO2": true,
+          "j_jO2": true,
+          "j_jO3_O": true,
+          "j_jO3_O1D": true,
+          "qNO": true,
+          "qNO2": true,
+          "qO": true,
+          "qO1D": true,
+          "qO2": true,
+          "qO3": true,
+          "qv": true
+        },
+        "passed": true,
+        "positive_physical_fields": {
+          "pressure": true,
+          "rho": true,
+          "surface_pressure": true,
+          "theta": true
+        },
+        "ranges": {
+          "emis_NO": {
+            "maximum": 1.0905529926669217e-09,
+            "minimum": 0.0
+          },
+          "emis_NO2": {
+            "maximum": 1.2117255474076908e-10,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_agl": {
+            "maximum": 5.94935811780092e-13,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_agl_layer": {
+            "maximum": 5.94935811780092e-13,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_ags": {
+            "maximum": 1.3103905339554575e-12,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_ags_layer": {
+            "maximum": 1.3103905339554575e-12,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_awb": {
+            "maximum": 3.04311692204029e-12,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_awb_layer": {
+            "maximum": 3.04311692204029e-12,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_com": {
+            "maximum": 2.7089140635470333e-12,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_com_layer": {
+            "maximum": 2.7089140635470333e-12,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_ene": {
+            "maximum": 6.601592800066402e-11,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_ene_layer": {
+            "maximum": 6.601592800066402e-11,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_fef": {
+            "maximum": 2.2299039749050175e-12,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_fef_layer": {
+            "maximum": 2.2299039749050175e-12,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_ind": {
+            "maximum": 7.816831572386414e-11,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_ind_layer": {
+            "maximum": 7.816831572386414e-11,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_ref": {
+            "maximum": 1.6726446560272034e-11,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_ref_layer": {
+            "maximum": 1.6726446560272034e-11,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_res": {
+            "maximum": 3.4943665935230912e-12,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_res_layer": {
+            "maximum": 3.4943665935230912e-12,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_shp": {
+            "maximum": 2.1645630102129943e-11,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_shp_layer": {
+            "maximum": 2.1645630102129943e-11,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_swd": {
+            "maximum": 1.0001476238353143e-12,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_swd_layer": {
+            "maximum": 1.0001476238353143e-12,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_tnr": {
+            "maximum": 2.1105868198519643e-12,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_tnr_layer": {
+            "maximum": 2.1105868198519643e-12,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_tro": {
+            "maximum": 2.127188827467837e-11,
+            "minimum": 0.0
+          },
+          "emis_NO2__sector_tro_layer": {
+            "maximum": 2.127188827467837e-11,
+            "minimum": 0.0
+          },
+          "emis_NO2_layer": {
+            "maximum": 1.2117255474076908e-10,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_agl": {
+            "maximum": 5.3544223060208294e-12,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_agl_layer": {
+            "maximum": 5.3544223060208294e-12,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_ags": {
+            "maximum": 1.179351480559912e-11,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_ags_layer": {
+            "maximum": 1.179351480559912e-11,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_awb": {
+            "maximum": 2.7388052298362604e-11,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_awb_layer": {
+            "maximum": 2.7388052298362604e-11,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_com": {
+            "maximum": 2.4380226571923298e-11,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_com_layer": {
+            "maximum": 2.4380226571923298e-11,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_ene": {
+            "maximum": 5.941433520059761e-10,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_ene_layer": {
+            "maximum": 5.941433520059761e-10,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_fef": {
+            "maximum": 2.0069135774145155e-11,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_fef_layer": {
+            "maximum": 2.0069135774145155e-11,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_ind": {
+            "maximum": 7.035148415147772e-10,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_ind_layer": {
+            "maximum": 7.035148415147772e-10,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_ref": {
+            "maximum": 1.5053801904244828e-10,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_ref_layer": {
+            "maximum": 1.5053801904244828e-10,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_res": {
+            "maximum": 3.144929934170782e-11,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_res_layer": {
+            "maximum": 3.144929934170782e-11,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_shp": {
+            "maximum": 1.9481067091916946e-10,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_shp_layer": {
+            "maximum": 1.9481067091916946e-10,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_swd": {
+            "maximum": 9.001328614517825e-12,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_swd_layer": {
+            "maximum": 9.001328614517825e-12,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_tnr": {
+            "maximum": 1.899528137866768e-11,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_tnr_layer": {
+            "maximum": 1.899528137866768e-11,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_tro": {
+            "maximum": 1.9144699447210533e-10,
+            "minimum": 0.0
+          },
+          "emis_NO__sector_tro_layer": {
+            "maximum": 1.9144699447210533e-10,
+            "minimum": 0.0
+          },
+          "emis_NO_layer": {
+            "maximum": 1.0905529926669217e-09,
+            "minimum": 0.0
+          },
+          "j_jNO2": {
+            "maximum": 0.013014438825685648,
+            "minimum": 0.0
+          },
+          "j_jO2": {
+            "maximum": 3.787895794533774e-10,
+            "minimum": 0.0
+          },
+          "j_jO3_O": {
+            "maximum": 0.0006249651010650104,
+            "minimum": 0.0
+          },
+          "j_jO3_O1D": {
+            "maximum": 0.0010338284225300948,
+            "minimum": 0.0
+          },
+          "pressure": {
+            "maximum": 98506.32146891108,
+            "minimum": 205.6317499302669
+          },
+          "qNO": {
+            "maximum": 8.626127167027861e-09,
+            "minimum": 0.0
+          },
+          "qNO2": {
+            "maximum": 1.262771489854785e-08,
+            "minimum": 3.1492834809471607e-11
+          },
+          "qO": {
+            "maximum": 9.754868894780163e-10,
+            "minimum": 0.0
+          },
+          "qO1D": {
+            "maximum": 1.832477439526924e-16,
+            "minimum": 0.0
+          },
+          "qO2": {
+            "maximum": 0.2319641128087175,
+            "minimum": 0.23196315788427846
+          },
+          "qO3": {
+            "maximum": 1.0045146634496013e-05,
+            "minimum": 8.698909568272538e-09
+          },
+          "qv": {
+            "maximum": 0.0,
+            "minimum": 0.0
+          },
+          "rho": {
+            "maximum": 1.513799037114305,
+            "minimum": 0.002730386564821261
+          },
+          "rho_zz": {
+            "maximum": 0.6108730183839841,
+            "minimum": 0.004055943120984327
+          },
+          "surface_pressure": {
+            "maximum": 100000.00000000001,
+            "minimum": 99999.99999999999
+          },
+          "theta": {
+            "maximum": 1536.9957224554616,
+            "minimum": 226.70795696420376
+          },
+          "u": {
+            "maximum": 35.198621565981206,
+            "minimum": -35.208069769459094
+          },
+          "w": {
+            "maximum": 0.006307983165624634,
+            "minimum": -0.006519819697201299
+          }
+        }
+      },
+      "frame_count_pass": true,
+      "frames": [
+        "2024-07-01_00:00:00",
+        "2024-07-01_00:15:00",
+        "2024-07-01_00:30:00",
+        "2024-07-01_00:45:00",
+        "2024-07-01_01:00:00"
+      ],
+      "log": {
+        "chemistry_timer_calls": 8,
+        "chemistry_timer_seconds": 34.19119,
+        "disabled_messages": 0,
+        "emission_species_count": 2,
+        "exact_grid_validations": 1,
+        "first_open_step_seconds": 7.689220011,
+        "global_inventory_cells": 40962,
+        "masses_kg": {
+          "NO": 7897687.98136896,
+          "NO2": 877520.886818773
+        },
+        "miem_timer_calls": 8,
+        "miem_timer_seconds": 7.84871,
+        "rank_zero_selected_cells": 5119,
+        "restart_read_seconds": null,
+        "time_integration_seconds": 67.52079,
+        "timers": {
+          "chem MICM solve": {
+            "calls": 8,
+            "seconds": 34.05255
+          },
+          "chem MIEM": {
+            "calls": 8,
+            "seconds": 7.84871
+          },
+          "chemistry": {
+            "calls": 8,
+            "seconds": 34.19119
+          },
+          "initialize": {
+            "calls": 1,
+            "seconds": 1.99263
+          },
+          "read_ICs": {
+            "calls": 1,
+            "seconds": 1.18655
+          },
+          "time integration": {
+            "calls": 8,
+            "seconds": 67.52079
+          }
+        },
+        "tuvx_initialized": 1,
+        "vertical_levels": 26,
+        "warm_step_calls": 7,
+        "warm_step_mean_seconds": 0.0197047932857143
+      },
+      "metadata": {
+        "artifacts": {
+          "atmosphere_model": {
+            "name": "atmosphere_model",
+            "sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+            "size_bytes": 14082536
+          },
+          "configuration": {
+            "global_cams_chapman_nox.yaml": {
+              "name": "global_cams_chapman_nox.yaml",
+              "sha256": "2b5899d0894414be97642cae3744a2433385692b7bc3b510b0f166e87e57b60e",
+              "size_bytes": 4969
+            },
+            "global_cams_nox.yaml": {
+              "name": "global_cams_nox.yaml",
+              "sha256": "7d16e7f8186eeaeb4c6600f02e24f691e4b1d6390b611e1ffe14b98e311272b3",
+              "size_bytes": 7012
+            },
+            "namelist.atmosphere": {
+              "name": "namelist.atmosphere",
+              "sha256": "f6288e99ee96e1de02d5a9deed120634574cebc2d3ce6e72135ef32aaa155c8a",
+              "size_bytes": 2438
+            },
+            "stream_list.atmosphere.output": {
+              "name": "stream_list.atmosphere.output",
+              "sha256": "140c8db2d1835012ce3d458e08c3b0c22eec109582202a4cf9fc2b296c7f2e83",
+              "size_bytes": 1410
+            },
+            "streams.atmosphere": {
+              "name": "streams.atmosphere",
+              "sha256": "907f2a9c150a3ce20419aa829cf785739a1ee544bbc6dfe1181c83684ddf4832",
+              "size_bytes": 1604
+            },
+            "tuvx_chapman_nox.json": {
+              "name": "tuvx_chapman_nox.json",
+              "sha256": "00fdf1598cb637e6ab8e87997a9d25703e16497eacb59bb20e0117aeda89d3d9",
+              "size_bytes": 4597
+            },
+            "tuvx_upper_atm.csv": {
+              "name": "tuvx_upper_atm.csv",
+              "sha256": "851b0ff3549bca691e0c49a8727bcdbaae001c9a34a7b1f7696f975ddd0b5954",
+              "size_bytes": 521
+            }
+          }
+        },
+        "segment": {
+          "do_restart": false,
+          "duration_seconds": 3600,
+          "start_time": "2024-07-01_00:00:00"
+        },
+        "software": {
+          "chempas_commit": "4ffc5da925388f9e83a2a04f2531ba24cc46aed8",
+          "chempas_dirty": false,
+          "chempas_untracked_paths": [
+            "*TBL",
+            "src/core_atmosphere/physics_mmm/",
+            "src/core_atmosphere/physics_noaa/"
+          ],
+          "miem_commit": "9fdf14a189262eecb677862d877ab72b06c95e21",
+          "musica_commit": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc",
+          "tuvx_data_directory": "data"
+        }
+      },
+      "miem_call_count_pass": true,
+      "output": {
+        "history_bytes": 2101452260,
+        "history_files": [
+          {
+            "path": "runs/stage9e/clean-reproduction-37i9zrd7/g3-20260806T191102Z-4ffc5da925/main/history.2024-07-01_00.00.00.nc",
+            "sha256": "c8dc172c6b4ae658f6a4827781c1af4880f232e260b26375c255d956e88b384b",
+            "size_bytes": 420290452
+          },
+          {
+            "path": "runs/stage9e/clean-reproduction-37i9zrd7/g3-20260806T191102Z-4ffc5da925/main/history.2024-07-01_00.15.00.nc",
+            "sha256": "141bca853ad039b4a643c935750038668f5753d03b1c7807fa6bd304c0b679b6",
+            "size_bytes": 420290452
+          },
+          {
+            "path": "runs/stage9e/clean-reproduction-37i9zrd7/g3-20260806T191102Z-4ffc5da925/main/history.2024-07-01_00.30.00.nc",
+            "sha256": "37c8767178f8144cda05d41aaee851babc72de5fb829d220a27b3431be836e46",
+            "size_bytes": 420290452
+          },
+          {
+            "path": "runs/stage9e/clean-reproduction-37i9zrd7/g3-20260806T191102Z-4ffc5da925/main/history.2024-07-01_00.45.00.nc",
+            "sha256": "ea666470e5bec4e932f9d11f4f1520713253a756a91809187fc03c8f279e8dff",
+            "size_bytes": 420290452
+          },
+          {
+            "path": "runs/stage9e/clean-reproduction-37i9zrd7/g3-20260806T191102Z-4ffc5da925/main/history.2024-07-01_01.00.00.nc",
+            "sha256": "7384d10509690dab413a34dfbda438999068cc0b4b57990c3df8e6f7173ae9e3",
+            "size_bytes": 420290452
+          }
+        ],
+        "restart_bytes": 0,
+        "restart_files": []
+      },
+      "resource": {
+        "peak_rss_kib": 1101100,
+        "wall_seconds": 74.57
+      },
+      "scientific_field_hashes": {
+        "2024-07-01_00:00:00": {
+          "emis_NO": "ceb9a1c18ec862b92a31d02e3acb79770637616682fdc39e1f8c623a41a9f1cf",
+          "emis_NO2": "ceb9a1c18ec862b92a31d02e3acb79770637616682fdc39e1f8c623a41a9f1cf",
+          "j_jNO2": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "j_jO2": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "j_jO3_O": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "j_jO3_O1D": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "pressure": "f3c59124ea9ed24871cd2fd0978c974c23c865dc3546fb11de144ed5f451d746",
+          "qNO": "fb07cac18b8b902ca7b58874bf3990488bf599898be66e4900f2422b90a0b87f",
+          "qNO2": "61003bf6f7fb99ce84dc2eb5b5006c6f0ecdbc440f358dcb4f2dcc5f2d677ff5",
+          "qO": "5835871b41d03f0dc557f5f760e5d67f3d33d4c4150c32a5ba3b5a2f6bd1a722",
+          "qO1D": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "qO2": "df33cdac47f3074dd5ad0ad8e3e785b073afa8b8f3c40c267cc4190a963d385d",
+          "qO3": "513ddb883e51d50d7afcc293ff67d7d450c5ba44be37eb43b1230febc2dc137a",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "2985eb8c82f9b5ccd0581d695c349dcead1dfd7349262581da287585644d1dd8",
+          "rho_zz": "ff99d76f2d12eac53ebe8d18f253c05f6d9cdbf49b40d6a30aa6384bc7c4c7e3",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "1a2fe150fa347c26219f6841425c6927211dbcb7af587c00ea228cfa93868b77",
+          "u": "e5c426a888c793802318651ea11d89bdba6c65e243f6481b63c69d3d483e5e85",
+          "w": "7eb7c7c5273f75a778977079e5c81d8ec252a2234f7763f91e91ae582e4da819"
+        },
+        "2024-07-01_00:15:00": {
+          "emis_NO": "93f4cf9cda1c73931be9737b1fa0b5ebff12448ebc90753750c50b3947f4ddc0",
+          "emis_NO2": "1313f5ef4ab2d6d3c1f95539dd8179ea7bf1d9a19a2f15d691cc2a803e59825b",
+          "j_jNO2": "e1e4e5f082e47d663b79c9aea676833005eb780d6ca96cd5f689e62f4ed2c107",
+          "j_jO2": "4a9b8e97823802fc5e5e0be368d81dd7cfaa0a7eb920c1c5227acab893fe5908",
+          "j_jO3_O": "da6e2e94feb81c5127dd86f311be747fb5d941027e5ac8c07580b554a75054a1",
+          "j_jO3_O1D": "e91342ad141fbd0ac8ed7191b54305e18bbc302158f13501cb5eac0a15d484a4",
+          "pressure": "42b8d237df8a5df448eb6e9256bfa9f425acbc2eab654eca9d31644e4f28f549",
+          "qNO": "8076152b088f0017e83c1849ee6e31b60fa9dd142a97820ec5bf98a8715ae2da",
+          "qNO2": "895b7ae6766d6556cdfddc179e04a28e11fdd718facdccf2d82fb10d3d8afe81",
+          "qO": "dddde142e4a3e1f8be6534ccdc6f5b24ae2866588dcb8fe0e7b81045efe04fa5",
+          "qO1D": "114f53ec398aca8ccca2dfc79d93d61b1a1a376c9e37836b8c5db5b95cdfe37f",
+          "qO2": "4f983562fc8c18b60fea7ff26de929a5ce9d2d1b2bbf5fabe7457fbbb0ca097d",
+          "qO3": "171f39debfba604d606b152876183636c35dd6c44b8bc0fe96bace81f36c5ad1",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "1ca638da8569be128d0cbb3ea34954c0221f28db22cde008efb5af55aa7117d1",
+          "rho_zz": "e659b9cb52617b33f49366568d0054b9ae2234bd458e83eb47a22bf1507d1a6e",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "ae789e4f1baf42fd54cfe8ea7039dc2376e91c93325e3c64984d58534c4c42d2",
+          "u": "edada700f692352093df1d887bcee78b15a939255f5f5afb57af7c298069be92",
+          "w": "18a3b02eba76b1dca9b6e1b8edad152a99d9c40af76cb8ec69af1553a32e02ef"
+        },
+        "2024-07-01_00:30:00": {
+          "emis_NO": "28b3354059f6117c23e8e24f788a4467cb84804bedff959eaaced01d20837477",
+          "emis_NO2": "395c04daf79ffa129d8a931da4278b01e6049fa28c87871fabb5de36647a6a7d",
+          "j_jNO2": "1a58be06d61bce95fcab4af73016a0a40043a99c8f9fec81782ca0cb7968095f",
+          "j_jO2": "e8f29cd236b737fc1f7eb507b6ccca42d508ceab7fccb8276054b002eb5f6743",
+          "j_jO3_O": "537410931d82676b817a023fc1f4568b783188d7f9ce9db5034ce2af4112acb4",
+          "j_jO3_O1D": "112b97f9ea34aeb90d95f81d8675ff9cd17496e651447c98bec827e7e86d0df3",
+          "pressure": "d397daed6c4879f1db77f3c9eab0dd4423c28abbe3ff840d26bcc0b0bbba9014",
+          "qNO": "a8bf396967b1cda61132f1ab329435c5ce0077056a2850e2bbee64ba851ce8cc",
+          "qNO2": "b5b0e19f3a78beeadbcb380562a45115380f6a565cb558511abfc5f20593a93e",
+          "qO": "bfd400cf1e8a08202f743f874cdfbd001037895ae191f54f9f10f86a3dee3d19",
+          "qO1D": "bcd2c8f58f4ee11e16d34c211c4a07594b95a0d6d88cdbebeaead040a31cf2a3",
+          "qO2": "a9038ee84069f8e2a1917cd16eb1e2902e5ae3876150a3e13685cd64c8e26278",
+          "qO3": "a9c56c2dbf25a88d025161978c376018109a4e0e33cfd01da571ecde37d484ec",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "3ccdfec984f1bebcc9a011ad83d5e95e4619a6fc6c7a2079d62b4243108b1476",
+          "rho_zz": "b1ad3c9c7f79609c3d8acbd8862774f9928ff93c4db29dc9a8419e433b800787",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "1f3215c0662a4ae3f535b71cbdcc2ed4d403f0b056de71c0390e84d8073cf254",
+          "u": "ca3d1ccbe7db1888fbeaef0a5843bcaee0a9af7146e837bbe7dab47c9ee4da1d",
+          "w": "df4d459995c3693757d1cdf8f54c599f58830da44917384430d13ea9b8865b9f"
+        },
+        "2024-07-01_00:45:00": {
+          "emis_NO": "741b2c1a1213c8c93bd9bdcfa2e6182c073db00d100a8f6840cbb3170a83882c",
+          "emis_NO2": "6f709f866bdf976f8bf8d633229a850d48c91ee59f45440ef6626c0f52a36187",
+          "j_jNO2": "d446ff140237d3a6269ea33cc9d84bcd9e9d555d9e381301831728cc256d538c",
+          "j_jO2": "3522db11d68df159a25bfd049cbd63dea3198a5a083e3dea8942ca02b32559e2",
+          "j_jO3_O": "a31249d2e83d04e5f4388e23e5c5c60a580852d59e4c954489497e1fb3c2b9e5",
+          "j_jO3_O1D": "f5022a3ebd735fa5da6ab3b938ee21658025370d7f00d0bba87dff0ef9cba304",
+          "pressure": "ca891ff676de9bfacbfb983ee4961a0b169736907e5e6902ed6484710600bd00",
+          "qNO": "faff58dde1c583853574e9d8eadb623395c5f6352fb1aa5f33ed69b06cc2b914",
+          "qNO2": "1a391bc48f945443271ad4b8bb922744bf2efb82b76366e92e1cf8c730968d0f",
+          "qO": "5a710c8a23beeeeb1eba598265b41cb4d3fcbc434fe8f214bc4dab33b642dc59",
+          "qO1D": "92f8e0b40d7f9791311ec0273486040ac2495cba89e66731f21228ba93b8c34e",
+          "qO2": "598df6ca97382cba6f4b68d6d31dcb63f20f19003e6e0ca09184ce769477ecbd",
+          "qO3": "2b2da1ba8776e7b87306790731c7bd494e4ea202200632a2161d26d56f3a568a",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "6a5cead301534cb7288ef754453f55f1e34d8cff08d31c85afc54787c7d1f559",
+          "rho_zz": "bccb6495cc3278b1fdee8116cdc56b4e408f9d9ff2cfbfa5b8cbb69ba6700a78",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "8610e2e818516d18e177aee7585ffac20b732d63a5e6e214d356c64b4d5c0440",
+          "u": "7641df7659d4dd5275c873d3801fff4967a8d1390ca0508b4825e00c324585d7",
+          "w": "1420e26ab9a77e033bd44c7abc4026e2d03c79a390d1c954eef0ea13375b70eb"
+        },
+        "2024-07-01_01:00:00": {
+          "emis_NO": "5fb699672b30fb506363e70a0bb7430680be8323154d48ee9b404d99c4f80c16",
+          "emis_NO2": "339642975ccd971310e6e46b8f1ea14d89fc52c488c067bfee8325cb1264b8c2",
+          "j_jNO2": "f6f7962818f20017b41960e41b37c81fb2b8cda51ccb5a9d50b3af481f02343b",
+          "j_jO2": "b59b117b1aca1b626a11bae02c510b911f4410983696b2a76973ae4c1b408958",
+          "j_jO3_O": "7a062da535025bcf704eed5f424017017695dd54040562fb5d9722c76244328a",
+          "j_jO3_O1D": "4d2ae1339fa8ad16b92f76b7488232753b4b6745bdd6dcd5e3bc30407b24aa5b",
+          "pressure": "3dc7a8cacf99c406be3532063342bdc4c34e7c988dd05e13e82c154308802fe0",
+          "qNO": "a0618efe760829a6bf24915b66b7f71454e1b41f465fa4755044f2466c6a2912",
+          "qNO2": "c135b3d72f54d78f1ffc1f050a9856d8a1d4e1343609cf6573e2f88f8941dc86",
+          "qO": "378780665c9fd4e0ad0a6a17094a3172d62e1425902b5271ac7c66c2cdde528d",
+          "qO1D": "a898bfdfbe9848b6375b1e38800dd88aab2618ce854dd2953f8ebffa8c31b978",
+          "qO2": "b127ac728daa6d84de3fff0639dfb62dd699ab3c6c1d8c1bd785841b3b7c4be3",
+          "qO3": "28b837c4e9be94f04a0b11557ae13cdab65ffa2d027e4ae005f36b08f8186bfd",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "6ae12a3ec6aea805a2126ca18ccbdbb96756a4dc2cc068110827a6d88e64def2",
+          "rho_zz": "e07feb0fa697db768be908b5143309cd73c59afb17d0a200031c532ed4682790",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "3609c72da5aec626b9ec4223ea21256d7aca102b705f1976c390c6ba098bed85",
+          "u": "92790e34513caf3595c48c734c17b968641a514d190ea9bcdad9582fb0d6d36d",
+          "w": "b6b57c44b87de5fd6941df699569f1911c41b72b61b9e77a5530c60a3dd478a0"
+        }
+      },
+      "source_mass_comparison": {
+        "NO": {
+          "bitwise_equal": false,
+          "maximum_absolute": 2.7939677238464355e-09,
+          "maximum_relative": 3.537703351205497e-16,
+          "passed": true
+        },
+        "NO2": {
+          "bitwise_equal": false,
+          "maximum_absolute": 4.656612873077393e-10,
+          "maximum_relative": 5.306555026808246e-16,
+          "passed": true
+        }
+      },
+      "source_mass_pass": true,
+      "timing_contract_pass": true
+    }
+  },
+  "scenario": {
+    "description": "One-hour CAMS science inventory with complete sector/layer auditing.",
+    "name": "g3_science_hour",
+    "resolved": {
+      "chemistry_interval_seconds": 0,
+      "chemistry_reference_solve": false,
+      "chemistry_substeps": 1,
+      "description": "One-hour CAMS science inventory with complete sector/layer auditing.",
+      "diagnostic_categories": [],
+      "diagnostic_sectors": [
+        "agl",
+        "ags",
+        "awb",
+        "com",
+        "ene",
+        "fef",
+        "ind",
+        "ref",
+        "res",
+        "shp",
+        "swd",
+        "tnr",
+        "tro"
+      ],
+      "duration_seconds": 3600,
+      "expected_assertions": [
+        "exact_grid_open",
+        "all_frame_interpolation",
+        "diagnostic_source_closure",
+        "sector_closure",
+        "surface_layer_closure",
+        "reactive_noy_budget",
+        "finite_state",
+        "acceptance_resource_forecast"
+      ],
+      "id": "G3",
+      "initial_condition_id": "mpas-x1.40962-jw-static-aligned-chapman-nox-state",
+      "inventory_kind": "science",
+      "layered_diagnostics": true,
+      "lightning_enabled": false,
+      "max_diagnostic_fields": 768,
+      "micm_config": "micm_configs/global_cams_chapman_nox.yaml",
+      "micm_relative_tolerance": 1e-15,
+      "miem_enabled": true,
+      "model_dt_seconds": 450,
+      "mpi_ranks": 8,
+      "output_interval_seconds": 900,
+      "partition_id": "mpas-x1.40962-eight-rank-partition",
+      "science_inventory_id": "cams-glob-ant-v6.2-x1.40962-miem-inventory",
+      "start_time": "2024-07-01_00:00:00",
+      "tolerances": {
+        "flux_absolute_kg_m2_s": 1e-24,
+        "flux_relative": 2e-13,
+        "noy_budget_absolute_mol": 0.001,
+        "noy_budget_relative": 5e-05,
+        "restart_absolute": 1e-20,
+        "restart_photolysis_absolute_s-1": 1e-20,
+        "restart_photolysis_relative": 2e-10,
+        "restart_relative": 5e-11,
+        "science_burden_absolute_mol": 0.01,
+        "science_flux_absolute_kg_s": 1e-09,
+        "science_integral_relative": 1e-13,
+        "solver_calibration_minimum_wall_speedup": 10.0,
+        "solver_calibration_nitrogen_burden_relative": 1e-06,
+        "solver_calibration_nitrogen_maximum_absolute_kg_kg": 1e-14,
+        "solver_calibration_noy_burden_relative": 1e-12,
+        "solver_calibration_other_chemistry_maximum_absolute_kg_kg": 1e-12,
+        "source_mass_absolute_kg": 1e-08,
+        "source_mass_relative": 2e-12
+      },
+      "tuvx_config": "micm_configs/tuvx_chapman_nox.json",
+      "tuvx_extension": "test_cases/chapman_nox_global/tuvx_upper_atm.csv",
+      "tuvx_update_interval_seconds": 0
+    }
+  },
+  "schema_version": "chempas-global-miem-throughput-report-v1",
+  "science_distributions": {},
+  "telemetry": {
+    "available_disk_bytes_after_run": 240205791232,
+    "run_count": 1,
+    "total_history_bytes": 2101452260,
+    "total_output_bytes": 2101452260,
+    "total_restart_bytes": 0
+  }
+}

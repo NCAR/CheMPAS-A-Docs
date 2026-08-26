@@ -1,0 +1,291 @@
+{
+  "gate": "M3",
+  "histories": [
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/A/history.2024-07-01_00.00.00.nc",
+      "member": "A",
+      "member_label": "A Target Surface Sources Withheld",
+      "record": 0,
+      "sha256": "64c2abe2cad62059a73262b9ceae0d9bcdd186f0fdbcce841b4361adcf2971b1",
+      "size_bytes": 222682448,
+      "time": "2024-07-01_00:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/A/history.2024-07-01_03.00.00.nc",
+      "member": "A",
+      "member_label": "A Target Surface Sources Withheld",
+      "record": 0,
+      "sha256": "4522f1e07fe46c14da96bb7e6646a9864e218835696269ebbf8d89422ec1b8a4",
+      "size_bytes": 222682448,
+      "time": "2024-07-01_03:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/A/history.2024-07-01_06.00.00.nc",
+      "member": "A",
+      "member_label": "A Target Surface Sources Withheld",
+      "record": 0,
+      "sha256": "290309fb605e041f36ebdd4db9775414034fc73591db18aef69e3ae2a15f660f",
+      "size_bytes": 222682448,
+      "time": "2024-07-01_06:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/A/history.2024-07-01_09.00.00.nc",
+      "member": "A",
+      "member_label": "A Target Surface Sources Withheld",
+      "record": 0,
+      "sha256": "6ddd25f56f6c2374f4675bc997b0e4e01d585be85d7457869e79ec30333bdfea",
+      "size_bytes": 222682448,
+      "time": "2024-07-01_09:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/A/history.2024-07-01_12.00.00.nc",
+      "member": "A",
+      "member_label": "A Target Surface Sources Withheld",
+      "record": 0,
+      "sha256": "938bbdadf144aa9c988f0a9f4fb83c70a81bf4336a523fd883fc95982a8e6479",
+      "size_bytes": 222682448,
+      "time": "2024-07-01_12:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/A/history.2024-07-01_15.00.00.nc",
+      "member": "A",
+      "member_label": "A Target Surface Sources Withheld",
+      "record": 0,
+      "sha256": "4e23a5878b0229f0552823db97dfc88358ea6134860b6ede6d08a853f9a8c94b",
+      "size_bytes": 222682448,
+      "time": "2024-07-01_15:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/A/history.2024-07-01_18.00.00.nc",
+      "member": "A",
+      "member_label": "A Target Surface Sources Withheld",
+      "record": 0,
+      "sha256": "c3583756f4592b5a633363d0c668de0c1250975b5b81da119bba22e8978f2cc7",
+      "size_bytes": 222682448,
+      "time": "2024-07-01_18:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/A/history.2024-07-01_21.00.00.nc",
+      "member": "A",
+      "member_label": "A Target Surface Sources Withheld",
+      "record": 0,
+      "sha256": "50dec61c8ac7332630f385a8e55a4711982093705cdabdbbb0cc1a4d982f7921",
+      "size_bytes": 222682448,
+      "time": "2024-07-01_21:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/A/history.2024-07-02_00.00.00.nc",
+      "member": "A",
+      "member_label": "A Target Surface Sources Withheld",
+      "record": 0,
+      "sha256": "369a700065f701a236a85549b20d85cbfbb3ffa143131ac65c7edc6f16e80b9a",
+      "size_bytes": 222682448,
+      "time": "2024-07-02_00:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/B/history.2024-07-01_00.00.00.nc",
+      "member": "B",
+      "member_label": "B Anthropogenic Sources Applied",
+      "record": 0,
+      "sha256": "a1e909943440e12feb8a86482b3e0a36c2d03b85e36e20bb657f94bb6d8da980",
+      "size_bytes": 225633324,
+      "time": "2024-07-01_00:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/B/history.2024-07-01_03.00.00.nc",
+      "member": "B",
+      "member_label": "B Anthropogenic Sources Applied",
+      "record": 0,
+      "sha256": "d820bc33970d3013cd84009fa6fa062cdf97af75df4af676c650f4d77cbecd80",
+      "size_bytes": 225633324,
+      "time": "2024-07-01_03:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/B/history.2024-07-01_06.00.00.nc",
+      "member": "B",
+      "member_label": "B Anthropogenic Sources Applied",
+      "record": 0,
+      "sha256": "fd4a55ea350d8bdd3f613c02a9407cc3726091bd477ac3cccfe4e79d506f9059",
+      "size_bytes": 225633324,
+      "time": "2024-07-01_06:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/B/history.2024-07-01_09.00.00.nc",
+      "member": "B",
+      "member_label": "B Anthropogenic Sources Applied",
+      "record": 0,
+      "sha256": "107f1119d9980a466574a617bc5b2f19890f5843cd98a40835339a1f1bee3d0d",
+      "size_bytes": 225633324,
+      "time": "2024-07-01_09:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/B/history.2024-07-01_12.00.00.nc",
+      "member": "B",
+      "member_label": "B Anthropogenic Sources Applied",
+      "record": 0,
+      "sha256": "d5a3c1342bb7800ef0083dc0aa8c30f6641ac9315ce66873bcc6f204f23107d8",
+      "size_bytes": 225633324,
+      "time": "2024-07-01_12:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/B/history.2024-07-01_15.00.00.nc",
+      "member": "B",
+      "member_label": "B Anthropogenic Sources Applied",
+      "record": 0,
+      "sha256": "76e73f979fed461a5ce47b0e7b6661894ee0a1f66122e749278be1bec3e1d259",
+      "size_bytes": 225633324,
+      "time": "2024-07-01_15:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/B/history.2024-07-01_18.00.00.nc",
+      "member": "B",
+      "member_label": "B Anthropogenic Sources Applied",
+      "record": 0,
+      "sha256": "cab8ad89dca97d13996c6541344d4bb10d6a7fd08424ef640a981f439a0cf790",
+      "size_bytes": 225633324,
+      "time": "2024-07-01_18:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/B/history.2024-07-01_21.00.00.nc",
+      "member": "B",
+      "member_label": "B Anthropogenic Sources Applied",
+      "record": 0,
+      "sha256": "ac31b4548c03d8e33611040c59de66ab0ec90b7fdc5963ef75cf9fccea57c841",
+      "size_bytes": 225633324,
+      "time": "2024-07-01_21:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/B/history.2024-07-02_00.00.00.nc",
+      "member": "B",
+      "member_label": "B Anthropogenic Sources Applied",
+      "record": 0,
+      "sha256": "6239f52e3a7b7af7b5c75d5a4feefe3486771eb0143b31b386838a07422e8894",
+      "size_bytes": 225633324,
+      "time": "2024-07-02_00:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/C/history.2024-07-01_00.00.00.nc",
+      "member": "C",
+      "member_label": "C Anthropogenic and Fire Sources Applied",
+      "record": 0,
+      "sha256": "5bdb97f83798ffbd094b3276d9b5c46ab9c546f4c22067bc7ba4c11bdd71c76c",
+      "size_bytes": 227600576,
+      "time": "2024-07-01_00:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/C/history.2024-07-01_03.00.00.nc",
+      "member": "C",
+      "member_label": "C Anthropogenic and Fire Sources Applied",
+      "record": 0,
+      "sha256": "cb68b97a4c45c14f1b6cd98304f7e9f1e6c749ddd22be266e3c47441eae186b1",
+      "size_bytes": 227600576,
+      "time": "2024-07-01_03:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/C/history.2024-07-01_06.00.00.nc",
+      "member": "C",
+      "member_label": "C Anthropogenic and Fire Sources Applied",
+      "record": 0,
+      "sha256": "7cda87a77f3744e15a5c7f1402fec7ea79f2231615ef1bd95b3ba036e4fcd86f",
+      "size_bytes": 227600576,
+      "time": "2024-07-01_06:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/C/history.2024-07-01_09.00.00.nc",
+      "member": "C",
+      "member_label": "C Anthropogenic and Fire Sources Applied",
+      "record": 0,
+      "sha256": "c82bb42f25a16f08be653310de6bcdbd5cac701645a45428095b9931dfc6a911",
+      "size_bytes": 227600576,
+      "time": "2024-07-01_09:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/C/history.2024-07-01_12.00.00.nc",
+      "member": "C",
+      "member_label": "C Anthropogenic and Fire Sources Applied",
+      "record": 0,
+      "sha256": "24e630424e7661568e5a2a303d6601744fa7063d13689a5cbfe0ab4b42e2af10",
+      "size_bytes": 227600576,
+      "time": "2024-07-01_12:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/C/history.2024-07-01_15.00.00.nc",
+      "member": "C",
+      "member_label": "C Anthropogenic and Fire Sources Applied",
+      "record": 0,
+      "sha256": "06d52a6c30be27e98a4c27ab3ce8aab8ba6e4cad5c98686fae9227ca00eda1cf",
+      "size_bytes": 227600576,
+      "time": "2024-07-01_15:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/C/history.2024-07-01_18.00.00.nc",
+      "member": "C",
+      "member_label": "C Anthropogenic and Fire Sources Applied",
+      "record": 0,
+      "sha256": "2c71c147a69d17c6bb81a46c8152af0dece6363288fbb5d83070fc31645cf8a3",
+      "size_bytes": 227600576,
+      "time": "2024-07-01_18:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/C/history.2024-07-01_21.00.00.nc",
+      "member": "C",
+      "member_label": "C Anthropogenic and Fire Sources Applied",
+      "record": 0,
+      "sha256": "701a0ec1399117b4c82e7c109d11c9e6afe4899a6654c27101b23e1ab2107185",
+      "size_bytes": 227600576,
+      "time": "2024-07-01_21:00:00"
+    },
+    {
+      "logical_path": "runs/global-mvp/m3-20260816T063842Z-9f703f5050/C/history.2024-07-02_00.00.00.nc",
+      "member": "C",
+      "member_label": "C Anthropogenic and Fire Sources Applied",
+      "record": 0,
+      "sha256": "aa0725f26c656adcebe0240b9570939f6099bc5e9addf35f9a1ba80eb0bd7a00",
+      "size_bytes": 227600576,
+      "time": "2024-07-02_00:00:00"
+    }
+  ],
+  "history_count": 27,
+  "inputs": {
+    "anthropogenic_inventory_id": {
+      "id": "mvp-cams-harmonized-no-no2-co-x1.40962",
+      "logical_path": "inventory/mvp-cams-harmonized-x1.40962/miem_inventory.cams.nc",
+      "role": "prepared_anthropogenic_inventory",
+      "sha256": "39ab42133bdc255a74c5082e8a20dd3111ad5bde6f67d270828123712c1670bf",
+      "size_bytes": 26686361
+    },
+    "fire_inventory_id": {
+      "id": "finn-v2.5.1-nrt-no-no2-co-x1.40962",
+      "logical_path": "inventory/finn-v2.5.1-nrt-x1.40962/miem_inventory.finn.nc",
+      "role": "prepared_fire_inventory",
+      "sha256": "dfb3eef24f5a76ec4b41a9cb1837454a52239f69d12514547992e5821364a8f1",
+      "size_bytes": 5271798
+    },
+    "initial_condition_id": {
+      "id": "mpas-x1.40962-gfs-20240701t00z-expanded-tropo-state",
+      "logical_path": "initial_conditions/noaa-gfs-20240701T00Z/x1.40962.gfs-20240701T00Z.expanded-tropo.init.nc",
+      "role": "model_initial_condition",
+      "sha256": "7ccb0670cb49374de78187761cf410690a4b8fc4d4a27533a5ba97deed907e78",
+      "size_bytes": 572335744
+    },
+    "prescribed_o3_id": {
+      "id": "merra2-o3-v5.12.4-monthly-climatology-x1.40962",
+      "logical_path": "prescribed/merra2-o3-v5.12.4-x1.40962/merra2-o3-monthly-climatology.x1.40962.nc",
+      "role": "prescribed_upper_o3_climatology",
+      "sha256": "a6ecbb5b57fc72485d76ed8cb652666f58c26535bc1f3dbf443b9bc615938301",
+      "size_bytes": 39423729
+    }
+  },
+  "overall_pass": true,
+  "report": {
+    "logical_path": "reports/global-mvp/9f703f505051b8eb3700e9ecae927fc1c84746ca/m3-report.json",
+    "sha256": "931913f02d33cc14db1ede6a093140755c492e02686ccc2ea4718e3f294daae5",
+    "size_bytes": 275750
+  },
+  "schema_version": "chempas-global-mvp-history-manifest-v1",
+  "software": {
+    "checker_sha256": "96d15f25deffcf0e60f805d12c9580a3a4ff66576619a15214770222421c140a",
+    "chempas_commit": "9f703f505051b8eb3700e9ecae927fc1c84746ca",
+    "executable_sha256": "0049e8968273f95ec7404a4c123fa514458b29681fd2c8f117634b78d4d0988a"
+  }
+}

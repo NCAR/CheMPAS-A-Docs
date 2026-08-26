@@ -1,0 +1,138 @@
+{
+  "assertions": {
+    "all_requests_match_current_constraints": true,
+    "content_addressed_constraints_match": true,
+    "content_addressed_form_matches": true,
+    "explicit_v24r2_decision_consistent": true,
+    "no_implicit_latest": true,
+    "v24r2_surface_satellite_available": true
+  },
+  "catalogue_receipts": {
+    "collection": {
+      "sha256": "3fbf343156aedc9b3ab39e40ff1fee4730a32b69a6b348a82372de8212b21237",
+      "size_bytes": 5265,
+      "url": "https://ads.atmosphere.copernicus.eu/api/catalogue/v1/collections/cams-global-greenhouse-gas-inversion"
+    },
+    "constraints": {
+      "records": 165,
+      "sha256": "68c772fb1c24e9d83d682a5d79fa069180b037af28d8d751c2e86013f93b904f",
+      "size_bytes": 67087,
+      "url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/resources/cams-global-greenhouse-gas-inversion/constraints_68c772fb1c24e9d83d682a5d79fa069180b037af28d8d751c2e86013f93b904f.json"
+    },
+    "form": {
+      "sha256": "080437fb2b0c3107f2b9b84f8a98b61eed0eefe0c57e1af81431b84f9da696c4",
+      "size_bytes": 7489,
+      "url": "https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/resources/cams-global-greenhouse-gas-inversion/form_080437fb2b0c3107f2b9b84f8a98b61eed0eefe0c57e1af81431b84f9da696c4.json"
+    }
+  },
+  "credential_probe": {
+    "ads_api_token_environment_present": false,
+    "cdsapirc_present": false,
+    "secret_values_recorded": false
+  },
+  "dataset": {
+    "doi": "10.24381/ed2851d2",
+    "id": "cams-global-greenhouse-gas-inversion",
+    "license": "CC-BY-4.0",
+    "title": "CAMS global inversion-optimised greenhouse gas fluxes and concentrations",
+    "updated": "2026-05-08T00:00:00Z"
+  },
+  "overall_pass": true,
+  "requests": [
+    {
+      "id": "ch4-concentration-instantaneous-2024-07",
+      "matching_constraint_count": 1,
+      "payload": {
+        "input_observations": [
+          "surface_satellite"
+        ],
+        "month": [
+          "07"
+        ],
+        "quantity": [
+          "concentration"
+        ],
+        "time_aggregation": [
+          "instantaneous"
+        ],
+        "variable": [
+          "methane"
+        ],
+        "version": [
+          "v24r2"
+        ],
+        "year": [
+          "2024"
+        ]
+      },
+      "valid": true
+    },
+    {
+      "id": "ch4-mean-column-instantaneous-2024-07",
+      "matching_constraint_count": 1,
+      "payload": {
+        "input_observations": [
+          "surface_satellite"
+        ],
+        "month": [
+          "07"
+        ],
+        "quantity": [
+          "mean_column"
+        ],
+        "time_aggregation": [
+          "instantaneous"
+        ],
+        "variable": [
+          "methane"
+        ],
+        "version": [
+          "v24r2"
+        ],
+        "year": [
+          "2024"
+        ]
+      },
+      "valid": true
+    },
+    {
+      "id": "ch4-surface-flux-monthly-2024-07-08",
+      "matching_constraint_count": 1,
+      "payload": {
+        "input_observations": [
+          "surface_satellite"
+        ],
+        "month": [
+          "07",
+          "08"
+        ],
+        "quantity": [
+          "surface_flux"
+        ],
+        "time_aggregation": [
+          "monthly_mean"
+        ],
+        "variable": [
+          "methane"
+        ],
+        "version": [
+          "v24r2"
+        ],
+        "year": [
+          "2024"
+        ]
+      },
+      "valid": true
+    }
+  ],
+  "retrieved_utc": "2026-08-15T17:03:53.920501+00:00",
+  "schema_version": "chempas-cams-inversion-source-selection-audit-v1",
+  "selection_decision": {
+    "observed_candidate_available": true,
+    "planning_candidate": "v24r2 surface-plus-satellite",
+    "planning_candidate_available": true,
+    "reason": "The content-addressed ADS constraints explicitly pair v24r2 surface_satellite with all three required quantities for 2024. The planned release is therefore retained and never resolved through latest.",
+    "selected_observations": "surface_satellite",
+    "selected_release": "v24r2"
+  }
+}

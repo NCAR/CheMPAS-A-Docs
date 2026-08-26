@@ -1,0 +1,18 @@
+PASS: MICM emission cache and source-rate contracts
+PASS: MICM emission cache and source-rate contracts
+chem_box_grid.nc: OK
+chem_box_init.nc: OK
+chem_box.graph.info.part.8: OK
+b5b6b924c521603edb61f3acc909742cbd234a43717c2fd4898dea8358394c89  /tmp/chempas-miem-failures-die2tnzh/runs/wrong_cell_count/full_inventory.nc
+b5b6b924c521603edb61f3acc909742cbd234a43717c2fd4898dea8358394c89  /tmp/chempas-miem-failures-die2tnzh/runs/out_of_range_time/miem_inventory.nc
+b5b6b924c521603edb61f3acc909742cbd234a43717c2fd4898dea8358394c89  /tmp/chempas-miem-failures-die2tnzh/runs/invalid_calendar/miem_inventory.nc
+b5b6b924c521603edb61f3acc909742cbd234a43717c2fd4898dea8358394c89  /tmp/chempas-miem-failures-die2tnzh/runs/wrong_grid_metadata/miem_inventory.nc
+b5b6b924c521603edb61f3acc909742cbd234a43717c2fd4898dea8358394c89  /tmp/chempas-miem-failures-die2tnzh/runs/diagnostic_over_cap/miem_inventory.nc
+PASS: expected MIEM runtime failure: missing_file
+PASS: expected MIEM runtime failure: wrong_cell_count
+PASS: expected MIEM runtime failure: out_of_range_time
+PASS: expected MIEM runtime failure: invalid_calendar
+PASS: expected MIEM runtime failure: wrong_grid_metadata
+PASS: expected MIEM runtime failure: diagnostic_over_cap
+Removed successful generated failure-test workspace: /tmp/chempas-miem-failures-die2tnzh
+PASS: MIEM eight-rank runtime failure paths

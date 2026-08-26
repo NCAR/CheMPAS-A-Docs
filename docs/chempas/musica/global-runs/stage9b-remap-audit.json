@@ -1,0 +1,263 @@
+{
+  "assertions": {
+    "all_sector_mass_budgets": true,
+    "all_source_and_destination_cells_mapped": true,
+    "elemental_nitrogen_speciation_closure": true,
+    "exact_grid_package_validation": true,
+    "provider_sector_sum_closure": true,
+    "weight_physical_area_conservation": true
+  },
+  "inputs": {
+    "mesh": {
+      "fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+      "path": "x1.40962.static.nc",
+      "sha256": "cf1a47d4168327f06a8403555d6ed8b2fe1aff7f8b916bb7f6a754c34a10ac82",
+      "size_bytes": 94766584
+    },
+    "source": {
+      "path": "CAMS-GLOB-ANT_Glb_0.1x0.1_anthro_nox_v6.2_2024-07_2024-08.nc",
+      "sha256": "2687ea4f95161119f3e7962f65a1026898a6c3730d509001ef30190fdd83b032",
+      "size_bytes": 95931202
+    },
+    "weights": {
+      "path": "cams-glob-ant-v6.2-0.1deg-to-x1.40962.conserve.weights.nc",
+      "sha256": "5fdf1f7e5f786449169a8f024edcfa7dd67dbb82af5a534e730b2aada1505712",
+      "size_bytes": 780426736
+    }
+  },
+  "method": "ESMF first-order conservative; dstarea; canonical user areas",
+  "outputs": {
+    "packaged": {
+      "path": "miem_inventory.cams-glob-ant-v6.2-x1.40962.nc",
+      "sha256": "d213866000e8a633954d0c730ba5524f729f26a97d02cc5a13d8b405aa6c8e9c",
+      "size_bytes": 20758020
+    },
+    "remapped": {
+      "path": "cams-glob-ant-v6.2-x1.40962-explicit-no-no2.remapped.nc",
+      "sha256": "ac0ec0ab4383d21324344aa58ca9fd0456f83f68779fca9a14245754d9d06a5e",
+      "size_bytes": 9142681
+    }
+  },
+  "overall_pass": true,
+  "packaged_validation": {
+    "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+    "n_cells": 40962,
+    "n_times": 2,
+    "species": [
+      "no_anth_agl",
+      "no2_anth_agl",
+      "no_anth_ags",
+      "no2_anth_ags",
+      "no_anth_awb",
+      "no2_anth_awb",
+      "no_anth_com",
+      "no2_anth_com",
+      "no_anth_ene",
+      "no2_anth_ene",
+      "no_anth_fef",
+      "no2_anth_fef",
+      "no_anth_ind",
+      "no2_anth_ind",
+      "no_anth_ref",
+      "no2_anth_ref",
+      "no_anth_res",
+      "no2_anth_res",
+      "no_anth_shp",
+      "no2_anth_shp",
+      "no_anth_swd",
+      "no2_anth_swd",
+      "no_anth_tnr",
+      "no2_anth_tnr",
+      "no_anth_tro",
+      "no2_anth_tro",
+      "no_anth_sum",
+      "no2_anth_sum"
+    ]
+  },
+  "schema_version": "chempas-global-miem-remap-audit-v1",
+  "times": [
+    {
+      "aggregate": {
+        "NO2_kg_s-1": 243.75745873439232,
+        "NO_kg_s-1": 2193.8171286095308,
+        "native_kg_s-1": 2352.789383437247,
+        "native_to_remapped_relative_difference": 1.9328009301967892e-16,
+        "nitrogen_relative_difference": 1.855488892303889e-16,
+        "provider_to_sector_sum_relative_difference": 3.691899107995862e-10,
+        "remapped_provider_sum_kg_s-1": 2352.7893834372476,
+        "remapped_sector_sum_kg_s-1": 2352.7893843058737
+      },
+      "sectors": {
+        "agl": {
+          "native_kg_s-1": 10.561981095306127,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 10.561981095306127
+        },
+        "ags": {
+          "native_kg_s-1": 73.90562749624596,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 73.90562749624596
+        },
+        "awb": {
+          "native_kg_s-1": 53.3647097839624,
+          "relative_difference": 2.6629686121656313e-16,
+          "remapped_kg_s-1": 53.36470978396238
+        },
+        "com": {
+          "native_kg_s-1": 24.076130562176626,
+          "relative_difference": 1.4756165529280609e-16,
+          "remapped_kg_s-1": 24.076130562176623
+        },
+        "ene": {
+          "native_kg_s-1": 588.4320733277552,
+          "relative_difference": 3.8640598592351964e-16,
+          "remapped_kg_s-1": 588.4320733277555
+        },
+        "fef": {
+          "native_kg_s-1": 4.237893027462891,
+          "relative_difference": 6.287405656144084e-16,
+          "remapped_kg_s-1": 4.237893027462894
+        },
+        "ind": {
+          "native_kg_s-1": 440.70967032203237,
+          "relative_difference": 9.02870889433632e-16,
+          "remapped_kg_s-1": 440.70967032203276
+        },
+        "ref": {
+          "native_kg_s-1": 53.32157390986378,
+          "relative_difference": 1.1993053004494928e-15,
+          "remapped_kg_s-1": 53.321573909863844
+        },
+        "res": {
+          "native_kg_s-1": 49.01608051022971,
+          "relative_difference": 2.8992229830037474e-16,
+          "remapped_kg_s-1": 49.01608051022973
+        },
+        "shp": {
+          "native_kg_s-1": 378.0645923265443,
+          "relative_difference": 1.503537226562356e-16,
+          "remapped_kg_s-1": 378.06459232654436
+        },
+        "swd": {
+          "native_kg_s-1": 2.1520065088879727,
+          "relative_difference": 8.254421313614728e-16,
+          "remapped_kg_s-1": 2.152006508887971
+        },
+        "tnr": {
+          "native_kg_s-1": 37.481682168161385,
+          "relative_difference": 3.791413269939453e-16,
+          "remapped_kg_s-1": 37.4816821681614
+        },
+        "tro": {
+          "native_kg_s-1": 637.4653632672444,
+          "relative_difference": 1.7834198416511477e-16,
+          "remapped_kg_s-1": 637.4653632672445
+        }
+      },
+      "time": "2024-07-01_00:00:00"
+    },
+    {
+      "aggregate": {
+        "NO2_kg_s-1": 240.93988347794385,
+        "NO_kg_s-1": 2168.4589513014944,
+        "native_kg_s-1": 2325.593657413976,
+        "native_to_remapped_relative_difference": 3.910806597160538e-16,
+        "nitrogen_relative_difference": 0.0,
+        "provider_to_sector_sum_relative_difference": 2.165331485909249e-10,
+        "remapped_provider_sum_kg_s-1": 2325.593657413977,
+        "remapped_sector_sum_kg_s-1": 2325.593657917545
+      },
+      "sectors": {
+        "agl": {
+          "native_kg_s-1": 10.598966417340849,
+          "relative_difference": 1.6759717593726622e-16,
+          "remapped_kg_s-1": 10.59896641734085
+        },
+        "ags": {
+          "native_kg_s-1": 73.90562749624596,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 73.90562749624596
+        },
+        "awb": {
+          "native_kg_s-1": 43.283228075313666,
+          "relative_difference": 1.6416121610055098e-16,
+          "remapped_kg_s-1": 43.28322807531366
+        },
+        "com": {
+          "native_kg_s-1": 23.605059809066447,
+          "relative_difference": 1.5050644681848857e-16,
+          "remapped_kg_s-1": 23.60505980906645
+        },
+        "ene": {
+          "native_kg_s-1": 584.2655968562003,
+          "relative_difference": 1.9458074946281098e-16,
+          "remapped_kg_s-1": 584.2655968562004
+        },
+        "fef": {
+          "native_kg_s-1": 4.237893027462891,
+          "relative_difference": 6.287405656144084e-16,
+          "remapped_kg_s-1": 4.237893027462894
+        },
+        "ind": {
+          "native_kg_s-1": 428.73978737942684,
+          "relative_difference": 7.954953638651124e-16,
+          "remapped_kg_s-1": 428.7397873794272
+        },
+        "ref": {
+          "native_kg_s-1": 53.32157390986378,
+          "relative_difference": 1.1993053004494928e-15,
+          "remapped_kg_s-1": 53.321573909863844
+        },
+        "res": {
+          "native_kg_s-1": 47.71971180323969,
+          "relative_difference": 1.4889920934347752e-16,
+          "remapped_kg_s-1": 47.7197118032397
+        },
+        "shp": {
+          "native_kg_s-1": 378.9251698409071,
+          "relative_difference": 1.5001225409405743e-16,
+          "remapped_kg_s-1": 378.92516984090713
+        },
+        "swd": {
+          "native_kg_s-1": 2.1520065088879727,
+          "relative_difference": 8.254421313614728e-16,
+          "remapped_kg_s-1": 2.152006508887971
+        },
+        "tnr": {
+          "native_kg_s-1": 37.37492368412845,
+          "relative_difference": 1.9011215695454053e-16,
+          "remapped_kg_s-1": 37.374923684128454
+        },
+        "tro": {
+          "native_kg_s-1": 637.4641131094602,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 637.4641131094602
+        }
+      },
+      "time": "2024-08-01_00:00:00"
+    }
+  ],
+  "tolerances": {
+    "constant_field_row_sum_report_limit": 0.001,
+    "field_integrated_mass_relative": 2e-07,
+    "provider_sector_sum_relative": 5e-06,
+    "weight_physical_area_relative": 2e-07
+  },
+  "weight_metrics": {
+    "constant_field_report_limit": 0.001,
+    "destination_cells": 40962,
+    "maximum_constant_field_row_sum_error": 1.1360052118991604e-05,
+    "maximum_destination_fraction": 1.0000000000000218,
+    "maximum_source_area_relative_error": 2.0231421346296964e-12,
+    "maximum_source_fraction": 1.0000000000018796,
+    "maximum_weight": 0.012969974373656807,
+    "minimum_destination_fraction": 0.9999999999339473,
+    "minimum_source_fraction": 0.9999999999979772,
+    "minimum_weight": 5.6674958635160444e-15,
+    "physical_area_tolerance": 2e-07,
+    "source_cells": 6480000,
+    "sparse_weights": 7773510,
+    "unmapped_destination_cells": 0,
+    "unrepresented_source_cells": 0
+  }
+}

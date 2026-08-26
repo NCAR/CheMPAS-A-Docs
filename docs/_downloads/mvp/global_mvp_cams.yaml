@@ -1,0 +1,34 @@
+version: 1.0.0
+species: []
+phases: []
+reactions: []
+
+# Member B: the harmonized non-fire CAMS source group. The exact-grid file
+# retains individual provider-sector fields for offline diagnostics, while the
+# audited no-awb sums are the sole fields applied to chemistry.
+emissions:
+  inventories:
+    - name: CAMS-GLOB-ANT v6.2 harmonized non-fire NO NO2 CO
+      directory: ""
+      file pattern: "miem_inventory.cams.nc"
+      convention: uptempo
+  species maps:
+    - name: CAMS harmonized explicit species
+      mappings:
+        - {inventory species: no_anth_sum, mechanism species: "NO", scaling factor: 1.0}
+        - {inventory species: no2_anth_sum, mechanism species: NO2, scaling factor: 1.0}
+        - {inventory species: co_anth_sum, mechanism species: CO, scaling factor: 1.0}
+  regridding:
+    type: none
+  sources:
+    - name: CAMS harmonized anthropogenic sources
+      mode: offline
+      type: anthropogenic
+      inventory: CAMS-GLOB-ANT v6.2 harmonized non-fire NO NO2 CO
+      species map: CAMS harmonized explicit species
+      temporal interpolation: linear
+      vertical injection: surface
+      category: 0
+      hierarchy: 1
+      scaling factor: 1.0
+      sector: cams_harmonized_no_awb

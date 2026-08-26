@@ -1,0 +1,733 @@
+{
+  "aggregates": {
+    "full": {
+      "coalesced_cell_runs_sum": 8,
+      "coalesced_hyperslab_reads_sum": 88,
+      "construction_seconds": {
+        "maximum": 0.001,
+        "mean": 0.001,
+        "minimum": 0.001
+      },
+      "first_open_run_seconds": {
+        "maximum": 0.064,
+        "mean": 0.059375,
+        "minimum": 0.045
+      },
+      "layer_flux_elements_sum": 26956800,
+      "modeled_netcdf_payload_bytes_sum": 19768320,
+      "modeled_persistent_cell_elements_sum": 30101760,
+      "peak_rss_kib": {
+        "maximum": 178004,
+        "mean": 177887.0,
+        "minimum": 177752,
+        "sum": 1423096
+      },
+      "requested_cells_sum": 224640,
+      "surface_flux_elements_sum": 449280,
+      "warm_step_average_seconds": {
+        "maximum": 0.03100000000000001,
+        "mean": 0.026239583333333337,
+        "minimum": 0.024499999999999997
+      }
+    },
+    "selected": {
+      "coalesced_cell_runs_sum": 720,
+      "coalesced_hyperslab_reads_sum": 7920,
+      "construction_seconds": {
+        "maximum": 0.001,
+        "mean": 0.001,
+        "minimum": 0.001
+      },
+      "first_open_run_seconds": {
+        "maximum": 0.032,
+        "mean": 0.0285,
+        "minimum": 0.019
+      },
+      "layer_flux_elements_sum": 3369600,
+      "modeled_netcdf_payload_bytes_sum": 2471040,
+      "modeled_persistent_cell_elements_sum": 3762720,
+      "peak_rss_kib": {
+        "maximum": 56572,
+        "mean": 56192.0,
+        "minimum": 55188,
+        "sum": 449536
+      },
+      "requested_cells_sum": 28080,
+      "surface_flux_elements_sum": 56160,
+      "warm_step_average_seconds": {
+        "maximum": 0.003500000000000001,
+        "mean": 0.0027500000000000003,
+        "minimum": 0.0025000000000000005
+      }
+    },
+    "selected_to_full_ratios": {
+      "modeled_netcdf_payload_bytes": 0.125,
+      "modeled_persistent_cell_elements": 0.125,
+      "requested_cells": 0.125
+    }
+  },
+  "assertions": [
+    {
+      "detail": "rank ownership sums to 28080 of 28080 cells",
+      "name": "partition_covers_global_grid_once",
+      "passed": true
+    },
+    {
+      "detail": "every full-grid rank reports object_cells equal to global nCells",
+      "name": "full_mode_constructs_global_state",
+      "passed": true
+    },
+    {
+      "detail": "every selected rank reports object_cells equal to its partition ownership and below global nCells",
+      "name": "selected_mode_constructs_only_owned_state",
+      "passed": true
+    },
+    {
+      "detail": "surface=2*cells and layer=2*60*cells in both modes",
+      "name": "public_flux_buffers_are_cell_proportional",
+      "passed": true
+    },
+    {
+      "detail": "selected requested-cell counts sum to global nCells",
+      "name": "selected_requested_cells_sum_to_one_grid",
+      "passed": true
+    },
+    {
+      "detail": "aggregate selected/full modeled NetCDF payload ratio is 0.125",
+      "name": "selected_payload_scales_with_owned_cells",
+      "passed": true
+    },
+    {
+      "detail": "aggregate selected/full modeled persistent-state ratio is 0.125",
+      "name": "selected_state_scales_with_owned_cells",
+      "passed": true
+    },
+    {
+      "detail": "all 8 rank streams match for 13 samples",
+      "name": "full_and_selected_fluxes_are_bitwise_equal",
+      "passed": true
+    },
+    {
+      "detail": "all per-rank construction, first-open, warm-step, and Linux VmHWM values are present",
+      "name": "timing_and_peak_rss_measurements_are_present",
+      "passed": true
+    },
+    {
+      "detail": "benchmark configuration uses the exact-grid regridding:none contract",
+      "name": "runtime_regridding_is_disabled",
+      "passed": true
+    }
+  ],
+  "case": {
+    "geometry": "planar",
+    "global_cells": 28080,
+    "inventory_times": [
+      "2026-06-22_12:00:00",
+      "2026-06-22_13:00:00"
+    ],
+    "mesh_class": "regional",
+    "mpi_ranks": 8,
+    "name": "regional",
+    "sample_epoch_range": [
+      1782129600,
+      1782133200
+    ],
+    "species": [
+      "NO",
+      "NO2"
+    ],
+    "vertical_levels": 60,
+    "warm_steps": 12
+  },
+  "inputs": {
+    "benchmark_executable": {
+      "path": "benchmark_miem_scalability",
+      "sha256": "10cba4991fa9dae2199b7a78b2acbcfedbb3cdf0ee2f36c3fa2048a0bd20c424",
+      "size_bytes": 2593432
+    },
+    "mesh": {
+      "path": "supercell_init.nc",
+      "sha256": "f8c67aebfb491b25bc761f9880ba95753f397d3682f39989fcaf2d906b7a14ea",
+      "size_bytes": 628232996
+    },
+    "miem_configuration": {
+      "path": "miem.yaml",
+      "sha256": "d8899d2f6b80e2a8e855c162a5a6972c5f517e031727db6f9f2dc889a4c094c7",
+      "size_bytes": 794
+    },
+    "normalized_partition": {
+      "path": "partition.global-id.part.8",
+      "sha256": "a14e05ec068bf17965f6d09afae8f235ed8e482934945c3940485cf56786e5d7",
+      "size_bytes": 56160
+    },
+    "source_partition": {
+      "path": "supercell.graph.info.part.8",
+      "sha256": "09797f9e42e760b9b0d7aa57c98309c2566fed7a60ce1b83de30ec98830f8b28",
+      "size_bytes": 393120
+    },
+    "synthetic_exact_grid_inventory": {
+      "path": "benchmark_inventory.nc",
+      "sha256": "13b3afdab3b5570da1b2215f0cd668dc8ae38b4141d019a37e9e365c5d5e5c12",
+      "size_bytes": 2495400
+    }
+  },
+  "overall_pass": true,
+  "provenance": {
+    "benchmark_command_contract": "mpiexec -n 8 benchmark_miem_scalability {full|selected} miem.yaml nCells nVertLevels partition 12 1782129600 1782133200",
+    "chempas_commit": "e246f85a44d4cb35c78623acf831beecccbbe297",
+    "compile_command": "mpif90 -O3 -ffree-form -ffree-line-length-none /home/fillmore/EarthSystem/CheMPAS-A-Dev/tests/fortran/benchmark_miem_scalability.F90 -I/home/fillmore/software/musica-1403e3d22717bc87f3bf9d0aa591caf039c92bbc/include/musica/fortran -I/home/fillmore/miniforge3/envs/mpas/include -L/home/fillmore/software/musica-1403e3d22717bc87f3bf9d0aa591caf039c92bbc/lib -L/home/fillmore/miniforge3/envs/mpas/lib -lmusica-fortran -lmusica -lmiem -lmechanism_configuration -lyaml-cpp -ldl -lnetcdff -lnetcdf -lstdc++ -lnetcdff -lnetcdf -o /tmp/chempas-miem-benchmark-at8_8n7a/benchmark_miem_scalability",
+    "dependency_revisions": {
+      "mechanism_configuration": "82c159ae6d74934318ffd6c405a45c2159065b12",
+      "micm": "bb57684a2047f0e58f30b199366294af879e8597",
+      "miem": "9fdf14a189262eecb677862d877ab72b06c95e21",
+      "musica": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc",
+      "tuvx": "bbf7dd9a144fa0f0294b3779f3f993818638e20c"
+    },
+    "fortran_compiler": "GNU Fortran (conda-forge gcc 15.2.0-19) 15.2.0",
+    "generated_at_utc": "2026-08-06T08:50:39+00:00",
+    "hostname": "Orion",
+    "mpi_launcher": "mpiexec (Open MPI) 5.0.10",
+    "musica_prefix": "/home/fillmore/software/musica-1403e3d22717bc87f3bf9d0aa591caf039c92bbc",
+    "musica_version": "0.16.5",
+    "platform": "Linux-6.17.9-76061709-generic-x86_64-with-glibc2.39"
+  },
+  "ranks": [
+    {
+      "flux_equivalence": {
+        "bitwise_equal": true,
+        "expected_stream_bytes": 1460160,
+        "full": {
+          "path": "flux.full.rank0000.bin",
+          "sha256": "8d2eb0aa7ce6fc197ca6a9d24f112122b83ad442bfd774d084bfe8688868dc45",
+          "size_bytes": 1460160
+        },
+        "samples": 13,
+        "selected": {
+          "path": "flux.selected.rank0000.bin",
+          "sha256": "8d2eb0aa7ce6fc197ca6a9d24f112122b83ad442bfd774d084bfe8688868dc45",
+          "size_bytes": 1460160
+        }
+      },
+      "modes": {
+        "full": {
+          "construction_seconds": 0.001,
+          "first_open_run_seconds": 0.064,
+          "layer_flux_elements": 3369600,
+          "modeled_bracket_cache_elements": 112320,
+          "modeled_global_id_elements": 28080,
+          "modeled_grid_metadata_elements": 196560,
+          "modeled_persistent_cell_elements": 3762720,
+          "object_cells": 28080,
+          "peak_rss_kib": 177932,
+          "reader": {
+            "coalesced_cell_runs": 1,
+            "coalesced_hyperslab_reads": 11,
+            "fields_read": 11,
+            "modeled_netcdf_payload_bytes": 2471040,
+            "requested_cells": 28080
+          },
+          "surface_flux_elements": 56160,
+          "warm_step_average_seconds": 0.024833333333333332,
+          "warm_steps": 12
+        },
+        "selected": {
+          "construction_seconds": 0.001,
+          "first_open_run_seconds": 0.032,
+          "layer_flux_elements": 421200,
+          "modeled_bracket_cache_elements": 14040,
+          "modeled_global_id_elements": 3510,
+          "modeled_grid_metadata_elements": 24570,
+          "modeled_persistent_cell_elements": 470340,
+          "object_cells": 3510,
+          "peak_rss_kib": 56412,
+          "reader": {
+            "coalesced_cell_runs": 90,
+            "coalesced_hyperslab_reads": 990,
+            "fields_read": 11,
+            "modeled_netcdf_payload_bytes": 308880,
+            "requested_cells": 3510
+          },
+          "surface_flux_elements": 7020,
+          "warm_step_average_seconds": 0.0025000000000000005,
+          "warm_steps": 12
+        }
+      },
+      "owned_cells": 3510,
+      "owned_global_id_max": 13923,
+      "owned_global_id_min": 1,
+      "rank": 0
+    },
+    {
+      "flux_equivalence": {
+        "bitwise_equal": true,
+        "expected_stream_bytes": 1460160,
+        "full": {
+          "path": "flux.full.rank0001.bin",
+          "sha256": "8c9ef8613d2c3d9a2c053a3ba2f9cd764677f3725e42ccccca54fb8042a0dcf9",
+          "size_bytes": 1460160
+        },
+        "samples": 13,
+        "selected": {
+          "path": "flux.selected.rank0001.bin",
+          "sha256": "8c9ef8613d2c3d9a2c053a3ba2f9cd764677f3725e42ccccca54fb8042a0dcf9",
+          "size_bytes": 1460160
+        }
+      },
+      "modes": {
+        "full": {
+          "construction_seconds": 0.001,
+          "first_open_run_seconds": 0.064,
+          "layer_flux_elements": 3369600,
+          "modeled_bracket_cache_elements": 112320,
+          "modeled_global_id_elements": 28080,
+          "modeled_grid_metadata_elements": 196560,
+          "modeled_persistent_cell_elements": 3762720,
+          "object_cells": 28080,
+          "peak_rss_kib": 177808,
+          "reader": {
+            "coalesced_cell_runs": 1,
+            "coalesced_hyperslab_reads": 11,
+            "fields_read": 11,
+            "modeled_netcdf_payload_bytes": 2471040,
+            "requested_cells": 28080
+          },
+          "surface_flux_elements": 56160,
+          "warm_step_average_seconds": 0.024666666666666667,
+          "warm_steps": 12
+        },
+        "selected": {
+          "construction_seconds": 0.001,
+          "first_open_run_seconds": 0.03,
+          "layer_flux_elements": 421200,
+          "modeled_bracket_cache_elements": 14040,
+          "modeled_global_id_elements": 3510,
+          "modeled_grid_metadata_elements": 24570,
+          "modeled_persistent_cell_elements": 470340,
+          "object_cells": 3510,
+          "peak_rss_kib": 56516,
+          "reader": {
+            "coalesced_cell_runs": 90,
+            "coalesced_hyperslab_reads": 990,
+            "fields_read": 11,
+            "modeled_netcdf_payload_bytes": 308880,
+            "requested_cells": 3510
+          },
+          "surface_flux_elements": 7020,
+          "warm_step_average_seconds": 0.0025000000000000005,
+          "warm_steps": 12
+        }
+      },
+      "owned_cells": 3510,
+      "owned_global_id_max": 27963,
+      "owned_global_id_min": 14041,
+      "rank": 1
+    },
+    {
+      "flux_equivalence": {
+        "bitwise_equal": true,
+        "expected_stream_bytes": 1460160,
+        "full": {
+          "path": "flux.full.rank0002.bin",
+          "sha256": "9a298f57fa3856e261bd6ebb630c2a357f55202a81936979d18a44c4550e079f",
+          "size_bytes": 1460160
+        },
+        "samples": 13,
+        "selected": {
+          "path": "flux.selected.rank0002.bin",
+          "sha256": "9a298f57fa3856e261bd6ebb630c2a357f55202a81936979d18a44c4550e079f",
+          "size_bytes": 1460160
+        }
+      },
+      "modes": {
+        "full": {
+          "construction_seconds": 0.001,
+          "first_open_run_seconds": 0.064,
+          "layer_flux_elements": 3369600,
+          "modeled_bracket_cache_elements": 112320,
+          "modeled_global_id_elements": 28080,
+          "modeled_grid_metadata_elements": 196560,
+          "modeled_persistent_cell_elements": 3762720,
+          "object_cells": 28080,
+          "peak_rss_kib": 177916,
+          "reader": {
+            "coalesced_cell_runs": 1,
+            "coalesced_hyperslab_reads": 11,
+            "fields_read": 11,
+            "modeled_netcdf_payload_bytes": 2471040,
+            "requested_cells": 28080
+          },
+          "surface_flux_elements": 56160,
+          "warm_step_average_seconds": 0.024666666666666667,
+          "warm_steps": 12
+        },
+        "selected": {
+          "construction_seconds": 0.001,
+          "first_open_run_seconds": 0.032,
+          "layer_flux_elements": 421200,
+          "modeled_bracket_cache_elements": 14040,
+          "modeled_global_id_elements": 3510,
+          "modeled_grid_metadata_elements": 24570,
+          "modeled_persistent_cell_elements": 470340,
+          "object_cells": 3510,
+          "peak_rss_kib": 56528,
+          "reader": {
+            "coalesced_cell_runs": 90,
+            "coalesced_hyperslab_reads": 990,
+            "fields_read": 11,
+            "modeled_netcdf_payload_bytes": 308880,
+            "requested_cells": 3510
+          },
+          "surface_flux_elements": 7020,
+          "warm_step_average_seconds": 0.0025000000000000005,
+          "warm_steps": 12
+        }
+      },
+      "owned_cells": 3510,
+      "owned_global_id_max": 13962,
+      "owned_global_id_min": 40,
+      "rank": 2
+    },
+    {
+      "flux_equivalence": {
+        "bitwise_equal": true,
+        "expected_stream_bytes": 1460160,
+        "full": {
+          "path": "flux.full.rank0003.bin",
+          "sha256": "71717a93d1077543c438a224c6e77b98a89e372710a3c4f474fae00917b149d1",
+          "size_bytes": 1460160
+        },
+        "samples": 13,
+        "selected": {
+          "path": "flux.selected.rank0003.bin",
+          "sha256": "71717a93d1077543c438a224c6e77b98a89e372710a3c4f474fae00917b149d1",
+          "size_bytes": 1460160
+        }
+      },
+      "modes": {
+        "full": {
+          "construction_seconds": 0.001,
+          "first_open_run_seconds": 0.064,
+          "layer_flux_elements": 3369600,
+          "modeled_bracket_cache_elements": 112320,
+          "modeled_global_id_elements": 28080,
+          "modeled_grid_metadata_elements": 196560,
+          "modeled_persistent_cell_elements": 3762720,
+          "object_cells": 28080,
+          "peak_rss_kib": 178004,
+          "reader": {
+            "coalesced_cell_runs": 1,
+            "coalesced_hyperslab_reads": 11,
+            "fields_read": 11,
+            "modeled_netcdf_payload_bytes": 2471040,
+            "requested_cells": 28080
+          },
+          "surface_flux_elements": 56160,
+          "warm_step_average_seconds": 0.024499999999999997,
+          "warm_steps": 12
+        },
+        "selected": {
+          "construction_seconds": 0.001,
+          "first_open_run_seconds": 0.032,
+          "layer_flux_elements": 421200,
+          "modeled_bracket_cache_elements": 14040,
+          "modeled_global_id_elements": 3510,
+          "modeled_grid_metadata_elements": 24570,
+          "modeled_persistent_cell_elements": 470340,
+          "object_cells": 3510,
+          "peak_rss_kib": 56480,
+          "reader": {
+            "coalesced_cell_runs": 90,
+            "coalesced_hyperslab_reads": 990,
+            "fields_read": 11,
+            "modeled_netcdf_payload_bytes": 308880,
+            "requested_cells": 3510
+          },
+          "surface_flux_elements": 7020,
+          "warm_step_average_seconds": 0.0025000000000000005,
+          "warm_steps": 12
+        }
+      },
+      "owned_cells": 3510,
+      "owned_global_id_max": 28002,
+      "owned_global_id_min": 14080,
+      "rank": 3
+    },
+    {
+      "flux_equivalence": {
+        "bitwise_equal": true,
+        "expected_stream_bytes": 1460160,
+        "full": {
+          "path": "flux.full.rank0004.bin",
+          "sha256": "3c2aaa3e2793c92bdd4af22b213b28e721f2b656e38342335d0f996f4bcc2a33",
+          "size_bytes": 1460160
+        },
+        "samples": 13,
+        "selected": {
+          "path": "flux.selected.rank0004.bin",
+          "sha256": "3c2aaa3e2793c92bdd4af22b213b28e721f2b656e38342335d0f996f4bcc2a33",
+          "size_bytes": 1460160
+        }
+      },
+      "modes": {
+        "full": {
+          "construction_seconds": 0.001,
+          "first_open_run_seconds": 0.064,
+          "layer_flux_elements": 3369600,
+          "modeled_bracket_cache_elements": 112320,
+          "modeled_global_id_elements": 28080,
+          "modeled_grid_metadata_elements": 196560,
+          "modeled_persistent_cell_elements": 3762720,
+          "object_cells": 28080,
+          "peak_rss_kib": 177952,
+          "reader": {
+            "coalesced_cell_runs": 1,
+            "coalesced_hyperslab_reads": 11,
+            "fields_read": 11,
+            "modeled_netcdf_payload_bytes": 2471040,
+            "requested_cells": 28080
+          },
+          "surface_flux_elements": 56160,
+          "warm_step_average_seconds": 0.024833333333333332,
+          "warm_steps": 12
+        },
+        "selected": {
+          "construction_seconds": 0.001,
+          "first_open_run_seconds": 0.032,
+          "layer_flux_elements": 421200,
+          "modeled_bracket_cache_elements": 14040,
+          "modeled_global_id_elements": 3510,
+          "modeled_grid_metadata_elements": 24570,
+          "modeled_persistent_cell_elements": 470340,
+          "object_cells": 3510,
+          "peak_rss_kib": 56512,
+          "reader": {
+            "coalesced_cell_runs": 90,
+            "coalesced_hyperslab_reads": 990,
+            "fields_read": 11,
+            "modeled_netcdf_payload_bytes": 308880,
+            "requested_cells": 3510
+          },
+          "surface_flux_elements": 7020,
+          "warm_step_average_seconds": 0.0025833333333333337,
+          "warm_steps": 12
+        }
+      },
+      "owned_cells": 3510,
+      "owned_global_id_max": 14001,
+      "owned_global_id_min": 79,
+      "rank": 4
+    },
+    {
+      "flux_equivalence": {
+        "bitwise_equal": true,
+        "expected_stream_bytes": 1460160,
+        "full": {
+          "path": "flux.full.rank0005.bin",
+          "sha256": "7782a6c89654965a1bd1140510cb64f862c2837aeca3745a67dcf2d50002f39a",
+          "size_bytes": 1460160
+        },
+        "samples": 13,
+        "selected": {
+          "path": "flux.selected.rank0005.bin",
+          "sha256": "7782a6c89654965a1bd1140510cb64f862c2837aeca3745a67dcf2d50002f39a",
+          "size_bytes": 1460160
+        }
+      },
+      "modes": {
+        "full": {
+          "construction_seconds": 0.001,
+          "first_open_run_seconds": 0.064,
+          "layer_flux_elements": 3369600,
+          "modeled_bracket_cache_elements": 112320,
+          "modeled_global_id_elements": 28080,
+          "modeled_grid_metadata_elements": 196560,
+          "modeled_persistent_cell_elements": 3762720,
+          "object_cells": 28080,
+          "peak_rss_kib": 177752,
+          "reader": {
+            "coalesced_cell_runs": 1,
+            "coalesced_hyperslab_reads": 11,
+            "fields_read": 11,
+            "modeled_netcdf_payload_bytes": 2471040,
+            "requested_cells": 28080
+          },
+          "surface_flux_elements": 56160,
+          "warm_step_average_seconds": 0.024666666666666667,
+          "warm_steps": 12
+        },
+        "selected": {
+          "construction_seconds": 0.001,
+          "first_open_run_seconds": 0.032,
+          "layer_flux_elements": 421200,
+          "modeled_bracket_cache_elements": 14040,
+          "modeled_global_id_elements": 3510,
+          "modeled_grid_metadata_elements": 24570,
+          "modeled_persistent_cell_elements": 470340,
+          "object_cells": 3510,
+          "peak_rss_kib": 56572,
+          "reader": {
+            "coalesced_cell_runs": 90,
+            "coalesced_hyperslab_reads": 990,
+            "fields_read": 11,
+            "modeled_netcdf_payload_bytes": 308880,
+            "requested_cells": 3510
+          },
+          "surface_flux_elements": 7020,
+          "warm_step_average_seconds": 0.0025000000000000005,
+          "warm_steps": 12
+        }
+      },
+      "owned_cells": 3510,
+      "owned_global_id_max": 28041,
+      "owned_global_id_min": 14119,
+      "rank": 5
+    },
+    {
+      "flux_equivalence": {
+        "bitwise_equal": true,
+        "expected_stream_bytes": 1460160,
+        "full": {
+          "path": "flux.full.rank0006.bin",
+          "sha256": "5060b37d63ff8c56db868164a36ac296b1be20fda18b19d302f2dca709333bde",
+          "size_bytes": 1460160
+        },
+        "samples": 13,
+        "selected": {
+          "path": "flux.selected.rank0006.bin",
+          "sha256": "5060b37d63ff8c56db868164a36ac296b1be20fda18b19d302f2dca709333bde",
+          "size_bytes": 1460160
+        }
+      },
+      "modes": {
+        "full": {
+          "construction_seconds": 0.001,
+          "first_open_run_seconds": 0.045,
+          "layer_flux_elements": 3369600,
+          "modeled_bracket_cache_elements": 112320,
+          "modeled_global_id_elements": 28080,
+          "modeled_grid_metadata_elements": 196560,
+          "modeled_persistent_cell_elements": 3762720,
+          "object_cells": 28080,
+          "peak_rss_kib": 177840,
+          "reader": {
+            "coalesced_cell_runs": 1,
+            "coalesced_hyperslab_reads": 11,
+            "fields_read": 11,
+            "modeled_netcdf_payload_bytes": 2471040,
+            "requested_cells": 28080
+          },
+          "surface_flux_elements": 56160,
+          "warm_step_average_seconds": 0.03100000000000001,
+          "warm_steps": 12
+        },
+        "selected": {
+          "construction_seconds": 0.001,
+          "first_open_run_seconds": 0.019,
+          "layer_flux_elements": 421200,
+          "modeled_bracket_cache_elements": 14040,
+          "modeled_global_id_elements": 3510,
+          "modeled_grid_metadata_elements": 24570,
+          "modeled_persistent_cell_elements": 470340,
+          "object_cells": 3510,
+          "peak_rss_kib": 55328,
+          "reader": {
+            "coalesced_cell_runs": 90,
+            "coalesced_hyperslab_reads": 990,
+            "fields_read": 11,
+            "modeled_netcdf_payload_bytes": 308880,
+            "requested_cells": 3510
+          },
+          "surface_flux_elements": 7020,
+          "warm_step_average_seconds": 0.003500000000000001,
+          "warm_steps": 12
+        }
+      },
+      "owned_cells": 3510,
+      "owned_global_id_max": 14040,
+      "owned_global_id_min": 118,
+      "rank": 6
+    },
+    {
+      "flux_equivalence": {
+        "bitwise_equal": true,
+        "expected_stream_bytes": 1460160,
+        "full": {
+          "path": "flux.full.rank0007.bin",
+          "sha256": "7ac6eb96ea4fe07a8a134006e2fc125b1a2a5b709483c4fa7adc6a65d33a59e9",
+          "size_bytes": 1460160
+        },
+        "samples": 13,
+        "selected": {
+          "path": "flux.selected.rank0007.bin",
+          "sha256": "7ac6eb96ea4fe07a8a134006e2fc125b1a2a5b709483c4fa7adc6a65d33a59e9",
+          "size_bytes": 1460160
+        }
+      },
+      "modes": {
+        "full": {
+          "construction_seconds": 0.001,
+          "first_open_run_seconds": 0.046,
+          "layer_flux_elements": 3369600,
+          "modeled_bracket_cache_elements": 112320,
+          "modeled_global_id_elements": 28080,
+          "modeled_grid_metadata_elements": 196560,
+          "modeled_persistent_cell_elements": 3762720,
+          "object_cells": 28080,
+          "peak_rss_kib": 177892,
+          "reader": {
+            "coalesced_cell_runs": 1,
+            "coalesced_hyperslab_reads": 11,
+            "fields_read": 11,
+            "modeled_netcdf_payload_bytes": 2471040,
+            "requested_cells": 28080
+          },
+          "surface_flux_elements": 56160,
+          "warm_step_average_seconds": 0.03075000000000001,
+          "warm_steps": 12
+        },
+        "selected": {
+          "construction_seconds": 0.001,
+          "first_open_run_seconds": 0.019,
+          "layer_flux_elements": 421200,
+          "modeled_bracket_cache_elements": 14040,
+          "modeled_global_id_elements": 3510,
+          "modeled_grid_metadata_elements": 24570,
+          "modeled_persistent_cell_elements": 470340,
+          "object_cells": 3510,
+          "peak_rss_kib": 55188,
+          "reader": {
+            "coalesced_cell_runs": 90,
+            "coalesced_hyperslab_reads": 990,
+            "fields_read": 11,
+            "modeled_netcdf_payload_bytes": 308880,
+            "requested_cells": 3510
+          },
+          "surface_flux_elements": 7020,
+          "warm_step_average_seconds": 0.0034166666666666664,
+          "warm_steps": 12
+        }
+      },
+      "owned_cells": 3510,
+      "owned_global_id_max": 28080,
+      "owned_global_id_min": 14158,
+      "rank": 7
+    }
+  ],
+  "reader_accounting_contract": {
+    "bytes_per_value": 8,
+    "grid_metadata_fields": [
+      "indexToCellID",
+      "areaCell",
+      "latCell",
+      "lonCell",
+      "xCell",
+      "yCell",
+      "zCell"
+    ],
+    "hyperslab_definition": "one coalesced contiguous global-ID run per inventory bracket/species or metadata field",
+    "inventory_bracket_fields": 4,
+    "payload_definition": "requested cells times eight bytes times four bracket fields plus exact-grid metadata fields",
+    "persistent_state_definition": "public surface/layer flux buffers plus two-time/two-species bracket cache, exact-grid metadata, and global IDs"
+  },
+  "schema_version": "chempas-miem-scalability-benchmark-v1"
+}

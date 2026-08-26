@@ -1,0 +1,1013 @@
+{
+  "assertions": [
+    {
+      "detail": "observed 2 of 2 expected frames",
+      "name": "disabled:history_frames",
+      "passed": true
+    },
+    {
+      "detail": "all emitted, chemistry, and physical output fields are finite and bounded",
+      "name": "disabled:finite_state",
+      "passed": true
+    },
+    {
+      "detail": "inventory timestep integral agrees with model-reported end-of-run source",
+      "name": "disabled:source_mass",
+      "passed": true
+    },
+    {
+      "detail": "MIEM exact-grid validation/open lifecycle is singular, or disabled path performs no I/O",
+      "name": "disabled:exact_grid_lifecycle",
+      "passed": true
+    },
+    {
+      "detail": "MIEM calls=0 expected=0",
+      "name": "disabled:miem_calls",
+      "passed": true
+    },
+    {
+      "detail": "first-open and warm-step timing counters match the sampled-step count",
+      "name": "disabled:miem_first_warm_timing",
+      "passed": true
+    },
+    {
+      "detail": "observed 2 of 2 expected frames",
+      "name": "enabled_zero:history_frames",
+      "passed": true
+    },
+    {
+      "detail": "all emitted, chemistry, and physical output fields are finite and bounded",
+      "name": "enabled_zero:finite_state",
+      "passed": true
+    },
+    {
+      "detail": "inventory timestep integral agrees with model-reported end-of-run source",
+      "name": "enabled_zero:source_mass",
+      "passed": true
+    },
+    {
+      "detail": "MIEM exact-grid validation/open lifecycle is singular, or disabled path performs no I/O",
+      "name": "enabled_zero:exact_grid_lifecycle",
+      "passed": true
+    },
+    {
+      "detail": "MIEM calls=1 expected=1",
+      "name": "enabled_zero:miem_calls",
+      "passed": true
+    },
+    {
+      "detail": "first-open and warm-step timing counters match the sampled-step count",
+      "name": "enabled_zero:miem_first_warm_timing",
+      "passed": true
+    },
+    {
+      "detail": "every output diagnostic equals the independently interpolated inventory sample",
+      "name": "enabled_zero:diagnostic_flux",
+      "passed": true
+    },
+    {
+      "detail": "all variants use one SHA-256-pinned executable from a tracked-clean CheMPAS commit",
+      "name": "reproducible_executable",
+      "passed": true
+    },
+    {
+      "detail": "all common meteorology, chemistry, and photolysis arrays are bitwise identical",
+      "name": "bitwise_common_fields",
+      "passed": true
+    },
+    {
+      "detail": "NO+NO2 molar-N residual=0.000e+00",
+      "name": "reactive_noy_budget",
+      "passed": true
+    }
+  ],
+  "comparisons": {
+    "disabled_vs_enabled_zero": {
+      "all_bitwise": true,
+      "frames": [
+        {
+          "all_bitwise": true,
+          "fields": {
+            "j_jNO2": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "j_jO2": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "j_jO3_O": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "j_jO3_O1D": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "pressure": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "qNO": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "qNO2": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "qO": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "qO1D": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "qO2": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "qO3": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "qv": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "rho": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "rho_zz": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "surface_pressure": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "theta": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "u": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "w": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            }
+          },
+          "time": "2024-07-01_00:00:00"
+        },
+        {
+          "all_bitwise": true,
+          "fields": {
+            "j_jNO2": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "j_jO2": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "j_jO3_O": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "j_jO3_O1D": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "pressure": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "qNO": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "qNO2": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "qO": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "qO1D": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "qO2": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "qO3": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "qv": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "rho": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "rho_zz": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "surface_pressure": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "theta": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "u": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            },
+            "w": {
+              "bitwise_equal": true,
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0
+            }
+          },
+          "time": "2024-07-01_00:05:00"
+        }
+      ]
+    }
+  },
+  "diagnostics": {
+    "enabled_zero": {
+      "all_flux_samples_pass": true,
+      "frames": [
+        {
+          "sample_time": null,
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {},
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {},
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_00:00:00"
+        },
+        {
+          "sample_time": "2024-07-01_00:00:00",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {},
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {},
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_00:05:00"
+        }
+      ],
+      "run": "enabled_zero",
+      "sector_closure_pass": true,
+      "surface_layer_closure_pass": true
+    }
+  },
+  "gate": "G0",
+  "inputs": {
+    "external_manifest": {
+      "path": "external-inputs.cams-glob-ant-v6.2-2024-07.json",
+      "sha256": "b0e49f3bf33ba123f5dbdd85ab554e082b60fc7e9b9f5fb36361085b2c0239fd",
+      "size_bytes": 15561
+    },
+    "inventory": {
+      "path": "runs/stage9c/g0-20260806T154533Z-c62f9d71b1/shared/miem-inventory-zero.nc",
+      "sha256": "46512c01c3d62b1619d3ef8f2efd9efa7530bddd2ae380f50cc4302617199992",
+      "size_bytes": 2318035
+    }
+  },
+  "overall_pass": true,
+  "photolysis": {
+    "distinct_maxima": 2,
+    "jNO2_global_maxima": [
+      0.0,
+      0.013014945870752808
+    ]
+  },
+  "reactive_noy_budget": {
+    "emitted_noy_moles": 0.0,
+    "final_moles": {
+      "NO": 68490586265.5128,
+      "NO2": 290821721012.19006,
+      "NOy": 359312307277.7029
+    },
+    "initial_moles": {
+      "NO": 179656153638.85144,
+      "NO2": 179656153638.8514,
+      "NOy": 359312307277.7029
+    },
+    "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+    "noy_delta_moles": 0.0,
+    "passed": true,
+    "relative_residual": 0.0,
+    "relative_scale_moles": 359312307277.7029,
+    "residual_moles": 0.0
+  },
+  "resource_forecast": {
+    "from_gate": "G0",
+    "projected_24h_history_bytes": 99762246144,
+    "projected_24h_wall_seconds": 86209.92000000001
+  },
+  "runs": {
+    "disabled": {
+      "exact_grid_lifecycle_pass": true,
+      "expected_frame_count": 2,
+      "expected_source_mass_kg": {
+        "NO": 0.0,
+        "NO2": 0.0
+      },
+      "finite_state": {
+        "fields_checked": [
+          "j_jNO2",
+          "j_jO2",
+          "j_jO3_O",
+          "j_jO3_O1D",
+          "pressure",
+          "qNO",
+          "qNO2",
+          "qO",
+          "qO1D",
+          "qO2",
+          "qO3",
+          "qv",
+          "rho",
+          "rho_zz",
+          "surface_pressure",
+          "theta",
+          "u",
+          "w"
+        ],
+        "nonnegative_tracers_and_rates": {
+          "j_jNO2": true,
+          "j_jO2": true,
+          "j_jO3_O": true,
+          "j_jO3_O1D": true,
+          "qNO": true,
+          "qNO2": true,
+          "qO": true,
+          "qO1D": true,
+          "qO2": true,
+          "qO3": true,
+          "qv": true
+        },
+        "passed": true,
+        "positive_physical_fields": {
+          "pressure": true,
+          "rho": true,
+          "surface_pressure": true,
+          "theta": true
+        },
+        "ranges": {
+          "j_jNO2": {
+            "maximum": 0.013014945870752808,
+            "minimum": 0.0
+          },
+          "j_jO2": {
+            "maximum": 3.791150388093535e-10,
+            "minimum": 0.0
+          },
+          "j_jO3_O": {
+            "maximum": 0.0006251418947651918,
+            "minimum": 0.0
+          },
+          "j_jO3_O1D": {
+            "maximum": 0.001035239292904513,
+            "minimum": 0.0
+          },
+          "pressure": {
+            "maximum": 98506.19417474313,
+            "minimum": 205.64668624478833
+          },
+          "qNO": {
+            "maximum": 2.033107590034093e-09,
+            "minimum": 3.268733883104396e-14
+          },
+          "qNO2": {
+            "maximum": 3.1756488783782593e-09,
+            "minimum": 5.826736070565575e-11
+          },
+          "qO": {
+            "maximum": 3.8693073979039746e-10,
+            "minimum": 0.0
+          },
+          "qO1D": {
+            "maximum": 1.4882727773747244e-16,
+            "minimum": 0.0
+          },
+          "qO2": {
+            "maximum": 0.23196410218754976,
+            "minimum": 0.2319640214312702
+          },
+          "qO3": {
+            "maximum": 1.0001319398890726e-05,
+            "minimum": 1.5291948352793046e-08
+          },
+          "qv": {
+            "maximum": 0.0,
+            "minimum": 0.0
+          },
+          "rho": {
+            "maximum": 1.513799037114305,
+            "minimum": 0.0027305347214994597
+          },
+          "rho_zz": {
+            "maximum": 0.6108730183839841,
+            "minimum": 0.004056163205227163
+          },
+          "surface_pressure": {
+            "maximum": 100000.00000000001,
+            "minimum": 99999.99999999999
+          },
+          "theta": {
+            "maximum": 1536.9920650899749,
+            "minimum": 226.7080935910349
+          },
+          "u": {
+            "maximum": 35.19535144644153,
+            "minimum": -35.184057529925276
+          },
+          "w": {
+            "maximum": 0.00860810742973126,
+            "minimum": -0.008517271838835333
+          }
+        }
+      },
+      "frame_count_pass": true,
+      "frames": [
+        "2024-07-01_00:00:00",
+        "2024-07-01_00:05:00"
+      ],
+      "log": {
+        "disabled_messages": 1,
+        "exact_grid_validations": 0,
+        "first_open_step_seconds": null,
+        "masses_kg": {},
+        "miem_timer_calls": 0,
+        "miem_timer_seconds": null,
+        "tuvx_initialized": 1,
+        "warm_step_calls": 0,
+        "warm_step_mean_seconds": null
+      },
+      "metadata": {
+        "artifacts": {
+          "atmosphere_model": {
+            "name": "atmosphere_model",
+            "sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+            "size_bytes": 14082536
+          },
+          "configuration": {
+            "global_cams_chapman_nox.yaml": {
+              "name": "global_cams_chapman_nox.yaml",
+              "sha256": "0507f572a77fa628871538f70c5bccbdbc090eba5cebb627ac6e418b393a0141",
+              "size_bytes": 4806
+            },
+            "namelist.atmosphere": {
+              "name": "namelist.atmosphere",
+              "sha256": "0372a7321d88a89edd32e0389d819a5af54c59d1e7b94a85387100af571343b4",
+              "size_bytes": 2371
+            },
+            "stream_list.atmosphere.output": {
+              "name": "stream_list.atmosphere.output",
+              "sha256": "dcda8bb592ab56ff73989d7e24e695a29250ce12c3d9a28e559bfce3f1622b3a",
+              "size_bytes": 142
+            },
+            "streams.atmosphere": {
+              "name": "streams.atmosphere",
+              "sha256": "b82aae1d49e59c0e945bc9217d3e2277cf1cbc0b4d2333815b4d9915d98e3910",
+              "size_bytes": 1604
+            },
+            "tuvx_chapman_nox.json": {
+              "name": "tuvx_chapman_nox.json",
+              "sha256": "00fdf1598cb637e6ab8e87997a9d25703e16497eacb59bb20e0117aeda89d3d9",
+              "size_bytes": 4597
+            },
+            "tuvx_upper_atm.csv": {
+              "name": "tuvx_upper_atm.csv",
+              "sha256": "851b0ff3549bca691e0c49a8727bcdbaae001c9a34a7b1f7696f975ddd0b5954",
+              "size_bytes": 521
+            }
+          }
+        },
+        "segment": {
+          "do_restart": false,
+          "duration_seconds": 300,
+          "start_time": "2024-07-01_00:00:00"
+        },
+        "software": {
+          "chempas_commit": "c62f9d71b19936056ac808d0e450dd2115c5d93c",
+          "chempas_dirty": false,
+          "chempas_untracked_paths": [
+            "*TBL",
+            "docs/chempas/musica/global-runs/stage9c-g0-report.json",
+            "src/core_atmosphere/physics_mmm/",
+            "src/core_atmosphere/physics_noaa/"
+          ],
+          "miem_commit": "9fdf14a189262eecb677862d877ab72b06c95e21",
+          "musica_commit": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc",
+          "tuvx_data_directory": "data"
+        }
+      },
+      "miem_call_count_pass": true,
+      "output": {
+        "history_bytes": 345085232,
+        "history_files": [
+          {
+            "path": "runs/stage9c/g0-20260806T154533Z-c62f9d71b1/disabled/history.2024-07-01_00.00.00.nc",
+            "sha256": "2ef1e4a73cfd5677c83e166a042a765b82d2957c4c45ac7ca965fb713d758ab7",
+            "size_bytes": 172542616
+          },
+          {
+            "path": "runs/stage9c/g0-20260806T154533Z-c62f9d71b1/disabled/history.2024-07-01_00.05.00.nc",
+            "sha256": "e6c139763af3a5f551c87e233ea43525c5562b6dc8eae66c50e3213fca5264c7",
+            "size_bytes": 172542616
+          }
+        ],
+        "restart_bytes": 0,
+        "restart_files": []
+      },
+      "resource": {
+        "peak_rss_kib": 830840,
+        "wall_seconds": 258.13
+      },
+      "scientific_field_hashes": {
+        "2024-07-01_00:00:00": {
+          "j_jNO2": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "j_jO2": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "j_jO3_O": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "j_jO3_O1D": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "pressure": "f3c59124ea9ed24871cd2fd0978c974c23c865dc3546fb11de144ed5f451d746",
+          "qNO": "fb07cac18b8b902ca7b58874bf3990488bf599898be66e4900f2422b90a0b87f",
+          "qNO2": "61003bf6f7fb99ce84dc2eb5b5006c6f0ecdbc440f358dcb4f2dcc5f2d677ff5",
+          "qO": "5835871b41d03f0dc557f5f760e5d67f3d33d4c4150c32a5ba3b5a2f6bd1a722",
+          "qO1D": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "qO2": "df33cdac47f3074dd5ad0ad8e3e785b073afa8b8f3c40c267cc4190a963d385d",
+          "qO3": "513ddb883e51d50d7afcc293ff67d7d450c5ba44be37eb43b1230febc2dc137a",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "2985eb8c82f9b5ccd0581d695c349dcead1dfd7349262581da287585644d1dd8",
+          "rho_zz": "ff99d76f2d12eac53ebe8d18f253c05f6d9cdbf49b40d6a30aa6384bc7c4c7e3",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "1a2fe150fa347c26219f6841425c6927211dbcb7af587c00ea228cfa93868b77",
+          "u": "e5c426a888c793802318651ea11d89bdba6c65e243f6481b63c69d3d483e5e85",
+          "w": "7eb7c7c5273f75a778977079e5c81d8ec252a2234f7763f91e91ae582e4da819"
+        },
+        "2024-07-01_00:05:00": {
+          "j_jNO2": "f94e6a3f66a0760b9a83da19cb2f78b846b59b0e1610bdd6b2db414c1a78f8f0",
+          "j_jO2": "8504e742f6977764bb69d8d4c15fa611424ceafb0f7664bb8f5f021574048e53",
+          "j_jO3_O": "9c8995b66a12f736ac07b998f45b627df5977af297cf88cf870db558465f5a30",
+          "j_jO3_O1D": "ba4d5a12935f6dd9055df53e352bf097146c1572ccbcaa75b753f6574248b858",
+          "pressure": "ae771054b5bdb00640b145efb8c71a70edab0384b77e8f0f922ec8df258ef15e",
+          "qNO": "27b62c8033561af6164df940e81f0327782b3ff117978f463c7fca38d16403d0",
+          "qNO2": "3817e56547ddf914b92b4908a2d0755f6407b4db667c35a06d3791838a7d7617",
+          "qO": "d072025bd46f096203af30d6f4840cc7deb91244fc627ba8c67013cac93308b2",
+          "qO1D": "7e5e37bfd08c01bc176a962291e5257cefc5afd358eee65da577eea67182da30",
+          "qO2": "c703873f6f736f5dbbcc930af63a871f86b628edbd9b12c08e45c1e7c3cc3faf",
+          "qO3": "681e5ef99f97e567b90b3a0937b3c7e8e3bb61cf019cff5bc49cae0bd4950c43",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "122726e37922ea9aa456f50fab6a259851830cf8f3a0423e73d7bc8a910cd5a6",
+          "rho_zz": "fc0dfff109421817363bf01bc754b8292002848873bec1a4f833dccc64aa796f",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "29f7fc02ae571110fc834085a2fc0cd5ac6383e04ee74a3f512c3b2f17e48ab9",
+          "u": "dd0f3d7353f362398d60b7a7e307eb6a6451de886b0f0b06237d1d38cc9eac37",
+          "w": "1f4ebe3067670ec2b233fb5e7063982043bc1196fb76a732b46059c5b3e73495"
+        }
+      },
+      "source_mass_comparison": {},
+      "source_mass_pass": true,
+      "timing_contract_pass": true
+    },
+    "enabled_zero": {
+      "exact_grid_lifecycle_pass": true,
+      "expected_frame_count": 2,
+      "expected_source_mass_kg": {
+        "NO": 0.0,
+        "NO2": 0.0
+      },
+      "finite_state": {
+        "fields_checked": [
+          "emis_NO",
+          "emis_NO2",
+          "j_jNO2",
+          "j_jO2",
+          "j_jO3_O",
+          "j_jO3_O1D",
+          "pressure",
+          "qNO",
+          "qNO2",
+          "qO",
+          "qO1D",
+          "qO2",
+          "qO3",
+          "qv",
+          "rho",
+          "rho_zz",
+          "surface_pressure",
+          "theta",
+          "u",
+          "w"
+        ],
+        "nonnegative_tracers_and_rates": {
+          "emis_NO": true,
+          "emis_NO2": true,
+          "j_jNO2": true,
+          "j_jO2": true,
+          "j_jO3_O": true,
+          "j_jO3_O1D": true,
+          "qNO": true,
+          "qNO2": true,
+          "qO": true,
+          "qO1D": true,
+          "qO2": true,
+          "qO3": true,
+          "qv": true
+        },
+        "passed": true,
+        "positive_physical_fields": {
+          "pressure": true,
+          "rho": true,
+          "surface_pressure": true,
+          "theta": true
+        },
+        "ranges": {
+          "emis_NO": {
+            "maximum": 0.0,
+            "minimum": 0.0
+          },
+          "emis_NO2": {
+            "maximum": 0.0,
+            "minimum": 0.0
+          },
+          "j_jNO2": {
+            "maximum": 0.013014945870752808,
+            "minimum": 0.0
+          },
+          "j_jO2": {
+            "maximum": 3.791150388093535e-10,
+            "minimum": 0.0
+          },
+          "j_jO3_O": {
+            "maximum": 0.0006251418947651918,
+            "minimum": 0.0
+          },
+          "j_jO3_O1D": {
+            "maximum": 0.001035239292904513,
+            "minimum": 0.0
+          },
+          "pressure": {
+            "maximum": 98506.19417474313,
+            "minimum": 205.64668624478833
+          },
+          "qNO": {
+            "maximum": 2.033107590034093e-09,
+            "minimum": 3.268733883104396e-14
+          },
+          "qNO2": {
+            "maximum": 3.1756488783782593e-09,
+            "minimum": 5.826736070565575e-11
+          },
+          "qO": {
+            "maximum": 3.8693073979039746e-10,
+            "minimum": 0.0
+          },
+          "qO1D": {
+            "maximum": 1.4882727773747244e-16,
+            "minimum": 0.0
+          },
+          "qO2": {
+            "maximum": 0.23196410218754976,
+            "minimum": 0.2319640214312702
+          },
+          "qO3": {
+            "maximum": 1.0001319398890726e-05,
+            "minimum": 1.5291948352793046e-08
+          },
+          "qv": {
+            "maximum": 0.0,
+            "minimum": 0.0
+          },
+          "rho": {
+            "maximum": 1.513799037114305,
+            "minimum": 0.0027305347214994597
+          },
+          "rho_zz": {
+            "maximum": 0.6108730183839841,
+            "minimum": 0.004056163205227163
+          },
+          "surface_pressure": {
+            "maximum": 100000.00000000001,
+            "minimum": 99999.99999999999
+          },
+          "theta": {
+            "maximum": 1536.9920650899749,
+            "minimum": 226.7080935910349
+          },
+          "u": {
+            "maximum": 35.19535144644153,
+            "minimum": -35.184057529925276
+          },
+          "w": {
+            "maximum": 0.00860810742973126,
+            "minimum": -0.008517271838835333
+          }
+        }
+      },
+      "frame_count_pass": true,
+      "frames": [
+        "2024-07-01_00:00:00",
+        "2024-07-01_00:05:00"
+      ],
+      "log": {
+        "disabled_messages": 0,
+        "exact_grid_validations": 1,
+        "first_open_step_seconds": 0.0553542720000006,
+        "masses_kg": {
+          "NO": 0.0,
+          "NO2": 0.0
+        },
+        "miem_timer_calls": 1,
+        "miem_timer_seconds": 0.07128,
+        "tuvx_initialized": 1,
+        "warm_step_calls": 0,
+        "warm_step_mean_seconds": 0.0
+      },
+      "metadata": {
+        "artifacts": {
+          "atmosphere_model": {
+            "name": "atmosphere_model",
+            "sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+            "size_bytes": 14082536
+          },
+          "configuration": {
+            "global_cams_chapman_nox.yaml": {
+              "name": "global_cams_chapman_nox.yaml",
+              "sha256": "0507f572a77fa628871538f70c5bccbdbc090eba5cebb627ac6e418b393a0141",
+              "size_bytes": 4806
+            },
+            "global_synthetic_nox.yaml": {
+              "name": "global_synthetic_nox.yaml",
+              "sha256": "051217f9bca182817533c65ce431027a9065feb531d9dadc54c65547e066be27",
+              "size_bytes": 852
+            },
+            "namelist.atmosphere": {
+              "name": "namelist.atmosphere",
+              "sha256": "2beb11d3503f9ae2656485ff2a9c73352bfd5a5064a21f339ae0775855b4336d",
+              "size_bytes": 2396
+            },
+            "stream_list.atmosphere.output": {
+              "name": "stream_list.atmosphere.output",
+              "sha256": "e6e21324559e27b62912fed3ec19566fac75220e0dc1b01b3d0692bbe01bdf7b",
+              "size_bytes": 159
+            },
+            "streams.atmosphere": {
+              "name": "streams.atmosphere",
+              "sha256": "b82aae1d49e59c0e945bc9217d3e2277cf1cbc0b4d2333815b4d9915d98e3910",
+              "size_bytes": 1604
+            },
+            "tuvx_chapman_nox.json": {
+              "name": "tuvx_chapman_nox.json",
+              "sha256": "00fdf1598cb637e6ab8e87997a9d25703e16497eacb59bb20e0117aeda89d3d9",
+              "size_bytes": 4597
+            },
+            "tuvx_upper_atm.csv": {
+              "name": "tuvx_upper_atm.csv",
+              "sha256": "851b0ff3549bca691e0c49a8727bcdbaae001c9a34a7b1f7696f975ddd0b5954",
+              "size_bytes": 521
+            }
+          }
+        },
+        "segment": {
+          "do_restart": false,
+          "duration_seconds": 300,
+          "start_time": "2024-07-01_00:00:00"
+        },
+        "software": {
+          "chempas_commit": "c62f9d71b19936056ac808d0e450dd2115c5d93c",
+          "chempas_dirty": false,
+          "chempas_untracked_paths": [
+            "*TBL",
+            "docs/chempas/musica/global-runs/stage9c-g0-report.json",
+            "src/core_atmosphere/physics_mmm/",
+            "src/core_atmosphere/physics_noaa/"
+          ],
+          "miem_commit": "9fdf14a189262eecb677862d877ab72b06c95e21",
+          "musica_commit": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc",
+          "tuvx_data_directory": "data"
+        }
+      },
+      "miem_call_count_pass": true,
+      "output": {
+        "history_bytes": 346396688,
+        "history_files": [
+          {
+            "path": "runs/stage9c/g0-20260806T154533Z-c62f9d71b1/enabled_zero/history.2024-07-01_00.00.00.nc",
+            "sha256": "5ef9365c6a46c64963fd62e47da55e4f04960837ff4e2459d738433144a25147",
+            "size_bytes": 173198344
+          },
+          {
+            "path": "runs/stage9c/g0-20260806T154533Z-c62f9d71b1/enabled_zero/history.2024-07-01_00.05.00.nc",
+            "sha256": "c5c6ad59b68d053f23a7a65d79230ee74d8d6426af8d459b6e8579c614744702",
+            "size_bytes": 173198344
+          }
+        ],
+        "restart_bytes": 0,
+        "restart_files": []
+      },
+      "resource": {
+        "peak_rss_kib": 852172,
+        "wall_seconds": 299.34000000000003
+      },
+      "scientific_field_hashes": {
+        "2024-07-01_00:00:00": {
+          "emis_NO": "ceb9a1c18ec862b92a31d02e3acb79770637616682fdc39e1f8c623a41a9f1cf",
+          "emis_NO2": "ceb9a1c18ec862b92a31d02e3acb79770637616682fdc39e1f8c623a41a9f1cf",
+          "j_jNO2": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "j_jO2": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "j_jO3_O": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "j_jO3_O1D": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "pressure": "f3c59124ea9ed24871cd2fd0978c974c23c865dc3546fb11de144ed5f451d746",
+          "qNO": "fb07cac18b8b902ca7b58874bf3990488bf599898be66e4900f2422b90a0b87f",
+          "qNO2": "61003bf6f7fb99ce84dc2eb5b5006c6f0ecdbc440f358dcb4f2dcc5f2d677ff5",
+          "qO": "5835871b41d03f0dc557f5f760e5d67f3d33d4c4150c32a5ba3b5a2f6bd1a722",
+          "qO1D": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "qO2": "df33cdac47f3074dd5ad0ad8e3e785b073afa8b8f3c40c267cc4190a963d385d",
+          "qO3": "513ddb883e51d50d7afcc293ff67d7d450c5ba44be37eb43b1230febc2dc137a",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "2985eb8c82f9b5ccd0581d695c349dcead1dfd7349262581da287585644d1dd8",
+          "rho_zz": "ff99d76f2d12eac53ebe8d18f253c05f6d9cdbf49b40d6a30aa6384bc7c4c7e3",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "1a2fe150fa347c26219f6841425c6927211dbcb7af587c00ea228cfa93868b77",
+          "u": "e5c426a888c793802318651ea11d89bdba6c65e243f6481b63c69d3d483e5e85",
+          "w": "7eb7c7c5273f75a778977079e5c81d8ec252a2234f7763f91e91ae582e4da819"
+        },
+        "2024-07-01_00:05:00": {
+          "emis_NO": "ceb9a1c18ec862b92a31d02e3acb79770637616682fdc39e1f8c623a41a9f1cf",
+          "emis_NO2": "ceb9a1c18ec862b92a31d02e3acb79770637616682fdc39e1f8c623a41a9f1cf",
+          "j_jNO2": "f94e6a3f66a0760b9a83da19cb2f78b846b59b0e1610bdd6b2db414c1a78f8f0",
+          "j_jO2": "8504e742f6977764bb69d8d4c15fa611424ceafb0f7664bb8f5f021574048e53",
+          "j_jO3_O": "9c8995b66a12f736ac07b998f45b627df5977af297cf88cf870db558465f5a30",
+          "j_jO3_O1D": "ba4d5a12935f6dd9055df53e352bf097146c1572ccbcaa75b753f6574248b858",
+          "pressure": "ae771054b5bdb00640b145efb8c71a70edab0384b77e8f0f922ec8df258ef15e",
+          "qNO": "27b62c8033561af6164df940e81f0327782b3ff117978f463c7fca38d16403d0",
+          "qNO2": "3817e56547ddf914b92b4908a2d0755f6407b4db667c35a06d3791838a7d7617",
+          "qO": "d072025bd46f096203af30d6f4840cc7deb91244fc627ba8c67013cac93308b2",
+          "qO1D": "7e5e37bfd08c01bc176a962291e5257cefc5afd358eee65da577eea67182da30",
+          "qO2": "c703873f6f736f5dbbcc930af63a871f86b628edbd9b12c08e45c1e7c3cc3faf",
+          "qO3": "681e5ef99f97e567b90b3a0937b3c7e8e3bb61cf019cff5bc49cae0bd4950c43",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "122726e37922ea9aa456f50fab6a259851830cf8f3a0423e73d7bc8a910cd5a6",
+          "rho_zz": "fc0dfff109421817363bf01bc754b8292002848873bec1a4f833dccc64aa796f",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "29f7fc02ae571110fc834085a2fc0cd5ac6383e04ee74a3f512c3b2f17e48ab9",
+          "u": "dd0f3d7353f362398d60b7a7e307eb6a6451de886b0f0b06237d1d38cc9eac37",
+          "w": "1f4ebe3067670ec2b233fb5e7063982043bc1196fb76a732b46059c5b3e73495"
+        }
+      },
+      "source_mass_comparison": {
+        "NO": {
+          "bitwise_equal": true,
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0,
+          "passed": true
+        },
+        "NO2": {
+          "bitwise_equal": true,
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0,
+          "passed": true
+        }
+      },
+      "source_mass_pass": true,
+      "timing_contract_pass": true
+    }
+  },
+  "scenario": {
+    "description": "Five-minute disabled/zero-MIEM trajectory identity control.",
+    "name": "g0_zero_control",
+    "resolved": {
+      "chemistry_interval_seconds": 0,
+      "chemistry_reference_solve": false,
+      "chemistry_substeps": 1,
+      "description": "Five-minute disabled/zero-MIEM trajectory identity control.",
+      "diagnostic_categories": [],
+      "diagnostic_sectors": [],
+      "duration_seconds": 300,
+      "expected_assertions": [
+        "exact_grid_open",
+        "zero_source",
+        "bitwise_common_fields",
+        "reactive_noy_budget",
+        "finite_state"
+      ],
+      "fixture_pattern": "zero",
+      "id": "G0",
+      "initial_condition_id": "mpas-x1.40962-jw-static-aligned-chapman-nox-state",
+      "inventory_kind": "synthetic",
+      "layered_diagnostics": false,
+      "lightning_enabled": false,
+      "max_diagnostic_fields": 256,
+      "micm_config": "micm_configs/global_cams_chapman_nox.yaml",
+      "micm_relative_tolerance": 1e-15,
+      "model_dt_seconds": 300,
+      "mpi_ranks": 8,
+      "output_interval_seconds": 300,
+      "partition_id": "mpas-x1.40962-eight-rank-partition",
+      "science_inventory_id": "cams-glob-ant-v6.2-x1.40962-miem-inventory",
+      "start_time": "2024-07-01_00:00:00",
+      "tolerances": {
+        "flux_absolute_kg_m2_s": 1e-24,
+        "flux_relative": 2e-13,
+        "noy_budget_absolute_mol": 0.001,
+        "noy_budget_relative": 5e-05,
+        "restart_absolute": 0.0,
+        "restart_relative": 0.0,
+        "source_mass_absolute_kg": 1e-08,
+        "source_mass_relative": 2e-12
+      },
+      "tuvx_config": "micm_configs/tuvx_chapman_nox.json",
+      "tuvx_extension": "test_cases/chapman_nox_global/tuvx_upper_atm.csv",
+      "tuvx_update_interval_seconds": 3600,
+      "variants": [
+        {
+          "miem_enabled": false,
+          "name": "disabled"
+        },
+        {
+          "miem_enabled": true,
+          "name": "enabled_zero"
+        }
+      ]
+    }
+  },
+  "schema_version": "chempas-global-miem-throughput-report-v1",
+  "telemetry": {
+    "available_disk_bytes_after_run": 280335753216,
+    "run_count": 2,
+    "total_history_bytes": 691481920
+  }
+}

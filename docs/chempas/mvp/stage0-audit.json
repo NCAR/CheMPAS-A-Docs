@@ -1,0 +1,79 @@
+{
+  "schema_version": "chempas-mvp-stage0-release-record-v1",
+  "recorded_date": "2026-08-15",
+  "planning_commit": "7449fd0f0e91259814cb9450034303bba38af0de",
+  "external_manifest": "test_cases/global_mvp/external-inputs.json",
+  "external_manifest_schema": "test_cases/global_mvp/external-inputs.schema.json",
+  "prescribed_field_contract": "test_cases/global_mvp/prescribed-field-contract.json",
+  "resource_forecast": "test_cases/global_mvp/resource-forecast.json",
+  "dependencies": {
+    "compiler": "GNU Fortran 15.2.0",
+    "mpi": "Open MPI 5.0.10",
+    "netcdf_c": "4.10.1",
+    "netcdf_fortran": "4.6.3",
+    "python": "3.14.6",
+    "numpy": "2.5.1",
+    "netcdf4_python": "1.7.4",
+    "requests": "2.34.2",
+    "pydap_acquisition_only": "3.5.10",
+    "musica_revision": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc",
+    "micm_revision": "bb57684a2047f0e58f30b199366294af879e8597",
+    "miem_revision": "9fdf14a189262eecb677862d877ab72b06c95e21",
+    "mechanism_configuration_revision": "82c159ae6d74934318ffd6c405a45c2159065b12",
+    "tuvx_revision": "bbf7dd9a144fa0f0294b3779f3f993818638e20c"
+  },
+  "pre_mvp_baseline": {
+    "clean_build_commit": "7449fd0f0e91259814cb9450034303bba38af0de",
+    "atmosphere_model_size_bytes": 14100160,
+    "atmosphere_model_sha256": "e95e93b15c0a1f5ca71dbbc32f070a9c0f0d734b1aadefa89ea44a0b4c2905db",
+    "python_compileall": "pass",
+    "shell_syntax": "pass",
+    "python_unittest_count": 230,
+    "python_unittest_result": "pass",
+    "jpl_troe_matrix_points_per_configuration": 16,
+    "jpl_troe_configurations": 3,
+    "jpl_troe_result": "pass",
+    "musica_emission_contract_result": "pass",
+    "clean_release_build_result": "pass"
+  },
+  "data_audit": {
+    "artifact_count": 11,
+    "prepared_runtime_artifact_count": 3,
+    "all_size_and_sha256_checks": "pass",
+    "mesh_fingerprint_algorithm": "chempas-mesh-sha256-v1",
+    "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+    "merra2_month_count": 12,
+    "merra2_pressure_level_count": 8,
+    "merra2_validation": "pass",
+    "cams_co_sector_sum_maximum_relative_difference": 2.3650169792271097e-09,
+    "cams_co_validation": "pass",
+    "finn_2024_07_01_rows": 65462,
+    "finn_2024_07_02_rows": 63419,
+    "finn_validation": "pass"
+  },
+  "science_decisions": {
+    "finn_nitrogen": "map explicit provider NO and NO2 directly; ignore NOXasNO",
+    "finn_time": "provider totals use fire-local calendar dates; runtime total/86400 and noon-UTC nearest-record timing are an explicit MVP approximation; a labeled duplicate of the first field at 2024-07-01 00:00 UTC prevents out-of-range extrapolation before the first noon anchor",
+    "source_overlap": "withhold CAMS awb from all harmonized A/B/C members; FINN represents open burning",
+    "fire_injection": "surface",
+    "upper_o3": "cyclic twelve-month MERRA-2 climatology with conservative column preparation and a frozen AFGL/USSA76 completion"
+  },
+  "resources_at_audit": {
+    "available_disk_bytes": 29519974400,
+    "available_memory_bytes": 56190001152,
+    "required_free_bytes_before_largest_gate": 27844935680,
+    "largest_gate_allowed_output_envelope_bytes": 6370099200,
+    "disk_preflight": "pass",
+    "memory_preflight": "pass"
+  },
+  "commands": [
+    "conda run --no-capture-output -n mpas scripts/check_build_env.sh",
+    "conda run --no-capture-output -n mpas python -m compileall -q scripts tests",
+    "for script in scripts/*.sh; do bash -n \"$script\" || exit; done",
+    "conda run --no-capture-output -n mpas python -m unittest discover -v",
+    "conda run --no-capture-output -n mpas scripts/test_global_tropo_troe.sh",
+    "conda run --no-capture-output -n mpas scripts/test_musica_emission_contracts.sh /tmp/chempas-mvp-baseline-7449fd0f",
+    "conda run --no-capture-output -n mpas python scripts/check_mvp_stage0.py --data-root $CHEMPAS_EMISSIONS_DATA_ROOT"
+  ],
+  "overall_pass": true
+}

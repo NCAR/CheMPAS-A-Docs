@@ -1,0 +1,94 @@
+{
+  "assertions": {
+    "all_figure_pairs_hash_closed": true,
+    "all_relative_documentation_links_resolved": true,
+    "all_visual_inspections_passed": true,
+    "build_data_run_and_plot_commands_documented": true,
+    "daily_mean_semantics_explicit": true,
+    "large_generated_artifacts_excluded_from_git": true,
+    "limitations_explicit": true,
+    "no_no2_co_o3_absolute_and_paired_columns_published": true,
+    "public_source_labels_standardized": true
+  },
+  "documentation": {
+    "link_validation": {
+      "documents_checked": 10,
+      "relative_links_checked": 48,
+      "unresolved_links": 0
+    },
+    "pre_release_guide": {
+      "path": "docs/chempas/mvp/MVP_PRE_RELEASE.md",
+      "sha256": "e013138a643d5b77371ae8dccd2deb016a935a84934d7dbc808d67899fd0e476",
+      "size_bytes": 8390
+    },
+    "stage6_record": {
+      "path": "docs/chempas/mvp/STAGE6_PRE_RELEASE.md",
+      "sha256": "f40c4002b519dca181f4d32bcd420da4e1270ab38cae8a370683e33fb9206445",
+      "size_bytes": 3382
+    },
+    "visualization_guide": {
+      "path": "docs/chempas/guides/VISUALIZE.md",
+      "sha256": "3146497fe32811585f4df7f488b9e5bccc64580c9c5cacab666632511a4e1138",
+      "size_bytes": 16730
+    }
+  },
+  "evidence": {
+    "figure_manifest": {
+      "path": "docs/chempas/mvp/figure-manifest.json",
+      "sha256": "29e3bab6f860ae8c3ad34e7616f52b6242d841214242d9cb02eb6c271e564266",
+      "size_bytes": 11866
+    },
+    "global_ladder_audit": {
+      "path": "docs/chempas/mvp/stage4-global-ladder-audit.json",
+      "sha256": "2faccb96113ddbacf49fdbc0451ec590d0d135facc843a341d6f09980cc22faf",
+      "size_bytes": 4150
+    },
+    "history_manifest": {
+      "path": "docs/chempas/mvp/m3-history-manifest.json",
+      "sha256": "59d802276c17b9615d0894578303dac4c499706cea86bf241955a896918f9da2",
+      "size_bytes": 12044
+    },
+    "m3_report": {
+      "logical_path": "reports/global-mvp/9f703f505051b8eb3700e9ecae927fc1c84746ca/m3-report.json",
+      "sha256": "931913f02d33cc14db1ede6a093140755c492e02686ccc2ea4718e3f294daae5",
+      "size_bytes": 275750
+    }
+  },
+  "figures": {
+    "history_count": 27,
+    "pair_count": 7,
+    "plot_protocol": "chempas-science-plot-v1",
+    "total_tracked_bytes": 34773270,
+    "visual_inspection": "passed"
+  },
+  "overall_pass": true,
+  "recorded_local_date": "2026-08-16",
+  "retention": {
+    "external_only": [
+      "native provider files",
+      "prepared NetCDF packages",
+      "model histories",
+      "restarts",
+      "executables",
+      "regression logs"
+    ],
+    "tracked": [
+      "Markdown documentation",
+      "compact JSON provenance",
+      "selected PNG figures",
+      "selected vector PDF figures"
+    ]
+  },
+  "schema_version": "chempas-mvp-stage6-evidence-v1",
+  "software": {
+    "global_ladder_commit": "9f703f505051b8eb3700e9ecae927fc1c84746ca",
+    "plot_evidence_commit": "e151d16f6f499c263110723539b2b9253c613456",
+    "regression_candidate_commit": "a2ae24da87d74ae19a615363ba793b6268f3c253"
+  },
+  "time_semantics": {
+    "absolute_and_paired_columns": "trapezoidal time-weighted daily mean over nine 00:00-24:00 UTC records",
+    "photolysis_upper_o3_and_stitch": "instantaneous",
+    "source_flux": "model-step time-weighted daily mean over 192 left-endpoint 450-second samples",
+    "source_mass_and_ledgers": "accumulated sources and endpoint residuals"
+  }
+}

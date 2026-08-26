@@ -1,0 +1,66 @@
+{
+  "schema_version": "chempas-global-methane-runtime-readiness-v1",
+  "checked_at_utc": "2026-08-15T19:28:00Z",
+  "data_root_free_bytes": 29737672704,
+  "ready_artifacts": {
+    "eight_rank_partition": {
+      "size_bytes": 81924,
+      "sha256": "f56e75e1f408b632fd5cd22ad05cc59fdbb54daf1e2f8f3d6298147a1e7f577b"
+    },
+    "accepted_nox_inventory": {
+      "size_bytes": 20758020,
+      "sha256": "d213866000e8a633954d0c730ba5524f729f26a97d02cc5a13d8b405aa6c8e9c"
+    },
+    "anthropogenic_ch4_inventory": {
+      "size_bytes": 13510141,
+      "sha256": "07d193acdb7876ff9728bd05fd1316f0fcf4fb0d45dcf354af48469c2377b18e"
+    },
+    "tier_c_legacy_initial_state": {
+      "size_bytes": 572335744,
+      "sha256": "7ccb0670cb49374de78187761cf410690a4b8fc4d4a27533a5ba97deed907e78"
+    },
+    "tier_z_legacy_initial_state": {
+      "size_bytes": 793865680,
+      "sha256": "2f29b47d3669b2e97403ac9ed2d6e376cd131efce0576eb0568b639cf8b32204"
+    }
+  },
+  "missing_artifacts": [
+    "posterior CH4 exact-grid inventory",
+    "Tier C CAMS-inversion initial state",
+    "Tier Z CAMS-inversion initial state"
+  ],
+  "credential_probe": {
+    "ads_api_token_environment_present": false,
+    "cdsapirc_present": false
+  },
+  "required_free_bytes_by_gate": {
+    "C1": 22208839680,
+    "CPS": 40637562880,
+    "C2": 28159508480,
+    "C3": 39824916480,
+    "CAS": 40637562880,
+    "CA3": 39824916480,
+    "CB3": 39824916480,
+    "Z1": 22837985280,
+    "ZPS": 56706990080,
+    "Z2": 58070138880,
+    "Z3": 251846983680,
+    "ZAS": 56706990080,
+    "ZA3": 251846983680,
+    "ZB3": 251846983680,
+    "Z4": 1004305121280
+  },
+  "required_gate_storage_ready": false,
+  "minimum_additional_bytes_for_largest_required_gate": 222109310976,
+  "required_ladder_output_bytes": 720266854400,
+  "required_ladder_free_bytes": 921808404480,
+  "minimum_additional_bytes_for_complete_ladder": 892070731776,
+  "complete_ladder_storage_ready": false,
+  "notes": [
+    "C1, C2, and Z1 fit the current snapshot; their declared predecessors and missing inputs still apply.",
+    "The seven-day Tier Z paired gates require 251846983680 free bytes under the frozen resource guard.",
+    "Retaining all required histories through final hash verification requires 921808404480 free bytes under the same forecast multiplier and reserve.",
+    "Z4 is optional and is not included in required promotion readiness."
+  ],
+  "overall_ready": false
+}

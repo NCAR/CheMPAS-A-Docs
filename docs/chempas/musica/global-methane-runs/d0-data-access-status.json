@@ -1,0 +1,52 @@
+{
+  "schema_version": "chempas-cams-methane-d0-data-access-status-v1",
+  "checked_at_utc": "2026-08-15T18:37:15Z",
+  "selection": {
+    "dataset": "cams-global-greenhouse-gas-inversion",
+    "release": "v24r2",
+    "input_observations": "surface_satellite",
+    "catalogue_updated": "2026-05-08T00:00:00Z",
+    "catalogue_audit_passed": true,
+    "all_three_requests_available": true
+  },
+  "records": {
+    "request_set": {
+      "path": "test_cases/global_methane/cams-inversion-v24r2-requests.json",
+      "size_bytes": 3045,
+      "sha256": "246f25afefb3d4c3f8a29e981bf4b8bc81777559ebbb58fa715c7da2a66780e7"
+    },
+    "source_selection_audit": {
+      "path": "docs/chempas/musica/global-methane-runs/cams-inversion-v24r2-source-selection.json",
+      "size_bytes": 3977,
+      "sha256": "03f6df61e7fbb25c35ade29bbf3822e7e5616a94fd0c944c59c5f78d4e13c4b6"
+    }
+  },
+  "client": {
+    "name": "cdsapi",
+    "version": "0.7.7",
+    "declared_in_environment_yml": true
+  },
+  "credential_probe": {
+    "ads_api_token_environment_present": false,
+    "cdsapirc_present": false,
+    "secret_values_recorded": false
+  },
+  "acquisition_attempt": {
+    "exit_code": 2,
+    "request_submitted": false,
+    "partial_artifacts_created": false,
+    "error": "ADS authentication is unavailable; set ADS_API_TOKEN or configure ~/.cdsapirc"
+  },
+  "missing_roles": [
+    "three-dimensional CH4 dry mole fraction",
+    "column-mean CH4 dry mole fraction",
+    "posterior total and component CH4 surface exchange"
+  ],
+  "blocked_outputs": [
+    "CAMS-background Tier C and Tier Z initial states",
+    "posterior exact-grid MIEM inventory",
+    "C1, CPS, C2, C3, CAS, CA3, CB3, Z1, ZPS, Z2, Z3, ZAS, ZA3, and ZB3 promotion gates",
+    "complete C/Z evidence publication and Desktop science plots"
+  ],
+  "data_ready": false
+}

@@ -1,0 +1,111 @@
+{
+  "artifacts": [
+    {
+      "format": "MPAS NetCDF initial condition",
+      "id": "mpas-x1.40962-gfs-20240701t00z-reduced-tropo-state",
+      "logical_path": "initial_conditions/noaa-gfs-20240701T00Z/x1.40962.gfs-20240701T00Z.reduced-tropo.init.nc",
+      "role": "model_initial_condition",
+      "selection": {
+        "audit_path": "docs/chempas/musica/global-tropo-runs/initial-condition-audits/reduced.json",
+        "audit_sha256": "e260672b0e3397bceb074f247d04dc293b9f0f7650c0967ac597b4691b6c0b14",
+        "chemistry_tracers": [
+          "qNO",
+          "qNO2",
+          "qO3"
+        ],
+        "host_water_vapor": "qv preserved bitwise",
+        "mechanism_tier": "reduced",
+        "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+        "micm_mechanism": "micm_configs/global_cams_lnox_o3.yaml",
+        "production_ready_concentrations": false,
+        "source_artifact_id": "mpas-x1.40962-gfs-20240701t00z-state"
+      },
+      "sha256": "ebbb698eb102c0e3f65dee2ae87362c6ebedb6caa98ad22c23927cdb33fd50fe",
+      "size_bytes": 470093124,
+      "source_identifier": "Pinned date-matched GFS state augmented with the declared reduced NO-NO2-O3 background"
+    },
+    {
+      "format": "MPAS NetCDF initial condition",
+      "id": "mpas-x1.40962-gfs-20240701t00z-expanded-tropo-state",
+      "logical_path": "initial_conditions/noaa-gfs-20240701T00Z/x1.40962.gfs-20240701T00Z.expanded-tropo.init.nc",
+      "role": "model_initial_condition",
+      "selection": {
+        "audit_path": "docs/chempas/musica/global-tropo-runs/initial-condition-audits/expanded.json",
+        "audit_sha256": "a52734f6e0a756c50a254931a657182678614f901c31405a45f2496fbd80d754",
+        "chemistry_tracers": [
+          "qO2",
+          "qO",
+          "qO1D",
+          "qO3",
+          "qOH",
+          "qHO2",
+          "qH2O2",
+          "qNO",
+          "qNO2",
+          "qHNO3",
+          "qCO",
+          "qCH4",
+          "qCH3O2",
+          "qCH3OOH",
+          "qCH2O"
+        ],
+        "host_water_vapor": "qv preserved bitwise; qH2O omitted",
+        "mechanism_tier": "expanded",
+        "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+        "micm_mechanism": "micm_configs/global_cams_tropo_ch4nox.yaml",
+        "production_ready_concentrations": false,
+        "source_artifact_id": "mpas-x1.40962-gfs-20240701t00z-state",
+        "third_body": "M derived by MICM; qM omitted"
+      },
+      "sha256": "7ccb0670cb49374de78187761cf410690a4b8fc4d4a27533a5ba97deed907e78",
+      "size_bytes": 572335744,
+      "source_identifier": "Pinned date-matched GFS state augmented with the declared expanded Ox-HOx-NOx-CO-CH4 background"
+    },
+    {
+      "format": "MPAS NetCDF restart",
+      "id": "mpas-x1.40962-global-tropo-expanded-spinup-restart",
+      "logical_path": "initial_conditions/global-tropo-expanded-spinup-20240702T00Z/restart.2024-07-02_00.00.00.nc",
+      "role": "model_restart",
+      "selection": {
+        "atmosphere_model_sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+        "boundary_time": "2024-07-02_00:00:00",
+        "chemistry_tracers": [
+          "qO2",
+          "qO",
+          "qO1D",
+          "qO3",
+          "qOH",
+          "qHO2",
+          "qH2O2",
+          "qNO",
+          "qNO2",
+          "qHNO3",
+          "qCO",
+          "qCH4",
+          "qCH3O2",
+          "qCH3OOH",
+          "qCH2O"
+        ],
+        "fs_report_sha256": "c8fd1685e5dc266360b7b30599beb280ddf1f8998d1741554dc13a7f067538e2",
+        "gate": "FS",
+        "host_water_vapor": "qv (qH2O absent)",
+        "mechanism_tier": "expanded",
+        "mesh_cell_count": 40962,
+        "micm_mechanism": "micm_configs/global_cams_tropo_ch4nox.yaml",
+        "micm_mechanism_sha256": "ee32e2142ca523e4a0b7ac8afe28197d8252d03713abf3a973977c452258c08c",
+        "one_day_spinup_scope": "fast radicals and diurnal partitioning only; not a multiweek equilibration of long-lived species",
+        "parent_initial_condition_id": "mpas-x1.40962-gfs-20240701t00z-expanded-tropo-state",
+        "third_body": "derived by MICM (qM absent)"
+      },
+      "sha256": "5cc5c7bd7fb47631ca89dae025b8646222b95422b65e7739047bd890ece9f940",
+      "size_bytes": 832868504,
+      "source_identifier": "Qualified 24-hour expanded-chemistry FS boundary restart"
+    }
+  ],
+  "base_manifest": {
+    "logical_path": "test_cases/global_miem/external-inputs.cams-glob-ant-v6.2-2024-07.json",
+    "sha256": "6d5be3455a2f827b2e1013ae0c6f5fdf82699657b7508f527172ed872e0ce9ed"
+  },
+  "manifest_id": "global-tropo-nox-x1.40962-2024-07",
+  "schema_version": "chempas-global-tropo-miem-external-overlay-v1"
+}

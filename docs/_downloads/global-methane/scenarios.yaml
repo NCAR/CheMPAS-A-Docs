@@ -1,0 +1,249 @@
+schema_version: chempas-global-methane-scenarios-v1
+
+defaults:
+  mpi_ranks: 8
+  start_time: "2024-07-01_00:00:00"
+  model_dt_seconds: 450
+  output_interval_seconds: 3600
+  chemistry_interval_seconds: 0
+  chemistry_substeps: 1
+  chemistry_reference_solve: false
+  micm_relative_tolerance: 1.0e-15
+  tuvx_update_interval_seconds: 0
+  tuvx_extension: test_cases/chapman_nox_global/tuvx_upper_atm.csv
+  mesh_id: mpas-x1.40962
+  partition_id: mpas-x1.40962-eight-rank-partition
+  nox_inventory_id: cams-glob-ant-v6.2-x1.40962-miem-inventory
+  cams_background_id: cams-inversion-v24r2-x1.40962-tier-c-initial-state
+  legacy_background_id: mpas-x1.40962-gfs-20240701t00z-expanded-tropo-state
+  posterior_inventory_id: cams-inversion-v24r2-ch4-x1.40962-miem-inventory
+  anthropogenic_inventory_id: cams-glob-ant-v6.2-ch4-x1.40962-miem-inventory
+  nox_miem_config: miem_configs/global_cams_nox.yaml
+  posterior_miem_config: miem_configs/global_cams_nox_ch4_posterior.yaml
+  anthropogenic_miem_config: miem_configs/global_cams_nox_ch4_anthropogenic.yaml
+  nox_surface_source: applied
+  lightning_nox: withheld
+  diagnostic_tropopause_pa: 15000.0
+  layered_diagnostics: false
+  max_diagnostic_fields: 768
+  plot_products: [instantaneous]
+  resource_guard:
+    reserve_gib: 20.0
+    forecast_multiplier: 1.25
+    tier_c_history_mib_per_frame: 280.0
+    tier_z_history_mib_per_frame: 520.0
+    tier_c_restart_mib: 900.0
+    tier_z_restart_mib: 1400.0
+    peak_rss_gib: 7.0
+  tolerances:
+    flux_relative: 2.0e-13
+    flux_absolute_kg_m2_s: 1.0e-24
+    source_mass_relative: 2.0e-12
+    source_mass_absolute_kg: 1.0e-8
+    remap_mass_relative: 2.0e-7
+    restart_relative: 5.0e-10
+    restart_absolute: 1.0e-19
+    restart_photolysis_relative: 5.0e-10
+    restart_photolysis_absolute_s-1: 1.0e-16
+    elemental_relative: 5.0e-5
+    elemental_absolute_mol: 1.0e-3
+
+tiers:
+  C:
+    mechanism: micm_configs/global_cams_tropo_ch4nox_emissions.yaml
+    strict_mechanism: micm_configs/global_cams_tropo_ch4nox_emissions_strict.yaml
+    tuvx_config: micm_configs/tuvx_tropo.json
+    photolysis_channels: [jO3_O1D, jO3_O, jNO2, jH2O2, jCH2O_a, jCH2O_b, jCH3OOH, jHNO3]
+    chemistry_species: [O2, O, O1D, O3, OH, HO2, H2O2, "NO", "NO2", HNO3, CO, CH4, CH3O2, CH3OOH, CH2O]
+  Z:
+    mechanism: micm_configs/global_cams_mozart35.yaml
+    strict_mechanism: micm_configs/global_cams_mozart35_strict.yaml
+    tuvx_config: micm_configs/tuvx_mozart35.json
+    species_mapping: micm_configs/mozart35-source-to-micm.json
+    transported_species_count: 35
+    photolysis_channel_count: 18
+    cams_background_id: cams-inversion-v24r2-x1.40962-tier-z-initial-state
+    legacy_background_id: mpas-x1.40962-gfs-20240701t00z-mozart35-legacy-state
+
+gates:
+  c1_shakedown:
+    id: C1
+    tier: C
+    execution: source_applied_single
+    description: One-Hour Posterior Surface-Source Shakedown
+    duration_seconds: 3600
+    source_family: posterior_total
+    background: cams
+    plot_products: [instantaneous]
+
+  cps_spinup:
+    id: CPS
+    tier: C
+    execution: common_spinup
+    description: Forty-Eight-Hour Posterior Surface-Source Spin-Up
+    duration_seconds: 172800
+    source_family: posterior_total
+    background: cams
+    restart_boundary: "2024-07-03_00:00:00"
+    plot_products: [instantaneous, time_weighted_daily_mean]
+
+  c2_restart:
+    id: C2
+    tier: C
+    execution: restart_equivalence
+    description: Six-Hour Posterior Surface-Source Restart Gate
+    start_time: "2024-07-03_00:00:00"
+    duration_seconds: 21600
+    restart_segment_seconds: 10800
+    source_family: posterior_total
+    background: cams
+    parent_restart_gate: CPS
+
+  c3_posterior_response:
+    id: C3
+    tier: C
+    execution: continued_withheld_pair
+    description: Twenty-Four-Hour Posterior Surface-Source Response
+    start_time: "2024-07-03_00:00:00"
+    duration_seconds: 86400
+    source_family: posterior_total
+    background: cams
+    parent_restart_gate: CPS
+    difference: continued_minus_withheld
+    plot_products: [instantaneous, time_weighted_daily_mean]
+
+  cas_spinup:
+    id: CAS
+    tier: C
+    execution: common_spinup
+    description: Forty-Eight-Hour Anthropogenic Surface-Source Spin-Up
+    duration_seconds: 172800
+    source_family: anthropogenic_attribution
+    background: cams
+    restart_boundary: "2024-07-03_00:00:00"
+    plot_products: [instantaneous, time_weighted_daily_mean]
+
+  ca3_anthropogenic_attribution:
+    id: CA3
+    tier: C
+    execution: applied_withheld_pair
+    description: Twenty-Four-Hour Anthropogenic Surface-Source Attribution
+    start_time: "2024-07-03_00:00:00"
+    duration_seconds: 86400
+    source_family: anthropogenic_attribution
+    background: cams
+    parent_restart_gate: CAS
+    difference: applied_minus_withheld
+    plot_products: [instantaneous, time_weighted_daily_mean]
+
+  cb3_background_sensitivity:
+    id: CB3
+    tier: C
+    execution: background_pair
+    description: Methane Background Initialization Sensitivity
+    start_time: "2024-07-03_00:00:00"
+    spinup_start_time: "2024-07-01_00:00:00"
+    duration_seconds: 86400
+    common_spinup_seconds: 172800
+    source_family: posterior_total
+    backgrounds: [cams, legacy]
+    difference: cams_minus_legacy
+    plot_products: [instantaneous, time_weighted_daily_mean]
+
+  z1_shakedown:
+    id: Z1
+    tier: Z
+    execution: source_applied_single
+    description: One-Hour MOZART-35 Posterior Surface-Source Shakedown
+    duration_seconds: 3600
+    source_family: posterior_total
+    background: cams
+
+  zps_spinup:
+    id: ZPS
+    tier: Z
+    execution: common_spinup
+    description: Forty-Eight-Hour MOZART-35 Radical Spin-Up
+    duration_seconds: 172800
+    source_family: posterior_total
+    background: cams
+    restart_boundary: "2024-07-03_00:00:00"
+    plot_products: [instantaneous, time_weighted_daily_mean]
+
+  z2_restart:
+    id: Z2
+    tier: Z
+    execution: restart_equivalence
+    description: Twenty-Four-Hour MOZART-35 Restart and Ledger Gate
+    start_time: "2024-07-03_00:00:00"
+    duration_seconds: 86400
+    restart_segment_seconds: 43200
+    source_family: posterior_total
+    background: cams
+    parent_restart_gate: ZPS
+    plot_products: [instantaneous, time_weighted_daily_mean]
+
+  z3_posterior_response:
+    id: Z3
+    tier: Z
+    execution: continued_withheld_pair
+    description: Seven-Day MOZART-35 Posterior Surface-Source Response
+    start_time: "2024-07-03_00:00:00"
+    duration_seconds: 604800
+    source_family: posterior_total
+    background: cams
+    parent_restart_gate: ZPS
+    difference: continued_minus_withheld
+    plot_products: [instantaneous, time_weighted_daily_mean]
+
+  zas_spinup:
+    id: ZAS
+    tier: Z
+    execution: common_spinup
+    description: Forty-Eight-Hour MOZART-35 Anthropogenic Surface-Source Spin-Up
+    duration_seconds: 172800
+    source_family: anthropogenic_attribution
+    background: cams
+    restart_boundary: "2024-07-03_00:00:00"
+    plot_products: [instantaneous, time_weighted_daily_mean]
+
+  za3_anthropogenic_attribution:
+    id: ZA3
+    tier: Z
+    execution: applied_withheld_pair
+    description: Seven-Day MOZART-35 Anthropogenic Surface-Source Attribution
+    start_time: "2024-07-03_00:00:00"
+    duration_seconds: 604800
+    source_family: anthropogenic_attribution
+    background: cams
+    parent_restart_gate: ZAS
+    difference: applied_minus_withheld
+    plot_products: [instantaneous, time_weighted_daily_mean]
+
+  zb3_background_sensitivity:
+    id: ZB3
+    tier: Z
+    execution: background_pair
+    description: Seven-Day MOZART-35 Methane Background Initialization Sensitivity
+    start_time: "2024-07-03_00:00:00"
+    spinup_start_time: "2024-07-01_00:00:00"
+    duration_seconds: 604800
+    common_spinup_seconds: 172800
+    source_family: posterior_total
+    backgrounds: [cams, legacy]
+    difference: cams_minus_legacy
+    plot_products: [instantaneous, time_weighted_daily_mean]
+
+  z4_monthly_extension:
+    id: Z4
+    tier: Z
+    execution: continued_withheld_pair
+    description: Thirty-Day MOZART-35 Posterior Surface-Source Extension
+    start_time: "2024-07-03_00:00:00"
+    duration_seconds: 2592000
+    source_family: posterior_total
+    background: cams
+    parent_restart_gate: ZPS
+    difference: continued_minus_withheld
+    optional: true
+    plot_products: [instantaneous, time_weighted_daily_mean]

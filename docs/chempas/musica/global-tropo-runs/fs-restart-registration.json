@@ -1,0 +1,53 @@
+{
+  "artifact": {
+    "format": "MPAS NetCDF restart",
+    "id": "mpas-x1.40962-global-tropo-expanded-spinup-restart",
+    "logical_path": "initial_conditions/global-tropo-expanded-spinup-20240702T00Z/restart.2024-07-02_00.00.00.nc",
+    "role": "model_restart",
+    "selection": {
+      "atmosphere_model_sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+      "boundary_time": "2024-07-02_00:00:00",
+      "chemistry_tracers": [
+        "qO2",
+        "qO",
+        "qO1D",
+        "qO3",
+        "qOH",
+        "qHO2",
+        "qH2O2",
+        "qNO",
+        "qNO2",
+        "qHNO3",
+        "qCO",
+        "qCH4",
+        "qCH3O2",
+        "qCH3OOH",
+        "qCH2O"
+      ],
+      "fs_report_sha256": "c8fd1685e5dc266360b7b30599beb280ddf1f8998d1741554dc13a7f067538e2",
+      "gate": "FS",
+      "host_water_vapor": "qv (qH2O absent)",
+      "mechanism_tier": "expanded",
+      "mesh_cell_count": 40962,
+      "micm_mechanism": "micm_configs/global_cams_tropo_ch4nox.yaml",
+      "micm_mechanism_sha256": "ee32e2142ca523e4a0b7ac8afe28197d8252d03713abf3a973977c452258c08c",
+      "one_day_spinup_scope": "fast radicals and diurnal partitioning only; not a multiweek equilibration of long-lived species",
+      "parent_initial_condition_id": "mpas-x1.40962-gfs-20240701t00z-expanded-tropo-state",
+      "third_body": "derived by MICM (qM absent)"
+    },
+    "sha256": "5cc5c7bd7fb47631ca89dae025b8646222b95422b65e7739047bd890ece9f940",
+    "size_bytes": 832868504,
+    "source_identifier": "Qualified 24-hour expanded-chemistry FS boundary restart"
+  },
+  "copied_restart": {
+    "data_root": "emissions-science",
+    "logical_path": "initial_conditions/global-tropo-expanded-spinup-20240702T00Z/restart.2024-07-02_00.00.00.nc",
+    "verified": true
+  },
+  "runtime_overlay": {
+    "path": "${CHEMPAS_EMISSIONS_DATA_ROOT}/reports/global-tropo/caa0c12dde7b862ce14a49021e25a45cc00b337f/external-inputs.spinup.overlay.json",
+    "sha256": "568b269ccd6f00d031fbcddb8f1288c5419a09e3e207cea246f50ef53ab891d8",
+    "size_bytes": 4705
+  },
+  "schema_version": "chempas-global-tropo-spinup-registration-v1"
+}

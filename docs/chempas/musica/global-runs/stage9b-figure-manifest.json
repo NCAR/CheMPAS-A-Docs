@@ -1,0 +1,113 @@
+{
+  "figures": {
+    "global_flux_map": {
+      "pdf": {
+        "path": "stage9b_global_flux_map.pdf",
+        "sha256": "c5ba20c292f046ed00714a65b4cc88eda0d19ef2fa3880d4ae6c98362cece8c4",
+        "size_bytes": 4210069
+      },
+      "png": {
+        "path": "stage9b_global_flux_map.png",
+        "sha256": "a8ab25b9cdb74993a90340b8bb62db3959a6bc234b476b60798fbeb6dd08f1d0",
+        "size_bytes": 6952910
+      }
+    },
+    "sector_time_budget": {
+      "pdf": {
+        "path": "stage9b_sector_time_budget.pdf",
+        "sha256": "a1a9fedb84377a781ba0c705942644d5437ec5930c3bb607d4d9977ecd9cde61",
+        "size_bytes": 25403
+      },
+      "png": {
+        "path": "stage9b_sector_time_budget.png",
+        "sha256": "73268f8f08ece49d6bd7c08b67dd3d272840cdaa2459e5e5c4432f58f4b7c6dd",
+        "size_bytes": 310730
+      }
+    },
+    "zonal_vertical_allocation": {
+      "pdf": {
+        "path": "stage9b_zonal_vertical_allocation.pdf",
+        "sha256": "33ea05b7e7d523170b38fe817551e295092f30c3ac889cd96a528e7be5e1c8ac",
+        "size_bytes": 22467
+      },
+      "png": {
+        "path": "stage9b_zonal_vertical_allocation.png",
+        "sha256": "e44c167411fc9570ecf47af14b7a83324aae410794dd36becb0546bea004f798",
+        "size_bytes": 340147
+      }
+    }
+  },
+  "inputs": {
+    "mesh": {
+      "path": "raw/mpas-x1.40962/x1.40962.static.nc",
+      "sha256": "cf1a47d4168327f06a8403555d6ed8b2fe1aff7f8b916bb7f6a754c34a10ac82",
+      "size_bytes": 94766584
+    },
+    "packaged_inventory": {
+      "path": "inventory/cams-glob-ant-v6.2-x1.40962/miem_inventory.cams-glob-ant-v6.2-x1.40962.nc",
+      "sha256": "d213866000e8a633954d0c730ba5524f729f26a97d02cc5a13d8b405aa6c8e9c",
+      "size_bytes": 20758020
+    },
+    "plot_script": {
+      "path": "scripts/plot_global_miem_inventory.py",
+      "sha256": "cf623bc85b81899673ed936576f2d653b6db0a7e0c244a0a1fcd44058f3d6347",
+      "size_bytes": 19656
+    },
+    "remap_report": {
+      "path": "stage9b-remap-audit.json",
+      "sha256": "691903e412d860ef10a703ca1293912c926639324c0fc03a65320a8df78536db",
+      "size_bytes": 8973
+    },
+    "selected_cell_report": {
+      "path": "stage9b-selected-cell-audit.json",
+      "sha256": "f7b004b84f953ed4988db0eebea249db5ad9e210cdd54b99954c5d06f7524c17",
+      "size_bytes": 18693
+    },
+    "weight_report": {
+      "path": "stage9b-weight-audit.json",
+      "sha256": "01f85c0f4af8ddd8e5389e01adb838f3cfc69358d8b764fdafa4943c976cbba4",
+      "size_bytes": 2090
+    }
+  },
+  "overall_pass": true,
+  "rendering": {
+    "dense_spatial_artists_rasterized_in_pdf": true,
+    "dpi": 300,
+    "formats": [
+      "png",
+      "pdf"
+    ],
+    "style": "scripts/style.py NCAR default"
+  },
+  "schema_version": "chempas-global-miem-figure-manifest-v1",
+  "validation": {
+    "july_global_tg_yr-1": {
+      "NO": 69.23160341780815,
+      "NO2": 7.692400379756458
+    },
+    "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+    "remap_audit_passed": true,
+    "retained_sectors": [
+      "agl",
+      "ags",
+      "awb",
+      "com",
+      "ene",
+      "fef",
+      "ind",
+      "ref",
+      "res",
+      "shp",
+      "swd",
+      "tnr",
+      "tro"
+    ],
+    "selected_cell_audit_passed": true,
+    "times": [
+      "2024-07-01_00:00:00",
+      "2024-08-01_00:00:00"
+    ],
+    "vertical_allocation": "surface layer only; no online plume rise",
+    "weight_audit_passed": true
+  }
+}

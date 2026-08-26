@@ -1,0 +1,1831 @@
+{
+  "assertions": [
+    {
+      "detail": "history has 2 of 2 frames from the declared segment",
+      "name": "disabled:history_cadence",
+      "passed": true
+    },
+    {
+      "detail": "independent inventory integration matches the model-reported NO and NO2 totals",
+      "name": "disabled:source_mass",
+      "passed": true
+    },
+    {
+      "detail": "enabled MIEM validates and opens once; disabled MIEM performs no inventory work",
+      "name": "disabled:exact_grid_lifecycle",
+      "passed": true
+    },
+    {
+      "detail": "observed 0 of 0 expected MIEM calls",
+      "name": "disabled:miem_call_count",
+      "passed": true
+    },
+    {
+      "detail": "first-open and warm-call timing counters match the segment",
+      "name": "disabled:miem_timing",
+      "passed": true
+    },
+    {
+      "detail": "TUV-x initializes exactly once",
+      "name": "disabled:tuvx_lifecycle",
+      "passed": true
+    },
+    {
+      "detail": "requested state/rate fields are finite and nonnegative and logs contain no solver failure",
+      "name": "disabled:finite_and_solver_health",
+      "passed": true
+    },
+    {
+      "detail": "the namelist and metadata both set lightning NOx to exactly zero",
+      "name": "disabled:lightning_disabled",
+      "passed": true
+    },
+    {
+      "detail": "history has 2 of 2 frames from the declared segment",
+      "name": "enabled_zero:history_cadence",
+      "passed": true
+    },
+    {
+      "detail": "independent inventory integration matches the model-reported NO and NO2 totals",
+      "name": "enabled_zero:source_mass",
+      "passed": true
+    },
+    {
+      "detail": "enabled MIEM validates and opens once; disabled MIEM performs no inventory work",
+      "name": "enabled_zero:exact_grid_lifecycle",
+      "passed": true
+    },
+    {
+      "detail": "observed 1 of 1 expected MIEM calls",
+      "name": "enabled_zero:miem_call_count",
+      "passed": true
+    },
+    {
+      "detail": "first-open and warm-call timing counters match the segment",
+      "name": "enabled_zero:miem_timing",
+      "passed": true
+    },
+    {
+      "detail": "TUV-x initializes exactly once",
+      "name": "enabled_zero:tuvx_lifecycle",
+      "passed": true
+    },
+    {
+      "detail": "requested state/rate fields are finite and nonnegative and logs contain no solver failure",
+      "name": "enabled_zero:finite_and_solver_health",
+      "passed": true
+    },
+    {
+      "detail": "the namelist and metadata both set lightning NOx to exactly zero",
+      "name": "enabled_zero:lightning_disabled",
+      "passed": true
+    },
+    {
+      "detail": "every emissions diagnostic equals the independently sampled inventory",
+      "name": "enabled_zero:diagnostic_source_closure",
+      "passed": true
+    },
+    {
+      "detail": "every variant follows its exact-grid MIEM lifecycle",
+      "name": "scenario:exact_grid_lifecycle",
+      "passed": true
+    },
+    {
+      "detail": "the enabled zero inventory emits exactly zero NO and NO2",
+      "name": "scenario:zero_source",
+      "passed": true
+    },
+    {
+      "detail": "disabled and enabled-zero common fields are bitwise identical",
+      "name": "scenario:bitwise_zero_source_identity",
+      "passed": true
+    },
+    {
+      "detail": "global NO+NO2 closes to emitted NO+NO2 at cumulative and adjacent outputs",
+      "name": "scenario:reduced_nox_budget",
+      "passed": true
+    },
+    {
+      "detail": "global O3+NO2 closes to emitted NO2 at cumulative and adjacent outputs",
+      "name": "scenario:reduced_ox_budget",
+      "passed": true
+    },
+    {
+      "detail": "state and rates are finite/nonnegative and vertical burden partitions close",
+      "name": "scenario:finite_nonnegative_state",
+      "passed": true
+    },
+    {
+      "detail": "lightning NOx is explicitly zero in every namelist and metadata record",
+      "name": "scenario:lightning_disabled",
+      "passed": true
+    }
+  ],
+  "budgets": {
+    "NOx": {
+      "cumulative": [
+        {
+          "absolute_tolerance_moles": 0.001,
+          "allowed_residual_moles": 0.001,
+          "burden": {
+            "species_moles": {
+              "NO": 16731010521.88263,
+              "NO2": 39039024551.05946
+            },
+            "total_moles": 55770035072.94209
+          },
+          "burden_delta_moles": 0.0,
+          "emitted_family_moles": 0.0,
+          "family": [
+            "NO",
+            "NO2"
+          ],
+          "final_moles": 55770035072.94209,
+          "initial_moles": 55770035072.94209,
+          "passed": true,
+          "relative_tolerance": 5e-05,
+          "residual_moles": 0.0,
+          "time": "2024-07-01_00:00:00"
+        },
+        {
+          "absolute_tolerance_moles": 0.001,
+          "allowed_residual_moles": 0.001,
+          "burden": {
+            "species_moles": {
+              "NO": 12081000025.324474,
+              "NO2": 43689035047.61762
+            },
+            "total_moles": 55770035072.94209
+          },
+          "burden_delta_moles": 2.1378184555942426e-08,
+          "emitted_family_moles": 0.0,
+          "family": [
+            "NO",
+            "NO2"
+          ],
+          "final_moles": 55770035072.94209,
+          "initial_moles": 55770035072.94209,
+          "passed": true,
+          "relative_tolerance": 5e-05,
+          "residual_moles": 2.1378184555942426e-08,
+          "time": "2024-07-01_00:05:00"
+        }
+      ],
+      "family": [
+        "NO",
+        "NO2"
+      ],
+      "kind": "direct_global_burden",
+      "output_intervals": [
+        {
+          "absolute_tolerance_moles": 0.001,
+          "allowed_residual_moles": 0.001,
+          "burden_delta_moles": 2.1378184555942426e-08,
+          "emitted_family_moles": 0.0,
+          "family": [
+            "NO",
+            "NO2"
+          ],
+          "final_moles": 55770035072.94209,
+          "initial_moles": 55770035072.94209,
+          "passed": true,
+          "relative_tolerance": 5e-05,
+          "residual_moles": 2.1378184555942426e-08,
+          "start_time": "2024-07-01_00:00:00",
+          "stop_time": "2024-07-01_00:05:00"
+        }
+      ],
+      "passed": true
+    },
+    "Ox": {
+      "cumulative": [
+        {
+          "absolute_tolerance_moles": 0.001,
+          "allowed_residual_moles": 0.001,
+          "burden": {
+            "species_moles": {
+              "NO2": 39039024551.05946,
+              "O3": 63686287703962.84
+            },
+            "total_moles": 63725326728513.91
+          },
+          "burden_delta_moles": 0.0,
+          "emitted_family_moles": 0.0,
+          "family": [
+            "O3",
+            "NO2"
+          ],
+          "final_moles": 63725326728513.91,
+          "initial_moles": 63725326728513.91,
+          "passed": true,
+          "relative_tolerance": 5e-05,
+          "residual_moles": 0.0,
+          "time": "2024-07-01_00:00:00"
+        },
+        {
+          "absolute_tolerance_moles": 0.001,
+          "allowed_residual_moles": 0.001,
+          "burden": {
+            "species_moles": {
+              "NO2": 43689035047.61762,
+              "O3": 63681637693466.28
+            },
+            "total_moles": 63725326728513.9
+          },
+          "burden_delta_moles": -5.6888500694185495e-05,
+          "emitted_family_moles": 0.0,
+          "family": [
+            "O3",
+            "NO2"
+          ],
+          "final_moles": 63725326728513.9,
+          "initial_moles": 63725326728513.91,
+          "passed": true,
+          "relative_tolerance": 5e-05,
+          "residual_moles": -5.6888500694185495e-05,
+          "time": "2024-07-01_00:05:00"
+        }
+      ],
+      "family": [
+        "O3",
+        "NO2"
+      ],
+      "kind": "direct_global_burden",
+      "output_intervals": [
+        {
+          "absolute_tolerance_moles": 0.001,
+          "allowed_residual_moles": 0.001,
+          "burden_delta_moles": -5.6888500694185495e-05,
+          "emitted_family_moles": 0.0,
+          "family": [
+            "O3",
+            "NO2"
+          ],
+          "final_moles": 63725326728513.9,
+          "initial_moles": 63725326728513.91,
+          "passed": true,
+          "relative_tolerance": 5e-05,
+          "residual_moles": -5.6888500694185495e-05,
+          "start_time": "2024-07-01_00:00:00",
+          "stop_time": "2024-07-01_00:05:00"
+        }
+      ],
+      "passed": true
+    }
+  },
+  "calibration": {},
+  "comparisons": {
+    "disabled_vs_enabled_zero": {
+      "chemistry_response_detected": false,
+      "fields_compared": [
+        "j_jNO2",
+        "pressure",
+        "qNO",
+        "qNO2",
+        "qO3",
+        "qv",
+        "rho",
+        "rho_zz",
+        "surface_pressure",
+        "theta",
+        "u",
+        "w"
+      ],
+      "frames": [
+        {
+          "fields": {
+            "j_jNO2": {
+              "bitwise_equal": true,
+              "classification": "photolysis",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "pressure": {
+              "bitwise_equal": true,
+              "classification": "meteorology_or_dynamics",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "qNO": {
+              "bitwise_equal": true,
+              "classification": "chemistry",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "qNO2": {
+              "bitwise_equal": true,
+              "classification": "chemistry",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "qO3": {
+              "bitwise_equal": true,
+              "classification": "chemistry",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "qv": {
+              "bitwise_equal": true,
+              "classification": "meteorology_or_dynamics",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "rho": {
+              "bitwise_equal": true,
+              "classification": "meteorology_or_dynamics",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "rho_zz": {
+              "bitwise_equal": true,
+              "classification": "meteorology_or_dynamics",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "surface_pressure": {
+              "bitwise_equal": true,
+              "classification": "meteorology_or_dynamics",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "theta": {
+              "bitwise_equal": true,
+              "classification": "meteorology_or_dynamics",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "u": {
+              "bitwise_equal": true,
+              "classification": "meteorology_or_dynamics",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "w": {
+              "bitwise_equal": true,
+              "classification": "meteorology_or_dynamics",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_00:00:00"
+        },
+        {
+          "fields": {
+            "j_jNO2": {
+              "bitwise_equal": true,
+              "classification": "photolysis",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "pressure": {
+              "bitwise_equal": true,
+              "classification": "meteorology_or_dynamics",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "qNO": {
+              "bitwise_equal": true,
+              "classification": "chemistry",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "qNO2": {
+              "bitwise_equal": true,
+              "classification": "chemistry",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "qO3": {
+              "bitwise_equal": true,
+              "classification": "chemistry",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "qv": {
+              "bitwise_equal": true,
+              "classification": "meteorology_or_dynamics",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "rho": {
+              "bitwise_equal": true,
+              "classification": "meteorology_or_dynamics",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "rho_zz": {
+              "bitwise_equal": true,
+              "classification": "meteorology_or_dynamics",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "surface_pressure": {
+              "bitwise_equal": true,
+              "classification": "meteorology_or_dynamics",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "theta": {
+              "bitwise_equal": true,
+              "classification": "meteorology_or_dynamics",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "u": {
+              "bitwise_equal": true,
+              "classification": "meteorology_or_dynamics",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "w": {
+              "bitwise_equal": true,
+              "classification": "meteorology_or_dynamics",
+              "comparison_mode": "bitwise",
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_00:05:00"
+        }
+      ],
+      "meteorology_and_dynamics_bitwise": true,
+      "mode": "zero",
+      "passed": true
+    }
+  },
+  "diagnostics": {
+    "enabled_zero": {
+      "all_flux_samples_pass": true,
+      "frames": [
+        {
+          "sample_time": null,
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {},
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {},
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_00:00:00"
+        },
+        {
+          "sample_time": "2024-07-01_00:00:00",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {},
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {},
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_00:05:00"
+        }
+      ],
+      "run": "enabled_zero",
+      "sector_closure_applicable": true,
+      "sector_closure_pass": true,
+      "surface_layer_closure_pass": true
+    }
+  },
+  "gate": "R0",
+  "host_water_binding": {},
+  "inputs": {
+    "base_external_manifest": {
+      "path": "test_cases/global_miem/external-inputs.cams-glob-ant-v6.2-2024-07.json",
+      "sha256": "6d5be3455a2f827b2e1013ae0c6f5fdf82699657b7508f527172ed872e0ce9ed",
+      "size_bytes": 22725
+    },
+    "checker": {
+      "path": "scripts/check_global_tropo_miem_throughput.py",
+      "sha256": "af6252a02a60a37ce1e8307b7fb0a39c4d609510ec640a73aa067c63c29e5c57",
+      "size_bytes": 63573
+    },
+    "external_input_resolution": {
+      "artifacts_verified": false,
+      "base_artifact_count": 17,
+      "base_manifest": {
+        "manifest_id": "cams-glob-ant-v6.2-nox-x1.40962-2024-07",
+        "path": "${CHEMPAS_REPOSITORY_ROOT}/test_cases/global_miem/external-inputs.cams-glob-ant-v6.2-2024-07.json",
+        "sha256": "6d5be3455a2f827b2e1013ae0c6f5fdf82699657b7508f527172ed872e0ce9ed"
+      },
+      "overlay_artifact_count": 2,
+      "overlay_manifest": {
+        "manifest_id": "global-tropo-nox-x1.40962-2024-07",
+        "path": "${CHEMPAS_REPOSITORY_ROOT}/test_cases/global_tropo_miem/external-inputs.overlay.json",
+        "sha256": "a89ce65dce818f6d122b3b6dcd0eae003b6a6a8df4e8045fcc1e8664ef9e3947"
+      },
+      "resolved_artifact_count": 19
+    },
+    "external_overlay": {
+      "path": "test_cases/global_tropo_miem/external-inputs.overlay.json",
+      "sha256": "a89ce65dce818f6d122b3b6dcd0eae003b6a6a8df4e8045fcc1e8664ef9e3947",
+      "size_bytes": 2856
+    },
+    "inventory": {
+      "path": "runs/global-tropo-caa0c12d/r0-20260815T035019Z-caa0c12dde/shared/miem-inventory-zero.nc",
+      "sha256": "3c88f39342e0ea77e3571bae565058a63ed54d202e5a8fbccd7680bf68996c23",
+      "size_bytes": 2318125
+    },
+    "output_path_contract": {
+      "base": "gate_run_root",
+      "gate_run_root": "${CHEMPAS_EMISSIONS_DATA_ROOT}/runs/global-tropo-caa0c12d/r0-20260815T035019Z-caa0c12dde",
+      "paths_include_variant_directory": true
+    },
+    "report_schema": {
+      "path": "test_cases/global_tropo_miem/throughput-report.schema.json",
+      "sha256": "41a1270bb0dd4da6637cb33090b3edc74817f955bd5de4029e1d90950352a7b8",
+      "size_bytes": 2151
+    },
+    "scenario_manifest": {
+      "path": "test_cases/global_tropo_miem/scenarios.yaml",
+      "sha256": "8ec2966b12c36489569cebe356b0ce2fd48b9eee4cf92bcd8833e0bd8400a705",
+      "size_bytes": 11996
+    }
+  },
+  "overall_pass": true,
+  "photolysis": {
+    "all_fields_present": true,
+    "complete_diurnal_pass": false,
+    "configured_names": [
+      "jNO2"
+    ],
+    "eight_rate_pass": false,
+    "fields": {
+      "jNO2": {
+        "anchor_cycles": {
+          "arctic": {
+            "has_day": true,
+            "has_night": true,
+            "maximum_s-1": 0.0006261237707436873,
+            "minimum_s-1": 0.0
+          },
+          "colorado": {
+            "has_day": true,
+            "has_night": true,
+            "maximum_s-1": 0.006594909633287091,
+            "minimum_s-1": 0.0
+          },
+          "equator_greenwich": {
+            "has_day": false,
+            "has_night": true,
+            "maximum_s-1": 0.0,
+            "minimum_s-1": 0.0
+          },
+          "southeast_australia": {
+            "has_day": true,
+            "has_night": true,
+            "maximum_s-1": 0.005802591953132107,
+            "minimum_s-1": 0.0
+          }
+        },
+        "complete_nonpolar_cycle_pass": false,
+        "global_surface_maxima_s-1": [
+          0.0,
+          0.010472739942055186
+        ],
+        "global_surface_minima_s-1": [
+          0.0,
+          0.0
+        ],
+        "spatial_day_night_pass": true
+      }
+    },
+    "spatial_day_night_pass": true
+  },
+  "promotable": true,
+  "provenance": {
+    "chempas_commit": [
+      "caa0c12dde7b862ce14a49021e25a45cc00b337f"
+    ],
+    "executable_sha256": [
+      "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2"
+    ],
+    "initial_condition_sha256": [
+      "ebbb698eb102c0e3f65dee2ae87362c6ebedb6caa98ad22c23927cdb33fd50fe"
+    ],
+    "internally_consistent": true,
+    "promotable": true,
+    "spinup_restart_sha256": [],
+    "tier": [
+      "reduced"
+    ],
+    "tracked_and_untracked_clean": true
+  },
+  "radical_cycles": {},
+  "resource_forecast": {
+    "allowed_output_envelope_bytes": 786432000,
+    "available_disk_bytes_after_run": 71957086208,
+    "forecast_multiplier": 1.25,
+    "frame_counts": [
+      2,
+      2
+    ],
+    "history_mib_per_frame": 150.0,
+    "method": "empirical Stage 9 per-frame envelope, scaled by chemistry tier",
+    "observed_total_output_bytes": 486996688,
+    "output_envelope_pass": true,
+    "predicted_history_bytes": 629145600,
+    "predicted_restart_bytes": 0,
+    "predicted_restart_count": 0,
+    "predicted_total_output_bytes": 629145600,
+    "required_free_bytes": 22261268480,
+    "reserve_after_run_pass": true,
+    "reserve_gib": 20.0,
+    "segment_durations_seconds": [
+      300,
+      300
+    ]
+  },
+  "runs": {
+    "disabled": {
+      "exact_grid_lifecycle_pass": true,
+      "expected_history_frames": 2,
+      "expected_source_mass_kg": {
+        "NO": 0.0,
+        "NO2": 0.0
+      },
+      "finite_state": {
+        "fields_checked": [
+          "j_jNO2",
+          "pressure",
+          "qNO",
+          "qNO2",
+          "qO3",
+          "qv",
+          "rho",
+          "rho_zz",
+          "surface_pressure",
+          "theta",
+          "u",
+          "w"
+        ],
+        "nonnegative_tracers_and_rates": {
+          "j_jNO2": true,
+          "qNO": true,
+          "qNO2": true,
+          "qO3": true,
+          "qv": true
+        },
+        "passed": true,
+        "positive_physical_fields": {
+          "pressure": true,
+          "rho": true,
+          "surface_pressure": true,
+          "theta": true
+        },
+        "ranges": {
+          "j_jNO2": {
+            "maximum": 0.01312272499963207,
+            "minimum": 0.0
+          },
+          "pressure": {
+            "maximum": 102860.56411067111,
+            "minimum": 69.72478770656599
+          },
+          "qNO": {
+            "maximum": 5.079989203388612e-10,
+            "minimum": 1.1323345405249855e-14
+          },
+          "qNO2": {
+            "maximum": 1.6222414696493715e-09,
+            "minimum": 1.3486613874010154e-12
+          },
+          "qO3": {
+            "maximum": 1.0074660592990012e-05,
+            "minimum": 4.900014410807682e-08
+          },
+          "qv": {
+            "maximum": 0.023950232294451392,
+            "minimum": 0.0
+          },
+          "rho": {
+            "maximum": 1.4771367724096305,
+            "minimum": 0.0009960656964597598
+          },
+          "rho_zz": {
+            "maximum": 1.4770278909388863,
+            "minimum": 0.0009960656964597598
+          },
+          "surface_pressure": {
+            "maximum": 103843.87789554066,
+            "minimum": 52888.2214768041
+          },
+          "theta": {
+            "maximum": 1988.5186134211567,
+            "minimum": 231.90989676855378
+          },
+          "u": {
+            "maximum": 157.7262568230716,
+            "minimum": -159.15878516706195
+          },
+          "w": {
+            "maximum": 1.493842490811188,
+            "minimum": -1.5904503948612492
+          }
+        }
+      },
+      "history_cadence_pass": true,
+      "history_times": [
+        "2024-07-01_00:00:00",
+        "2024-07-01_00:05:00"
+      ],
+      "lightning_disabled_pass": true,
+      "log": {
+        "chemistry_timer_calls": 1,
+        "chemistry_timer_seconds": 1.84855,
+        "disabled_messages": 1,
+        "emission_species_count": null,
+        "exact_grid_validations": 0,
+        "first_open_step_seconds": null,
+        "global_inventory_cells": null,
+        "masses_kg": {},
+        "miem_timer_calls": 0,
+        "miem_timer_seconds": null,
+        "rank_zero_selected_cells": null,
+        "restart_read_seconds": null,
+        "time_integration_seconds": 4.83696,
+        "timers": {
+          "chem MICM solve": {
+            "calls": 1,
+            "seconds": 1.84521
+          },
+          "chemistry": {
+            "calls": 1,
+            "seconds": 1.84855
+          },
+          "initialize": {
+            "calls": 1,
+            "seconds": 2.1783
+          },
+          "read_ICs": {
+            "calls": 1,
+            "seconds": 1.24074
+          },
+          "time integration": {
+            "calls": 1,
+            "seconds": 4.83696
+          }
+        },
+        "tuvx_initialized": 1,
+        "vertical_levels": null,
+        "warm_step_calls": 0,
+        "warm_step_mean_seconds": null
+      },
+      "log_health": {
+        "matches": {
+          "fatal": [],
+          "micm_failure": [],
+          "nan_or_inf": []
+        },
+        "negative_clipping": {
+          "input_count": 0,
+          "input_minimum": null,
+          "logging_policy": "the model emits this summary only when either count is nonzero",
+          "nonzero_summary_present": false,
+          "output_count": 0,
+          "output_minimum": null
+        },
+        "passed": true
+      },
+      "metadata": {
+        "artifacts": {
+          "atmosphere_model": {
+            "name": "atmosphere_model",
+            "sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+            "size_bytes": 14082536
+          },
+          "configuration": {
+            "global_cams_lnox_o3.yaml": {
+              "name": "global_cams_lnox_o3.yaml",
+              "sha256": "341f1d8910389064badcd0c6816b54fffe7c8c16ca287a2c2d15966588466cae",
+              "size_bytes": 1726
+            },
+            "namelist.atmosphere": {
+              "name": "namelist.atmosphere",
+              "sha256": "7cf35e85edca92f75dea86dd4c88fd16795e7b5824bb0a50c7ad4c1e1ad594d0",
+              "size_bytes": 2472
+            },
+            "stream_list.atmosphere.output": {
+              "name": "stream_list.atmosphere.output",
+              "sha256": "14b883bff8e36f3bb64acf523c33e02258ae5627fe544c55ebf8da60a693a48a",
+              "size_bytes": 118
+            },
+            "streams.atmosphere": {
+              "name": "streams.atmosphere",
+              "sha256": "b82aae1d49e59c0e945bc9217d3e2277cf1cbc0b4d2333815b4d9915d98e3910",
+              "size_bytes": 1604
+            },
+            "tuvx_no2.json": {
+              "name": "tuvx_no2.json",
+              "sha256": "c38a9bea974aec46b2f552f566e179bf9e8da458e59fdc3f45d7edb8cc93b05b",
+              "size_bytes": 2336
+            },
+            "tuvx_upper_atm.csv": {
+              "name": "tuvx_upper_atm.csv",
+              "sha256": "851b0ff3549bca691e0c49a8727bcdbaae001c9a34a7b1f7696f975ddd0b5954",
+              "size_bytes": 521
+            }
+          }
+        },
+        "external_inputs": {
+          "active_inventory": {
+            "name": "miem-inventory-zero.nc",
+            "sha256": "3c88f39342e0ea77e3571bae565058a63ed54d202e5a8fbccd7680bf68996c23",
+            "size_bytes": 2318125
+          },
+          "data_root": "emissions-science",
+          "initial_condition": {
+            "id": "mpas-x1.40962-gfs-20240701t00z-reduced-tropo-state",
+            "logical_path": "initial_conditions/noaa-gfs-20240701T00Z/x1.40962.gfs-20240701T00Z.reduced-tropo.init.nc",
+            "sha256": "ebbb698eb102c0e3f65dee2ae87362c6ebedb6caa98ad22c23927cdb33fd50fe",
+            "size_bytes": 470093124
+          },
+          "overlay": {
+            "path": "test_cases/global_tropo_miem/external-inputs.overlay.json",
+            "sha256": "a89ce65dce818f6d122b3b6dcd0eae003b6a6a8df4e8045fcc1e8664ef9e3947"
+          },
+          "partition": {
+            "id": "mpas-x1.40962-eight-rank-partition",
+            "logical_path": "partitions/x1.40962.graph.info.part.8",
+            "sha256": "f56e75e1f408b632fd5cd22ad05cc59fdbb54daf1e2f8f3d6298147a1e7f577b",
+            "size_bytes": 81924
+          },
+          "resolution": {
+            "artifacts_verified": false,
+            "base_artifact_count": 17,
+            "base_manifest": {
+              "manifest_id": "cams-glob-ant-v6.2-nox-x1.40962-2024-07",
+              "path": "${CHEMPAS_REPOSITORY_ROOT}/test_cases/global_miem/external-inputs.cams-glob-ant-v6.2-2024-07.json",
+              "sha256": "6d5be3455a2f827b2e1013ae0c6f5fdf82699657b7508f527172ed872e0ce9ed"
+            },
+            "overlay_artifact_count": 2,
+            "overlay_manifest": {
+              "manifest_id": "global-tropo-nox-x1.40962-2024-07",
+              "path": "${CHEMPAS_REPOSITORY_ROOT}/test_cases/global_tropo_miem/external-inputs.overlay.json",
+              "sha256": "a89ce65dce818f6d122b3b6dcd0eae003b6a6a8df4e8045fcc1e8664ef9e3947"
+            },
+            "resolved_artifact_count": 19
+          },
+          "source_inventory": {
+            "id": "cams-glob-ant-v6.2-x1.40962-miem-inventory",
+            "logical_path": "inventory/cams-glob-ant-v6.2-x1.40962/miem_inventory.cams-glob-ant-v6.2-x1.40962.nc",
+            "sha256": "d213866000e8a633954d0c730ba5524f729f26a97d02cc5a13d8b405aa6c8e9c",
+            "size_bytes": 20758020
+          }
+        },
+        "gate": "R0",
+        "resolved": {
+          "chemistry_interval_seconds": 0,
+          "chemistry_reference_solve": false,
+          "chemistry_species": [
+            "NO",
+            "NO2",
+            "O3"
+          ],
+          "chemistry_substeps": 1,
+          "description": "Five-minute disabled versus exact-zero MIEM identity gate.",
+          "diagnostic_categories": [],
+          "diagnostic_sectors": [],
+          "duration_seconds": 300,
+          "execution": "zero_pair",
+          "expected_assertions": [
+            "exact_grid_lifecycle",
+            "zero_source",
+            "bitwise_zero_source_identity",
+            "reduced_nox_budget",
+            "reduced_ox_budget",
+            "finite_nonnegative_state",
+            "lightning_disabled"
+          ],
+          "fixture_pattern": "zero",
+          "id": "R0",
+          "initial_condition_id": "mpas-x1.40962-gfs-20240701t00z-reduced-tropo-state",
+          "inventory_kind": "synthetic",
+          "layered_diagnostics": false,
+          "lightning_enabled": false,
+          "max_diagnostic_fields": 768,
+          "micm_config": "micm_configs/global_cams_lnox_o3.yaml",
+          "micm_relative_tolerance": 1e-15,
+          "miem_config": "miem_configs/global_synthetic_nox.yaml",
+          "model_dt_seconds": 300,
+          "mpi_ranks": 8,
+          "nitrogen_family": [
+            "NO",
+            "NO2"
+          ],
+          "odd_oxygen_family": [
+            "O3",
+            "NO2"
+          ],
+          "output_interval_seconds": 300,
+          "partition_id": "mpas-x1.40962-eight-rank-partition",
+          "photolysis_names": [
+            "jNO2"
+          ],
+          "resource_guard": {
+            "expanded_history_mib_per_frame": 260.0,
+            "expanded_restart_mib": 1000.0,
+            "forecast_multiplier": 1.25,
+            "peak_rss_gib": 4.0,
+            "reduced_history_mib_per_frame": 150.0,
+            "reduced_restart_mib": 800.0,
+            "reserve_gib": 20.0
+          },
+          "science_inventory_id": "cams-glob-ant-v6.2-x1.40962-miem-inventory",
+          "start_time": "2024-07-01_00:00:00",
+          "tier": "reduced",
+          "tolerances": {
+            "family_budget_absolute_mol": 0.001,
+            "family_budget_relative": 5e-05,
+            "flux_absolute_kg_m2_s": 1e-24,
+            "flux_relative": 2e-13,
+            "restart_absolute": 1e-19,
+            "restart_photolysis_absolute_s-1": 1e-20,
+            "restart_photolysis_relative": 2e-10,
+            "restart_relative": 5e-10,
+            "solver_family_burden_relative": 1e-06,
+            "solver_nitrogen_maximum_absolute_kg_kg": 1e-14,
+            "solver_other_maximum_absolute_kg_kg": 1e-12,
+            "solver_photolysis_absolute_s-1": 1e-12,
+            "solver_photolysis_relative": 1e-09,
+            "source_mass_absolute_kg": 1e-08,
+            "source_mass_relative": 2e-12
+          },
+          "tuvx_config": "micm_configs/tuvx_no2.json",
+          "tuvx_extension": "test_cases/chapman_nox_global/tuvx_upper_atm.csv",
+          "tuvx_update_interval_seconds": 0
+        },
+        "scenario": "r0_zero_source",
+        "segment": {
+          "do_restart": false,
+          "duration_seconds": 300,
+          "restart_pending_stage_only": false,
+          "start_time": "2024-07-01_00:00:00"
+        },
+        "software": {
+          "chempas_commit": "caa0c12dde7b862ce14a49021e25a45cc00b337f",
+          "chempas_dirty": false,
+          "chempas_untracked_paths": [],
+          "micm_commit": "bb57684a2047f0e58f30b199366294af879e8597",
+          "miem_commit": "9fdf14a189262eecb677862d877ab72b06c95e21",
+          "musica_commit": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc",
+          "tuvx_commit": "bbf7dd9a144fa0f0294b3779f3f993818638e20c",
+          "tuvx_data": {
+            "canonical_tree_sha256": "6d344904345d47d4117135ef4f6ecafe7e0dea45e0a4b404c405845a4c98c277",
+            "file_count": 194,
+            "name": "data",
+            "size_bytes": 7963747
+          }
+        },
+        "source_contract": {
+          "lightning_enabled": false,
+          "lnox_source_rate_ppbv_s": 0.0,
+          "miem_species": [
+            "NO",
+            "NO2"
+          ]
+        },
+        "tier": "reduced",
+        "variant": "disabled"
+      },
+      "miem_call_count_pass": true,
+      "miem_timing_pass": true,
+      "output": {
+        "history_bytes": 242842616,
+        "history_files": [
+          {
+            "path": "disabled/history.2024-07-01_00.00.00.nc",
+            "sha256": "cf64554d16813f2b3406a77a915d3a74600f5da0bff5d1793e0001a84a1effe5",
+            "size_bytes": 121421308
+          },
+          {
+            "path": "disabled/history.2024-07-01_00.05.00.nc",
+            "sha256": "719a99a3c0b9a1439498c971f5247795a92b4ce2952de8828aeb7d64c8cec8ed",
+            "size_bytes": 121421308
+          }
+        ],
+        "restart_bytes": 0,
+        "restart_files": []
+      },
+      "resource": {
+        "peak_rss_kib": 736936,
+        "wall_seconds": 8.85
+      },
+      "source_mass_comparison": {},
+      "source_mass_pass": true,
+      "tuvx_lifecycle_pass": true
+    },
+    "enabled_zero": {
+      "exact_grid_lifecycle_pass": true,
+      "expected_history_frames": 2,
+      "expected_source_mass_kg": {
+        "NO": 0.0,
+        "NO2": 0.0
+      },
+      "finite_state": {
+        "fields_checked": [
+          "emis_NO",
+          "emis_NO2",
+          "j_jNO2",
+          "pressure",
+          "qNO",
+          "qNO2",
+          "qO3",
+          "qv",
+          "rho",
+          "rho_zz",
+          "surface_pressure",
+          "theta",
+          "u",
+          "w"
+        ],
+        "nonnegative_tracers_and_rates": {
+          "emis_NO": true,
+          "emis_NO2": true,
+          "j_jNO2": true,
+          "qNO": true,
+          "qNO2": true,
+          "qO3": true,
+          "qv": true
+        },
+        "passed": true,
+        "positive_physical_fields": {
+          "pressure": true,
+          "rho": true,
+          "surface_pressure": true,
+          "theta": true
+        },
+        "ranges": {
+          "emis_NO": {
+            "maximum": 0.0,
+            "minimum": 0.0
+          },
+          "emis_NO2": {
+            "maximum": 0.0,
+            "minimum": 0.0
+          },
+          "j_jNO2": {
+            "maximum": 0.01312272499963207,
+            "minimum": 0.0
+          },
+          "pressure": {
+            "maximum": 102860.56411067111,
+            "minimum": 69.72478770656599
+          },
+          "qNO": {
+            "maximum": 5.079989203388612e-10,
+            "minimum": 1.1323345405249855e-14
+          },
+          "qNO2": {
+            "maximum": 1.6222414696493715e-09,
+            "minimum": 1.3486613874010154e-12
+          },
+          "qO3": {
+            "maximum": 1.0074660592990012e-05,
+            "minimum": 4.900014410807682e-08
+          },
+          "qv": {
+            "maximum": 0.023950232294451392,
+            "minimum": 0.0
+          },
+          "rho": {
+            "maximum": 1.4771367724096305,
+            "minimum": 0.0009960656964597598
+          },
+          "rho_zz": {
+            "maximum": 1.4770278909388863,
+            "minimum": 0.0009960656964597598
+          },
+          "surface_pressure": {
+            "maximum": 103843.87789554066,
+            "minimum": 52888.2214768041
+          },
+          "theta": {
+            "maximum": 1988.5186134211567,
+            "minimum": 231.90989676855378
+          },
+          "u": {
+            "maximum": 157.7262568230716,
+            "minimum": -159.15878516706195
+          },
+          "w": {
+            "maximum": 1.493842490811188,
+            "minimum": -1.5904503948612492
+          }
+        }
+      },
+      "history_cadence_pass": true,
+      "history_times": [
+        "2024-07-01_00:00:00",
+        "2024-07-01_00:05:00"
+      ],
+      "lightning_disabled_pass": true,
+      "log": {
+        "chemistry_timer_calls": 1,
+        "chemistry_timer_seconds": 2.45045,
+        "disabled_messages": 0,
+        "emission_species_count": 2,
+        "exact_grid_validations": 1,
+        "first_open_step_seconds": 0.0649277970000002,
+        "global_inventory_cells": 40962,
+        "masses_kg": {
+          "NO": 0.0,
+          "NO2": 0.0
+        },
+        "miem_timer_calls": 1,
+        "miem_timer_seconds": 0.08339,
+        "rank_zero_selected_cells": 5119,
+        "restart_read_seconds": null,
+        "time_integration_seconds": 4.73138,
+        "timers": {
+          "chem MICM solve": {
+            "calls": 1,
+            "seconds": 2.44532
+          },
+          "chem MIEM": {
+            "calls": 1,
+            "seconds": 0.08339
+          },
+          "chemistry": {
+            "calls": 1,
+            "seconds": 2.45045
+          },
+          "initialize": {
+            "calls": 1,
+            "seconds": 2.25656
+          },
+          "read_ICs": {
+            "calls": 1,
+            "seconds": 1.39152
+          },
+          "time integration": {
+            "calls": 1,
+            "seconds": 4.73138
+          }
+        },
+        "tuvx_initialized": 1,
+        "vertical_levels": 26,
+        "warm_step_calls": 0,
+        "warm_step_mean_seconds": 0.0
+      },
+      "log_health": {
+        "matches": {
+          "fatal": [],
+          "micm_failure": [],
+          "nan_or_inf": []
+        },
+        "negative_clipping": {
+          "input_count": 0,
+          "input_minimum": null,
+          "logging_policy": "the model emits this summary only when either count is nonzero",
+          "nonzero_summary_present": false,
+          "output_count": 0,
+          "output_minimum": null
+        },
+        "passed": true
+      },
+      "metadata": {
+        "artifacts": {
+          "atmosphere_model": {
+            "name": "atmosphere_model",
+            "sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+            "size_bytes": 14082536
+          },
+          "configuration": {
+            "global_cams_lnox_o3.yaml": {
+              "name": "global_cams_lnox_o3.yaml",
+              "sha256": "341f1d8910389064badcd0c6816b54fffe7c8c16ca287a2c2d15966588466cae",
+              "size_bytes": 1726
+            },
+            "global_synthetic_nox.yaml": {
+              "name": "global_synthetic_nox.yaml",
+              "sha256": "051217f9bca182817533c65ce431027a9065feb531d9dadc54c65547e066be27",
+              "size_bytes": 852
+            },
+            "namelist.atmosphere": {
+              "name": "namelist.atmosphere",
+              "sha256": "619dee26559992f86f1ea7ba6f59de1db9974174cc1a6ca6375a48c35943bb8b",
+              "size_bytes": 2497
+            },
+            "stream_list.atmosphere.output": {
+              "name": "stream_list.atmosphere.output",
+              "sha256": "f5e1758213a490f8401d8389e7acb6a3a925c3ad1cfe1e9e9e2e449ef9aed029",
+              "size_bytes": 135
+            },
+            "streams.atmosphere": {
+              "name": "streams.atmosphere",
+              "sha256": "b82aae1d49e59c0e945bc9217d3e2277cf1cbc0b4d2333815b4d9915d98e3910",
+              "size_bytes": 1604
+            },
+            "tuvx_no2.json": {
+              "name": "tuvx_no2.json",
+              "sha256": "c38a9bea974aec46b2f552f566e179bf9e8da458e59fdc3f45d7edb8cc93b05b",
+              "size_bytes": 2336
+            },
+            "tuvx_upper_atm.csv": {
+              "name": "tuvx_upper_atm.csv",
+              "sha256": "851b0ff3549bca691e0c49a8727bcdbaae001c9a34a7b1f7696f975ddd0b5954",
+              "size_bytes": 521
+            }
+          }
+        },
+        "external_inputs": {
+          "active_inventory": {
+            "name": "miem-inventory-zero.nc",
+            "sha256": "3c88f39342e0ea77e3571bae565058a63ed54d202e5a8fbccd7680bf68996c23",
+            "size_bytes": 2318125
+          },
+          "data_root": "emissions-science",
+          "initial_condition": {
+            "id": "mpas-x1.40962-gfs-20240701t00z-reduced-tropo-state",
+            "logical_path": "initial_conditions/noaa-gfs-20240701T00Z/x1.40962.gfs-20240701T00Z.reduced-tropo.init.nc",
+            "sha256": "ebbb698eb102c0e3f65dee2ae87362c6ebedb6caa98ad22c23927cdb33fd50fe",
+            "size_bytes": 470093124
+          },
+          "overlay": {
+            "path": "test_cases/global_tropo_miem/external-inputs.overlay.json",
+            "sha256": "a89ce65dce818f6d122b3b6dcd0eae003b6a6a8df4e8045fcc1e8664ef9e3947"
+          },
+          "partition": {
+            "id": "mpas-x1.40962-eight-rank-partition",
+            "logical_path": "partitions/x1.40962.graph.info.part.8",
+            "sha256": "f56e75e1f408b632fd5cd22ad05cc59fdbb54daf1e2f8f3d6298147a1e7f577b",
+            "size_bytes": 81924
+          },
+          "resolution": {
+            "artifacts_verified": false,
+            "base_artifact_count": 17,
+            "base_manifest": {
+              "manifest_id": "cams-glob-ant-v6.2-nox-x1.40962-2024-07",
+              "path": "${CHEMPAS_REPOSITORY_ROOT}/test_cases/global_miem/external-inputs.cams-glob-ant-v6.2-2024-07.json",
+              "sha256": "6d5be3455a2f827b2e1013ae0c6f5fdf82699657b7508f527172ed872e0ce9ed"
+            },
+            "overlay_artifact_count": 2,
+            "overlay_manifest": {
+              "manifest_id": "global-tropo-nox-x1.40962-2024-07",
+              "path": "${CHEMPAS_REPOSITORY_ROOT}/test_cases/global_tropo_miem/external-inputs.overlay.json",
+              "sha256": "a89ce65dce818f6d122b3b6dcd0eae003b6a6a8df4e8045fcc1e8664ef9e3947"
+            },
+            "resolved_artifact_count": 19
+          },
+          "source_inventory": {
+            "id": "cams-glob-ant-v6.2-x1.40962-miem-inventory",
+            "logical_path": "inventory/cams-glob-ant-v6.2-x1.40962/miem_inventory.cams-glob-ant-v6.2-x1.40962.nc",
+            "sha256": "d213866000e8a633954d0c730ba5524f729f26a97d02cc5a13d8b405aa6c8e9c",
+            "size_bytes": 20758020
+          }
+        },
+        "gate": "R0",
+        "resolved": {
+          "chemistry_interval_seconds": 0,
+          "chemistry_reference_solve": false,
+          "chemistry_species": [
+            "NO",
+            "NO2",
+            "O3"
+          ],
+          "chemistry_substeps": 1,
+          "description": "Five-minute disabled versus exact-zero MIEM identity gate.",
+          "diagnostic_categories": [],
+          "diagnostic_sectors": [],
+          "duration_seconds": 300,
+          "execution": "zero_pair",
+          "expected_assertions": [
+            "exact_grid_lifecycle",
+            "zero_source",
+            "bitwise_zero_source_identity",
+            "reduced_nox_budget",
+            "reduced_ox_budget",
+            "finite_nonnegative_state",
+            "lightning_disabled"
+          ],
+          "fixture_pattern": "zero",
+          "id": "R0",
+          "initial_condition_id": "mpas-x1.40962-gfs-20240701t00z-reduced-tropo-state",
+          "inventory_kind": "synthetic",
+          "layered_diagnostics": false,
+          "lightning_enabled": false,
+          "max_diagnostic_fields": 768,
+          "micm_config": "micm_configs/global_cams_lnox_o3.yaml",
+          "micm_relative_tolerance": 1e-15,
+          "miem_config": "miem_configs/global_synthetic_nox.yaml",
+          "model_dt_seconds": 300,
+          "mpi_ranks": 8,
+          "nitrogen_family": [
+            "NO",
+            "NO2"
+          ],
+          "odd_oxygen_family": [
+            "O3",
+            "NO2"
+          ],
+          "output_interval_seconds": 300,
+          "partition_id": "mpas-x1.40962-eight-rank-partition",
+          "photolysis_names": [
+            "jNO2"
+          ],
+          "resource_guard": {
+            "expanded_history_mib_per_frame": 260.0,
+            "expanded_restart_mib": 1000.0,
+            "forecast_multiplier": 1.25,
+            "peak_rss_gib": 4.0,
+            "reduced_history_mib_per_frame": 150.0,
+            "reduced_restart_mib": 800.0,
+            "reserve_gib": 20.0
+          },
+          "science_inventory_id": "cams-glob-ant-v6.2-x1.40962-miem-inventory",
+          "start_time": "2024-07-01_00:00:00",
+          "tier": "reduced",
+          "tolerances": {
+            "family_budget_absolute_mol": 0.001,
+            "family_budget_relative": 5e-05,
+            "flux_absolute_kg_m2_s": 1e-24,
+            "flux_relative": 2e-13,
+            "restart_absolute": 1e-19,
+            "restart_photolysis_absolute_s-1": 1e-20,
+            "restart_photolysis_relative": 2e-10,
+            "restart_relative": 5e-10,
+            "solver_family_burden_relative": 1e-06,
+            "solver_nitrogen_maximum_absolute_kg_kg": 1e-14,
+            "solver_other_maximum_absolute_kg_kg": 1e-12,
+            "solver_photolysis_absolute_s-1": 1e-12,
+            "solver_photolysis_relative": 1e-09,
+            "source_mass_absolute_kg": 1e-08,
+            "source_mass_relative": 2e-12
+          },
+          "tuvx_config": "micm_configs/tuvx_no2.json",
+          "tuvx_extension": "test_cases/chapman_nox_global/tuvx_upper_atm.csv",
+          "tuvx_update_interval_seconds": 0
+        },
+        "scenario": "r0_zero_source",
+        "segment": {
+          "do_restart": false,
+          "duration_seconds": 300,
+          "restart_pending_stage_only": false,
+          "start_time": "2024-07-01_00:00:00"
+        },
+        "software": {
+          "chempas_commit": "caa0c12dde7b862ce14a49021e25a45cc00b337f",
+          "chempas_dirty": false,
+          "chempas_untracked_paths": [],
+          "micm_commit": "bb57684a2047f0e58f30b199366294af879e8597",
+          "miem_commit": "9fdf14a189262eecb677862d877ab72b06c95e21",
+          "musica_commit": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc",
+          "tuvx_commit": "bbf7dd9a144fa0f0294b3779f3f993818638e20c",
+          "tuvx_data": {
+            "canonical_tree_sha256": "6d344904345d47d4117135ef4f6ecafe7e0dea45e0a4b404c405845a4c98c277",
+            "file_count": 194,
+            "name": "data",
+            "size_bytes": 7963747
+          }
+        },
+        "source_contract": {
+          "lightning_enabled": false,
+          "lnox_source_rate_ppbv_s": 0.0,
+          "miem_species": [
+            "NO",
+            "NO2"
+          ]
+        },
+        "tier": "reduced",
+        "variant": "enabled_zero"
+      },
+      "miem_call_count_pass": true,
+      "miem_timing_pass": true,
+      "output": {
+        "history_bytes": 244154072,
+        "history_files": [
+          {
+            "path": "enabled_zero/history.2024-07-01_00.00.00.nc",
+            "sha256": "deabc7815c4e4a0e9d02eee2469eb37b12f76b0a19d7274a6bbc4f9f5afcc2f1",
+            "size_bytes": 122077036
+          },
+          {
+            "path": "enabled_zero/history.2024-07-01_00.05.00.nc",
+            "sha256": "bb5286fb869b9f0224b4c8787dadf4d1851880b3a3f94438d46c7b4279c32684",
+            "size_bytes": 122077036
+          }
+        ],
+        "restart_bytes": 0,
+        "restart_files": []
+      },
+      "resource": {
+        "peak_rss_kib": 746852,
+        "wall_seconds": 8.88
+      },
+      "source_mass_comparison": {
+        "NO": {
+          "bitwise_equal": true,
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0,
+          "passed": true
+        },
+        "NO2": {
+          "bitwise_equal": true,
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0,
+          "passed": true
+        }
+      },
+      "source_mass_pass": true,
+      "tuvx_lifecycle_pass": true
+    }
+  },
+  "scenario": {
+    "description": "Five-minute disabled versus exact-zero MIEM identity gate.",
+    "name": "r0_zero_source",
+    "resolved": {
+      "chemistry_interval_seconds": 0,
+      "chemistry_reference_solve": false,
+      "chemistry_species": [
+        "NO",
+        "NO2",
+        "O3"
+      ],
+      "chemistry_substeps": 1,
+      "description": "Five-minute disabled versus exact-zero MIEM identity gate.",
+      "diagnostic_categories": [],
+      "diagnostic_sectors": [],
+      "duration_seconds": 300,
+      "execution": "zero_pair",
+      "expected_assertions": [
+        "exact_grid_lifecycle",
+        "zero_source",
+        "bitwise_zero_source_identity",
+        "reduced_nox_budget",
+        "reduced_ox_budget",
+        "finite_nonnegative_state",
+        "lightning_disabled"
+      ],
+      "fixture_pattern": "zero",
+      "id": "R0",
+      "initial_condition_id": "mpas-x1.40962-gfs-20240701t00z-reduced-tropo-state",
+      "inventory_kind": "synthetic",
+      "layered_diagnostics": false,
+      "lightning_enabled": false,
+      "max_diagnostic_fields": 768,
+      "micm_config": "micm_configs/global_cams_lnox_o3.yaml",
+      "micm_relative_tolerance": 1e-15,
+      "model_dt_seconds": 300,
+      "mpi_ranks": 8,
+      "nitrogen_family": [
+        "NO",
+        "NO2"
+      ],
+      "odd_oxygen_family": [
+        "O3",
+        "NO2"
+      ],
+      "output_interval_seconds": 300,
+      "partition_id": "mpas-x1.40962-eight-rank-partition",
+      "photolysis_names": [
+        "jNO2"
+      ],
+      "resource_guard": {
+        "expanded_history_mib_per_frame": 260.0,
+        "expanded_restart_mib": 1000.0,
+        "forecast_multiplier": 1.25,
+        "peak_rss_gib": 4.0,
+        "reduced_history_mib_per_frame": 150.0,
+        "reduced_restart_mib": 800.0,
+        "reserve_gib": 20.0
+      },
+      "science_inventory_id": "cams-glob-ant-v6.2-x1.40962-miem-inventory",
+      "start_time": "2024-07-01_00:00:00",
+      "tier": "reduced",
+      "tolerances": {
+        "family_budget_absolute_mol": 0.001,
+        "family_budget_relative": 5e-05,
+        "flux_absolute_kg_m2_s": 1e-24,
+        "flux_relative": 2e-13,
+        "restart_absolute": 1e-19,
+        "restart_photolysis_absolute_s-1": 1e-20,
+        "restart_photolysis_relative": 2e-10,
+        "restart_relative": 5e-10,
+        "solver_family_burden_relative": 1e-06,
+        "solver_nitrogen_maximum_absolute_kg_kg": 1e-14,
+        "solver_other_maximum_absolute_kg_kg": 1e-12,
+        "solver_photolysis_absolute_s-1": 1e-12,
+        "solver_photolysis_relative": 1e-09,
+        "source_mass_absolute_kg": 1e-08,
+        "source_mass_relative": 2e-12
+      },
+      "tuvx_config": "micm_configs/tuvx_no2.json",
+      "tuvx_extension": "test_cases/chapman_nox_global/tuvx_upper_atm.csv",
+      "tuvx_update_interval_seconds": 0
+    }
+  },
+  "schema_version": "chempas-global-tropo-miem-throughput-report-v1",
+  "telemetry": {
+    "available_disk_bytes_after_run": 71957086208,
+    "run_count": 2,
+    "total_history_bytes": 486996688,
+    "total_output_bytes": 486996688,
+    "total_restart_bytes": 0
+  },
+  "tier": "reduced",
+  "vertical_diagnostics": {
+    "enabled_minus_control": [],
+    "frames": [
+      {
+        "partition_closure_pass": true,
+        "species": {
+          "NO": {
+            "above_tropopause_moles": 413183107.2438294,
+            "full_column_moles": 16731010521.88263,
+            "northern_moles": 8227935160.328968,
+            "partition_closure_pass": true,
+            "southern_moles": 8503075361.553662,
+            "tropospheric_moles": 16317827414.638802,
+            "vertical_moles": [
+              983857489.5196004,
+              1415810763.983458,
+              1957600656.245772,
+              2407720952.91108,
+              2568889637.0424953,
+              2358527640.768227,
+              1863364504.5615118,
+              1279448047.7703865,
+              744982329.9488885,
+              407448192.0200674,
+              244635428.8127019,
+              158660947.6361634,
+              106957402.41793631,
+              71883315.95666307,
+              48682130.47199915,
+              33652662.69543741,
+              23529656.016302332,
+              16574194.983303402,
+              11766225.460148944,
+              8394120.121848585,
+              6013878.126079693,
+              4322217.705097308,
+              3121852.62766483,
+              2268844.1448026123,
+              1663184.4659679236,
+              1234245.4689724373
+            ]
+          },
+          "NO2": {
+            "above_tropopause_moles": 964093916.9022685,
+            "full_column_moles": 39039024551.05946,
+            "northern_moles": 19198515374.100925,
+            "partition_closure_pass": true,
+            "southern_moles": 19840509176.95854,
+            "tropospheric_moles": 38074930634.157196,
+            "vertical_moles": [
+              2295667475.545736,
+              3303558449.2947307,
+              4567734864.573512,
+              5618015556.792573,
+              5994075819.765868,
+              5503231161.792561,
+              4347850510.643583,
+              2985378778.130913,
+              1738292103.2140694,
+              950712448.0468222,
+              570816000.5629718,
+              370208877.8177148,
+              249567272.30851856,
+              167727737.23221585,
+              113591637.7679972,
+              78522879.62268661,
+              54902530.70470485,
+              38673121.62770803,
+              27454526.07368113,
+              19586280.284313317,
+              14032382.2941862,
+              10085174.645227076,
+              7284322.797884589,
+              5293969.671206065,
+              3880763.753925159,
+              2879906.0942690177
+            ]
+          },
+          "O3": {
+            "above_tropopause_moles": 53948454939266.05,
+            "full_column_moles": 63686287703962.84,
+            "northern_moles": 32821433847807.133,
+            "partition_closure_pass": true,
+            "southern_moles": 30864853856155.703,
+            "tropospheric_moles": 9737832764696.79,
+            "vertical_moles": [
+              98438833222.97116,
+              153487390569.3189,
+              240612253422.664,
+              358168383975.87476,
+              502879328616.5778,
+              670812482665.348,
+              858275097389.0214,
+              1063845953850.5815,
+              1202298476510.2761,
+              1330821254263.7449,
+              1772952462088.1394,
+              2696964923144.6978,
+              4447646554525.944,
+              6619384488876.517,
+              8475081767768.95,
+              9291085905503.979,
+              8604052319389.469,
+              6699709068872.161,
+              4390747986560.99,
+              2418313614727.461,
+              1122298379906.3193,
+              442161167001.9554,
+              151821173222.4855,
+              48790736010.962,
+              17334679982.555454,
+              8303021893.853311
+            ]
+          }
+        },
+        "time": "2024-07-01_00:00:00"
+      },
+      {
+        "partition_closure_pass": true,
+        "species": {
+          "NO": {
+            "above_tropopause_moles": 401385231.69796985,
+            "full_column_moles": 12081000025.324474,
+            "northern_moles": 7525995136.5123825,
+            "partition_closure_pass": true,
+            "southern_moles": 4555004888.812092,
+            "tropospheric_moles": 11679614793.626505,
+            "vertical_moles": [
+              529205617.855664,
+              779275512.5278502,
+              1120008049.2439506,
+              1452411500.464932,
+              1659857554.245114,
+              1670756746.48241,
+              1498523848.8749363,
+              1204426525.3279686,
+              828311045.7491975,
+              509992919.3969212,
+              312830141.1886242,
+              195267010.99207196,
+              117509043.15055716,
+              64014502.61851156,
+              34803677.347209044,
+              21610128.512150504,
+              15223304.814526629,
+              12059811.431580914,
+              10603983.529368145,
+              9858211.570781741,
+              9118347.904764421,
+              7896932.631929228,
+              6332306.175968064,
+              4819040.187013844,
+              3596678.926792333,
+              2687584.1737049287
+            ]
+          },
+          "NO2": {
+            "above_tropopause_moles": 975845341.1509949,
+            "full_column_moles": 43689035047.61762,
+            "northern_moles": 19902273085.2388,
+            "partition_closure_pass": true,
+            "southern_moles": 23786761962.378826,
+            "tropospheric_moles": 42713189706.46663,
+            "vertical_moles": [
+              2750419238.876222,
+              3940244191.2064795,
+              5405404414.974595,
+              6573291227.880761,
+              6903007859.3010645,
+              6190935415.150243,
+              4712647747.682446,
+              3060425301.2213073,
+              1654968925.8088362,
+              848107294.2661872,
+              502590184.3573617,
+              333591245.5876821,
+              239009910.99536133,
+              175594581.69422796,
+              127469933.2055174,
+              90563992.43668395,
+              63207920.06063227,
+              43187148.04576484,
+              28616321.663026024,
+              18122089.37617227,
+              10927801.7214845,
+              6510519.138185801,
+              4073834.0086912974,
+              2743848.3764767284,
+              1947394.550594027,
+              1426706.0316156752
+            ]
+          },
+          "O3": {
+            "above_tropopause_moles": 53948663629225.43,
+            "full_column_moles": 63681637693466.28,
+            "northern_moles": 32820109598626.297,
+            "partition_closure_pass": true,
+            "southern_moles": 30861528094839.98,
+            "tropospheric_moles": 9732974064240.848,
+            "vertical_moles": [
+              97989533446.15358,
+              152856824720.8177,
+              239782439860.91364,
+              357218569251.1133,
+              501972172931.53625,
+              670124314927.0226,
+              857901955119.6521,
+              1063735195445.2854,
+              1202286823843.5745,
+              1330826023311.398,
+              1772778953170.122,
+              2697185207432.5674,
+              4447905357178.246,
+              6619735500837.597,
+              8475363235690.279,
+              9290937283069.438,
+              8603822323134.694,
+              6699315630664.882,
+              4390698734236.4116,
+              2418353169674.439,
+              1122369982785.9358,
+              442213308187.85657,
+              151839042046.86844,
+              48791796391.567856,
+              17324286151.67555,
+              8310029956.268164
+            ]
+          }
+        },
+        "time": "2024-07-01_00:05:00"
+      }
+    ],
+    "partition_closure_pass": true,
+    "tropopause_rule": {
+      "kind": "fixed_layer_center_pressure_threshold",
+      "limitation": "diagnostic mask only; chemistry remains active above the threshold",
+      "threshold_pa": 15000.0,
+      "troposphere_condition": "pressure >= 15000 Pa"
+    }
+  }
+}

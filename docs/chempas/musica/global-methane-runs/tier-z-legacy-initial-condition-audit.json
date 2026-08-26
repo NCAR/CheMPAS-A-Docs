@@ -1,0 +1,47 @@
+{
+  "schema_version": "chempas-mozart35-legacy-initial-readiness-v1",
+  "created_at_utc": "2026-08-15T19:28:00Z",
+  "lineage": "legacy_background",
+  "source_state": {
+    "logical_path": "initial_conditions/noaa-gfs-20240701T00Z/x1.40962.gfs-20240701T00Z.expanded-tropo.init.nc",
+    "size_bytes": 572335744,
+    "sha256": "7ccb0670cb49374de78187761cf410690a4b8fc4d4a27533a5ba97deed907e78"
+  },
+  "profile_contract": {
+    "path": "micm_configs/sources/mozart35-initial-profiles-v2.json",
+    "size_bytes": 2831,
+    "sha256": "555bfb556add35ce34791b4de519a35b35a63d882d74c1bf30d4d68b1b5c25de"
+  },
+  "mechanism_source": {
+    "path": "micm_configs/sources/mozart35.yaml",
+    "size_bytes": 23300,
+    "sha256": "1b8c3ee939b113c5d05d30d131d358716edd066449929cf8c960a4f9ec93c559"
+  },
+  "output_state": {
+    "logical_path": "initial_conditions/global-methane/x1.40962.gfs-20240701T00Z.legacy.mozart35.init.nc",
+    "size_bytes": 793865680,
+    "sha256": "2f29b47d3669b2e97403ac9ed2d6e376cd131efce0576eb0568b639cf8b32204"
+  },
+  "full_external_audit": {
+    "logical_path": "initial_conditions/global-methane/x1.40962.gfs-20240701T00Z.legacy.mozart35.init.audit.json",
+    "size_bytes": 12726,
+    "sha256": "6094e2b6d21be1b1ca5f6c47f86f4e96accd4d0517193e3362814154c21aa386"
+  },
+  "counts": {
+    "transported_species": 35,
+    "reaction_ledgers": 5,
+    "preexisting_variables_preserved": 152,
+    "variables_added": 26
+  },
+  "assertions": {
+    "lineage_is_explicit_and_not_cams": true,
+    "all_35_species_have_one_provenance_class": true,
+    "all_existing_fields_bitwise_preserved": true,
+    "qCH4_bitwise_preserved": true,
+    "all_added_fields_finite_nonnegative": true,
+    "reaction_ledgers_start_at_zero": true,
+    "host_bound_qM_qH2O_absent": true,
+    "mandatory_spinup_declared": true
+  },
+  "overall_pass": true
+}

@@ -1,0 +1,434 @@
+{
+  "case": "chapman_nox_global",
+  "comparison_policy": {
+    "config_identity": "All configuration and input SHA-256 values for a case must match this manifest.",
+    "config_miem_file": "",
+    "dependency_identity": "The pre-emissions baseline and candidate comparison build must use the same manifest-pinned MUSICA, MIEM, compiler, precision, NetCDF, PnetCDF, and PIO identities.",
+    "field_policy": "Require the same dimensions and variable set, then exact equality of every chempas-netcdf-field-sha256-v1 digest.",
+    "netcdf_container_policy": "Container SHA-256 is provenance only; layout metadata may differ when every canonical field digest matches.",
+    "schema_policy": "The expected emissions namelist addition is allowed, but a disabled run must contain no emis_* output variables and must open no MIEM inventory."
+  },
+  "configuration_sha256": {
+    "chapman_nox.yaml": "e62ba6fc7e15e602e8a384b9f191777f2c446ecd8c696b4ee2a080f74a887e2b",
+    "namelist.atmosphere": "d3040b0fb9580cb61be0672c0f84cd2dcf649689d8a5fe2ff5cc6e665481caaf",
+    "stream_list.atmosphere.output": "0776bc45e752a3231f6167b61a7c075731daf5bb86827196a2304ba0451bfac4",
+    "streams.atmosphere": "505c7f21acb48bfa5f2c9b165c4ec2f19041c465c07e469c62320d139f6e37a4",
+    "tuvx_chapman_nox.json": "00fdf1598cb637e6ab8e87997a9d25703e16497eacb59bb20e0117aeda89d3d9",
+    "tuvx_upper_atm.csv": "851b0ff3549bca691e0c49a8727bcdbaae001c9a34a7b1f7696f975ddd0b5954"
+  },
+  "expected_field_manifest_sha256": "ac770125ac21edfa96ba455791367ed5b69dedec3d2e9d53ab44298b7f448aaa",
+  "failures": [],
+  "input_sha256": {
+    "x1.40962.chapman_nox_init.nc": "0bf2006476b5a609e033a172827aa94bf4dc7baf304336273a21b92612614494",
+    "x1.40962.graph.info.part.8": "f56e75e1f408b632fd5cd22ad05cc59fdbb54daf1e2f8f3d6298147a1e7f577b"
+  },
+  "observed": {
+    "dimensions": {
+      "StrLen": {
+        "size": 64,
+        "unlimited": false
+      },
+      "Time": {
+        "size": 25,
+        "unlimited": true
+      },
+      "nCells": {
+        "size": 40962,
+        "unlimited": false
+      },
+      "nEdges": {
+        "size": 122880,
+        "unlimited": false
+      },
+      "nVertLevels": {
+        "size": 26,
+        "unlimited": false
+      },
+      "nVertLevelsP1": {
+        "size": 27,
+        "unlimited": false
+      }
+    },
+    "file": "output.nc",
+    "file_size_bytes": 4074062824,
+    "hash_algorithm": "chempas-netcdf-field-sha256-v1",
+    "schema": "chempas-netcdf-field-manifest-v1",
+    "variables": {
+      "indexToCellID": {
+        "dimensions": [
+          "nCells"
+        ],
+        "dtype": ">i4",
+        "payload_bytes": 163848,
+        "sha256": "6366bf740b523b23f70ef21fbdf6eef657fa1a8527e9d9d76a4e1fc4743b5267",
+        "shape": [
+          40962
+        ]
+      },
+      "j_jNO2": {
+        "dimensions": [
+          "Time",
+          "nCells",
+          "nVertLevels"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 213002400,
+        "sha256": "023adf6a4d6a8b0ee7482c89495f0ef56ce2eb663e0ec475d04d5d9d8a03a6e5",
+        "shape": [
+          25,
+          40962,
+          26
+        ]
+      },
+      "j_jO2": {
+        "dimensions": [
+          "Time",
+          "nCells",
+          "nVertLevels"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 213002400,
+        "sha256": "c63bb896c5ae529dcbf19d107305cf75808e8eb182e6ff635dee8eb63bc74833",
+        "shape": [
+          25,
+          40962,
+          26
+        ]
+      },
+      "j_jO3_O": {
+        "dimensions": [
+          "Time",
+          "nCells",
+          "nVertLevels"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 213002400,
+        "sha256": "49520b8bcafdf3377f7778359a19ca38307654d82aee27c2ec8fa1c750777c40",
+        "shape": [
+          25,
+          40962,
+          26
+        ]
+      },
+      "j_jO3_O1D": {
+        "dimensions": [
+          "Time",
+          "nCells",
+          "nVertLevels"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 213002400,
+        "sha256": "766df31d187be6d675ab32177754cfffde8d42ba1728c8491af297209563fca8",
+        "shape": [
+          25,
+          40962,
+          26
+        ]
+      },
+      "latCell": {
+        "dimensions": [
+          "nCells"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 327696,
+        "sha256": "f85da4037345a17f9e7b7acd300d37a15c5dd046e9e3dd69fb31342004d5e2d8",
+        "shape": [
+          40962
+        ]
+      },
+      "lonCell": {
+        "dimensions": [
+          "nCells"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 327696,
+        "sha256": "57e3ab2aa7ec1dbb79910942938862593592dd71d0336dba3837018ef27b7de2",
+        "shape": [
+          40962
+        ]
+      },
+      "pressure": {
+        "dimensions": [
+          "Time",
+          "nCells",
+          "nVertLevels"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 213002400,
+        "sha256": "cc9fe1516a660c87ce6a519d7925b30840fdd3f1a35b19a595da00a9cb1584e4",
+        "shape": [
+          25,
+          40962,
+          26
+        ]
+      },
+      "qNO": {
+        "dimensions": [
+          "Time",
+          "nCells",
+          "nVertLevels"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 213002400,
+        "sha256": "91e203d969f48379f139082a1c809a1de4ed3b6103e635682b007aace25671fb",
+        "shape": [
+          25,
+          40962,
+          26
+        ]
+      },
+      "qNO2": {
+        "dimensions": [
+          "Time",
+          "nCells",
+          "nVertLevels"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 213002400,
+        "sha256": "aac963e7fa689e1b39bf54bbea983e49278748c677d88e38a1493206873b4dbf",
+        "shape": [
+          25,
+          40962,
+          26
+        ]
+      },
+      "qO": {
+        "dimensions": [
+          "Time",
+          "nCells",
+          "nVertLevels"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 213002400,
+        "sha256": "7603596cb487bcc9bec0fbd698ab60200667cf56f5eeb0d65cbc692f4f64581b",
+        "shape": [
+          25,
+          40962,
+          26
+        ]
+      },
+      "qO2": {
+        "dimensions": [
+          "Time",
+          "nCells",
+          "nVertLevels"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 213002400,
+        "sha256": "d3d40daa4c06af5eff0ea00b8c9d42186d4f7e86b1f256e7aa33fbd71f3af080",
+        "shape": [
+          25,
+          40962,
+          26
+        ]
+      },
+      "qO3": {
+        "dimensions": [
+          "Time",
+          "nCells",
+          "nVertLevels"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 213002400,
+        "sha256": "76f4d048dd68bd9ed447df7c51e8eb41d776b3e1dc7afb2eb5e5f9cd2d1a6f33",
+        "shape": [
+          25,
+          40962,
+          26
+        ]
+      },
+      "qv": {
+        "dimensions": [
+          "Time",
+          "nCells",
+          "nVertLevels"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 213002400,
+        "sha256": "54ec8c1f7d2e74d23881393b50c20fd08a50dfb5b052b76ecd8da20de7d0b3df",
+        "shape": [
+          25,
+          40962,
+          26
+        ]
+      },
+      "rho": {
+        "dimensions": [
+          "Time",
+          "nCells",
+          "nVertLevels"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 213002400,
+        "sha256": "756b7e6bf42dd3cca7585f38273d6c8ef5c8546491f40bc22818a0009406703f",
+        "shape": [
+          25,
+          40962,
+          26
+        ]
+      },
+      "surface_pressure": {
+        "dimensions": [
+          "Time",
+          "nCells"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 8192400,
+        "sha256": "bd5058eb1a94a078f64484e52c3c0079ad01ddf418770abb524854e0b655d786",
+        "shape": [
+          25,
+          40962
+        ]
+      },
+      "theta": {
+        "dimensions": [
+          "Time",
+          "nCells",
+          "nVertLevels"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 213002400,
+        "sha256": "3e7f6c08b27db071cb4fe7ccc14ee1f9b2a2c8ca3586f04c8251261cc61c4f9e",
+        "shape": [
+          25,
+          40962,
+          26
+        ]
+      },
+      "u": {
+        "dimensions": [
+          "Time",
+          "nEdges",
+          "nVertLevels"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 638976000,
+        "sha256": "b9fef786e9f94145a0110ebdd31a5fd86432d8f93354446f9cacc82d2fd5a473",
+        "shape": [
+          25,
+          122880,
+          26
+        ]
+      },
+      "uReconstructMeridional": {
+        "dimensions": [
+          "Time",
+          "nCells",
+          "nVertLevels"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 213002400,
+        "sha256": "292bb84894fa8ea1392b6f10b46c73da75b3e83d175da67128f19154e96e86b2",
+        "shape": [
+          25,
+          40962,
+          26
+        ]
+      },
+      "uReconstructZonal": {
+        "dimensions": [
+          "Time",
+          "nCells",
+          "nVertLevels"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 213002400,
+        "sha256": "f58c43756497616f6f26fef8d46d362010592fb5eb5832b7a7887a0334acdfb6",
+        "shape": [
+          25,
+          40962,
+          26
+        ]
+      },
+      "w": {
+        "dimensions": [
+          "Time",
+          "nCells",
+          "nVertLevelsP1"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 221194800,
+        "sha256": "f07187a38c52f451d89f1216b876bbeda3765b30774d2e01c105e227bc62e717",
+        "shape": [
+          25,
+          40962,
+          27
+        ]
+      },
+      "xCell": {
+        "dimensions": [
+          "nCells"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 327696,
+        "sha256": "2c3cfabfad0888442eae5ce283418305cfae7ac92b0f5d696145b722b307c07a",
+        "shape": [
+          40962
+        ]
+      },
+      "xtime": {
+        "dimensions": [
+          "Time",
+          "StrLen"
+        ],
+        "dtype": "|S1",
+        "payload_bytes": 1600,
+        "sha256": "8abed4721248464c3f714aa23e16eb10cc4117000f95c065c4cb0b843165ae61",
+        "shape": [
+          25,
+          64
+        ]
+      },
+      "yCell": {
+        "dimensions": [
+          "nCells"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 327696,
+        "sha256": "b0773745ce1de649a53fe8b0f71e5cc6ef6baf57413e1a2d57e774da8ff936d9",
+        "shape": [
+          40962
+        ]
+      },
+      "zCell": {
+        "dimensions": [
+          "nCells"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 327696,
+        "sha256": "f3fd86557f5019325262f679a893f9f16f9e7c9d756aba4112a5052861467992",
+        "shape": [
+          40962
+        ]
+      },
+      "zgrid": {
+        "dimensions": [
+          "nCells",
+          "nVertLevelsP1"
+        ],
+        "dtype": ">f8",
+        "payload_bytes": 8847792,
+        "sha256": "9d71b40093ff0033899235dc34d0fde6a2b432005c41ea0f1612744bdb9fc10e",
+        "shape": [
+          40962,
+          27
+        ]
+      }
+    }
+  },
+  "overall_pass": true,
+  "provenance": {
+    "baseline_executable_sha256": "31b80c7a7dd740d1d54b5d7dc1de5f007481ac5ff7b338eba12be7c1547eb216",
+    "baseline_manifest_sha256": "f6bbafced5b2f81f779cb170cf21df949a9656dfb480e217929db23727e79c7d",
+    "checked_at_utc": "2026-08-06T19:47:12.515983+00:00",
+    "chempas_commit": "4ffc5da925388f9e83a2a04f2531ba24cc46aed8",
+    "compiler": "GNU Fortran (conda-forge gcc 15.2.0-19) 15.2.0",
+    "executable": "/home/fillmore/EarthSystem/CheMPAS-A-Dev/atmosphere_model",
+    "executable_sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+    "miem_commit": "9fdf14a189262eecb677862d877ab72b06c95e21",
+    "mpi_ranks": 8,
+    "musica_commit": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc",
+    "planning_baseline_commit": "4eb4e6772c62bbc42453d91ca2010f2bea4935c6"
+  },
+  "schema_version": "chempas-miem-disabled-comparison-v1"
+}

@@ -1,0 +1,152 @@
+{
+  "assertions": {
+    "all_compatible_static_fields_replaced": true,
+    "authoritative_mesh_fingerprint_exact": true,
+    "finite_positive_dynamics_state": true,
+    "parent_topology_exact": true,
+    "science_inventory_validates_against_model_init": true
+  },
+  "contract": {
+    "inventory_validation_fields": 28,
+    "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+    "prealignment_maximum_absolute_identity_differences": {
+      "areaCell": 1365.3359870910645,
+      "indexToCellID": 0.0,
+      "latCell": 5.9599814861144296e-08,
+      "lonCell": 2.383954234019825e-07,
+      "xCell": 0.4338746350258589,
+      "yCell": 0.43206741102039814,
+      "zCell": 0.4359197812154889
+    },
+    "purpose": "G0-G4 software shakedown only",
+    "static_field_count": 79,
+    "static_fields_replaced": [
+      "latCell",
+      "lonCell",
+      "xCell",
+      "yCell",
+      "zCell",
+      "indexToCellID",
+      "latEdge",
+      "lonEdge",
+      "xEdge",
+      "yEdge",
+      "zEdge",
+      "indexToEdgeID",
+      "latVertex",
+      "lonVertex",
+      "xVertex",
+      "yVertex",
+      "zVertex",
+      "indexToVertexID",
+      "cellsOnEdge",
+      "nEdgesOnCell",
+      "nEdgesOnEdge",
+      "edgesOnCell",
+      "edgesOnEdge",
+      "weightsOnEdge",
+      "dvEdge",
+      "dcEdge",
+      "angleEdge",
+      "areaCell",
+      "areaTriangle",
+      "cellsOnCell",
+      "verticesOnCell",
+      "verticesOnEdge",
+      "edgesOnVertex",
+      "cellsOnVertex",
+      "kiteAreasOnVertex",
+      "meshDensity",
+      "nominalMinDc",
+      "bdyMaskCell",
+      "bdyMaskEdge",
+      "bdyMaskVertex",
+      "edgeNormalVectors",
+      "localVerticalUnitVectors",
+      "cellTangentPlane",
+      "fEdge",
+      "fVertex",
+      "ter",
+      "landmask",
+      "mminlu",
+      "isice_lu",
+      "iswater_lu",
+      "ivgtyp",
+      "isltyp",
+      "snoalb",
+      "soiltemp",
+      "greenfrac",
+      "shdmin",
+      "shdmax",
+      "albedo12m",
+      "soilcomp",
+      "soilcl1",
+      "soilcl2",
+      "soilcl3",
+      "soilcl4",
+      "var2d",
+      "con",
+      "oa1",
+      "oa2",
+      "oa3",
+      "oa4",
+      "ol1",
+      "ol2",
+      "ol3",
+      "ol4",
+      "deriv_two",
+      "defc_a",
+      "defc_b",
+      "cell_gradient_coef_x",
+      "cell_gradient_coef_y",
+      "coeffs_reconstruct"
+    ],
+    "vertical_levels": 26
+  },
+  "inputs": {
+    "authoritative_static": {
+      "path": "raw/mpas-x1.40962/x1.40962.static.nc",
+      "sha256": "cf1a47d4168327f06a8403555d6ed8b2fe1aff7f8b916bb7f6a754c34a10ac82",
+      "size_bytes": 94766584
+    },
+    "idealized_state": {
+      "path": "raw/legacy-jw/x1.40962.init.nc",
+      "sha256": "fab0a850a018311a11b4ecf027c75c94d4d161a1b14804ec807e7c5908c5b360",
+      "size_bytes": 442566020
+    },
+    "science_inventory": {
+      "path": "inventory/cams-glob-ant-v6.2-x1.40962/miem_inventory.cams-glob-ant-v6.2-x1.40962.nc",
+      "sha256": "d213866000e8a633954d0c730ba5524f729f26a97d02cc5a13d8b405aa6c8e9c",
+      "size_bytes": 20758020
+    }
+  },
+  "output": {
+    "path": "initial_conditions/idealized-jw/x1.40962.jw.static-aligned.init.nc",
+    "sha256": "a674a41637e848144c50faf588af199cee96dc8b81267319feb42cad83d10efc",
+    "size_bytes": 442566280
+  },
+  "overall_pass": true,
+  "schema_version": "chempas-global-miem-shakedown-init-alignment-v1",
+  "state_ranges": {
+    "rho": {
+      "maximum": 1.513799037114305,
+      "minimum": 0.0027305429557215244
+    },
+    "theta": {
+      "maximum": 1536.9918910698234,
+      "minimum": 226.7080993285614
+    },
+    "u": {
+      "maximum": 35.19535144644153,
+      "minimum": -35.184057529925276
+    },
+    "w": {
+      "maximum": 1.6778188791688392e-05,
+      "minimum": -1.6806863270728215e-05
+    },
+    "zgrid": {
+      "maximum": 45000.0,
+      "minimum": -315.4650426461613
+    }
+  }
+}

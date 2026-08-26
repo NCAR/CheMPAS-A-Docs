@@ -1,0 +1,268 @@
+{
+  "commands": {
+    "a1_decisive_recheck": "python scripts/check_global_miem_throughput.py --gate A1 --scenario-manifest test_cases/global_miem/scenarios.yaml --external-manifest test_cases/global_miem/external-inputs.cams-glob-ant-v6.2-2024-07.json --data-root \"$CHEMPAS_EMISSIONS_DATA_ROOT\" --inventory \"$CHEMPAS_EMISSIONS_DATA_ROOT/inventory/cams-glob-ant-v6.2-x1.40962/miem_inventory.cams-glob-ant-v6.2-x1.40962.nc\" --run continuous=\"$CHEMPAS_EMISSIONS_DATA_ROOT/runs/stage9d/a1-20260806T171217Z-3866a7401b/continuous\" --run split_first=\"$CHEMPAS_EMISSIONS_DATA_ROOT/runs/stage9d/a1-20260806T171217Z-3866a7401b/split_first\" --run split_second=\"$CHEMPAS_EMISSIONS_DATA_ROOT/runs/stage9d/a1-20260806T171217Z-3866a7401b/split_second\" --run no_miem_control=\"$CHEMPAS_EMISSIONS_DATA_ROOT/runs/stage9d/a1-20260806T171217Z-3866a7401b/no_miem_control\" --report docs/chempas/musica/global-runs/stage9e-a1-recheck-report.json",
+    "e0_baseline_capture": "For each active-manifest case: stage the exact recorded configuration/input hashes; $CONDA_PREFIX/bin/mpiexec -n 8 ./atmosphere_model; python scripts/hash_netcdf_fields.py output.nc --include-file-hash --output fields.json; require exact dimensions/variables versus test_cases/miem_disabled_baselines.phase0.json.",
+    "failure_paths": "CHEMPAS_CONDA_ENV=mpas scripts/test_miem_failure_paths.sh .",
+    "g3_empty_staging": "CHEMPAS_PYTHON=$CONDA_PREFIX/bin/python scripts/run_global_miem_integration.sh --gate G3 --data-root \"$CHEMPAS_EMISSIONS_DATA_ROOT\" --work-root \"$CHEMPAS_EMISSIONS_DATA_ROOT/runs/stage9e/clean-reproduction-37i9zrd7\" --report docs/chempas/musica/global-runs/stage9e-g3-reproduction-report.json --executable ./atmosphere_model --mpi-launcher \"$CONDA_PREFIX/bin/mpiexec\"",
+    "preimplementation_build": "env OMPI_FC=gfortran OMPI_CC=gcc OMPI_CXX=g++ PKG_CONFIG_PATH=/home/fillmore/software/musica-1403e3d22717bc87f3bf9d0aa591caf039c92bbc/lib/pkgconfig:/home/fillmore/miniforge3/envs/mpas/lib/pkgconfig:/home/fillmore/software/lib/pkgconfig conda run --no-capture-output -n mpas make -j8 gfortran CORE=atmosphere PIO=/home/fillmore/software NETCDF=/home/fillmore/miniforge3/envs/mpas PNETCDF=/home/fillmore/miniforge3/envs/mpas PRECISION=double MUSICA=true",
+    "r0_r6_matrix": "CHEMPAS_CONDA_ENV=mpas scripts/test_miem_integration.sh . --case all --work-root \"$CHEMPAS_EMISSIONS_DATA_ROOT/runs/stage9e/chem-box-regression-8m8v68ft/runs\" --report-dir \"$CHEMPAS_EMISSIONS_DATA_ROOT/runs/stage9e/chem-box-regression-8m8v68ft/reports\" --keep-success",
+    "selected_full_mapping": "conda run --no-capture-output -n mpas scripts/test_miem_mpi_mapping.sh .",
+    "strict_e0_comparison": "CHEMPAS_CONDA_ENV=mpas scripts/test_miem_disabled_baselines.sh . --case all --mpi-launcher \"$CONDA_PREFIX/bin/mpiexec\" --work-root \"$CHEMPAS_EMISSIONS_DATA_ROOT/runs/stage9e/e0-strict-current-stack-4ffc5da9\" --report-dir \"$CHEMPAS_EMISSIONS_DATA_ROOT/runs/stage9e/e0-strict-current-stack-4ffc5da9/reports\" --keep-success"
+  },
+  "external_retention": {
+    "artifacts": {
+      "a1_acceptance": {
+        "logical_path": "runs/stage9d/a1-20260806T171217Z-3866a7401b",
+        "size_bytes": 15406991109
+      },
+      "current_stack_e0_baselines": {
+        "size_bytes": 7027589943,
+        "workstation_path": "/home/fillmore/Data/CheMPAS/baselines/miem-disabled-phase9-4eb4e677-musica-1403e3d2"
+      },
+      "e0_baseline_capture": {
+        "logical_path": "runs/stage9e/e0-baseline-capture-4eb4e677-1403e3d2",
+        "size_bytes": 7027752057
+      },
+      "final_contract_logs": {
+        "logical_path": "runs/stage9e/final-contracts-4ffc5da9",
+        "size_bytes": 1457
+      },
+      "g3_empty_staging": {
+        "logical_path": "runs/stage9e/clean-reproduction-37i9zrd7",
+        "size_bytes": 2101547423
+      },
+      "preimplementation_build": {
+        "logical_path": "runs/stage9e/baseline-build-4eb4e677-1403e3d2",
+        "size_bytes": 132198318
+      },
+      "r0_r6_regression": {
+        "logical_path": "runs/stage9e/chem-box-regression-8m8v68ft",
+        "size_bytes": 29232159
+      },
+      "strict_e0_comparison": {
+        "logical_path": "runs/stage9e/e0-strict-current-stack-4ffc5da9",
+        "size_bytes": 7027606223
+      }
+    },
+    "data_root_environment_variable": "CHEMPAS_EMISSIONS_DATA_ROOT",
+    "policy": "Retain through and after the Phase 9 remote checkpoint; paths are immutable evidence identified by tracked SHA-256 records. No automatic cleanup is configured. Large NetCDF histories, restarts, inventories, and baseline outputs remain external to Git.",
+    "workstation_data_root": "/home/fillmore/Data/CheMPAS/emissions-science"
+  },
+  "gates": {
+    "canonical_failure_paths": true,
+    "decisive_a1_recheck": true,
+    "empty_staging_g3": true,
+    "preimplementation_baseline_equivalence": true,
+    "r0_r6_regression_matrix": true,
+    "science_figure_manifest": true,
+    "selected_full_and_rank_mapping": true,
+    "strict_current_stack_e0": true,
+    "tracked_artifact_policy": true
+  },
+  "generated_at_utc": "2026-08-06T19:51:43.588416+00:00",
+  "overall_pass": true,
+  "schema_version": "chempas-global-miem-stage9e-release-v1",
+  "scope": {
+    "scientific_interpretation": "The science-grade CAMS emissions inventory and date-matched meteorology are suitable for this coupled-process acceptance experiment. First-day concentrations use an idealized, unspun Chapman-NOx background and are not production-ready concentration estimates.",
+    "software_validation": "Passed global exact-grid emissions throughput, coupled dynamics/transport/reactive chemistry, restart equivalence, matched-control response, source and NOy budgets, bounded diagnostics, performance telemetry, regressions, and reproducible staging."
+  },
+  "source": {
+    "branch": "develop_emissions",
+    "candidate_executable": {
+      "path": "atmosphere_model",
+      "precision": "double",
+      "sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+      "size_bytes": 14082536
+    },
+    "compiler": "GNU Fortran (conda-forge gcc 15.2.0-19) 15.2.0",
+    "dependencies": {
+      "mechanism_configuration": "82c159ae6d74934318ffd6c405a45c2159065b12",
+      "micm": "bb57684a2047f0e58f30b199366294af879e8597",
+      "miem": "9fdf14a189262eecb677862d877ab72b06c95e21",
+      "musica": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc",
+      "tuvx": "bbf7dd9a144fa0f0294b3779f3f993818638e20c"
+    },
+    "evidence_base_commit": "4ffc5da925388f9e83a2a04f2531ba24cc46aed8",
+    "inventory": {
+      "id": "cams-glob-ant-v6.2-x1.40962-miem-inventory",
+      "logical_path": "inventory/cams-glob-ant-v6.2-x1.40962/miem_inventory.cams-glob-ant-v6.2-x1.40962.nc",
+      "sha256": "d213866000e8a633954d0c730ba5524f729f26a97d02cc5a13d8b405aa6c8e9c",
+      "size_bytes": 20758020
+    },
+    "mpi_ranks": 8,
+    "partition": {
+      "id": "mpas-x1.40962-eight-rank-partition",
+      "logical_path": "partitions/x1.40962.graph.info.part.8",
+      "sha256": "f56e75e1f408b632fd5cd22ad05cc59fdbb54daf1e2f8f3d6298147a1e7f577b",
+      "size_bytes": 81924
+    }
+  },
+  "tracked_evidence": {
+    "a1_decisive_recheck": {
+      "assertion_count": 47,
+      "canonical_equal_to_stage9d_except_available_disk_telemetry": true,
+      "original_report": {
+        "path": "docs/chempas/musica/global-runs/stage9d-a1-report.json",
+        "sha256": "82285dbb55142ca0e6615afa5ea647ec40c8b11875a70987a57cdc0a73f768da",
+        "size_bytes": 962442
+      },
+      "overall_pass": true,
+      "path": "docs/chempas/musica/global-runs/stage9e-a1-recheck-report.json",
+      "sha256": "9e6d8a9514faa206bef5a7889cec6b488d7d144717ffcdf00f41f047c76ec9a5",
+      "size_bytes": 962442
+    },
+    "active_e0_baseline_manifest": {
+      "path": "test_cases/miem_disabled_baselines.json",
+      "preimplementation_commit": "4eb4e6772c62bbc42453d91ca2010f2bea4935c6",
+      "scientific_field_count": 195,
+      "sha256": "f6bbafced5b2f81f779cb170cf21df949a9656dfb480e217929db23727e79c7d",
+      "size_bytes": 87315
+    },
+    "conservative_remap_audit": {
+      "path": "docs/chempas/musica/global-runs/stage9b-remap-audit.json",
+      "sha256": "691903e412d860ef10a703ca1293912c926639324c0fc03a65320a8df78536db",
+      "size_bytes": 8973
+    },
+    "e0_reports": {
+      "chapman_nox_global": {
+        "baseline_manifest_sha256": "f6bbafced5b2f81f779cb170cf21df949a9656dfb480e217929db23727e79c7d",
+        "candidate_executable_sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+        "overall_pass": true,
+        "path": "docs/chempas/musica/global-runs/stage9e-regression/E0-chapman_nox_global.json",
+        "sha256": "ce7ba631ec26505aae36f9a9889c5d84ffd9cb87a26b88c7c34fe7a4556b8c51",
+        "size_bytes": 11761
+      },
+      "supercell_abba": {
+        "baseline_manifest_sha256": "f6bbafced5b2f81f779cb170cf21df949a9656dfb480e217929db23727e79c7d",
+        "candidate_executable_sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+        "overall_pass": true,
+        "path": "docs/chempas/musica/global-runs/stage9e-regression/E0-supercell_abba.json",
+        "sha256": "bb4dc06460c7cf668860761fe79869ac19d839dcda564e4e9783e275c5459e4e",
+        "size_bytes": 28897
+      },
+      "supercell_lightning": {
+        "baseline_manifest_sha256": "f6bbafced5b2f81f779cb170cf21df949a9656dfb480e217929db23727e79c7d",
+        "candidate_executable_sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+        "overall_pass": true,
+        "path": "docs/chempas/musica/global-runs/stage9e-regression/E0-supercell_lightning.json",
+        "sha256": "bdcbb38af50cdd9c5dfc573962321085d9bd9f5232d586103dc38e6f837a9be2",
+        "size_bytes": 29432
+      }
+    },
+    "external_input_manifest": {
+      "path": "test_cases/global_miem/external-inputs.cams-glob-ant-v6.2-2024-07.json",
+      "sha256": "6d5be3455a2f827b2e1013ae0c6f5fdf82699657b7508f527172ed872e0ce9ed",
+      "size_bytes": 22725
+    },
+    "failure_paths_log": {
+      "expected_runtime_failure_count": 6,
+      "overall_pass": true,
+      "path": "docs/chempas/musica/global-runs/stage9e-regression/failure-paths.log",
+      "sha256": "099a62a1f5339c15a15be9cfcbcca3f2529f73dbe21f25e55bc812277222b249",
+      "size_bytes": 1354
+    },
+    "g3_empty_staging_reproduction": {
+      "assertion_count": 20,
+      "logical_run_root": "runs/stage9e/clean-reproduction-37i9zrd7/g3-20260806T191102Z-4ffc5da925",
+      "overall_pass": true,
+      "path": "docs/chempas/musica/global-runs/stage9e-g3-reproduction-report.json",
+      "sha256": "d079a9e099811d0ad1e004bcde54665a3a46dd667ecea2b898e0ee4a93ea4010",
+      "size_bytes": 117462
+    },
+    "historical_phase0_baseline_manifest": {
+      "path": "test_cases/miem_disabled_baselines.phase0.json",
+      "sha256": "99b69b78fa7cac911b416ce2295004b7f752eeff6a2684f340a5319b108d81e2",
+      "size_bytes": 84656
+    },
+    "inventory_acquisition_audit": {
+      "path": "docs/chempas/musica/global-runs/stage9a-inventory-audit.json",
+      "sha256": "47cfa95d7c4ec85abfe08c60e28c15a565df86b4143b47e731bc8abf995e3f60",
+      "size_bytes": 21451
+    },
+    "mapping_log": {
+      "overall_pass": true,
+      "path": "docs/chempas/musica/global-runs/stage9e-regression/mapping.log",
+      "sha256": "91ad6f8a704628738275a1b9f4154eb76f791eb56e70a3cade84daf5e83da6fa",
+      "size_bytes": 103
+    },
+    "r0_r6_reports": {
+      "R0-disabled-default": {
+        "assertion_count": 2,
+        "path": "docs/chempas/musica/global-runs/stage9e-regression/R0-disabled-default.json",
+        "scenario_id": "R0",
+        "sha256": "12c2634635edd4e9d8fc17100ad32bfa425e0772ee1ea962664a3a156e212f13",
+        "size_bytes": 6222,
+        "variant": "default"
+      },
+      "R1-zero_flux-default": {
+        "assertion_count": 4,
+        "path": "docs/chempas/musica/global-runs/stage9e-regression/R1-zero_flux-default.json",
+        "scenario_id": "R1",
+        "sha256": "87e52da591b9f2c4f9c8279a8a09715a69afa811b63aec8c14742ec9ce5d396a",
+        "size_bytes": 7812,
+        "variant": "default"
+      },
+      "R2-constant_flux-default": {
+        "assertion_count": 5,
+        "path": "docs/chempas/musica/global-runs/stage9e-regression/R2-constant_flux-default.json",
+        "scenario_id": "R2",
+        "sha256": "76defb9069c2fb1896b72479985749f2d8f992f6594500e36d43f83c7a6042b2",
+        "size_bytes": 8390,
+        "variant": "default"
+      },
+      "R3-cell_time_signature-exact_endpoint": {
+        "assertion_count": 5,
+        "path": "docs/chempas/musica/global-runs/stage9e-regression/R3-cell_time_signature-exact_endpoint.json",
+        "scenario_id": "R3",
+        "sha256": "3ae417ef1be573ab34688591e59c3f939e17646b6550f7c4c51db543142cfe66",
+        "size_bytes": 8342,
+        "variant": "exact_endpoint"
+      },
+      "R3-cell_time_signature-exact_start": {
+        "assertion_count": 5,
+        "path": "docs/chempas/musica/global-runs/stage9e-regression/R3-cell_time_signature-exact_start.json",
+        "scenario_id": "R3",
+        "sha256": "763a6c8b127330a60a15d0dc05b6572734540e8feea7182804804945b2a345f3",
+        "size_bytes": 8299,
+        "variant": "exact_start"
+      },
+      "R3-cell_time_signature-midpoint": {
+        "assertion_count": 5,
+        "path": "docs/chempas/musica/global-runs/stage9e-regression/R3-cell_time_signature-midpoint.json",
+        "scenario_id": "R3",
+        "sha256": "b93502b8901051d28ff5f0a2ec6e6292795e182dabb6cd4cc6b0926096d701d6",
+        "size_bytes": 8390,
+        "variant": "midpoint"
+      },
+      "R4-substeps_restart-continuous": {
+        "assertion_count": 6,
+        "path": "docs/chempas/musica/global-runs/stage9e-regression/R4-substeps_restart-continuous.json",
+        "scenario_id": "R4",
+        "sha256": "773406ca0d4f4951638e72053f2856b5855bfc18781280e32e2fa10513906def",
+        "size_bytes": 11083,
+        "variant": "continuous"
+      },
+      "R5-lightning_coexistence-default": {
+        "assertion_count": 5,
+        "path": "docs/chempas/musica/global-runs/stage9e-regression/R5-lightning_coexistence-default.json",
+        "scenario_id": "R5",
+        "sha256": "67a557a891b764ba65b3f0f25a392feb814b90c875eb60a4d0024579720c7c12",
+        "size_bytes": 8215,
+        "variant": "default"
+      },
+      "R6-layered_diagnostics-default": {
+        "assertion_count": 7,
+        "path": "docs/chempas/musica/global-runs/stage9e-regression/R6-layered_diagnostics-default.json",
+        "scenario_id": "R6",
+        "sha256": "a32788da42c19e16bc1ba61398d77f79afc3c3737c4c85764f0d45bdc13623e5",
+        "size_bytes": 11175,
+        "variant": "default"
+      }
+    },
+    "science_figure_manifest": {
+      "path": "docs/chempas/musica/global-runs/stage9d-figure-manifest.json",
+      "sha256": "fde17c72742998758fa7e5881782e5125bf49d89a343b08a70826300942e439b",
+      "size_bytes": 4922
+    }
+  }
+}

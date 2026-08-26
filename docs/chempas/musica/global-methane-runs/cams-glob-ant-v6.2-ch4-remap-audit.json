@@ -1,0 +1,274 @@
+{
+  "assertions": {
+    "all_sixteen_sector_mass_budgets": true,
+    "all_source_and_destination_cells_mapped": true,
+    "exact_grid_package_validation": true,
+    "posterior_total_not_combined": true,
+    "provider_sector_sum_closure": true,
+    "weight_physical_area_conservation": true
+  },
+  "inputs": {
+    "mesh": {
+      "fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+      "path": "x1.40962.static.nc",
+      "sha256": "cf1a47d4168327f06a8403555d6ed8b2fe1aff7f8b916bb7f6a754c34a10ac82",
+      "size_bytes": 94766584
+    },
+    "source": {
+      "path": "CAMS-GLOB-ANT_Glb_0.1x0.1_anthro_ch4_v6.2_2024-07_2024-08.nc",
+      "sha256": "583bcec11a215e63f3cecf7a81675b60ef02ce889d6fa4edf01c2427a74514ba",
+      "size_bytes": 101336259
+    },
+    "weights": {
+      "path": "cams-glob-ant-v6.2-0.1deg-to-x1.40962.conserve.weights.nc",
+      "sha256": "5fdf1f7e5f786449169a8f024edcfa7dd67dbb82af5a534e730b2aada1505712",
+      "size_bytes": 780426736
+    }
+  },
+  "method": "ESMF first-order conservative; dstarea; canonical user areas",
+  "outputs": {
+    "packaged": {
+      "path": "miem_inventory.nc",
+      "sha256": "07d193acdb7876ff9728bd05fd1316f0fcf4fb0d45dcf354af48469c2377b18e",
+      "size_bytes": 13510141
+    },
+    "remapped": {
+      "path": "cams-glob-ant-v6.2-ch4-x1.40962.remapped.nc",
+      "sha256": "1da062573533d7b79b8e3ed22b314438b7eb0e929129cc41d54b23a22abd460c",
+      "size_bytes": 6161317
+    }
+  },
+  "overall_pass": true,
+  "packaged_validation": {
+    "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+    "n_cells": 40962,
+    "n_times": 2,
+    "species": [
+      "ch4_anth_agl",
+      "ch4_anth_ags",
+      "ch4_anth_awb",
+      "ch4_anth_com",
+      "ch4_anth_ene",
+      "ch4_anth_fef",
+      "ch4_anth_ind",
+      "ch4_anth_ref",
+      "ch4_anth_res",
+      "ch4_anth_shp",
+      "ch4_anth_swd",
+      "ch4_anth_tnr",
+      "ch4_anth_tro",
+      "ch4_anth_fef_coal",
+      "ch4_anth_fef_gas",
+      "ch4_anth_fef_oil",
+      "ch4_anth_sum"
+    ]
+  },
+  "schema_version": "chempas-global-methane-remap-audit-v1",
+  "times": [
+    {
+      "aggregate": {
+        "native_kg_s-1": 13099.071358155321,
+        "native_to_remapped_relative_difference": 2.7772799365863077e-16,
+        "provider_to_sector_sum_relative_difference": 3.364538556457418e-10,
+        "remapped_provider_sum_kg_s-1": 13099.071358155325,
+        "remapped_sector_sum_kg_s-1": 13099.071362562558
+      },
+      "sectors": {
+        "agl": {
+          "native_kg_s-1": 3819.7677152349684,
+          "relative_difference": 1.1905104833278871e-16,
+          "remapped_kg_s-1": 3819.767715234968
+        },
+        "ags": {
+          "native_kg_s-1": 2360.6363450669496,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 2360.6363450669496
+        },
+        "awb": {
+          "native_kg_s-1": 81.27959365093935,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 81.27959365093935
+        },
+        "com": {
+          "native_kg_s-1": 16.601877892749215,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 16.601877892749215
+        },
+        "ene": {
+          "native_kg_s-1": 16.78458263602187,
+          "relative_difference": 4.2333059520657024e-16,
+          "remapped_kg_s-1": 16.784582636021877
+        },
+        "fef": {
+          "native_kg_s-1": 4.863683874246432,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 4.863683874246432
+        },
+        "fef_coal": {
+          "native_kg_s-1": 1225.2146576042055,
+          "relative_difference": 1.8557864455183743e-15,
+          "remapped_kg_s-1": 1225.2146576042078
+        },
+        "fef_gas": {
+          "native_kg_s-1": 1360.1179326881925,
+          "relative_difference": 1.6717202970321952e-16,
+          "remapped_kg_s-1": 1360.1179326881927
+        },
+        "fef_oil": {
+          "native_kg_s-1": 1021.2097102234949,
+          "relative_difference": 8.906052230681224e-16,
+          "remapped_kg_s-1": 1021.2097102234958
+        },
+        "ind": {
+          "native_kg_s-1": 37.80440496850582,
+          "relative_difference": 1.5036189276927717e-15,
+          "remapped_kg_s-1": 37.80440496850588
+        },
+        "ref": {
+          "native_kg_s-1": 202.78871669274207,
+          "relative_difference": 9.810800583854608e-16,
+          "remapped_kg_s-1": 202.78871669274227
+        },
+        "res": {
+          "native_kg_s-1": 281.9749968731157,
+          "relative_difference": 2.015902810219257e-16,
+          "remapped_kg_s-1": 281.97499687311574
+        },
+        "shp": {
+          "native_kg_s-1": 6.570678150067146,
+          "relative_difference": 2.7034604325918743e-16,
+          "remapped_kg_s-1": 6.5706781500671445
+        },
+        "swd": {
+          "native_kg_s-1": 2630.7545539446455,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 2630.7545539446455
+        },
+        "tnr": {
+          "native_kg_s-1": 0.2835946904434068,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 0.2835946904434068
+        },
+        "tro": {
+          "native_kg_s-1": 32.41831837126563,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 32.41831837126563
+        }
+      },
+      "time": "2024-07-01_00:00:00"
+    },
+    {
+      "aggregate": {
+        "native_kg_s-1": 13108.221335509466,
+        "native_to_remapped_relative_difference": 4.1630119533112674e-16,
+        "provider_to_sector_sum_relative_difference": 4.750994373926298e-10,
+        "remapped_provider_sum_kg_s-1": 13108.221335509472,
+        "remapped_sector_sum_kg_s-1": 13108.22134173718
+      },
+      "sectors": {
+        "agl": {
+          "native_kg_s-1": 3819.7677152349684,
+          "relative_difference": 1.1905104833278871e-16,
+          "remapped_kg_s-1": 3819.767715234968
+        },
+        "ags": {
+          "native_kg_s-1": 2391.3810201213955,
+          "relative_difference": 1.9016097688329876e-16,
+          "remapped_kg_s-1": 2391.381020121395
+        },
+        "awb": {
+          "native_kg_s-1": 65.42626232237335,
+          "relative_difference": 2.1720413501815495e-16,
+          "remapped_kg_s-1": 65.42626232237336
+        },
+        "com": {
+          "native_kg_s-1": 16.401634959859564,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 16.401634959859564
+        },
+        "ene": {
+          "native_kg_s-1": 16.725534091042036,
+          "relative_difference": 4.2482513974884486e-16,
+          "remapped_kg_s-1": 16.725534091042043
+        },
+        "fef": {
+          "native_kg_s-1": 4.863683874246432,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 4.863683874246432
+        },
+        "fef_coal": {
+          "native_kg_s-1": 1225.2146576042055,
+          "relative_difference": 1.8557864455183743e-15,
+          "remapped_kg_s-1": 1225.2146576042078
+        },
+        "fef_gas": {
+          "native_kg_s-1": 1360.1179326881925,
+          "relative_difference": 1.6717202970321952e-16,
+          "remapped_kg_s-1": 1360.1179326881927
+        },
+        "fef_oil": {
+          "native_kg_s-1": 1021.2097102234949,
+          "relative_difference": 8.906052230681224e-16,
+          "remapped_kg_s-1": 1021.2097102234958
+        },
+        "ind": {
+          "native_kg_s-1": 36.76305586365855,
+          "relative_difference": 1.5462103877224076e-15,
+          "remapped_kg_s-1": 36.76305586365861
+        },
+        "ref": {
+          "native_kg_s-1": 202.78871669274207,
+          "relative_difference": 9.810800583854608e-16,
+          "remapped_kg_s-1": 202.78871669274227
+        },
+        "res": {
+          "native_kg_s-1": 277.3764695752167,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 277.3764695752167
+        },
+        "shp": {
+          "native_kg_s-1": 6.348360821764532,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 6.348360821764532
+        },
+        "swd": {
+          "native_kg_s-1": 2630.7545539446455,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 2630.7545539446455
+        },
+        "tnr": {
+          "native_kg_s-1": 0.2824901338535145,
+          "relative_difference": 1.9650651325062977e-16,
+          "remapped_kg_s-1": 0.28249013385351457
+        },
+        "tro": {
+          "native_kg_s-1": 32.79954358551739,
+          "relative_difference": 0.0,
+          "remapped_kg_s-1": 32.79954358551739
+        }
+      },
+      "time": "2024-08-01_00:00:00"
+    }
+  ],
+  "tolerances": {
+    "field_integrated_mass_relative": 2e-07,
+    "provider_sector_sum_relative": 5e-06
+  },
+  "weight_metrics": {
+    "constant_field_report_limit": 0.001,
+    "destination_cells": 40962,
+    "maximum_constant_field_row_sum_error": 1.1360052118991604e-05,
+    "maximum_destination_fraction": 1.0000000000000218,
+    "maximum_source_area_relative_error": 2.0231421346296964e-12,
+    "maximum_source_fraction": 1.0000000000018796,
+    "maximum_weight": 0.012969974373656807,
+    "minimum_destination_fraction": 0.9999999999339473,
+    "minimum_source_fraction": 0.9999999999979772,
+    "minimum_weight": 5.6674958635160444e-15,
+    "physical_area_tolerance": 2e-07,
+    "source_cells": 6480000,
+    "sparse_weights": 7773510,
+    "unmapped_destination_cells": 0,
+    "unrepresented_source_cells": 0
+  }
+}

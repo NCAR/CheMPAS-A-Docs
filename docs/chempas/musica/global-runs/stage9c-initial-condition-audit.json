@@ -1,0 +1,48 @@
+{
+  "assertions": {
+    "explicit_o1d_seed": true,
+    "finite_nonnegative_tracers": true,
+    "gregorian_clock_set": true,
+    "mesh_identity_preserved": true
+  },
+  "mesh_fingerprint": "cdd75b787f487302df17b31c2dd7aaf7082a7cb265a711792ef0e5f3ceebda12",
+  "output": {
+    "logical_path": "initial_conditions/idealized-jw/x1.40962.jw.static-aligned.chapman-nox.init.nc",
+    "sha256": "2aa51d21988ee721b4ec8c69f961232225e85c10606f0f0eb471903f2db3469b",
+    "size_bytes": 493687664
+  },
+  "overall_pass": true,
+  "schema_version": "chempas-global-miem-chemistry-initial-condition-v1",
+  "source": {
+    "logical_path": "initial_conditions/idealized-jw/x1.40962.jw.static-aligned.init.nc",
+    "sha256": "a674a41637e848144c50faf588af199cee96dc8b81267319feb42cad83d10efc",
+    "size_bytes": 442566280
+  },
+  "start_time": "2024-07-01_00:00:00",
+  "tracer_ranges_kg_kg": {
+    "qNO": {
+      "maximum": 1.0355540214014498e-09,
+      "minimum": 1.0355540214014498e-09
+    },
+    "qNO2": {
+      "maximum": 1.587849499482223e-09,
+      "minimum": 1.587849499482223e-09
+    },
+    "qO": {
+      "maximum": 1e-12,
+      "minimum": 1e-12
+    },
+    "qO1D": {
+      "maximum": 0.0,
+      "minimum": 0.0
+    },
+    "qO2": {
+      "maximum": 0.23196410079392477,
+      "minimum": 0.23196410079392477
+    },
+    "qO3": {
+      "maximum": 9.997925090458206e-06,
+      "minimum": 1.5795050683636318e-08
+    }
+  }
+}

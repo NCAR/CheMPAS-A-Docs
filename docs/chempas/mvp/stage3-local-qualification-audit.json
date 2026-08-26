@@ -1,0 +1,52 @@
+{
+  "artifacts": {
+    "atmosphere_model": {
+      "sha256": "982e52f803ddb0fc6175a80ac340856f3932acf02dcb320b5b7597ee4587c42a",
+      "size_bytes": 14165560
+    },
+    "external_integration_report": {
+      "logical_path": "reports/mvp/8a7a4cbc/stage3-local-report.json",
+      "sha256": "c7f2d2b19cf0fe28cd60f8b8f23ce5ce7f8dd057debec8b7a91344c32c9c93cd",
+      "size_bytes": 26103
+    }
+  },
+  "assertions": {
+    "all_eight_photolysis_channels_checked": true,
+    "all_tier_c_state_finite_nonnegative": true,
+    "anthropogenic_fire_diagnostics_independently_reconstructed": true,
+    "carbon_input_ledger_passed": true,
+    "failure_paths_precede_initial_state_seed": true,
+    "normal_and_strict_box_passed": true,
+    "normal_and_strict_multicell_passed": true,
+    "reactive_nitrogen_ledger_passed": true,
+    "spatial_upper_o3_response_detected": true
+  },
+  "failure_paths": [
+    "missing_field",
+    "units",
+    "calendar",
+    "coverage",
+    "mesh",
+    "vertical_coordinate",
+    "source_overlap",
+    "negative_source"
+  ],
+  "implementation_commit": "8a7a4cbcd5c45ef3bc70a905155cd50185bc6965",
+  "integration": {
+    "applied_source_mass_kg": {
+      "CO": 59.6991581009889,
+      "NO": 14.9247895252472,
+      "NO2": 22.6258825397889
+    },
+    "cells": 64,
+    "duration_seconds": 6,
+    "maximum_normal_strict_absolute_difference": 1.585308299564825e-10,
+    "model_dt_seconds": 3,
+    "mpi_ranks": 8,
+    "normal_nitrogen_relative_residual": 2.906401760398578e-17,
+    "strict_nitrogen_relative_residual": 5.1555787785019404e-12,
+    "vertical_levels": 60
+  },
+  "overall_pass": true,
+  "schema_version": "chempas-mvp-stage3-local-qualification-v1"
+}

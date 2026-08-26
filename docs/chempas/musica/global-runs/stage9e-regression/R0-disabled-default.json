@@ -1,0 +1,155 @@
+{
+  "assertions": [
+    {
+      "detail": "no emis_* fields present",
+      "name": "disabled_no_fields",
+      "passed": true
+    },
+    {
+      "detail": "no MIEM construction, mass log, or timer",
+      "name": "disabled_no_work",
+      "passed": true
+    }
+  ],
+  "diagnostics": {
+    "enabled": false,
+    "species": {}
+  },
+  "inputs": {
+    "config:chem_box.graph.info.part.8": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R0-disabled-default/chem_box.graph.info.part.8",
+      "sha256": "d587ff5150e846e2b629961c9decb7e96f29cc115dc0d1f2e433a28844cd90d4",
+      "size_bytes": 128
+    },
+    "config:chem_box_init.nc": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R0-disabled-default/chem_box_init.nc",
+      "sha256": "7a02d9b8834cdd0ecef95b8554fb355358e71525ce94c4b2995618f2fae93759",
+      "size_bytes": 1506538
+    },
+    "config:chem_box_nox.yaml": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R0-disabled-default/chem_box_nox.yaml",
+      "sha256": "d676fd2faf2cc03e167ca3f0387f4e8286741b04e631786de85e48383ce987e0",
+      "size_bytes": 835
+    },
+    "config:miem_nox.yaml": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R0-disabled-default/miem_nox.yaml",
+      "sha256": "9338db1cc32c50077d6b6c03794fc47cf0c948e56ff26abd580842b73e2fd1e3",
+      "size_bytes": 980
+    },
+    "config:namelist.atmosphere": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R0-disabled-default/namelist.atmosphere",
+      "sha256": "e6a066f7a5a0d080e986b394df14b2de5f062dcf5428643dd4b52c73ea2efc26",
+      "size_bytes": 2226
+    },
+    "config:stream_list.atmosphere.output": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R0-disabled-default/stream_list.atmosphere.output",
+      "sha256": "852f70221a89892ad630a65f9fffda5c769a4ffcf83e0309249955901acc550a",
+      "size_bytes": 47
+    },
+    "config:streams.atmosphere": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R0-disabled-default/streams.atmosphere",
+      "sha256": "b04e327e231705cfa1251b25a3cf42215b80a13216654354dcc7cc441d954eb3",
+      "size_bytes": 1523
+    },
+    "inventory": null,
+    "mesh": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R0-disabled-default/chem_box_init.nc",
+      "sha256": "7a02d9b8834cdd0ecef95b8554fb355358e71525ce94c4b2995618f2fae93759",
+      "size_bytes": 1506538
+    },
+    "run_metadata": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R0-disabled-default/run-metadata.json",
+      "sha256": "1fdd44cd6df3313159747c77d573ea7e8adec96446c81889b19ff2f648ac46f2",
+      "size_bytes": 2881
+    },
+    "scenario_manifest": {
+      "path": "/home/fillmore/EarthSystem/CheMPAS-A-Dev/test_cases/chem_box/miem/scenarios.yaml",
+      "sha256": "cb9d0b8a7798cd4fe615324e759ce91ded1277ac7b942ed96c2e6003b96e16cf",
+      "size_bytes": 4489
+    }
+  },
+  "mass_budget": {
+    "species": {}
+  },
+  "outputs": {
+    "history": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R0-disabled-default/output.nc",
+      "sha256": "2d47a1cecdc8633528d65a57070118255808a35b4be84bb873b10b4ae8c1e6fa",
+      "size_bytes": 410508
+    },
+    "rank_zero_log": {
+      "path": "/home/fillmore/Data/CheMPAS/emissions-science/runs/stage9e/chem-box-regression-8m8v68ft/runs/runs/R0-disabled-default/log.atmosphere.0000.out",
+      "sha256": "9d6383d442afb3006765ffceec1a26ec9b249cc0af6581a8ba4fb807228972c2",
+      "size_bytes": 41498
+    }
+  },
+  "overall_pass": true,
+  "provenance": {
+    "asset_manifest_sha256": "626abe688fca0a35f470422e4efe0e039a4cc1e57cbc86221346858c85bf1902",
+    "chempas_branch": "develop_emissions",
+    "chempas_commit": "4ffc5da925388f9e83a2a04f2531ba24cc46aed8",
+    "compiler": "GNU Fortran (conda-forge gcc 15.2.0-19) 15.2.0",
+    "configuration_sha256": "f80fa9e73f3c0b0ccacc0acd52691a95bdeccbebde45c02acb10000f6e767dcf",
+    "miem_commit": "9fdf14a189262eecb677862d877ab72b06c95e21",
+    "mpi_ranks": 8,
+    "musica_commit": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc"
+  },
+  "scenario": {
+    "id": "R0",
+    "name": "disabled",
+    "overrides": {},
+    "resolved": {
+      "chemistry_interval_seconds": 0,
+      "chemistry_reference_solve": false,
+      "chemistry_substeps": 1,
+      "duration_seconds": 3,
+      "emission_diagnostics": {
+        "categories": [],
+        "layered": false,
+        "max_fields": 256,
+        "sectors": []
+      },
+      "fixture_pattern": null,
+      "lightning": {
+        "enabled": false,
+        "initial_w_m_per_s": null,
+        "source_rate_ppbv_per_s": 0.0,
+        "w_ref_m_per_s": 10.0,
+        "w_threshold_m_per_s": 5.0,
+        "z_max_m": 12000.0,
+        "z_min_m": 5000.0
+      },
+      "micm_config": "micm_configs/miem_nox.yaml",
+      "miem_config": "miem_configs/chem_box_nox.yaml",
+      "miem_enabled": false,
+      "model_dt_seconds": 3,
+      "mpi_ranks": 8,
+      "output_interval_seconds": 3,
+      "photolysis": {
+        "j_no2_max": 0.0,
+        "tuvx_config_file": ""
+      },
+      "start_time": "2026-06-22_12:00:00",
+      "tolerances": {
+        "flux_absolute_kg_m2_s": 1e-27,
+        "flux_relative": 2e-14,
+        "source_mass_absolute_kg": 1e-18,
+        "source_mass_relative": 2e-13,
+        "state_absolute_kg_kg": 1e-29,
+        "state_relative": 2e-14,
+        "tracer_mass_absolute_kg": 1e-18,
+        "tracer_mass_relative": 2e-12
+      }
+    },
+    "variant": "default"
+  },
+  "schema_version": "chempas-miem-throughput-report-v1",
+  "telemetry": {
+    "aggregate_effective_bytes_per_second": null,
+    "chem_miem_calls": 0,
+    "chem_miem_seconds": null,
+    "history_bytes": 410508,
+    "inventory_bytes": 0,
+    "per_rank_effective_bytes_per_second": null
+  }
+}

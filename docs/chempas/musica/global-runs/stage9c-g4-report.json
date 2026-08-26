@@ -1,0 +1,2486 @@
+{
+  "assertions": [
+    {
+      "detail": "observed 7 of 7 expected frames",
+      "name": "continuous:history_frames",
+      "passed": true
+    },
+    {
+      "detail": "all emitted, chemistry, and physical output fields are finite and bounded",
+      "name": "continuous:finite_state",
+      "passed": true
+    },
+    {
+      "detail": "inventory timestep integral agrees with model-reported end-of-run source",
+      "name": "continuous:source_mass",
+      "passed": true
+    },
+    {
+      "detail": "MIEM exact-grid validation/open lifecycle is singular, or disabled path performs no I/O",
+      "name": "continuous:exact_grid_lifecycle",
+      "passed": true
+    },
+    {
+      "detail": "MIEM calls=48 expected=48",
+      "name": "continuous:miem_calls",
+      "passed": true
+    },
+    {
+      "detail": "first-open and warm-step timing counters match the sampled-step count",
+      "name": "continuous:miem_first_warm_timing",
+      "passed": true
+    },
+    {
+      "detail": "every output diagnostic equals the independently interpolated inventory sample",
+      "name": "continuous:diagnostic_flux",
+      "passed": true
+    },
+    {
+      "detail": "layer fields sum to columns and are zero above level 1",
+      "name": "continuous:surface_layer_closure",
+      "passed": true
+    },
+    {
+      "detail": "observed 4 of 4 expected frames",
+      "name": "split_first:history_frames",
+      "passed": true
+    },
+    {
+      "detail": "all emitted, chemistry, and physical output fields are finite and bounded",
+      "name": "split_first:finite_state",
+      "passed": true
+    },
+    {
+      "detail": "inventory timestep integral agrees with model-reported end-of-run source",
+      "name": "split_first:source_mass",
+      "passed": true
+    },
+    {
+      "detail": "MIEM exact-grid validation/open lifecycle is singular, or disabled path performs no I/O",
+      "name": "split_first:exact_grid_lifecycle",
+      "passed": true
+    },
+    {
+      "detail": "MIEM calls=24 expected=24",
+      "name": "split_first:miem_calls",
+      "passed": true
+    },
+    {
+      "detail": "first-open and warm-step timing counters match the sampled-step count",
+      "name": "split_first:miem_first_warm_timing",
+      "passed": true
+    },
+    {
+      "detail": "every output diagnostic equals the independently interpolated inventory sample",
+      "name": "split_first:diagnostic_flux",
+      "passed": true
+    },
+    {
+      "detail": "layer fields sum to columns and are zero above level 1",
+      "name": "split_first:surface_layer_closure",
+      "passed": true
+    },
+    {
+      "detail": "observed 3 of 3 expected frames",
+      "name": "split_second:history_frames",
+      "passed": true
+    },
+    {
+      "detail": "all emitted, chemistry, and physical output fields are finite and bounded",
+      "name": "split_second:finite_state",
+      "passed": true
+    },
+    {
+      "detail": "inventory timestep integral agrees with model-reported end-of-run source",
+      "name": "split_second:source_mass",
+      "passed": true
+    },
+    {
+      "detail": "MIEM exact-grid validation/open lifecycle is singular, or disabled path performs no I/O",
+      "name": "split_second:exact_grid_lifecycle",
+      "passed": true
+    },
+    {
+      "detail": "MIEM calls=24 expected=24",
+      "name": "split_second:miem_calls",
+      "passed": true
+    },
+    {
+      "detail": "first-open and warm-step timing counters match the sampled-step count",
+      "name": "split_second:miem_first_warm_timing",
+      "passed": true
+    },
+    {
+      "detail": "every output diagnostic equals the independently interpolated inventory sample",
+      "name": "split_second:diagnostic_flux",
+      "passed": true
+    },
+    {
+      "detail": "layer fields sum to columns and are zero above level 1",
+      "name": "split_second:surface_layer_closure",
+      "passed": true
+    },
+    {
+      "detail": "all variants use one SHA-256-pinned executable from a tracked-clean CheMPAS commit",
+      "name": "reproducible_executable",
+      "passed": true
+    },
+    {
+      "detail": "continuous and split/restart physical/source arrays are bitwise identical and chemistry arrays meet the declared numerical tolerance",
+      "name": "restart_equivalence",
+      "passed": true
+    },
+    {
+      "detail": "split segment inventory integrals equal the continuous integral within the declared source-mass tolerance",
+      "name": "restart_source_mass",
+      "passed": true
+    },
+    {
+      "detail": "NO+NO2 molar-N residual=1.392e-11",
+      "name": "reactive_noy_budget",
+      "passed": true
+    },
+    {
+      "detail": "observed 7 distinct global jNO2 maxima",
+      "name": "repeated_photolysis_cycles",
+      "passed": true
+    },
+    {
+      "detail": "all segments completed below the 48-GiB peak-RSS guard",
+      "name": "stable_resources",
+      "passed": true
+    },
+    {
+      "detail": "every enabled run validates the exact global grid once and disabled G0 performs no MIEM I/O",
+      "name": "scenario:exact_grid_open",
+      "passed": true
+    },
+    {
+      "detail": "every expected output frame matches independent inventory-time interpolation",
+      "name": "scenario:all_frame_interpolation",
+      "passed": true
+    },
+    {
+      "detail": "all diagnostics match independently sampled fluxes and integrated source masses match the model log",
+      "name": "scenario:diagnostic_source_closure",
+      "passed": true
+    },
+    {
+      "detail": "total and requested group layer fields close to their columns and are zero aloft",
+      "name": "scenario:surface_layer_closure",
+      "passed": true
+    },
+    {
+      "detail": "continuous and split/restart physical/source fields are bitwise identical and chemistry fields meet the declared bound",
+      "name": "scenario:restart_equivalence",
+      "passed": true
+    },
+    {
+      "detail": "observed 7 distinct positive global jNO2 maxima",
+      "name": "scenario:repeated_photolysis_cycles",
+      "passed": true
+    },
+    {
+      "detail": "cumulative and adjacent-output reactive NOy budgets close throughout the continuous trajectory",
+      "name": "scenario:no_source_budget_drift",
+      "passed": true
+    },
+    {
+      "detail": "all run segments report positive wall time and remain below the 48-GiB RSS guard",
+      "name": "scenario:stable_resources",
+      "passed": true
+    },
+    {
+      "detail": "reactive NOy relative residual=1.392e-11",
+      "name": "scenario:reactive_noy_budget",
+      "passed": true
+    },
+    {
+      "detail": "all requested physical, chemistry, photolysis, and emissions fields are finite and bounded",
+      "name": "scenario:finite_state",
+      "passed": true
+    }
+  ],
+  "comparisons": {
+    "continuous_vs_restart_final": {
+      "all_bitwise": false,
+      "all_within_contract": true,
+      "fields": {
+        "emis_NO": {
+          "bitwise_equal": true,
+          "comparison_mode": "bitwise",
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0,
+          "passed": true
+        },
+        "emis_NO2": {
+          "bitwise_equal": true,
+          "comparison_mode": "bitwise",
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0,
+          "passed": true
+        },
+        "emis_NO2_layer": {
+          "bitwise_equal": true,
+          "comparison_mode": "bitwise",
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0,
+          "passed": true
+        },
+        "emis_NO_layer": {
+          "bitwise_equal": true,
+          "comparison_mode": "bitwise",
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0,
+          "passed": true
+        },
+        "j_jNO2": {
+          "bitwise_equal": false,
+          "comparison_mode": "numerical",
+          "maximum_absolute": 3.2040342601291627e-15,
+          "maximum_relative": 2.762537169855247e-13,
+          "passed": true
+        },
+        "j_jO2": {
+          "bitwise_equal": false,
+          "comparison_mode": "numerical",
+          "maximum_absolute": 4.3439906856105094e-23,
+          "maximum_relative": 2.2284647973644102e-12,
+          "passed": true
+        },
+        "j_jO3_O": {
+          "bitwise_equal": false,
+          "comparison_mode": "numerical",
+          "maximum_absolute": 3.0075768264747893e-16,
+          "maximum_relative": 5.758280624753004e-13,
+          "passed": true
+        },
+        "j_jO3_O1D": {
+          "bitwise_equal": false,
+          "comparison_mode": "numerical",
+          "maximum_absolute": 1.6929816923361152e-16,
+          "maximum_relative": 6.85609332126849e-13,
+          "passed": true
+        },
+        "pressure": {
+          "bitwise_equal": true,
+          "comparison_mode": "bitwise",
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0,
+          "passed": true
+        },
+        "qNO": {
+          "bitwise_equal": false,
+          "comparison_mode": "numerical",
+          "maximum_absolute": 6.020013703007797e-21,
+          "maximum_relative": 7.122708719887182e+117,
+          "passed": true
+        },
+        "qNO2": {
+          "bitwise_equal": false,
+          "comparison_mode": "numerical",
+          "maximum_absolute": 9.242088984054978e-21,
+          "maximum_relative": 6.358719198536144e-12,
+          "passed": true
+        },
+        "qO": {
+          "bitwise_equal": false,
+          "comparison_mode": "numerical",
+          "maximum_absolute": 6.374667390639908e-21,
+          "maximum_relative": 0.0051406381850198635,
+          "passed": true
+        },
+        "qO1D": {
+          "bitwise_equal": false,
+          "comparison_mode": "numerical",
+          "maximum_absolute": 8.277123048031466e-28,
+          "maximum_relative": 5.065948104778917e-06,
+          "passed": true
+        },
+        "qO2": {
+          "bitwise_equal": false,
+          "comparison_mode": "numerical",
+          "maximum_absolute": 5.551115123125783e-16,
+          "maximum_relative": 2.3931072985123208e-15,
+          "passed": true
+        },
+        "qO3": {
+          "bitwise_equal": false,
+          "comparison_mode": "numerical",
+          "maximum_absolute": 1.1926223897340549e-17,
+          "maximum_relative": 8.779389280520455e-12,
+          "passed": true
+        },
+        "qv": {
+          "bitwise_equal": true,
+          "comparison_mode": "bitwise",
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0,
+          "passed": true
+        },
+        "rho": {
+          "bitwise_equal": true,
+          "comparison_mode": "bitwise",
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0,
+          "passed": true
+        },
+        "rho_zz": {
+          "bitwise_equal": true,
+          "comparison_mode": "bitwise",
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0,
+          "passed": true
+        },
+        "surface_pressure": {
+          "bitwise_equal": true,
+          "comparison_mode": "bitwise",
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0,
+          "passed": true
+        },
+        "theta": {
+          "bitwise_equal": true,
+          "comparison_mode": "bitwise",
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0,
+          "passed": true
+        },
+        "u": {
+          "bitwise_equal": true,
+          "comparison_mode": "bitwise",
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0,
+          "passed": true
+        },
+        "w": {
+          "bitwise_equal": true,
+          "comparison_mode": "bitwise",
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0,
+          "passed": true
+        }
+      },
+      "time": "2024-07-01_06:00:00",
+      "tolerances": {
+        "chemistry_absolute": 1e-20,
+        "chemistry_relative": 5e-11,
+        "other_fields": "bitwise"
+      }
+    },
+    "continuous_vs_restart_source_mass": {
+      "passed": true,
+      "species": {
+        "NO": {
+          "bitwise_equal": true,
+          "maximum_absolute": 0.0,
+          "maximum_relative": 0.0
+        },
+        "NO2": {
+          "bitwise_equal": false,
+          "maximum_absolute": 9.313225746154785e-10,
+          "maximum_relative": 1.768920381801636e-16
+        }
+      }
+    }
+  },
+  "diagnostics": {
+    "continuous": {
+      "all_flux_samples_pass": true,
+      "frames": [
+        {
+          "sample_time": null,
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_00:00:00"
+        },
+        {
+          "sample_time": "2024-07-01_00:52:30",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_01:00:00"
+        },
+        {
+          "sample_time": "2024-07-01_01:52:30",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_02:00:00"
+        },
+        {
+          "sample_time": "2024-07-01_02:52:30",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_03:00:00"
+        },
+        {
+          "sample_time": "2024-07-01_03:52:30",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_04:00:00"
+        },
+        {
+          "sample_time": "2024-07-01_04:52:30",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_05:00:00"
+        },
+        {
+          "sample_time": "2024-07-01_05:52:30",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_06:00:00"
+        }
+      ],
+      "run": "continuous",
+      "sector_closure_pass": true,
+      "surface_layer_closure_pass": true
+    },
+    "split_first": {
+      "all_flux_samples_pass": true,
+      "frames": [
+        {
+          "sample_time": null,
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_00:00:00"
+        },
+        {
+          "sample_time": "2024-07-01_00:52:30",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_01:00:00"
+        },
+        {
+          "sample_time": "2024-07-01_01:52:30",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_02:00:00"
+        },
+        {
+          "sample_time": "2024-07-01_02:52:30",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_03:00:00"
+        }
+      ],
+      "run": "split_first",
+      "sector_closure_pass": true,
+      "surface_layer_closure_pass": true
+    },
+    "split_second": {
+      "all_flux_samples_pass": true,
+      "frames": [
+        {
+          "sample_time": "2024-07-01_03:52:30",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_04:00:00"
+        },
+        {
+          "sample_time": "2024-07-01_04:52:30",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_05:00:00"
+        },
+        {
+          "sample_time": "2024-07-01_05:52:30",
+          "species": {
+            "NO": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            },
+            "NO2": {
+              "bitwise_equal": true,
+              "groups": {
+                "layer_sum": {
+                  "bitwise_equal": true,
+                  "maximum_absolute": 0.0,
+                  "maximum_relative": 0.0,
+                  "passed": true,
+                  "upper_layer_maximum_absolute": 0.0
+                }
+              },
+              "maximum_absolute": 0.0,
+              "maximum_relative": 0.0,
+              "passed": true
+            }
+          },
+          "time": "2024-07-01_06:00:00"
+        }
+      ],
+      "run": "split_second",
+      "sector_closure_pass": true,
+      "surface_layer_closure_pass": true
+    }
+  },
+  "gate": "G4",
+  "inputs": {
+    "external_manifest": {
+      "path": "external-inputs.cams-glob-ant-v6.2-2024-07.json",
+      "sha256": "b0e49f3bf33ba123f5dbdd85ab554e082b60fc7e9b9f5fb36361085b2c0239fd",
+      "size_bytes": 15561
+    },
+    "inventory": {
+      "path": "inventory/cams-glob-ant-v6.2-x1.40962/miem_inventory.cams-glob-ant-v6.2-x1.40962.nc",
+      "sha256": "d213866000e8a633954d0c730ba5524f729f26a97d02cc5a13d8b405aa6c8e9c",
+      "size_bytes": 20758020
+    }
+  },
+  "overall_pass": true,
+  "photolysis": {
+    "distinct_maxima": 7,
+    "jNO2_global_maxima": [
+      0.0,
+      0.013010889492288204,
+      0.01300660400075096,
+      0.013003071398448519,
+      0.013000453003238356,
+      0.012998879960721025,
+      0.012998626235790695
+    ]
+  },
+  "reactive_noy_budget": {
+    "cumulative_frames": [
+      {
+        "emitted_noy_moles": 0.0,
+        "final_moles": {
+          "NO": 179656153638.85144,
+          "NO2": 179656153638.8514,
+          "NOy": 359312307277.7029
+        },
+        "initial_moles": {
+          "NO": 179656153638.85144,
+          "NO2": 179656153638.8514,
+          "NOy": 359312307277.7029
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 0.0,
+        "passed": true,
+        "relative_residual": 0.0,
+        "relative_scale_moles": 359312307277.7029,
+        "residual_moles": 0.0,
+        "time": "2024-07-01_00:00:00"
+      },
+      {
+        "emitted_noy_moles": 282332807.0634315,
+        "final_moles": {
+          "NO": 61316407450.13908,
+          "NO2": 298278232634.6272,
+          "NOy": 359594640084.7663
+        },
+        "initial_moles": {
+          "NO": 179656153638.85144,
+          "NO2": 179656153638.8514,
+          "NOy": 359312307277.7029
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 282332807.0634155,
+        "passed": true,
+        "relative_residual": 5.6578776536641775e-14,
+        "relative_scale_moles": 282332807.0634315,
+        "residual_moles": -1.5974044799804688e-05,
+        "time": "2024-07-01_01:00:00"
+      },
+      {
+        "emitted_noy_moles": 564661227.7193811,
+        "final_moles": {
+          "NO": 61361869195.229836,
+          "NO2": 298515099310.1924,
+          "NOy": 359876968505.42224
+        },
+        "initial_moles": {
+          "NO": 179656153638.85144,
+          "NO2": 179656153638.8514,
+          "NOy": 359312307277.7029
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 564661227.7193604,
+        "passed": true,
+        "relative_residual": 3.673426713856873e-14,
+        "relative_scale_moles": 564661227.7193811,
+        "residual_moles": -2.0742416381835938e-05,
+        "time": "2024-07-01_02:00:00"
+      },
+      {
+        "emitted_noy_moles": 846985261.9678485,
+        "final_moles": {
+          "NO": 61460272290.99207,
+          "NO2": 298699020248.6785,
+          "NOy": 360159292539.6706
+        },
+        "initial_moles": {
+          "NO": 179656153638.85144,
+          "NO2": 179656153638.8514,
+          "NOy": 359312307277.7029
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 846985261.9677124,
+        "passed": true,
+        "relative_residual": 1.6073126036537804e-13,
+        "relative_scale_moles": 846985261.9678485,
+        "residual_moles": -0.0001361370086669922,
+        "time": "2024-07-01_03:00:00"
+      },
+      {
+        "emitted_noy_moles": 1129304909.808834,
+        "final_moles": {
+          "NO": 61589471760.00516,
+          "NO2": 298852140427.51245,
+          "NOy": 360441612187.5176
+        },
+        "initial_moles": {
+          "NO": 179656153638.85144,
+          "NO2": 179656153638.8514,
+          "NOy": 359312307277.7029
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 1129304909.8146973,
+        "passed": true,
+        "relative_residual": 5.191857085132244e-12,
+        "relative_scale_moles": 1129304909.808834,
+        "residual_moles": 0.005863189697265625,
+        "time": "2024-07-01_04:00:00"
+      },
+      {
+        "emitted_noy_moles": 1411620171.2423377,
+        "final_moles": {
+          "NO": 61740818798.58643,
+          "NO2": 298983108650.3824,
+          "NOy": 360723927448.9688
+        },
+        "initial_moles": {
+          "NO": 179656153638.85144,
+          "NO2": 179656153638.8514,
+          "NOy": 359312307277.7029
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 1411620171.2659302,
+        "passed": true,
+        "relative_residual": 1.671304544738318e-11,
+        "relative_scale_moles": 1411620171.2423377,
+        "residual_moles": 0.023592472076416016,
+        "time": "2024-07-01_05:00:00"
+      },
+      {
+        "emitted_noy_moles": 1693931046.2683592,
+        "final_moles": {
+          "NO": 61906294792.662926,
+          "NO2": 299099943531.3319,
+          "NOy": 361006238323.9948
+        },
+        "initial_moles": {
+          "NO": 179656153638.85144,
+          "NO2": 179656153638.8514,
+          "NOy": 359312307277.7029
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 1693931046.2919312,
+        "passed": true,
+        "relative_residual": 1.3915541680720172e-11,
+        "relative_scale_moles": 1693931046.2683592,
+        "residual_moles": 0.02357196807861328,
+        "time": "2024-07-01_06:00:00"
+      }
+    ],
+    "emitted_noy_moles": 1693931046.2683592,
+    "final_moles": {
+      "NO": 61906294792.662926,
+      "NO2": 299099943531.3319,
+      "NOy": 361006238323.9948
+    },
+    "initial_moles": {
+      "NO": 179656153638.85144,
+      "NO2": 179656153638.8514,
+      "NOy": 359312307277.7029
+    },
+    "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+    "maximum_cumulative_relative_residual": 1.671304544738318e-11,
+    "maximum_interval_relative_residual": 6.280001123005502e-11,
+    "no_accumulating_drift": true,
+    "noy_delta_moles": 1693931046.2919312,
+    "output_intervals": [
+      {
+        "emitted_noy_moles": 282332807.0634315,
+        "final_moles": {
+          "NO": 61316407450.13908,
+          "NO2": 298278232634.6272,
+          "NOy": 359594640084.7663
+        },
+        "initial_moles": {
+          "NO": 179656153638.85144,
+          "NO2": 179656153638.8514,
+          "NOy": 359312307277.7029
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 282332807.0634155,
+        "passed": true,
+        "relative_residual": 5.6578776536641775e-14,
+        "relative_scale_moles": 282332807.0634315,
+        "residual_moles": -1.5974044799804688e-05,
+        "start_time": "2024-07-01_00:00:00",
+        "stop_time": "2024-07-01_01:00:00"
+      },
+      {
+        "emitted_noy_moles": 282328420.6559495,
+        "final_moles": {
+          "NO": 61361869195.229836,
+          "NO2": 298515099310.1924,
+          "NOy": 359876968505.42224
+        },
+        "initial_moles": {
+          "NO": 61316407450.13908,
+          "NO2": 298278232634.6272,
+          "NOy": 359594640084.7663
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 282328420.6559448,
+        "passed": true,
+        "relative_residual": 1.6467213189797928e-14,
+        "relative_scale_moles": 282328420.6559495,
+        "residual_moles": -4.649162292480469e-06,
+        "start_time": "2024-07-01_01:00:00",
+        "stop_time": "2024-07-01_02:00:00"
+      },
+      {
+        "emitted_noy_moles": 282324034.24846745,
+        "final_moles": {
+          "NO": 61460272290.99207,
+          "NO2": 298699020248.6785,
+          "NOy": 360159292539.6706
+        },
+        "initial_moles": {
+          "NO": 61361869195.229836,
+          "NO2": 298515099310.1924,
+          "NOy": 359876968505.42224
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 282324034.24835205,
+        "passed": true,
+        "relative_residual": 4.0873102636242403e-13,
+        "relative_scale_moles": 282324034.24846745,
+        "residual_moles": -0.00011539459228515625,
+        "start_time": "2024-07-01_02:00:00",
+        "stop_time": "2024-07-01_03:00:00"
+      },
+      {
+        "emitted_noy_moles": 282319647.84098554,
+        "final_moles": {
+          "NO": 61589471760.00516,
+          "NO2": 298852140427.51245,
+          "NOy": 360441612187.5176
+        },
+        "initial_moles": {
+          "NO": 61460272290.99207,
+          "NO2": 298699020248.6785,
+          "NOy": 360159292539.6706
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 282319647.84698486,
+        "passed": true,
+        "relative_residual": 2.1250121101425054e-11,
+        "relative_scale_moles": 282319647.84098554,
+        "residual_moles": 0.005999326705932617,
+        "start_time": "2024-07-01_03:00:00",
+        "stop_time": "2024-07-01_04:00:00"
+      },
+      {
+        "emitted_noy_moles": 282315261.4335035,
+        "final_moles": {
+          "NO": 61740818798.58643,
+          "NO2": 298983108650.3824,
+          "NOy": 360723927448.9688
+        },
+        "initial_moles": {
+          "NO": 61589471760.00516,
+          "NO2": 298852140427.51245,
+          "NOy": 360441612187.5176
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 282315261.4512329,
+        "passed": true,
+        "relative_residual": 6.280001123005502e-11,
+        "relative_scale_moles": 282315261.4335035,
+        "residual_moles": 0.01772940158843994,
+        "start_time": "2024-07-01_04:00:00",
+        "stop_time": "2024-07-01_05:00:00"
+      },
+      {
+        "emitted_noy_moles": 282310875.02602154,
+        "final_moles": {
+          "NO": 61906294792.662926,
+          "NO2": 299099943531.3319,
+          "NOy": 361006238323.9948
+        },
+        "initial_moles": {
+          "NO": 61740818798.58643,
+          "NO2": 298983108650.3824,
+          "NOy": 360723927448.9688
+        },
+        "interpretation": "NO and NO2 each contain one N atom; all enabled gas reactions conserve N and no other N source or sink is enabled.",
+        "noy_delta_moles": 282310875.026001,
+        "passed": true,
+        "relative_residual": 7.284027739141948e-14,
+        "relative_scale_moles": 282310875.02602154,
+        "residual_moles": -2.0563602447509766e-05,
+        "start_time": "2024-07-01_05:00:00",
+        "stop_time": "2024-07-01_06:00:00"
+      }
+    ],
+    "passed": true,
+    "relative_residual": 1.3915541680720172e-11,
+    "relative_scale_moles": 1693931046.2683592,
+    "residual_moles": 0.02357196807861328,
+    "time": "2024-07-01_06:00:00"
+  },
+  "resource_forecast": {
+    "from_gate": "G4",
+    "projected_24h_history_bytes": 5326688192,
+    "projected_24h_wall_seconds": 1777.96
+  },
+  "runs": {
+    "continuous": {
+      "exact_grid_lifecycle_pass": true,
+      "expected_frame_count": 7,
+      "expected_source_mass_kg": {
+        "NO": 47384287.37534464,
+        "NO2": 5264920.819482737
+      },
+      "finite_state": {
+        "fields_checked": [
+          "emis_NO",
+          "emis_NO2",
+          "emis_NO2_layer",
+          "emis_NO_layer",
+          "j_jNO2",
+          "j_jO2",
+          "j_jO3_O",
+          "j_jO3_O1D",
+          "pressure",
+          "qNO",
+          "qNO2",
+          "qO",
+          "qO1D",
+          "qO2",
+          "qO3",
+          "qv",
+          "rho",
+          "rho_zz",
+          "surface_pressure",
+          "theta",
+          "u",
+          "w"
+        ],
+        "nonnegative_tracers_and_rates": {
+          "emis_NO": true,
+          "emis_NO2": true,
+          "emis_NO2_layer": true,
+          "emis_NO_layer": true,
+          "j_jNO2": true,
+          "j_jO2": true,
+          "j_jO3_O": true,
+          "j_jO3_O1D": true,
+          "qNO": true,
+          "qNO2": true,
+          "qO": true,
+          "qO1D": true,
+          "qO2": true,
+          "qO3": true,
+          "qv": true
+        },
+        "passed": true,
+        "positive_physical_fields": {
+          "pressure": true,
+          "rho": true,
+          "surface_pressure": true,
+          "theta": true
+        },
+        "ranges": {
+          "emis_NO": {
+            "maximum": 1.0905453763924052e-09,
+            "minimum": 0.0
+          },
+          "emis_NO2": {
+            "maximum": 1.2117170848804502e-10,
+            "minimum": 0.0
+          },
+          "emis_NO2_layer": {
+            "maximum": 1.2117170848804502e-10,
+            "minimum": 0.0
+          },
+          "emis_NO_layer": {
+            "maximum": 1.0905453763924052e-09,
+            "minimum": 0.0
+          },
+          "j_jNO2": {
+            "maximum": 0.013010889492288204,
+            "minimum": 0.0
+          },
+          "j_jO2": {
+            "maximum": 3.769074074048719e-10,
+            "minimum": 0.0
+          },
+          "j_jO3_O": {
+            "maximum": 0.0006239164211520308,
+            "minimum": 0.0
+          },
+          "j_jO3_O1D": {
+            "maximum": 0.0010258229830059492,
+            "minimum": 0.0
+          },
+          "pressure": {
+            "maximum": 98525.41339286367,
+            "minimum": 205.59512240673462
+          },
+          "qNO": {
+            "maximum": 4.1425641769542507e-08,
+            "minimum": 0.0
+          },
+          "qNO2": {
+            "maximum": 2.2645261005645523e-08,
+            "minimum": 3.344526997527713e-11
+          },
+          "qO": {
+            "maximum": 3.413376022819531e-09,
+            "minimum": 0.0
+          },
+          "qO1D": {
+            "maximum": 6.8002172006924e-16,
+            "minimum": 0.0
+          },
+          "qO2": {
+            "maximum": 0.23196416974236117,
+            "minimum": 0.23195901380758693
+          },
+          "qO3": {
+            "maximum": 1.0189269912950914e-05,
+            "minimum": 4.312337205450204e-11
+          },
+          "qv": {
+            "maximum": 0.0,
+            "minimum": 0.0
+          },
+          "rho": {
+            "maximum": 1.5138080360684987,
+            "minimum": 0.0027300435670109483
+          },
+          "rho_zz": {
+            "maximum": 0.6108861217162271,
+            "minimum": 0.004055433603530935
+          },
+          "surface_pressure": {
+            "maximum": 100000.00000000001,
+            "minimum": 99999.99999999999
+          },
+          "theta": {
+            "maximum": 1537.000276202637,
+            "minimum": 226.70721524097087
+          },
+          "u": {
+            "maximum": 35.19582977879169,
+            "minimum": -35.208069769459094
+          },
+          "w": {
+            "maximum": 0.005654849487842899,
+            "minimum": -0.005358012163382047
+          }
+        }
+      },
+      "frame_count_pass": true,
+      "frames": [
+        "2024-07-01_00:00:00",
+        "2024-07-01_01:00:00",
+        "2024-07-01_02:00:00",
+        "2024-07-01_03:00:00",
+        "2024-07-01_04:00:00",
+        "2024-07-01_05:00:00",
+        "2024-07-01_06:00:00"
+      ],
+      "log": {
+        "disabled_messages": 0,
+        "exact_grid_validations": 1,
+        "first_open_step_seconds": 7.674715662,
+        "masses_kg": {
+          "NO": 47384287.3753446,
+          "NO2": 5264920.81948274
+        },
+        "miem_timer_calls": 48,
+        "miem_timer_seconds": 8.03897,
+        "tuvx_initialized": 1,
+        "warm_step_calls": 47,
+        "warm_step_mean_seconds": 0.00612086100000313
+      },
+      "metadata": {
+        "artifacts": {
+          "atmosphere_model": {
+            "name": "atmosphere_model",
+            "sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+            "size_bytes": 14082536
+          },
+          "configuration": {
+            "global_cams_chapman_nox.yaml": {
+              "name": "global_cams_chapman_nox.yaml",
+              "sha256": "2b5899d0894414be97642cae3744a2433385692b7bc3b510b0f166e87e57b60e",
+              "size_bytes": 4969
+            },
+            "global_cams_nox.yaml": {
+              "name": "global_cams_nox.yaml",
+              "sha256": "7d16e7f8186eeaeb4c6600f02e24f691e4b1d6390b611e1ffe14b98e311272b3",
+              "size_bytes": 7012
+            },
+            "namelist.atmosphere": {
+              "name": "namelist.atmosphere",
+              "sha256": "b0ec55fede74bfe84291e44ec733974bbb430512dbb4331e02b2422321e337f3",
+              "size_bytes": 2387
+            },
+            "stream_list.atmosphere.output": {
+              "name": "stream_list.atmosphere.output",
+              "sha256": "fa52ff9fcda419f4cbcfc1956abf421397db151fef25dcae3f942573123657f3",
+              "size_bytes": 188
+            },
+            "streams.atmosphere": {
+              "name": "streams.atmosphere",
+              "sha256": "8ccbade6948dd2e690d74024fa1fba2cdccca60f71164fae8b90ef8b2783a140",
+              "size_bytes": 1604
+            },
+            "tuvx_chapman_nox.json": {
+              "name": "tuvx_chapman_nox.json",
+              "sha256": "00fdf1598cb637e6ab8e87997a9d25703e16497eacb59bb20e0117aeda89d3d9",
+              "size_bytes": 4597
+            },
+            "tuvx_upper_atm.csv": {
+              "name": "tuvx_upper_atm.csv",
+              "sha256": "851b0ff3549bca691e0c49a8727bcdbaae001c9a34a7b1f7696f975ddd0b5954",
+              "size_bytes": 521
+            }
+          }
+        },
+        "segment": {
+          "do_restart": false,
+          "duration_seconds": 21600,
+          "start_time": "2024-07-01_00:00:00"
+        },
+        "software": {
+          "chempas_commit": "471587abcb7c1d1b5fc10803d2d2145910406732",
+          "chempas_dirty": false,
+          "chempas_untracked_paths": [
+            "*TBL",
+            "src/core_atmosphere/physics_mmm/",
+            "src/core_atmosphere/physics_noaa/"
+          ],
+          "miem_commit": "9fdf14a189262eecb677862d877ab72b06c95e21",
+          "musica_commit": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc",
+          "tuvx_data_directory": "data"
+        }
+      },
+      "miem_call_count_pass": true,
+      "output": {
+        "history_bytes": 1331672048,
+        "history_files": [
+          {
+            "path": "runs/stage9c/g4-20260806T162516Z-471587abcb/continuous/history.2024-07-01_00.00.00.nc",
+            "sha256": "e0ae3e1d1683c807007afa923e15e9447c24217ea7df90d7f57ed58feb422127",
+            "size_bytes": 190238864
+          },
+          {
+            "path": "runs/stage9c/g4-20260806T162516Z-471587abcb/continuous/history.2024-07-01_01.00.00.nc",
+            "sha256": "f6534c864fff489bd00c44bd206648213bdb0b6e75ac0b837ff87584c21ad88b",
+            "size_bytes": 190238864
+          },
+          {
+            "path": "runs/stage9c/g4-20260806T162516Z-471587abcb/continuous/history.2024-07-01_02.00.00.nc",
+            "sha256": "f0d15739ffa8921071248fc6ffc43157188e2512f751a8c4521ca2a1ed78d37d",
+            "size_bytes": 190238864
+          },
+          {
+            "path": "runs/stage9c/g4-20260806T162516Z-471587abcb/continuous/history.2024-07-01_03.00.00.nc",
+            "sha256": "fab23900b40d10432c0c2ef8c00da05b5da8202494f125805d4db33fb98d0bc6",
+            "size_bytes": 190238864
+          },
+          {
+            "path": "runs/stage9c/g4-20260806T162516Z-471587abcb/continuous/history.2024-07-01_04.00.00.nc",
+            "sha256": "d64fb9e89b7d6151ecfe5891730ac3ce221e98d289224239aaff2c2aebad660a",
+            "size_bytes": 190238864
+          },
+          {
+            "path": "runs/stage9c/g4-20260806T162516Z-471587abcb/continuous/history.2024-07-01_05.00.00.nc",
+            "sha256": "95a38368e233b3b715ec972a939ee33e5f7c0e493e2b886dda5b811a4a72ccf2",
+            "size_bytes": 190238864
+          },
+          {
+            "path": "runs/stage9c/g4-20260806T162516Z-471587abcb/continuous/history.2024-07-01_06.00.00.nc",
+            "sha256": "5d011feccb7da72bcd42e3428416be37304416a8e2e5c31d36afe7c62a7afe0b",
+            "size_bytes": 190238864
+          }
+        ],
+        "restart_bytes": 0,
+        "restart_files": []
+      },
+      "resource": {
+        "peak_rss_kib": 893248,
+        "wall_seconds": 444.49
+      },
+      "scientific_field_hashes": {
+        "2024-07-01_00:00:00": {
+          "emis_NO": "ceb9a1c18ec862b92a31d02e3acb79770637616682fdc39e1f8c623a41a9f1cf",
+          "emis_NO2": "ceb9a1c18ec862b92a31d02e3acb79770637616682fdc39e1f8c623a41a9f1cf",
+          "j_jNO2": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "j_jO2": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "j_jO3_O": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "j_jO3_O1D": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "pressure": "f3c59124ea9ed24871cd2fd0978c974c23c865dc3546fb11de144ed5f451d746",
+          "qNO": "fb07cac18b8b902ca7b58874bf3990488bf599898be66e4900f2422b90a0b87f",
+          "qNO2": "61003bf6f7fb99ce84dc2eb5b5006c6f0ecdbc440f358dcb4f2dcc5f2d677ff5",
+          "qO": "5835871b41d03f0dc557f5f760e5d67f3d33d4c4150c32a5ba3b5a2f6bd1a722",
+          "qO1D": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "qO2": "df33cdac47f3074dd5ad0ad8e3e785b073afa8b8f3c40c267cc4190a963d385d",
+          "qO3": "513ddb883e51d50d7afcc293ff67d7d450c5ba44be37eb43b1230febc2dc137a",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "2985eb8c82f9b5ccd0581d695c349dcead1dfd7349262581da287585644d1dd8",
+          "rho_zz": "ff99d76f2d12eac53ebe8d18f253c05f6d9cdbf49b40d6a30aa6384bc7c4c7e3",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "1a2fe150fa347c26219f6841425c6927211dbcb7af587c00ea228cfa93868b77",
+          "u": "e5c426a888c793802318651ea11d89bdba6c65e243f6481b63c69d3d483e5e85",
+          "w": "7eb7c7c5273f75a778977079e5c81d8ec252a2234f7763f91e91ae582e4da819"
+        },
+        "2024-07-01_01:00:00": {
+          "emis_NO": "5fb699672b30fb506363e70a0bb7430680be8323154d48ee9b404d99c4f80c16",
+          "emis_NO2": "339642975ccd971310e6e46b8f1ea14d89fc52c488c067bfee8325cb1264b8c2",
+          "j_jNO2": "f6f7962818f20017b41960e41b37c81fb2b8cda51ccb5a9d50b3af481f02343b",
+          "j_jO2": "b59b117b1aca1b626a11bae02c510b911f4410983696b2a76973ae4c1b408958",
+          "j_jO3_O": "7a062da535025bcf704eed5f424017017695dd54040562fb5d9722c76244328a",
+          "j_jO3_O1D": "4d2ae1339fa8ad16b92f76b7488232753b4b6745bdd6dcd5e3bc30407b24aa5b",
+          "pressure": "3dc7a8cacf99c406be3532063342bdc4c34e7c988dd05e13e82c154308802fe0",
+          "qNO": "a0618efe760829a6bf24915b66b7f71454e1b41f465fa4755044f2466c6a2912",
+          "qNO2": "c135b3d72f54d78f1ffc1f050a9856d8a1d4e1343609cf6573e2f88f8941dc86",
+          "qO": "378780665c9fd4e0ad0a6a17094a3172d62e1425902b5271ac7c66c2cdde528d",
+          "qO1D": "a898bfdfbe9848b6375b1e38800dd88aab2618ce854dd2953f8ebffa8c31b978",
+          "qO2": "b127ac728daa6d84de3fff0639dfb62dd699ab3c6c1d8c1bd785841b3b7c4be3",
+          "qO3": "28b837c4e9be94f04a0b11557ae13cdab65ffa2d027e4ae005f36b08f8186bfd",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "6ae12a3ec6aea805a2126ca18ccbdbb96756a4dc2cc068110827a6d88e64def2",
+          "rho_zz": "e07feb0fa697db768be908b5143309cd73c59afb17d0a200031c532ed4682790",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "3609c72da5aec626b9ec4223ea21256d7aca102b705f1976c390c6ba098bed85",
+          "u": "92790e34513caf3595c48c734c17b968641a514d190ea9bcdad9582fb0d6d36d",
+          "w": "b6b57c44b87de5fd6941df699569f1911c41b72b61b9e77a5530c60a3dd478a0"
+        },
+        "2024-07-01_02:00:00": {
+          "emis_NO": "70f16eb0a40b59812d61ab99f93ce697ad9389dbb9cb1ff2061609b99282c343",
+          "emis_NO2": "aab5217ea6990d65a4ae5ffc3a4d41be7021c0cae54159f98f4bafc7234258ec",
+          "j_jNO2": "6e79f173bd6f841a7464fcdbf52270531c3bd4189203db3e697fde42889b90ad",
+          "j_jO2": "ad36e295c5303a38574386001a3d866a78e58e6d7f6ac97575e64127455e8d0f",
+          "j_jO3_O": "59e3d2d7d93e0b3dd70a0f6706c651b0e4b5f8e28dc4986cc1d4045b55723b7f",
+          "j_jO3_O1D": "12c78f231e9357f3e61c51b8205f4cc438e42d2cec99f6e9ef80e387f29b250e",
+          "pressure": "5ec05c18dbb749ecebd47e1f7f03f4a1e8b97cc7e4b762c47f4d89deb72ec6d9",
+          "qNO": "eb78225e3b6d432ddb7369e5bdd15d3891b8ea2bb5f27f6bd0885e01fe057d83",
+          "qNO2": "d20040efcb2e038dcda5dd8d4e635142a3458086cae87c6ee235b2fd0e36576f",
+          "qO": "d19ada38df4e300ef71f939906600bb5552b73082e30e47e86c19c1313d5ba7e",
+          "qO1D": "24237a1e120e9637f09afc1730038c71c605144144d3bf761941895b78cf43ad",
+          "qO2": "700071efbbd6ad2b1551220f3a16677deb12c5dde9b7c1e806e7c968ecc24208",
+          "qO3": "a06c2f48c6b4d7f3f1c04d24ee8a68aeb57967e8fdf78c2d51b1369077562e22",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "8ee656dad232ea82d411336f32f0f19b2bf36228e2b63fe558ed2d70979802ce",
+          "rho_zz": "a5b7f98734c8b57cc6f720250e689eced21d404da6030a5453eb0c4ac41d7d3e",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "b0cd24fef3ee98e8cc1ca3f187f6e0c9073cdc4c338688f6dc0634fe86372064",
+          "u": "4e4ddaed5acb1294b556d78d4dd0e77fb2093633011ab5bed7e0fe775c99a644",
+          "w": "a1f5f345a74c450c88a318f275b5d286193cbc231de1281729f511d15dd48fbe"
+        },
+        "2024-07-01_03:00:00": {
+          "emis_NO": "b8afb010c6d479cf4c681960a7e4f891c86a7770c18a6a24747880fae6772f1e",
+          "emis_NO2": "16113ed919a81a48942b99ed0003789c7aebcd8f872629c719639bee9accf25c",
+          "j_jNO2": "b5be2bc54feacafa35f2dd3c26aff865c72da99cebd927127e13a0ab4f1faa63",
+          "j_jO2": "b683b5881318abbfd2a61542ed527293e34b4ba9b3c210c45aaca863a9982113",
+          "j_jO3_O": "dcd6b63dc60461787b638c831bf0bc04aca16427feb19754640515f0a1cc550b",
+          "j_jO3_O1D": "533246ebd2c2a8fa14a4778bef8ec70636dc4cb27cf3356cd0aca6fc167e868d",
+          "pressure": "c1935b2b2f81816619a8d2676853447a840cc1e3c480a5930b7e3902c35a059b",
+          "qNO": "c36874e2f9072519cc77d7c8a5f89ef4f822635a5308d0494dc9e96c9e1b0256",
+          "qNO2": "ab706b5315d6daca2afda0e42674abe0645cd66b3b3fff3be85e16a56790ce26",
+          "qO": "2b2a37282c4bc3b150018d10498c9649d333433de2c883cb9ad58568c614e9b3",
+          "qO1D": "6afffefd4cfa1560a186d161216c98e475c39d20224fe49fe94ab7b1ec399dd9",
+          "qO2": "d9dc03009037c7a6207c2b7605e9125b9e737ec051b2c73349fbd64ed763f448",
+          "qO3": "3f594dc9836acf6d17526d34e19cb4eeac719579e258329eafaab4d5cbf77ce9",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "56e2e1a2c88a393a3255d49e2cba9090bf87cd8ce99eca7c004aad22eaa99d19",
+          "rho_zz": "ab52a0ccced14b5519d467b8d57c5090ba1f4a73d14f6c904452707250e3d902",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "37bf786551860d0763544749b005f7cd0d542980bc3135088d0cf48219543b8d",
+          "u": "268b38c46414dce70db7c10e7be8d167362f06565905b0134509fadafdd57bec",
+          "w": "fa43d06c6701f1b00c50657b39d5d892b809acf1a2d1bdb7b9df900f93ada162"
+        },
+        "2024-07-01_04:00:00": {
+          "emis_NO": "b68ebabf5a8290a5b7ec71b9b36a1a9ca2fb42da019cea0a9e792f1d6b271314",
+          "emis_NO2": "66d68ebe87d82d600a430f8b417422df2f4bf90b6ef843d831e7ca836551480d",
+          "j_jNO2": "539c7f05d26a59dd5f1364ad6ea5718f185895b0dc8a2589b875da9956c08823",
+          "j_jO2": "a475d24fe47adda768699f8042f5528250c5906252eeebee371f314615828008",
+          "j_jO3_O": "8745aed6206e0965fbbb5f2b7573f0cab88f6c3ac2a928cfd9469d388eb7cc2c",
+          "j_jO3_O1D": "7975e37fe08608c8aff6d1d8cb05cf536684609d85890e3714b00bc99b09a611",
+          "pressure": "0fcd3b2ce40b5b73b25640df2ae733a6276ffcdf050b9d22ac12911ff88230f8",
+          "qNO": "e317ed8215f6e3919c6a4f9ae91fa79bcab77aceac4490c7b7c3275a54c20966",
+          "qNO2": "4092939e29271eac677870ea19c6826aacef9ca0832751b8bcbb3a5c3d40e062",
+          "qO": "c935d550916ca828d2ac2c3df42e1f04efcde31c2e2b50f6b2de4bed8e7dc983",
+          "qO1D": "c90ccdce3237cd61e66fcfc0eef5840f5aca800c18dfeba7fa64c77bbc0614f7",
+          "qO2": "17b1e4cfaf4d1e48d03017f26057b8e881bfdd5fd6935cc7750463b38a902407",
+          "qO3": "63c3f58e82d06c562edfcdeddbfd2aaeed5f9d69990fb9a42baaddf0c7c69530",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "bbc08900ce5c0ca29a507e037da501f2463a57702e608b5312835bd0f8472c78",
+          "rho_zz": "1c08f976564865261365a44ec2130b96765883fd852ac0312a8845a215536f44",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "0d3536f44a1970690c31a05faab01a8e3df73b3b487309bfe92c570299d5a1d2",
+          "u": "7e210d0ad4a299afcbdc9c1514fe1fe444722bb280f7bfafef1f3261b72e8bd6",
+          "w": "2be1ab4eacea08961f6757e6f958376a61da63c202a659e5e984447cb0c4a73b"
+        },
+        "2024-07-01_05:00:00": {
+          "emis_NO": "14475dcf0a742ebee75771c0ab59d277aa8288b98d93482bacea916323072750",
+          "emis_NO2": "6450713c47a4a6b019f679bec64c815331dd13a2cf02ecaf15a0ec1d9372f7fe",
+          "j_jNO2": "aa5ea2f280325378f2bc93c9983180c2ac8e2a394debdaa35113967b1ff8bb12",
+          "j_jO2": "9a4d5c6779492435f0571939ecb742228b9bc83ddcda8cf4a2a492de754f4e6d",
+          "j_jO3_O": "161afb73d44f5ff2256ef950ea1b3e75027757f987bb2d4c7dc14265b5a03863",
+          "j_jO3_O1D": "fb71f13854612c8b4c812a456e66496e4d47776167830c3a3f87bd9cebacc6e8",
+          "pressure": "686a00883cd543580510b679580629d3bfef9b9eaa9f0a7d36af7b8854283b95",
+          "qNO": "aa7c4d01974938364f13c629e46a03c70f60b904da377a63000ac023b50aca58",
+          "qNO2": "738f59a73a5ad2682d3fb33a7c6018353d73d095e5979af835bbf1b85ba384d7",
+          "qO": "c033183cff6785dbde6d6460963bfd8e00e5b54e5f80b051ba2dd7de7373ba40",
+          "qO1D": "518f3b3f41f7eff3311f34a593dd3695f905ef3709a3fbfc691551e974d81084",
+          "qO2": "5fec76173190b390459a0fc0c1a7c9c209ed3aa8ada60a1c5541f62043d2f869",
+          "qO3": "1c41ed084e466d27a7c90ddc7b0024c44804b80c376fc25935e9e744bfa33dc3",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "43045128421ff055258f74983f8b1b3dd9f067a6683c77b0aa8dd935c4af47f4",
+          "rho_zz": "f8767b2291a9d7d06aea5f1c2924164178a847f98c4de40789f52afb56526a0c",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "17a344275ccb4da87fb02585d2e1f80af59274e973910ddc31cbd4571a0afb2e",
+          "u": "ea669e9b59c26b16f0c86228383565946eed84fe05eff854dae5fda72f4b7bb6",
+          "w": "f58dd24ae6f167875da97890ab812ec84a70ea6b8d3c6e4b6aa0728050be8f6c"
+        },
+        "2024-07-01_06:00:00": {
+          "emis_NO": "e7f7810beba5a666bca50c67108dac23c37ad03943d7a6c4dd05c60705a98e8a",
+          "emis_NO2": "db2ebe4acdf1c3bb024c295efa851a52efb5e93ffbbe9e8579acc902d7267e5a",
+          "j_jNO2": "2b863526bc5589fdf6ec0e26f077dd05d541ab28626271ccc219970efb290050",
+          "j_jO2": "14c122414a8d7df40f2cac92e2d18d2a7aa045035a04f3fa5e8d6a3c9584f2cc",
+          "j_jO3_O": "a781af1d079e463d8614fee46f9ab20b6876b0917bf9301d27151653613b7087",
+          "j_jO3_O1D": "d144660457fe8fed1524126cc3b8dc206b6f28f633de912ea5cdff2612e2a3ac",
+          "pressure": "6d736dc75b92eadc168c44c7d52fe451dd878722114c4502d27cc321814a570c",
+          "qNO": "8d1244d788f159a23999878895777a96e0573b41c43274e93c4cc07702295599",
+          "qNO2": "210343a09a3c10427ac2d720903fb69379da15af1cbb264d93ec9336a6d20348",
+          "qO": "cf38cb545ee81498623bfb3d7970f23cde7a76bc3c1ddcbce04eb0412a5d6d4a",
+          "qO1D": "ecb8ff17fb72da3673113bea58800ebbf9fa55d861cb06a8470c525bafc22f68",
+          "qO2": "fbc9ed6621c44f529bbd271fd133eccef00a6aadfeee344098ae32c8c9b7f5d9",
+          "qO3": "87637aefee9a33dee3607d2655c03a0ee5cfc9b24a3a2398e84e71cf92ebb052",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "aeb68bbe80585804a06e25829d307070c694263440d4647400424f4c8b0371d7",
+          "rho_zz": "acf67bf6b9e1b2e0ad27f936f1ac5328ed383ac9ab5f4fd78894566e8c9d9ed4",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "07cae67624fc9432d8ee02d7303527eb6cc959e58b91aa78bac65f0c49c9d9bd",
+          "u": "c483fa24235fcc8d5b12c3403433893009840cfdb38d35c936078bb1795cb2d7",
+          "w": "a1c3b869d6b0850a7fe649b325308c46392db56daa7bdb4382ebf2e54655fe62"
+        }
+      },
+      "source_mass_comparison": {
+        "NO": {
+          "bitwise_equal": false,
+          "maximum_absolute": 4.470348358154297e-08,
+          "maximum_relative": 9.43424203627539e-16,
+          "passed": true
+        },
+        "NO2": {
+          "bitwise_equal": false,
+          "maximum_absolute": 2.7939677238464355e-09,
+          "maximum_relative": 5.306761145404908e-16,
+          "passed": true
+        }
+      },
+      "source_mass_pass": true,
+      "timing_contract_pass": true
+    },
+    "split_first": {
+      "exact_grid_lifecycle_pass": true,
+      "expected_frame_count": 4,
+      "expected_source_mass_kg": {
+        "NO": 23692695.84153306,
+        "NO2": 2632521.7601703396
+      },
+      "finite_state": {
+        "fields_checked": [
+          "emis_NO",
+          "emis_NO2",
+          "emis_NO2_layer",
+          "emis_NO_layer",
+          "j_jNO2",
+          "j_jO2",
+          "j_jO3_O",
+          "j_jO3_O1D",
+          "pressure",
+          "qNO",
+          "qNO2",
+          "qO",
+          "qO1D",
+          "qO2",
+          "qO3",
+          "qv",
+          "rho",
+          "rho_zz",
+          "surface_pressure",
+          "theta",
+          "u",
+          "w"
+        ],
+        "nonnegative_tracers_and_rates": {
+          "emis_NO": true,
+          "emis_NO2": true,
+          "emis_NO2_layer": true,
+          "emis_NO_layer": true,
+          "j_jNO2": true,
+          "j_jO2": true,
+          "j_jO3_O": true,
+          "j_jO3_O1D": true,
+          "qNO": true,
+          "qNO2": true,
+          "qO": true,
+          "qO1D": true,
+          "qO2": true,
+          "qO3": true,
+          "qv": true
+        },
+        "passed": true,
+        "positive_physical_fields": {
+          "pressure": true,
+          "rho": true,
+          "surface_pressure": true,
+          "theta": true
+        },
+        "ranges": {
+          "emis_NO": {
+            "maximum": 1.0905453763924052e-09,
+            "minimum": 0.0
+          },
+          "emis_NO2": {
+            "maximum": 1.2117170848804502e-10,
+            "minimum": 0.0
+          },
+          "emis_NO2_layer": {
+            "maximum": 1.2117170848804502e-10,
+            "minimum": 0.0
+          },
+          "emis_NO_layer": {
+            "maximum": 1.0905453763924052e-09,
+            "minimum": 0.0
+          },
+          "j_jNO2": {
+            "maximum": 0.013010889492288204,
+            "minimum": 0.0
+          },
+          "j_jO2": {
+            "maximum": 3.769074074048719e-10,
+            "minimum": 0.0
+          },
+          "j_jO3_O": {
+            "maximum": 0.0006239164211520308,
+            "minimum": 0.0
+          },
+          "j_jO3_O1D": {
+            "maximum": 0.0010258229830059492,
+            "minimum": 0.0
+          },
+          "pressure": {
+            "maximum": 98525.41339286367,
+            "minimum": 205.62660998063546
+          },
+          "qNO": {
+            "maximum": 2.396536514451565e-08,
+            "minimum": 0.0
+          },
+          "qNO2": {
+            "maximum": 2.163173924279022e-08,
+            "minimum": 3.344526997527713e-11
+          },
+          "qO": {
+            "maximum": 2.157551468512956e-09,
+            "minimum": 0.0
+          },
+          "qO1D": {
+            "maximum": 4.3360433066702543e-16,
+            "minimum": 0.0
+          },
+          "qO2": {
+            "maximum": 0.23196413587452655,
+            "minimum": 0.2319613456938579
+          },
+          "qO3": {
+            "maximum": 1.0124451841712995e-05,
+            "minimum": 2.0165469740521387e-10
+          },
+          "qv": {
+            "maximum": 0.0,
+            "minimum": 0.0
+          },
+          "rho": {
+            "maximum": 1.513799037114305,
+            "minimum": 0.0027303314036059194
+          },
+          "rho_zz": {
+            "maximum": 0.6108730183839841,
+            "minimum": 0.0040558611799307075
+          },
+          "surface_pressure": {
+            "maximum": 100000.00000000001,
+            "minimum": 99999.99999999999
+          },
+          "theta": {
+            "maximum": 1537.000276202637,
+            "minimum": 226.7075509781067
+          },
+          "u": {
+            "maximum": 35.19582977879169,
+            "minimum": -35.208069769459094
+          },
+          "w": {
+            "maximum": 0.005654849487842899,
+            "minimum": -0.005358012163382047
+          }
+        }
+      },
+      "frame_count_pass": true,
+      "frames": [
+        "2024-07-01_00:00:00",
+        "2024-07-01_01:00:00",
+        "2024-07-01_02:00:00",
+        "2024-07-01_03:00:00"
+      ],
+      "log": {
+        "disabled_messages": 0,
+        "exact_grid_validations": 1,
+        "first_open_step_seconds": 8.046087897,
+        "masses_kg": {
+          "NO": 23692695.8415331,
+          "NO2": 2632521.76017034
+        },
+        "miem_timer_calls": 24,
+        "miem_timer_seconds": 8.24061,
+        "tuvx_initialized": 1,
+        "warm_step_calls": 23,
+        "warm_step_mean_seconds": 0.00643295986957009
+      },
+      "metadata": {
+        "artifacts": {
+          "atmosphere_model": {
+            "name": "atmosphere_model",
+            "sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+            "size_bytes": 14082536
+          },
+          "configuration": {
+            "global_cams_chapman_nox.yaml": {
+              "name": "global_cams_chapman_nox.yaml",
+              "sha256": "2b5899d0894414be97642cae3744a2433385692b7bc3b510b0f166e87e57b60e",
+              "size_bytes": 4969
+            },
+            "global_cams_nox.yaml": {
+              "name": "global_cams_nox.yaml",
+              "sha256": "7d16e7f8186eeaeb4c6600f02e24f691e4b1d6390b611e1ffe14b98e311272b3",
+              "size_bytes": 7012
+            },
+            "namelist.atmosphere": {
+              "name": "namelist.atmosphere",
+              "sha256": "cbe3a4cfed6ae55e20d3b8daa7cc4fe0484e01737d667047d142b5601d832cd5",
+              "size_bytes": 2387
+            },
+            "stream_list.atmosphere.output": {
+              "name": "stream_list.atmosphere.output",
+              "sha256": "fa52ff9fcda419f4cbcfc1956abf421397db151fef25dcae3f942573123657f3",
+              "size_bytes": 188
+            },
+            "streams.atmosphere": {
+              "name": "streams.atmosphere",
+              "sha256": "89fbf165460b42c49085f73c9e8215bb94ecd7aa074c92c2f54570ba4084cb7f",
+              "size_bytes": 1604
+            },
+            "tuvx_chapman_nox.json": {
+              "name": "tuvx_chapman_nox.json",
+              "sha256": "00fdf1598cb637e6ab8e87997a9d25703e16497eacb59bb20e0117aeda89d3d9",
+              "size_bytes": 4597
+            },
+            "tuvx_upper_atm.csv": {
+              "name": "tuvx_upper_atm.csv",
+              "sha256": "851b0ff3549bca691e0c49a8727bcdbaae001c9a34a7b1f7696f975ddd0b5954",
+              "size_bytes": 521
+            }
+          }
+        },
+        "segment": {
+          "do_restart": false,
+          "duration_seconds": 10800,
+          "start_time": "2024-07-01_00:00:00"
+        },
+        "software": {
+          "chempas_commit": "471587abcb7c1d1b5fc10803d2d2145910406732",
+          "chempas_dirty": false,
+          "chempas_untracked_paths": [
+            "*TBL",
+            "src/core_atmosphere/physics_mmm/",
+            "src/core_atmosphere/physics_noaa/"
+          ],
+          "miem_commit": "9fdf14a189262eecb677862d877ab72b06c95e21",
+          "musica_commit": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc",
+          "tuvx_data_directory": "data"
+        }
+      },
+      "miem_call_count_pass": true,
+      "output": {
+        "history_bytes": 760955456,
+        "history_files": [
+          {
+            "path": "runs/stage9c/g4-20260806T162516Z-471587abcb/split_first/history.2024-07-01_00.00.00.nc",
+            "sha256": "8f0a97c4aa60e2d793311e7be5066945bad425dae2ac672dcfe68d270595df2b",
+            "size_bytes": 190238864
+          },
+          {
+            "path": "runs/stage9c/g4-20260806T162516Z-471587abcb/split_first/history.2024-07-01_01.00.00.nc",
+            "sha256": "788efb06c26aa80d8dbc0e2ebbfc0b264925c6ac35414e5d11d6035e804e82ff",
+            "size_bytes": 190238864
+          },
+          {
+            "path": "runs/stage9c/g4-20260806T162516Z-471587abcb/split_first/history.2024-07-01_02.00.00.nc",
+            "sha256": "df8ee162e02b0d5c9ce45f426c87b323219b03a56902765ce2ed97fc36175ea7",
+            "size_bytes": 190238864
+          },
+          {
+            "path": "runs/stage9c/g4-20260806T162516Z-471587abcb/split_first/history.2024-07-01_03.00.00.nc",
+            "sha256": "9b0978416bf8867fa8c42a762ff2da27910168dbd2c011097328672f6ecbaad8",
+            "size_bytes": 190238864
+          }
+        ],
+        "restart_bytes": 756186464,
+        "restart_files": [
+          {
+            "path": "runs/stage9c/g4-20260806T162516Z-471587abcb/split_first/restart.2024-07-01_03.00.00.nc",
+            "sha256": "cfd4f7ce912b9401685f1f81e95adf295b79a8e9bdebdeb573730e811f7f89c6",
+            "size_bytes": 756186464
+          }
+        ]
+      },
+      "resource": {
+        "peak_rss_kib": 1051372,
+        "wall_seconds": 242.1
+      },
+      "scientific_field_hashes": {
+        "2024-07-01_00:00:00": {
+          "emis_NO": "ceb9a1c18ec862b92a31d02e3acb79770637616682fdc39e1f8c623a41a9f1cf",
+          "emis_NO2": "ceb9a1c18ec862b92a31d02e3acb79770637616682fdc39e1f8c623a41a9f1cf",
+          "j_jNO2": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "j_jO2": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "j_jO3_O": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "j_jO3_O1D": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "pressure": "f3c59124ea9ed24871cd2fd0978c974c23c865dc3546fb11de144ed5f451d746",
+          "qNO": "fb07cac18b8b902ca7b58874bf3990488bf599898be66e4900f2422b90a0b87f",
+          "qNO2": "61003bf6f7fb99ce84dc2eb5b5006c6f0ecdbc440f358dcb4f2dcc5f2d677ff5",
+          "qO": "5835871b41d03f0dc557f5f760e5d67f3d33d4c4150c32a5ba3b5a2f6bd1a722",
+          "qO1D": "e9d0eb5afc360933c182a26eb89889a204b2458b2bc5b74604a9be4b9e77775a",
+          "qO2": "df33cdac47f3074dd5ad0ad8e3e785b073afa8b8f3c40c267cc4190a963d385d",
+          "qO3": "513ddb883e51d50d7afcc293ff67d7d450c5ba44be37eb43b1230febc2dc137a",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "2985eb8c82f9b5ccd0581d695c349dcead1dfd7349262581da287585644d1dd8",
+          "rho_zz": "ff99d76f2d12eac53ebe8d18f253c05f6d9cdbf49b40d6a30aa6384bc7c4c7e3",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "1a2fe150fa347c26219f6841425c6927211dbcb7af587c00ea228cfa93868b77",
+          "u": "e5c426a888c793802318651ea11d89bdba6c65e243f6481b63c69d3d483e5e85",
+          "w": "7eb7c7c5273f75a778977079e5c81d8ec252a2234f7763f91e91ae582e4da819"
+        },
+        "2024-07-01_01:00:00": {
+          "emis_NO": "5fb699672b30fb506363e70a0bb7430680be8323154d48ee9b404d99c4f80c16",
+          "emis_NO2": "339642975ccd971310e6e46b8f1ea14d89fc52c488c067bfee8325cb1264b8c2",
+          "j_jNO2": "f6f7962818f20017b41960e41b37c81fb2b8cda51ccb5a9d50b3af481f02343b",
+          "j_jO2": "b59b117b1aca1b626a11bae02c510b911f4410983696b2a76973ae4c1b408958",
+          "j_jO3_O": "7a062da535025bcf704eed5f424017017695dd54040562fb5d9722c76244328a",
+          "j_jO3_O1D": "4d2ae1339fa8ad16b92f76b7488232753b4b6745bdd6dcd5e3bc30407b24aa5b",
+          "pressure": "3dc7a8cacf99c406be3532063342bdc4c34e7c988dd05e13e82c154308802fe0",
+          "qNO": "a0618efe760829a6bf24915b66b7f71454e1b41f465fa4755044f2466c6a2912",
+          "qNO2": "c135b3d72f54d78f1ffc1f050a9856d8a1d4e1343609cf6573e2f88f8941dc86",
+          "qO": "378780665c9fd4e0ad0a6a17094a3172d62e1425902b5271ac7c66c2cdde528d",
+          "qO1D": "a898bfdfbe9848b6375b1e38800dd88aab2618ce854dd2953f8ebffa8c31b978",
+          "qO2": "b127ac728daa6d84de3fff0639dfb62dd699ab3c6c1d8c1bd785841b3b7c4be3",
+          "qO3": "28b837c4e9be94f04a0b11557ae13cdab65ffa2d027e4ae005f36b08f8186bfd",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "6ae12a3ec6aea805a2126ca18ccbdbb96756a4dc2cc068110827a6d88e64def2",
+          "rho_zz": "e07feb0fa697db768be908b5143309cd73c59afb17d0a200031c532ed4682790",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "3609c72da5aec626b9ec4223ea21256d7aca102b705f1976c390c6ba098bed85",
+          "u": "92790e34513caf3595c48c734c17b968641a514d190ea9bcdad9582fb0d6d36d",
+          "w": "b6b57c44b87de5fd6941df699569f1911c41b72b61b9e77a5530c60a3dd478a0"
+        },
+        "2024-07-01_02:00:00": {
+          "emis_NO": "70f16eb0a40b59812d61ab99f93ce697ad9389dbb9cb1ff2061609b99282c343",
+          "emis_NO2": "aab5217ea6990d65a4ae5ffc3a4d41be7021c0cae54159f98f4bafc7234258ec",
+          "j_jNO2": "6e79f173bd6f841a7464fcdbf52270531c3bd4189203db3e697fde42889b90ad",
+          "j_jO2": "ad36e295c5303a38574386001a3d866a78e58e6d7f6ac97575e64127455e8d0f",
+          "j_jO3_O": "59e3d2d7d93e0b3dd70a0f6706c651b0e4b5f8e28dc4986cc1d4045b55723b7f",
+          "j_jO3_O1D": "12c78f231e9357f3e61c51b8205f4cc438e42d2cec99f6e9ef80e387f29b250e",
+          "pressure": "5ec05c18dbb749ecebd47e1f7f03f4a1e8b97cc7e4b762c47f4d89deb72ec6d9",
+          "qNO": "eb78225e3b6d432ddb7369e5bdd15d3891b8ea2bb5f27f6bd0885e01fe057d83",
+          "qNO2": "d20040efcb2e038dcda5dd8d4e635142a3458086cae87c6ee235b2fd0e36576f",
+          "qO": "d19ada38df4e300ef71f939906600bb5552b73082e30e47e86c19c1313d5ba7e",
+          "qO1D": "24237a1e120e9637f09afc1730038c71c605144144d3bf761941895b78cf43ad",
+          "qO2": "700071efbbd6ad2b1551220f3a16677deb12c5dde9b7c1e806e7c968ecc24208",
+          "qO3": "a06c2f48c6b4d7f3f1c04d24ee8a68aeb57967e8fdf78c2d51b1369077562e22",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "8ee656dad232ea82d411336f32f0f19b2bf36228e2b63fe558ed2d70979802ce",
+          "rho_zz": "a5b7f98734c8b57cc6f720250e689eced21d404da6030a5453eb0c4ac41d7d3e",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "b0cd24fef3ee98e8cc1ca3f187f6e0c9073cdc4c338688f6dc0634fe86372064",
+          "u": "4e4ddaed5acb1294b556d78d4dd0e77fb2093633011ab5bed7e0fe775c99a644",
+          "w": "a1f5f345a74c450c88a318f275b5d286193cbc231de1281729f511d15dd48fbe"
+        },
+        "2024-07-01_03:00:00": {
+          "emis_NO": "b8afb010c6d479cf4c681960a7e4f891c86a7770c18a6a24747880fae6772f1e",
+          "emis_NO2": "16113ed919a81a48942b99ed0003789c7aebcd8f872629c719639bee9accf25c",
+          "j_jNO2": "b5be2bc54feacafa35f2dd3c26aff865c72da99cebd927127e13a0ab4f1faa63",
+          "j_jO2": "b683b5881318abbfd2a61542ed527293e34b4ba9b3c210c45aaca863a9982113",
+          "j_jO3_O": "dcd6b63dc60461787b638c831bf0bc04aca16427feb19754640515f0a1cc550b",
+          "j_jO3_O1D": "533246ebd2c2a8fa14a4778bef8ec70636dc4cb27cf3356cd0aca6fc167e868d",
+          "pressure": "c1935b2b2f81816619a8d2676853447a840cc1e3c480a5930b7e3902c35a059b",
+          "qNO": "c36874e2f9072519cc77d7c8a5f89ef4f822635a5308d0494dc9e96c9e1b0256",
+          "qNO2": "ab706b5315d6daca2afda0e42674abe0645cd66b3b3fff3be85e16a56790ce26",
+          "qO": "2b2a37282c4bc3b150018d10498c9649d333433de2c883cb9ad58568c614e9b3",
+          "qO1D": "6afffefd4cfa1560a186d161216c98e475c39d20224fe49fe94ab7b1ec399dd9",
+          "qO2": "d9dc03009037c7a6207c2b7605e9125b9e737ec051b2c73349fbd64ed763f448",
+          "qO3": "3f594dc9836acf6d17526d34e19cb4eeac719579e258329eafaab4d5cbf77ce9",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "56e2e1a2c88a393a3255d49e2cba9090bf87cd8ce99eca7c004aad22eaa99d19",
+          "rho_zz": "ab52a0ccced14b5519d467b8d57c5090ba1f4a73d14f6c904452707250e3d902",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "37bf786551860d0763544749b005f7cd0d542980bc3135088d0cf48219543b8d",
+          "u": "268b38c46414dce70db7c10e7be8d167362f06565905b0134509fadafdd57bec",
+          "w": "fa43d06c6701f1b00c50657b39d5d892b809acf1a2d1bdb7b9df900f93ada162"
+        }
+      },
+      "source_mass_comparison": {
+        "NO": {
+          "bitwise_equal": false,
+          "maximum_absolute": 3.725290298461914e-08,
+          "maximum_relative": 1.5723370288371815e-15,
+          "passed": true
+        },
+        "NO2": {
+          "bitwise_equal": false,
+          "maximum_absolute": 4.656612873077393e-10,
+          "maximum_relative": 1.7688791574418296e-16,
+          "passed": true
+        }
+      },
+      "source_mass_pass": true,
+      "timing_contract_pass": true
+    },
+    "split_second": {
+      "exact_grid_lifecycle_pass": true,
+      "expected_frame_count": 3,
+      "expected_source_mass_kg": {
+        "NO": 23691591.53381158,
+        "NO2": 2632399.059312397
+      },
+      "finite_state": {
+        "fields_checked": [
+          "emis_NO",
+          "emis_NO2",
+          "emis_NO2_layer",
+          "emis_NO_layer",
+          "j_jNO2",
+          "j_jO2",
+          "j_jO3_O",
+          "j_jO3_O1D",
+          "pressure",
+          "qNO",
+          "qNO2",
+          "qO",
+          "qO1D",
+          "qO2",
+          "qO3",
+          "qv",
+          "rho",
+          "rho_zz",
+          "surface_pressure",
+          "theta",
+          "u",
+          "w"
+        ],
+        "nonnegative_tracers_and_rates": {
+          "emis_NO": true,
+          "emis_NO2": true,
+          "emis_NO2_layer": true,
+          "emis_NO_layer": true,
+          "j_jNO2": true,
+          "j_jO2": true,
+          "j_jO3_O": true,
+          "j_jO3_O1D": true,
+          "qNO": true,
+          "qNO2": true,
+          "qO": true,
+          "qO1D": true,
+          "qO2": true,
+          "qO3": true,
+          "qv": true
+        },
+        "passed": true,
+        "positive_physical_fields": {
+          "pressure": true,
+          "rho": true,
+          "surface_pressure": true,
+          "theta": true
+        },
+        "ranges": {
+          "emis_NO": {
+            "maximum": 1.0905149112943395e-09,
+            "minimum": 0.0
+          },
+          "emis_NO2": {
+            "maximum": 1.2116832347714882e-10,
+            "minimum": 0.0
+          },
+          "emis_NO2_layer": {
+            "maximum": 1.2116832347714882e-10,
+            "minimum": 0.0
+          },
+          "emis_NO_layer": {
+            "maximum": 1.0905149112943395e-09,
+            "minimum": 0.0
+          },
+          "j_jNO2": {
+            "maximum": 0.013000453003238353,
+            "minimum": 0.0
+          },
+          "j_jO2": {
+            "maximum": 3.7133004612728856e-10,
+            "minimum": 0.0
+          },
+          "j_jO3_O": {
+            "maximum": 0.0006208407429766265,
+            "minimum": 0.0
+          },
+          "j_jO3_O1D": {
+            "maximum": 0.0010021357684480393,
+            "minimum": 0.0
+          },
+          "pressure": {
+            "maximum": 98524.44019487697,
+            "minimum": 205.59512240673462
+          },
+          "qNO": {
+            "maximum": 4.1425641769542626e-08,
+            "minimum": 0.0
+          },
+          "qNO2": {
+            "maximum": 2.2645261005645543e-08,
+            "minimum": 3.3586443745492506e-11
+          },
+          "qO": {
+            "maximum": 3.4133760228195528e-09,
+            "minimum": 0.0
+          },
+          "qO1D": {
+            "maximum": 6.8002172006924e-16,
+            "minimum": 0.0
+          },
+          "qO2": {
+            "maximum": 0.23196416974236117,
+            "minimum": 0.23195901380758693
+          },
+          "qO3": {
+            "maximum": 1.0189269912950909e-05,
+            "minimum": 4.3123372054501984e-11
+          },
+          "qv": {
+            "maximum": 0.0,
+            "minimum": 0.0
+          },
+          "rho": {
+            "maximum": 1.5138080360684987,
+            "minimum": 0.0027300435670109483
+          },
+          "rho_zz": {
+            "maximum": 0.6108861217162271,
+            "minimum": 0.004055433603530935
+          },
+          "surface_pressure": {
+            "maximum": 100000.00000000001,
+            "minimum": 99999.99999999999
+          },
+          "theta": {
+            "maximum": 1536.9995972664778,
+            "minimum": 226.70721524097087
+          },
+          "u": {
+            "maximum": 35.060502607959876,
+            "minimum": -35.063063481974
+          },
+          "w": {
+            "maximum": 0.0021097472549146973,
+            "minimum": -0.0020205017275151645
+          }
+        }
+      },
+      "frame_count_pass": true,
+      "frames": [
+        "2024-07-01_04:00:00",
+        "2024-07-01_05:00:00",
+        "2024-07-01_06:00:00"
+      ],
+      "log": {
+        "disabled_messages": 0,
+        "exact_grid_validations": 1,
+        "first_open_step_seconds": 8.246298056,
+        "masses_kg": {
+          "NO": 23691591.5338116,
+          "NO2": 2632399.0593124
+        },
+        "miem_timer_calls": 24,
+        "miem_timer_seconds": 8.44485,
+        "tuvx_initialized": 1,
+        "warm_step_calls": 23,
+        "warm_step_mean_seconds": 0.0063773977391288
+      },
+      "metadata": {
+        "artifacts": {
+          "atmosphere_model": {
+            "name": "atmosphere_model",
+            "sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+            "size_bytes": 14082536
+          },
+          "configuration": {
+            "global_cams_chapman_nox.yaml": {
+              "name": "global_cams_chapman_nox.yaml",
+              "sha256": "2b5899d0894414be97642cae3744a2433385692b7bc3b510b0f166e87e57b60e",
+              "size_bytes": 4969
+            },
+            "global_cams_nox.yaml": {
+              "name": "global_cams_nox.yaml",
+              "sha256": "7d16e7f8186eeaeb4c6600f02e24f691e4b1d6390b611e1ffe14b98e311272b3",
+              "size_bytes": 7012
+            },
+            "namelist.atmosphere": {
+              "name": "namelist.atmosphere",
+              "sha256": "022880f2c01e9412aa54074b322d07b1a6cfd7959be07a0a06cfde8179f91cf9",
+              "size_bytes": 2386
+            },
+            "stream_list.atmosphere.output": {
+              "name": "stream_list.atmosphere.output",
+              "sha256": "fa52ff9fcda419f4cbcfc1956abf421397db151fef25dcae3f942573123657f3",
+              "size_bytes": 188
+            },
+            "streams.atmosphere": {
+              "name": "streams.atmosphere",
+              "sha256": "8ccbade6948dd2e690d74024fa1fba2cdccca60f71164fae8b90ef8b2783a140",
+              "size_bytes": 1604
+            },
+            "tuvx_chapman_nox.json": {
+              "name": "tuvx_chapman_nox.json",
+              "sha256": "00fdf1598cb637e6ab8e87997a9d25703e16497eacb59bb20e0117aeda89d3d9",
+              "size_bytes": 4597
+            },
+            "tuvx_upper_atm.csv": {
+              "name": "tuvx_upper_atm.csv",
+              "sha256": "851b0ff3549bca691e0c49a8727bcdbaae001c9a34a7b1f7696f975ddd0b5954",
+              "size_bytes": 521
+            }
+          }
+        },
+        "segment": {
+          "do_restart": true,
+          "duration_seconds": 10800,
+          "start_time": "2024-07-01_03:00:00"
+        },
+        "software": {
+          "chempas_commit": "471587abcb7c1d1b5fc10803d2d2145910406732",
+          "chempas_dirty": false,
+          "chempas_untracked_paths": [
+            "*TBL",
+            "src/core_atmosphere/physics_mmm/",
+            "src/core_atmosphere/physics_noaa/"
+          ],
+          "miem_commit": "9fdf14a189262eecb677862d877ab72b06c95e21",
+          "musica_commit": "1403e3d22717bc87f3bf9d0aa591caf039c92bbc",
+          "tuvx_data_directory": "data"
+        }
+      },
+      "miem_call_count_pass": true,
+      "output": {
+        "history_bytes": 570716628,
+        "history_files": [
+          {
+            "path": "runs/stage9c/g4-20260806T162516Z-471587abcb/split_second/history.2024-07-01_04.00.00.nc",
+            "sha256": "0e6fdf8d96a01b7268b78f91df83587bc097dbb842179064c8856e8ad65d5e28",
+            "size_bytes": 190238876
+          },
+          {
+            "path": "runs/stage9c/g4-20260806T162516Z-471587abcb/split_second/history.2024-07-01_05.00.00.nc",
+            "sha256": "0aac854210ca04bbc9dada0e085d9b20b4580ed3af0ae1faef3deb17f111bd08",
+            "size_bytes": 190238876
+          },
+          {
+            "path": "runs/stage9c/g4-20260806T162516Z-471587abcb/split_second/history.2024-07-01_06.00.00.nc",
+            "sha256": "a83e375709485558943363af389a1cb7eb4e1b6a67a6a65acdbf9daeaa3d3a31",
+            "size_bytes": 190238876
+          }
+        ],
+        "restart_bytes": 756186464,
+        "restart_files": [
+          {
+            "path": "runs/stage9c/g4-20260806T162516Z-471587abcb/split_first/restart.2024-07-01_03.00.00.nc",
+            "sha256": "cfd4f7ce912b9401685f1f81e95adf295b79a8e9bdebdeb573730e811f7f89c6",
+            "size_bytes": 756186464
+          }
+        ]
+      },
+      "resource": {
+        "peak_rss_kib": 938792,
+        "wall_seconds": 243.78
+      },
+      "scientific_field_hashes": {
+        "2024-07-01_04:00:00": {
+          "emis_NO": "b68ebabf5a8290a5b7ec71b9b36a1a9ca2fb42da019cea0a9e792f1d6b271314",
+          "emis_NO2": "66d68ebe87d82d600a430f8b417422df2f4bf90b6ef843d831e7ca836551480d",
+          "j_jNO2": "bb3a6d0319d42a8e44eb301396bce1c27df8e5c36ae6e43017feb88d660cb1a4",
+          "j_jO2": "26e47dcf1996758e80bc3e2a0d14eaeaaeeceafaa964004b94f30b5b22a7aa42",
+          "j_jO3_O": "76878f366537434ac81d4c2898af5f8d8d595a4a072324a413bd96bb0d07f1ef",
+          "j_jO3_O1D": "94a59be91b7bdb97d2472bc4a71731320958f76ec5be7df159746f41e88df3f9",
+          "pressure": "0fcd3b2ce40b5b73b25640df2ae733a6276ffcdf050b9d22ac12911ff88230f8",
+          "qNO": "963308b82d5c131cc1e059631bd63342e09c8881124d3ea58ee6db7177a0da74",
+          "qNO2": "1116e8ff95c3aa8d7bd0f5a26ffc615f1acf19f156f8369a19fe99f719ceaa53",
+          "qO": "ceb74384886a1e00e3ede28dd5a6217f62d92fa2d9d4b9a6cd42f7615308bb89",
+          "qO1D": "b8b003c17a02e1a4ff9043c3461e3aabbcca9530c1a029c338e1a6bfbdfe71b2",
+          "qO2": "ef153cf4b6c1e80ee84dd9523a5cebd619d67d14bdd522521268ffa1e8932cd9",
+          "qO3": "e0531b05ed31b565998812a075c2b9cbad0de676a3239b1e5c65cffebccab422",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "bbc08900ce5c0ca29a507e037da501f2463a57702e608b5312835bd0f8472c78",
+          "rho_zz": "1c08f976564865261365a44ec2130b96765883fd852ac0312a8845a215536f44",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "0d3536f44a1970690c31a05faab01a8e3df73b3b487309bfe92c570299d5a1d2",
+          "u": "7e210d0ad4a299afcbdc9c1514fe1fe444722bb280f7bfafef1f3261b72e8bd6",
+          "w": "2be1ab4eacea08961f6757e6f958376a61da63c202a659e5e984447cb0c4a73b"
+        },
+        "2024-07-01_05:00:00": {
+          "emis_NO": "14475dcf0a742ebee75771c0ab59d277aa8288b98d93482bacea916323072750",
+          "emis_NO2": "6450713c47a4a6b019f679bec64c815331dd13a2cf02ecaf15a0ec1d9372f7fe",
+          "j_jNO2": "68621667ef410b82bf670d191e530e9dbd231911beafc1c4a155ef43ecf53f07",
+          "j_jO2": "aeb83594c81ff7355da327cab28f8d8f453db3bd246cd23c70d6d9a22821a88e",
+          "j_jO3_O": "e6330a2cbe0c6f0ce7abcc801b169334dec9f3816a60cbd8d5e23b5f137bdd66",
+          "j_jO3_O1D": "ba22c245c91c90f4e3d4f000c454efb586237ae047709503717d6dccee29f209",
+          "pressure": "686a00883cd543580510b679580629d3bfef9b9eaa9f0a7d36af7b8854283b95",
+          "qNO": "6c55a278d3325afddaa433c4e63ea3c7308637908643c98d5db61cabdcf3dbc2",
+          "qNO2": "adb8c0cb3ab352d019af8ea6586a6396d2dbcf0eefa1d9a22aef70ba50c994f1",
+          "qO": "3a5770bd27c246dfb8d6cc90ddd62ae0045b0dcb19f47f09807bc22978da4e09",
+          "qO1D": "8cee43263d84fa295622468fdc509b58b3fe21447c682a69e151ca0a9781ab67",
+          "qO2": "2d2ce88822ceffeaf9b8cf9d9fa3268e967646f505d250adaec57526b2619b2f",
+          "qO3": "d4ff000001e3758f39669a455dcac9b40edde771090a34cec8d1359d92b91964",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "43045128421ff055258f74983f8b1b3dd9f067a6683c77b0aa8dd935c4af47f4",
+          "rho_zz": "f8767b2291a9d7d06aea5f1c2924164178a847f98c4de40789f52afb56526a0c",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "17a344275ccb4da87fb02585d2e1f80af59274e973910ddc31cbd4571a0afb2e",
+          "u": "ea669e9b59c26b16f0c86228383565946eed84fe05eff854dae5fda72f4b7bb6",
+          "w": "f58dd24ae6f167875da97890ab812ec84a70ea6b8d3c6e4b6aa0728050be8f6c"
+        },
+        "2024-07-01_06:00:00": {
+          "emis_NO": "e7f7810beba5a666bca50c67108dac23c37ad03943d7a6c4dd05c60705a98e8a",
+          "emis_NO2": "db2ebe4acdf1c3bb024c295efa851a52efb5e93ffbbe9e8579acc902d7267e5a",
+          "j_jNO2": "c4efc142615078c96cbb927445cefc7c15ab7817a34b86c2766c7faa4e21122b",
+          "j_jO2": "69167f78e22caa0f94d6fdc038b840730d2d14b7d8e33267df02d0e0fb296a16",
+          "j_jO3_O": "952642c161b484d7d089cec6087e03ad42006d6576083c699e98c51b823a7138",
+          "j_jO3_O1D": "778425245081e9bdbfd9aca95a68e35f8a94054f002c8d87b4851b59e7a7619f",
+          "pressure": "6d736dc75b92eadc168c44c7d52fe451dd878722114c4502d27cc321814a570c",
+          "qNO": "cb592303d2b954ff2676652f7802f33565744e2a7e5375c420ea50311f63e7ee",
+          "qNO2": "8d1fa5f81f505e22bee40ede97bbd256165e1899ead48b9959c32e1d459dd122",
+          "qO": "2495209d71afbbba656f7e47343a3ef52efccb4d98b797125ef4b69602f98158",
+          "qO1D": "0498e79ed09edf862425ad82dbcc04a7bd40582e30680f61d530b47ab3ea5c40",
+          "qO2": "b171cfa5720a59f8a8c581ff5bc4c147d9204b31a7193caf6c56406c9811e76a",
+          "qO3": "c15d44979f4b3ac720eefb5a63806764268f7b741330b110f8e11bcedc37213d",
+          "rdzw": "b1a8d4d3a986244ee2ea6626222234df766a741e9a36ea12e54457c8ab957f6e",
+          "rho": "aeb68bbe80585804a06e25829d307070c694263440d4647400424f4c8b0371d7",
+          "rho_zz": "acf67bf6b9e1b2e0ad27f936f1ac5328ed383ac9ab5f4fd78894566e8c9d9ed4",
+          "surface_pressure": "8584391be69ffbab59a8385124e8b32e8346120ed9cb671a2557a10a1e9414d4",
+          "theta": "07cae67624fc9432d8ee02d7303527eb6cc959e58b91aa78bac65f0c49c9d9bd",
+          "u": "c483fa24235fcc8d5b12c3403433893009840cfdb38d35c936078bb1795cb2d7",
+          "w": "a1c3b869d6b0850a7fe649b325308c46392db56daa7bdb4382ebf2e54655fe62"
+        }
+      },
+      "source_mass_comparison": {
+        "NO": {
+          "bitwise_equal": false,
+          "maximum_absolute": 1.862645149230957e-08,
+          "maximum_relative": 7.862051591479927e-16,
+          "passed": true
+        },
+        "NO2": {
+          "bitwise_equal": false,
+          "maximum_absolute": 2.7939677238464355e-09,
+          "maximum_relative": 1.0613769648497905e-15,
+          "passed": true
+        }
+      },
+      "source_mass_pass": true,
+      "timing_contract_pass": true
+    }
+  },
+  "scenario": {
+    "description": "Six-hour CAMS trajectory with repeated TUV-x/MIEM cycles and restart.",
+    "name": "g4_science_six_hour",
+    "resolved": {
+      "chemistry_interval_seconds": 0,
+      "chemistry_reference_solve": false,
+      "chemistry_substeps": 1,
+      "description": "Six-hour CAMS trajectory with repeated TUV-x/MIEM cycles and restart.",
+      "diagnostic_categories": [],
+      "diagnostic_sectors": [],
+      "duration_seconds": 21600,
+      "expected_assertions": [
+        "exact_grid_open",
+        "all_frame_interpolation",
+        "diagnostic_source_closure",
+        "surface_layer_closure",
+        "restart_equivalence",
+        "repeated_photolysis_cycles",
+        "no_source_budget_drift",
+        "stable_resources",
+        "reactive_noy_budget",
+        "finite_state"
+      ],
+      "id": "G4",
+      "initial_condition_id": "mpas-x1.40962-jw-static-aligned-chapman-nox-state",
+      "inventory_kind": "science",
+      "layered_diagnostics": true,
+      "lightning_enabled": false,
+      "max_diagnostic_fields": 256,
+      "micm_config": "micm_configs/global_cams_chapman_nox.yaml",
+      "micm_relative_tolerance": 1e-15,
+      "miem_enabled": true,
+      "model_dt_seconds": 450,
+      "mpi_ranks": 8,
+      "output_interval_seconds": 3600,
+      "partition_id": "mpas-x1.40962-eight-rank-partition",
+      "restart_segment_seconds": 10800,
+      "science_inventory_id": "cams-glob-ant-v6.2-x1.40962-miem-inventory",
+      "start_time": "2024-07-01_00:00:00",
+      "tolerances": {
+        "flux_absolute_kg_m2_s": 1e-24,
+        "flux_relative": 2e-13,
+        "noy_budget_absolute_mol": 0.001,
+        "noy_budget_relative": 5e-05,
+        "restart_absolute": 1e-20,
+        "restart_relative": 5e-11,
+        "solver_calibration_minimum_wall_speedup": 10.0,
+        "solver_calibration_nitrogen_burden_relative": 1e-06,
+        "solver_calibration_nitrogen_maximum_absolute_kg_kg": 1e-14,
+        "solver_calibration_noy_burden_relative": 1e-12,
+        "solver_calibration_other_chemistry_maximum_absolute_kg_kg": 1e-12,
+        "source_mass_absolute_kg": 1e-08,
+        "source_mass_relative": 2e-12
+      },
+      "tuvx_config": "micm_configs/tuvx_chapman_nox.json",
+      "tuvx_extension": "test_cases/chapman_nox_global/tuvx_upper_atm.csv",
+      "tuvx_update_interval_seconds": 0
+    }
+  },
+  "schema_version": "chempas-global-miem-throughput-report-v1",
+  "telemetry": {
+    "available_disk_bytes_after_run": 262402760704,
+    "run_count": 3,
+    "total_history_bytes": 2663344132
+  }
+}

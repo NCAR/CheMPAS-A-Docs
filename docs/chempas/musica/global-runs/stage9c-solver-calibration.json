@@ -1,0 +1,222 @@
+{
+  "assertions": [
+    {
+      "detail": "tight-reference and practical-tolerance G0 reports pass",
+      "name": "passing_g0_inputs",
+      "passed": true
+    },
+    {
+      "detail": "reference and candidate use one identical atmosphere_model SHA-256",
+      "name": "same_executable",
+      "passed": true
+    },
+    {
+      "detail": "both zero-source MIEM controls are bitwise and close reactive NOy",
+      "name": "internal_controls",
+      "passed": true
+    },
+    {
+      "detail": "meteorology, moisture, and photolysis fields are bitwise identical",
+      "name": "exact_nonchemistry",
+      "passed": true
+    },
+    {
+      "detail": "NO and NO2 maximum absolute mixing-ratio differences meet the declared bound",
+      "name": "bounded_nitrogen_state",
+      "passed": true
+    },
+    {
+      "detail": "other Chapman species meet the declared absolute-difference bound",
+      "name": "bounded_other_chemistry_state",
+      "passed": true
+    },
+    {
+      "detail": "NO, NO2, and NOy global burdens meet their declared relative bounds",
+      "name": "bounded_nitrogen_burdens",
+      "passed": true
+    },
+    {
+      "detail": "maximum G0 wall-time speedup=19.387",
+      "name": "minimum_speedup",
+      "passed": true
+    }
+  ],
+  "final_state_comparison": {
+    "exact_fields": {
+      "j_jNO2": {
+        "bitwise_equal": true,
+        "maximum_absolute": 0.0,
+        "maximum_relative": 0.0
+      },
+      "j_jO2": {
+        "bitwise_equal": true,
+        "maximum_absolute": 0.0,
+        "maximum_relative": 0.0
+      },
+      "j_jO3_O": {
+        "bitwise_equal": true,
+        "maximum_absolute": 0.0,
+        "maximum_relative": 0.0
+      },
+      "j_jO3_O1D": {
+        "bitwise_equal": true,
+        "maximum_absolute": 0.0,
+        "maximum_relative": 0.0
+      },
+      "pressure": {
+        "bitwise_equal": true,
+        "maximum_absolute": 0.0,
+        "maximum_relative": 0.0
+      },
+      "qv": {
+        "bitwise_equal": true,
+        "maximum_absolute": 0.0,
+        "maximum_relative": 0.0
+      },
+      "rho": {
+        "bitwise_equal": true,
+        "maximum_absolute": 0.0,
+        "maximum_relative": 0.0
+      },
+      "rho_zz": {
+        "bitwise_equal": true,
+        "maximum_absolute": 0.0,
+        "maximum_relative": 0.0
+      },
+      "surface_pressure": {
+        "bitwise_equal": true,
+        "maximum_absolute": 0.0,
+        "maximum_relative": 0.0
+      },
+      "theta": {
+        "bitwise_equal": true,
+        "maximum_absolute": 0.0,
+        "maximum_relative": 0.0
+      },
+      "u": {
+        "bitwise_equal": true,
+        "maximum_absolute": 0.0,
+        "maximum_relative": 0.0
+      },
+      "w": {
+        "bitwise_equal": true,
+        "maximum_absolute": 0.0,
+        "maximum_relative": 0.0
+      }
+    },
+    "nitrogen_fields": {
+      "qNO": {
+        "bitwise_equal": false,
+        "maximum_absolute": 2.773142351338553e-15,
+        "maximum_relative": 0.0028353185031166584
+      },
+      "qNO2": {
+        "bitwise_equal": false,
+        "maximum_absolute": 4.2521516092158e-15,
+        "maximum_relative": 7.121477995901262e-05
+      }
+    },
+    "other_chemistry_fields": {
+      "qO": {
+        "bitwise_equal": false,
+        "maximum_absolute": 2.3166432222803933e-17,
+        "maximum_relative": 4.285802982705945e+222
+      },
+      "qO1D": {
+        "bitwise_equal": false,
+        "maximum_absolute": 5.104223907467141e-25,
+        "maximum_relative": 9.751425227617611e-08
+      },
+      "qO2": {
+        "bitwise_equal": false,
+        "maximum_absolute": 9.323097849289752e-14,
+        "maximum_relative": 4.0191985814357327e-13
+      },
+      "qO3": {
+        "bitwise_equal": false,
+        "maximum_absolute": 3.909757812523771e-15,
+        "maximum_relative": 9.804707491064884e-08
+      }
+    },
+    "time": "2024-07-01_00:05:00"
+  },
+  "global_nitrogen_burdens": {
+    "NO": {
+      "candidate_moles": 68490555342.7266,
+      "reference_moles": 68490586265.5128,
+      "relative_difference": 4.514895825478962e-07
+    },
+    "NO2": {
+      "candidate_moles": 290821751934.97626,
+      "reference_moles": 290821721012.19006,
+      "relative_difference": 1.0632901176095956e-07
+    },
+    "NOy": {
+      "candidate_moles": 359312307277.7029,
+      "reference_moles": 359312307277.7029,
+      "relative_difference": 0.0
+    }
+  },
+  "inputs": {
+    "candidate_micm_configuration": {
+      "global_cams_chapman_nox.yaml": "2b5899d0894414be97642cae3744a2433385692b7bc3b510b0f166e87e57b60e"
+    },
+    "candidate_report": {
+      "path": "repository:docs/chempas/musica/global-runs/stage9c-g0-report.json",
+      "sha256": "e54fa43b6b337dca307f32f9338202634a6d3d32ed93e5c352aa0464fc9adb5e",
+      "size_bytes": 36065
+    },
+    "executable_sha256": "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2",
+    "reference_micm_configuration": {
+      "global_cams_chapman_nox.yaml": "0507f572a77fa628871538f70c5bccbdbc090eba5cebb627ac6e418b393a0141"
+    },
+    "reference_report": {
+      "path": "repository:docs/chempas/musica/global-runs/stage9c-g0-reference-report.json",
+      "sha256": "6f2e59ca8c4fa301e56385c9b4629296c55837cb7c73e88eeb6857aa30c2e12e",
+      "size_bytes": 34927
+    },
+    "scenario_manifest": {
+      "path": "repository:test_cases/global_miem/scenarios.yaml",
+      "sha256": "2202f664d572fbc7b82c5ff6675f30e2585a97c904908c61a9fe449a4aa28028",
+      "size_bytes": 5566
+    }
+  },
+  "overall_pass": true,
+  "performance": {
+    "candidate_maximum_g0_wall_seconds": 15.44,
+    "reference_maximum_g0_wall_seconds": 299.34000000000003,
+    "wall_speedup": 19.387305699481868
+  },
+  "runtime_tolerances": {
+    "candidate": {
+      "absolute_mol_m3": {
+        "NO": 1e-14,
+        "NO2": 1e-14,
+        "O": 1e-10,
+        "O1D": 1e-10,
+        "O2": 0.001,
+        "O3": 1e-10
+      },
+      "relative": 1e-15
+    },
+    "reference": {
+      "absolute_mol_m3": {
+        "NO": 1e-18,
+        "NO2": 1e-18,
+        "O": 1e-10,
+        "O1D": 1e-10,
+        "O2": 0.001,
+        "O3": 1e-10
+      },
+      "relative": 1e-15
+    }
+  },
+  "schema_version": "chempas-global-miem-solver-calibration-v1",
+  "thresholds": {
+    "minimum_wall_speedup": 10.0,
+    "nitrogen_burden_relative": 1e-06,
+    "nitrogen_maximum_absolute_kg_kg": 1e-14,
+    "noy_burden_relative": 1e-12,
+    "other_chemistry_maximum_absolute_kg_kg": 1e-12
+  }
+}

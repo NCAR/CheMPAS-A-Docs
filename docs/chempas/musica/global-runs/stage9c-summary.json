@@ -1,0 +1,106 @@
+{
+  "assertions": [
+    {
+      "detail": "G0-G4 reports and every contained assertion pass",
+      "name": "all_gates_pass",
+      "passed": true
+    },
+    {
+      "detail": "all run variants use one atmosphere_model SHA-256",
+      "name": "single_executable",
+      "passed": true
+    },
+    {
+      "detail": "all run variants use one pinned MUSICA and MIEM commit",
+      "name": "single_dependency_stack",
+      "passed": true
+    },
+    {
+      "detail": "all gates use x1.40962, eight ranks, one mechanism/TUV-x configuration, per-step photolysis, and no lightning",
+      "name": "fixed_global_contract",
+      "passed": true
+    },
+    {
+      "detail": "all gates resolve inputs through one external-manifest SHA-256",
+      "name": "single_external_manifest",
+      "passed": true
+    },
+    {
+      "detail": "G3 and G4 use one science-inventory SHA-256",
+      "name": "single_science_inventory",
+      "passed": true
+    },
+    {
+      "detail": "every gate passes its mechanism-aware reactive NOy budget",
+      "name": "reactive_noy_budgets",
+      "passed": true
+    }
+  ],
+  "common_stack": {
+    "atmosphere_model_sha256": [
+      "ff7166f119c407a18108ce7b6171f7a53a44ef3e6cfc75f6f31550d6a3d131c2"
+    ],
+    "external_manifest_sha256": [
+      "b0e49f3bf33ba123f5dbdd85ab554e082b60fc7e9b9f5fb36361085b2c0239fd"
+    ],
+    "lightning_enabled": false,
+    "mesh": "x1.40962",
+    "miem_commits": [
+      "9fdf14a189262eecb677862d877ab72b06c95e21"
+    ],
+    "mpi_ranks": 8,
+    "musica_commits": [
+      "1403e3d22717bc87f3bf9d0aa591caf039c92bbc"
+    ],
+    "science_inventory_sha256": [
+      "d213866000e8a633954d0c730ba5524f729f26a97d02cc5a13d8b405aa6c8e9c"
+    ],
+    "tuvx_update_interval_seconds": 0,
+    "vertical_levels": 26
+  },
+  "overall_pass": true,
+  "reports": {
+    "G0": {
+      "overall_pass": true,
+      "path": "docs/chempas/musica/global-runs/stage9c-g0-report.json",
+      "run_count": 2,
+      "sha256": "e54fa43b6b337dca307f32f9338202634a6d3d32ed93e5c352aa0464fc9adb5e",
+      "size_bytes": 36065
+    },
+    "G1": {
+      "overall_pass": true,
+      "path": "docs/chempas/musica/global-runs/stage9c-g1-report.json",
+      "run_count": 1,
+      "sha256": "47f59a33adc3d472971123fb31ad474f306712f8826371feee92f47dcceeabad",
+      "size_bytes": 39032
+    },
+    "G2": {
+      "overall_pass": true,
+      "path": "docs/chempas/musica/global-runs/stage9c-g2-report.json",
+      "run_count": 3,
+      "sha256": "4a2440b6af9b448c4f2b0f431d6d4908c7f62965fde7eab6c292e6caf3be9be9",
+      "size_bytes": 91542
+    },
+    "G3": {
+      "overall_pass": true,
+      "path": "docs/chempas/musica/global-runs/stage9c-g3-report.json",
+      "run_count": 1,
+      "sha256": "427a72f294e8c536855f81ff219e67a3b9f1f322591acdeaa11ef49243566de0",
+      "size_bytes": 114945
+    },
+    "G4": {
+      "overall_pass": true,
+      "path": "docs/chempas/musica/global-runs/stage9c-g4-report.json",
+      "run_count": 3,
+      "sha256": "64bcc9b3785eb6bd9bb3034677501bfba7759634070f8d6ddfd021d2e75faf74",
+      "size_bytes": 95766
+    }
+  },
+  "schema_version": "chempas-global-miem-stage9c-summary-v1",
+  "telemetry": {
+    "maximum_peak_rss_kib": 1081224,
+    "run_count": 10,
+    "total_history_bytes": 8438156352,
+    "total_wall_seconds": 1254.13
+  }
+}
