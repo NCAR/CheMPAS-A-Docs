@@ -47,7 +47,7 @@ into these phases:
 
 Every routine that touches MICM is wrapped in `#ifdef MPAS_USE_MUSICA`, so
 the entire chemistry pipeline compiles out without the `MUSICA=true` build
-flag (see [Section 3.6](03-building.md#36-building-with-chemistry-musica-support)).
+flag (see [Section 3.10](03-building.md#310-build-chempas-a-and-verify-the-musica-link)).
 
 ## 8.2 Initialization
 

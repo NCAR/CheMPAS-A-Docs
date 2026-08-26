@@ -1354,7 +1354,7 @@ The `&chemistry`, `&photolysis`, and `&lnox` namelist records configure
 the MUSICA chemistry coupling (MICM solver, TUV-x photolysis, lightning
 NOx, solar geometry). These records are CheMPAS-A specific (not part of
 upstream MPAS) and are read only in builds compiled with `MUSICA=true` (see
-[Section 3.6](03-building.md#36-building-with-chemistry-musica-support)).
+[Section 3.10](03-building.md#310-build-chempas-a-and-verify-the-musica-link)).
 For context, see [Chapter 7](07-runtime-tracers.md) (runtime tracer
 allocation) and [Chapter 8](08-chemistry-coupling.md) (chemistry
 coupling).

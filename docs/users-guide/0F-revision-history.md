@@ -1,5 +1,11 @@
 # Appendix F: Revision History
 
+## 26 August 2026
+
+- Add complete Ubuntu, macOS LLVM/flang, and Derecho build procedures.
+- Document construction, metadata checks, and MPAS link verification for the
+  revision-pinned MUSICA/MICM/MIEM/TUV-x closure.
+
 ## 25 August 2026
 
 - Retarget the User's Guide to the public CheMPAS-A MVP tag and wiki.

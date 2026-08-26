@@ -11,7 +11,7 @@ no Fortran source edits, no Registry edits, no rebuild.
 This chapter describes how to select a chemistry mechanism, what the runtime
 allocation does at startup, and the constraints that come with the dynamic
 tracer pool. The features described here are only active in builds compiled
-with MUSICA support; see [Section 3.6](03-building.md#36-building-with-chemistry-musica-support)
+with MUSICA support; see [Section 3.10](03-building.md#310-build-chempas-a-and-verify-the-musica-link)
 for build instructions.
 
 ## 7.1 Overview

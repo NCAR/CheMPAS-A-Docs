@@ -162,76 +162,373 @@ make gfortran CORE=atmosphere PRECISION=double
 
 Regardless of which precision the CheMPAS-A `init_atmosphere` and `atmosphere` cores were compiled with, either single- or double-precision input files may be used. In general, the MPAS infrastructure should correctly detect the precision of input files, but one may also explicitly specify the precision of files in an input stream by adding the `precision` attribute to the stream definition as described in [Section 5.2](05-configuring-io.md#52-optional-stream-attributes).
 
-## 3.5 Validated MVP Platform
+## 3.5 Documented Build Environments
 
-The public MVP validates the GNU/Linux path with GCC/gfortran. The top-level
-Makefile retains other compiler targets, including `llvm`, but macOS validation
-is deferred and is not part of the release-candidate support claim.
+The build is organized around three environments. The Ubuntu toolchain is the
+MVP release-qualification environment. The macOS and Derecho recipes preserve
+the same dependency pins and Makefile contract while selecting their native
+compiler stacks.
 
-Set the dependency prefixes in the shell that invokes `make`:
+| Environment | Make target | Compiler family | Dependency source |
+|---|---|---|---|
+| Ubuntu 24.04 | `gfortran` | GCC/gfortran with Open MPI | conda-forge plus PIO from source |
+| macOS | `llvm` | Apple clang/clang++ and Homebrew LLVM flang | Homebrew plus flang-built Fortran libraries |
+| Derecho CPU | `cray` | Cray `cc`, `CC`, and `ftn` wrappers | `ncarenv` I/O modules plus private PIO and MUSICA installs |
 
-```bash
-export NETCDF=/path/to/netcdf
-export NETCDFF=/path/to/netcdf-fortran
-export PNETCDF=/path/to/pnetcdf
-export PIO=/path/to/pio
-```
+Never reuse `.mod` or object files between these environments. In particular,
+gfortran, flang, and Cray Fortran module files are mutually incompatible. Use a
+different install and build directory for each compiler family, and run
+`make clean CORE=<core>` before changing target or build options.
 
-`NETCDFF` may equal `NETCDF` when the C and Fortran libraries share one
-prefix. The validated Ubuntu build used GNU Fortran 15.2.0, Open MPI 5.0.10,
-NetCDF-C 4.10.1, NetCDF-Fortran 4.6.3, PnetCDF 1.14.1, and PIO 2.6.9.
-Other compatible versions may work.
-
-The public wiki's
-[Building](https://github.com/NCAR/CheMPAS-A/wiki/Building) page gives the
-concise, release-specific dependency and build recipe.
-
-## 3.6 Building with Chemistry (MUSICA) Support
+## 3.6 Build the Pinned MUSICA Dependency
 
 Runtime species discovery, MUSICA/MICM coupling, MIEM offline emissions, and
-TUV-x photolysis require MUSICA-Fortran 0.16.5 at source revision
-`1403e3d22717bc87f3bf9d0aa591caf039c92bbc`, built with MIEM and TUV-x enabled.
-The CheMPAS-A Makefile verifies the MUSICA version, MUSICA revision, MIEM
-revision, and enabled-feature metadata while parsing the build.
+TUV-x photolysis require the exact source closure below. A matching version
+number alone is not sufficient.
 
-Put the pinned package first in `PKG_CONFIG_PATH`:
+| Component | Required revision |
+|---|---|
+| MUSICA-Fortran | `1403e3d22717bc87f3bf9d0aa591caf039c92bbc` (`0.16.5`) |
+| MICM | `bb57684a2047f0e58f30b199366294af879e8597` |
+| MIEM | `9fdf14a189262eecb677862d877ab72b06c95e21` |
+| MechanismConfiguration | `82c159ae6d74934318ffd6c405a45c2159065b12` |
+| TUV-x | `bbf7dd9a144fa0f0294b3779f3f993818638e20c` |
+
+Obtain the MUSICA source once per platform:
 
 ```bash
-export MUSICA_PREFIX=/path/to/musica-install
+export MUSICA_REV=1403e3d22717bc87f3bf9d0aa591caf039c92bbc
+
+git clone --branch feature/miem-scalability-fortran --single-branch \
+  https://github.com/NCAR/MUSICA.git MUSICA-CheMPAS-A
+git -C MUSICA-CheMPAS-A checkout --detach "$MUSICA_REV"
+test "$(git -C MUSICA-CheMPAS-A rev-parse HEAD)" = "$MUSICA_REV"
+```
+
+Each platform section below defines `MUSICA_PREFIX` and configures this source
+with the appropriate compilers. All three builds use static libraries, enable
+the Fortran interface, MICM, MIEM, and TUV-x, and disable CARMA, MIAM, and
+`fmt`. `FETCHCONTENT_TRY_FIND_PACKAGE_MODE=NEVER` ensures the declared
+component revisions are fetched instead of silently reusing same-named system
+packages.
+
+After installation, put the pinned package first and verify the metadata before
+building CheMPAS-A:
+
+```bash
 export PKG_CONFIG_PATH="${MUSICA_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
 
-pkg-config --modversion musica-fortran
-pkg-config --variable=source_revision musica-fortran
-pkg-config --variable=miem_revision musica-fortran
-pkg-config --variable=miem_enabled musica-fortran
-pkg-config --variable=tuvx_enabled musica-fortran
+test "$(pkg-config --modversion musica-fortran)" = 0.16.5
+test "$(pkg-config --variable=source_revision musica-fortran)" = "$MUSICA_REV"
+test "$(pkg-config --variable=micm_revision musica-fortran)" = \
+  bb57684a2047f0e58f30b199366294af879e8597
+test "$(pkg-config --variable=miem_revision musica-fortran)" = \
+  9fdf14a189262eecb677862d877ab72b06c95e21
+test "$(pkg-config --variable=mechanism_configuration_revision musica-fortran)" = \
+  82c159ae6d74934318ffd6c405a45c2159065b12
+test "$(pkg-config --variable=tuvx_revision musica-fortran)" = \
+  bbf7dd9a144fa0f0294b3779f3f993818638e20c
+test "$(pkg-config --variable=miem_enabled musica-fortran)" = ON
+test "$(pkg-config --variable=tuvx_enabled musica-fortran)" = ON
+pkg-config --variable=fortran_compiler_id musica-fortran
+pkg-config --variable=fortran_compiler_version musica-fortran
+pkg-config --libs musica-fortran
 ```
 
-Build the initialization core first. Then clean the shared framework before
-building the chemistry-enabled atmosphere core:
+The reported Fortran compiler must match the compiler that will build
+CheMPAS-A. The library list is the complete static link closure; do not append a
+hard-coded `-lstdc++` or `-lc++`.
+
+## 3.7 Ubuntu with GCC and Open MPI
+
+The qualified MVP build used GNU Fortran 15.2.0, Open MPI 5.0.10, NetCDF-C
+4.10.1, NetCDF-Fortran 4.6.3, PnetCDF 1.14.1, and PIO 2.6.9. Create one
+conda environment so the compiler, MPI wrappers, and I/O libraries share an
+ABI:
 
 ```bash
-make clean CORE=init_atmosphere
-make -j8 gfortran CORE=init_atmosphere OPENMP=false \
-  PIO="$PIO" NETCDF="$NETCDF" NETCDFF="$NETCDFF" PNETCDF="$PNETCDF" \
-  PRECISION=double
+conda create -n chempas-a -c conda-forge \
+  gcc=15.2 gxx=15.2 gfortran=15.2 openmpi=5.0.10 \
+  libnetcdf=4.10.1 netcdf-fortran=4.6.3 libpnetcdf=1.14.1 \
+  cmake pkg-config make git
+conda activate chempas-a
 
-make clean CORE=atmosphere
-make -j8 gfortran CORE=atmosphere OPENMP=false \
-  PIO="$PIO" NETCDF="$NETCDF" NETCDFF="$NETCDFF" PNETCDF="$PNETCDF" \
-  PRECISION=double MUSICA=true
+export CHEMPAS_DEPS="$HOME/software/chempas-a/ubuntu-gnu"
+export NETCDF="$CONDA_PREFIX"
+export NETCDFF="$CONDA_PREFIX"
+export PNETCDF="$CONDA_PREFIX"
+export PIO="$CHEMPAS_DEPS/pio-2.6.9"
+export MUSICA_PREFIX="$CHEMPAS_DEPS/musica-$MUSICA_REV"
+export CHEMPAS_MAKE_TARGET=gfortran
 ```
 
-Without `MUSICA=true`, the chemistry hooks compile out and the chemistry
-namelist records are ignored at runtime. MUSICA-Fortran and CheMPAS-A must use
-the same Fortran compiler family and compatible NetCDF libraries; compiler
-module files are not portable across toolchains.
+Build PIO with the same wrappers:
+
+```bash
+git clone --depth 1 --branch pio2_6_9 \
+  https://github.com/NCAR/ParallelIO.git ParallelIO-2.6.9
+cmake -S ParallelIO-2.6.9 -B ParallelIO-2.6.9/build-chempas \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_INSTALL_PREFIX="$PIO" \
+  -DCMAKE_C_COMPILER=mpicc \
+  -DCMAKE_Fortran_COMPILER=mpifort \
+  -DPIO_ENABLE_TIMING=OFF \
+  -DPIO_ENABLE_TESTS=OFF
+cmake --build ParallelIO-2.6.9/build-chempas --parallel 8
+cmake --install ParallelIO-2.6.9/build-chempas
+```
+
+Configure and install MUSICA:
+
+```bash
+cmake -S MUSICA-CheMPAS-A -B MUSICA-CheMPAS-A/build-ubuntu \
+  -DFETCHCONTENT_TRY_FIND_PACKAGE_MODE=NEVER \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_INSTALL_PREFIX="$MUSICA_PREFIX" \
+  -DCMAKE_C_COMPILER=mpicc \
+  -DCMAKE_CXX_COMPILER=mpicxx \
+  -DCMAKE_Fortran_COMPILER=mpifort \
+  -DBUILD_SHARED_LIBS=OFF \
+  -DBUILD_TESTING=OFF \
+  -DMUSICA_BUILD_FORTRAN_INTERFACE=ON \
+  -DMUSICA_ENABLE_MPI=ON \
+  -DMUSICA_ENABLE_MICM=ON \
+  -DMUSICA_ENABLE_MIEM=ON \
+  -DMUSICA_ENABLE_TUVX=ON \
+  -DMUSICA_ENABLE_CARMA=OFF \
+  -DMUSICA_ENABLE_MIAM=OFF \
+  -DMUSICA_USE_FMT=OFF
+cmake --build MUSICA-CheMPAS-A/build-ubuntu --parallel 8
+cmake --install MUSICA-CheMPAS-A/build-ubuntu
+```
+
+## 3.8 macOS with LLVM flang
+
+Install the C/C++ compilers, flang, MPI, NetCDF-C, and build tools:
+
+```bash
+brew install llvm flang open-mpi netcdf cmake pkg-config autoconf automake libtool
+
+export CHEMPAS_DEPS="$HOME/software/chempas-a/macos-llvm"
+export NETCDF="$(brew --prefix netcdf)"
+export NETCDFF="$CHEMPAS_DEPS/netcdf-fortran-4.6.2"
+export PNETCDF="$CHEMPAS_DEPS/pnetcdf-1.14.1"
+export PIO="$CHEMPAS_DEPS/pio-2.6.9"
+export MUSICA_PREFIX="$CHEMPAS_DEPS/musica-$MUSICA_REV"
+export CHEMPAS_MAKE_TARGET=llvm
+export OMPI_CC=clang
+export OMPI_CXX=clang++
+export OMPI_FC=flang
+```
+
+Homebrew's Open MPI and NetCDF-Fortran modules are normally produced by
+gfortran. They cannot be consumed as Fortran modules by flang. Build a static
+NetCDF-Fortran 4.6.2 with flang against Homebrew NetCDF-C:
+
+```bash
+curl -L https://github.com/Unidata/netcdf-fortran/archive/refs/tags/v4.6.2.tar.gz \
+  -o netcdf-fortran-4.6.2.tar.gz
+tar -xf netcdf-fortran-4.6.2.tar.gz
+mkdir -p netcdf-fortran-build
+cd netcdf-fortran-build
+CC=clang FC=flang \
+CPPFLAGS="-I$NETCDF/include" LDFLAGS="-L$NETCDF/lib" \
+PKG_CONFIG_PATH="$NETCDF/lib/pkgconfig" \
+  ../netcdf-fortran-4.6.2/configure \
+    --prefix="$NETCDFF" --disable-shared --enable-static
+make -j8
+make install
+cd ..
+```
+
+Build PnetCDF without its gfortran-dependent Fortran interface. CheMPAS-A uses
+PnetCDF through PIO's C interface on this platform:
+
+```bash
+curl -L https://parallel-netcdf.github.io/Release/pnetcdf-1.14.1.tar.gz \
+  -o pnetcdf-1.14.1.tar.gz
+tar -xf pnetcdf-1.14.1.tar.gz
+cd pnetcdf-1.14.1
+CC=clang MPICC=mpicc ./configure --prefix="$PNETCDF" \
+  --disable-cxx --disable-fortran --disable-shared
+make -j8
+make install
+cd ..
+
+export PATH="$PNETCDF/bin:$PATH"
+export PKG_CONFIG_PATH="$NETCDFF/lib/pkgconfig:$NETCDF/lib/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
+test "$(pnetcdf-config --prefix)" = "$PNETCDF"
+test "$(pkg-config --modversion netcdf-fortran)" = 4.6.2
+```
+
+Build PIO through the Open MPI wrappers selected by `OMPI_CC=clang` and
+`OMPI_FC=flang`. PIO detects LLVM flang and uses `mpif.h` instead of the
+incompatible Homebrew `mpi.mod`:
+
+```bash
+git clone --depth 1 --branch pio2_6_9 \
+  https://github.com/NCAR/ParallelIO.git ParallelIO-2.6.9
+cmake -S ParallelIO-2.6.9 -B ParallelIO-2.6.9/build-chempas-llvm \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_INSTALL_PREFIX="$PIO" \
+  -DCMAKE_C_COMPILER=mpicc \
+  -DCMAKE_Fortran_COMPILER=mpifort \
+  -DPIO_ENABLE_TIMING=OFF \
+  -DPIO_ENABLE_TESTS=OFF
+cmake --build ParallelIO-2.6.9/build-chempas-llvm --parallel 8
+cmake --install ParallelIO-2.6.9/build-chempas-llvm
+```
+
+Put the flang-built NetCDF-Fortran metadata before Homebrew paths, then build
+MUSICA with direct compilers. MUSICA is rank-local in CheMPAS-A on macOS, so
+its own MPI option is disabled; the MPAS executable itself remains MPI-enabled.
+
+```bash
+cmake -S MUSICA-CheMPAS-A -B MUSICA-CheMPAS-A/build-macos-llvm \
+  -DFETCHCONTENT_TRY_FIND_PACKAGE_MODE=NEVER \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_INSTALL_PREFIX="$MUSICA_PREFIX" \
+  -DCMAKE_C_COMPILER=clang \
+  -DCMAKE_CXX_COMPILER=clang++ \
+  -DCMAKE_Fortran_COMPILER=flang \
+  -DBUILD_SHARED_LIBS=OFF \
+  -DBUILD_TESTING=OFF \
+  -DMUSICA_BUILD_FORTRAN_INTERFACE=ON \
+  -DMUSICA_ENABLE_MPI=OFF \
+  -DMUSICA_ENABLE_MICM=ON \
+  -DMUSICA_ENABLE_MIEM=ON \
+  -DMUSICA_ENABLE_TUVX=ON \
+  -DMUSICA_ENABLE_CARMA=OFF \
+  -DMUSICA_ENABLE_MIAM=OFF \
+  -DMUSICA_USE_FMT=OFF
+cmake --build MUSICA-CheMPAS-A/build-macos-llvm --parallel 8
+cmake --install MUSICA-CheMPAS-A/build-macos-llvm
+```
+
+## 3.9 Derecho with the Cray Programming Environment
+
+Build on a compute node, not a shared login node. This recipe pins
+[`ncarenv/25.10`](https://arc.ucar.edu/articles/1006), the NSF NCAR default
+stack since 3 March 2026; using the named stack makes the compiler-dependent
+NetCDF, PnetCDF, and PIO modules resolve together. Start an
+[interactive development job](https://ncar-hpc-docs.readthedocs.io/en/latest/pbs/),
+replacing `YOUR_PROJECT_CODE`:
+
+```bash
+export PROJECT_CODE=YOUR_PROJECT_CODE
+qinteractive -A "$PROJECT_CODE" -l walltime=02:00:00
+
+module --force purge
+module load ncarenv/25.10
+module reset
+module swap intel cce
+module load cmake netcdf parallel-netcdf
+module -t list
+
+command -v cc CC ftn cmake pkg-config nc-config nf-config pnetcdf-config
+
+export NETCDF="$(nc-config --prefix)"
+export NETCDFF="$(nf-config --prefix)"
+export PNETCDF="$(pnetcdf-config --prefix)"
+export CHEMPAS_DEPS="/glade/work/$USER/chempas-a/ncarenv-25.10-cce"
+export PIO="$CHEMPAS_DEPS/pio-2.6.9"
+export MUSICA_PREFIX="$CHEMPAS_DEPS/musica-$MUSICA_REV"
+export CHEMPAS_MAKE_TARGET=cray
+```
+
+Build the reference PIO release with the same Cray wrappers and I/O modules:
+
+```bash
+git clone --depth 1 --branch pio2_6_9 \
+  https://github.com/NCAR/ParallelIO.git ParallelIO-2.6.9
+cmake -S ParallelIO-2.6.9 -B ParallelIO-2.6.9/build-derecho-cce \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_INSTALL_PREFIX="$PIO" \
+  -DCMAKE_C_COMPILER=cc \
+  -DCMAKE_Fortran_COMPILER=ftn \
+  -DPIO_ENABLE_TIMING=OFF \
+  -DPIO_ENABLE_TESTS=OFF
+cmake --build ParallelIO-2.6.9/build-derecho-cce --parallel 8
+cmake --install ParallelIO-2.6.9/build-derecho-cce
+```
+
+Do not load Derecho's `musica/0.10.1` module: it does not satisfy the CheMPAS-A
+version, revision, or MIEM API requirements. Build the pinned package with the
+Cray compiler wrappers:
+
+```bash
+cmake -S MUSICA-CheMPAS-A -B MUSICA-CheMPAS-A/build-derecho-cce \
+  -DFETCHCONTENT_TRY_FIND_PACKAGE_MODE=NEVER \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_INSTALL_PREFIX="$MUSICA_PREFIX" \
+  -DCMAKE_C_COMPILER=cc \
+  -DCMAKE_CXX_COMPILER=CC \
+  -DCMAKE_Fortran_COMPILER=ftn \
+  -DBUILD_SHARED_LIBS=OFF \
+  -DBUILD_TESTING=OFF \
+  -DMUSICA_BUILD_FORTRAN_INTERFACE=ON \
+  -DMUSICA_ENABLE_MPI=ON \
+  -DMUSICA_ENABLE_MICM=ON \
+  -DMUSICA_ENABLE_MIEM=ON \
+  -DMUSICA_ENABLE_TUVX=ON \
+  -DMUSICA_ENABLE_CARMA=OFF \
+  -DMUSICA_ENABLE_MIAM=OFF \
+  -DMUSICA_USE_FMT=OFF
+cmake --build MUSICA-CheMPAS-A/build-derecho-cce --parallel 8
+cmake --install MUSICA-CheMPAS-A/build-derecho-cce
+```
+
+Use the same `module` commands in later PBS run scripts. Changing the compiler
+or `ncarenv` stack after compilation can select incompatible MPI and I/O
+libraries. For current module and compiler guidance, see the
+[NSF NCAR Derecho compiler documentation](https://ncar-hpc-docs.readthedocs.io/en/latest/compute-systems/derecho/compiling-code-on-derecho/).
+
+## 3.10 Build CheMPAS-A and Verify the MUSICA Link
+
+After completing one platform section and the MUSICA metadata checks in
+Section 3.6, build the public MVP from its immutable tag:
+
+```bash
+git clone --branch v2026.08.01-rc2 --depth 1 \
+  https://github.com/NCAR/CheMPAS-A.git
+cd CheMPAS-A
+
+set -o pipefail
+make clean CORE=init_atmosphere
+make -j8 "$CHEMPAS_MAKE_TARGET" CORE=init_atmosphere OPENMP=false \
+  PIO="$PIO" NETCDF="$NETCDF" NETCDFF="$NETCDFF" PNETCDF="$PNETCDF" \
+  PRECISION=double 2>&1 | tee build-init_atmosphere.log
+
+make clean CORE=atmosphere
+make -j8 "$CHEMPAS_MAKE_TARGET" CORE=atmosphere OPENMP=false \
+  PIO="$PIO" NETCDF="$NETCDF" NETCDFF="$NETCDFF" PNETCDF="$PNETCDF" \
+  PRECISION=double MUSICA=true 2>&1 | tee build-atmosphere.log
+```
+
+The Makefile performs a constructor-level MICM+MIEM link probe using only the
+installed `musica-fortran.pc` flags before it links MPAS. Confirm both the
+probe and final link message, then check the executables:
+
+```bash
+grep -F "Built a simple test program with MUSICA-Fortran version 0.16.5" \
+  build-atmosphere.log
+grep -F "MPAS was linked with the MUSICA-Fortran library version 0.16.5" \
+  build-atmosphere.log
+test -x init_atmosphere_model
+test -x build_tables
+test -x atmosphere_model
+```
+
+These checks work for the documented static MUSICA build; tools such as `ldd`
+or `otool -L` will not list static archives. Without `MUSICA=true`, the
+chemistry hooks compile out and the chemistry namelist records are ignored at
+runtime.
 
 For the runtime features enabled by this build, see
 [Chapter 7](07-runtime-tracers.md) and
 [Chapter 8](08-chemistry-coupling.md).
 
-## 3.7 Cleaning
+## 3.11 Cleaning
 
 To remove all files that were created when the model was built, including the model executable itself, make may be run for the `clean` target:
 

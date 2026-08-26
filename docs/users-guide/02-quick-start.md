@@ -27,8 +27,8 @@ checksums are recorded in
 CheMPAS-A uses the normal MPAS dependencies: compatible C and Fortran
 compilers, MPI, NetCDF-C, NetCDF-Fortran, PnetCDF, and PIO. Chemistry builds
 also require the pinned MUSICA-Fortran package with MICM, TUV-x, and MIEM.
-[Chapter 3](03-building.md) gives the complete dependency and compiler
-requirements; the public wiki's
+[Chapter 3](03-building.md) gives complete Ubuntu, macOS LLVM, and Derecho
+dependency and compiler recipes; the public wiki's
 [Building](https://github.com/NCAR/CheMPAS-A/wiki/Building) page is the concise
 MVP recipe.
 
@@ -57,9 +57,11 @@ make -j8 gfortran CORE=atmosphere OPENMP=false \
 ```
 
 A successful build produces `init_atmosphere_model`, `build_tables`, and
-`atmosphere_model`. The public MVP validates the GNU/Linux path. The Makefile
-defines additional compiler targets, but they are not part of this release
-candidate's supported build claim.
+`atmosphere_model`. The command above is the qualified Ubuntu path. On macOS,
+use the `llvm` target with the flang-built dependency stack; on Derecho, use
+the `cray` target with the Cray programming environment. Both procedures,
+including construction and verification of the pinned MUSICA package, are in
+[Chapter 3](03-building.md#35-documented-build-environments).
 
 ## Stage a First Chemistry Run
 
