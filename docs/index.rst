@@ -107,7 +107,6 @@ equations, and spatial discretization.
 .. toctree::
    :maxdepth: 3
 
-   README
    users-guide/index
    tutorial/index
    technical-description/index

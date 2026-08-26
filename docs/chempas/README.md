@@ -42,6 +42,3 @@ those automation trees are not part of the public MVP source distribution.
 The comparison against MPAS-Model v8.3.1 is retained only as
 [historical baseline context](upstream/2026-04-19-vs-mpas-v8.3.1.md); it does
 not describe the current v8.4.1 source baseline.
-
-See [Building the documentation](../README.md) for the local warning-clean
-HTML and link-check commands used by Read the Docs.
