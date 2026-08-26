@@ -90,7 +90,8 @@ else:
 language = 'en'
 
 # List of patterns, relative to source directory, that match files and
-# directories to ignore when looking for source files.
+# directories to ignore when looking for source files. The root README is a
+# maintainer build recipe and is intentionally not part of the public site.
 # This patterns also effect to html_static_path and html_extra_path
 exclude_patterns = ['_build', 'README.md', 'Thumbs.db', '.DS_Store',
                     'design_docs/template.md',
