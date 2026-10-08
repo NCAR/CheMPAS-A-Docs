@@ -442,4 +442,3 @@ normalized profiles.
 - [MIEM_INTEGRATION.md](MIEM_INTEGRATION.md) - Offline-emissions workflow and contracts
 - [GLOBAL_TROPOSPHERIC_METHANE.md](GLOBAL_TROPOSPHERIC_METHANE.md) - Methane backgrounds, surface exchange, and MOZART-35
 - [MVP_PRE_RELEASE.md](../mvp/MVP_PRE_RELEASE.md) - Completed global MVP scope and limits
-- [CHEM_TRACER_OUTPUT_UNITS_PLAN.md](../CHEM_TRACER_OUTPUT_UNITS_PLAN.md) - VMR diagnostic implementation and verification

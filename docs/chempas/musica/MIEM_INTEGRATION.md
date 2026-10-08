@@ -531,7 +531,7 @@ software from science experiments that have not been promoted.
 | Multiple inventories | Implemented and tested through one `config_miem_file`. The MVP combines the separate CAMS and FINN files in `miem_configs/global_mvp_cams_finn.yaml`; `miem_configs/two_inventory_nox_ch4.yaml` also exercises independent NOx and CH4 files. Every inventory is sampled independently, must carry the same exact-grid identity, and contributes through MIEM's normal category/hierarchy aggregation. |
 | Signed net flux | Implemented as an exact-species opt-in. Positive exchange and negative uptake are preserved through layer rates, diagnostics, and algebraic mass accounting; all non-opted species remain source-only. |
 | Prescribed upper O3 | The [spatial monthly O3 provider](../mvp/STAGE1_PRESCRIBED_O3.md) is implemented and qualified, but it is not an MIEM source. It extends the TUV-x column strictly above the model top and never modifies prognostic `qO3`. |
-| Chemistry VMR output | [Complete and revalidated](../CHEM_TRACER_OUTPUT_UNITS_PLAN.md). Optional `vmr_<species>` fields are history-only diagnostics; transported and restarted `q<species>` fields remain dry-air mass mixing ratios. This output conversion does not change MIEM flux units. |
+| Chemistry VMR output | Complete and revalidated. Optional `vmr_<species>` fields are history-only diagnostics; transported and restarted `q<species>` fields remain dry-air mass mixing ratios. This output conversion does not change MIEM flux units. |
 | MOZART-35 / global methane | The generated Tier Z mechanism, host bindings, MIEM NOx+CH4 software path, ledgers, and independent box qualification are implemented. The [global methane workflow](GLOBAL_TROPOSPHERIC_METHANE.md) is not science-promoted: CAMS inversion data access and the recorded disk-capacity requirement still block the required global gates. |
 
 ## Lightning coexistence
@@ -623,10 +623,11 @@ process experiment; the idealized, unspun Chapman-NOx initial composition does
 not make its first-day concentrations production air-quality estimates.
 
 Implementation follows a verify-commit-push checkpoint after every completed
-phase, stage, or milestone. Required phase commit messages are listed in
-`docs/chempas/mvp/PLAN_EMISSIONS.md`; pushed SHAs, build roots, report roots, and verification
-results are recorded in `docs/chempas/MIEM_IMPLEMENTATION_LOG.md`. No phase
-advances until its checkpoint SHA is present on `origin/develop_emissions`.
+phase, stage, or milestone. Required phase commit messages are listed in the
+development-repository plan `PLAN_EMISSIONS.md`; pushed SHAs, build roots,
+report roots, and verification results are recorded in its companion
+`MIEM_IMPLEMENTATION_LOG.md`. No phase advances until its checkpoint SHA is
+present on `origin/develop_emissions`.
 
 ## Related documentation
 

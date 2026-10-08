@@ -2,8 +2,8 @@
 
 **Status:** Implemented, benchmarked, clean-gate verified, and phase-checkpoint remote-verified
 
-This document is the implementation contract for the scalability work in
-`docs/chempas/mvp/PLAN_EMISSIONS.md`. It extends the exact-grid Phase 1 workflow; it does not
+This document is the implementation contract for the scalability work in the
+development-repository plan `PLAN_EMISSIONS.md`. It extends the exact-grid Phase 1 workflow; it does not
 weaken inventory validation or introduce runtime horizontal regridding.
 
 ## Selected-cell API

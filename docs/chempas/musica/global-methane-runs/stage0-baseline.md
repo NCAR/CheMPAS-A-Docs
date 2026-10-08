@@ -3,8 +3,8 @@
 **Recorded:** 2026-08-15 (America/Denver)
 **Result:** PASS
 
-This report freezes the pre-methane baseline required by
-`docs/chempas/mvp/PLAN_GLOBAL_TROPOSPHERIC_METHANE.md`. The tests and build below were run before
+This report freezes the pre-methane baseline required by the
+development-repository plan `PLAN_GLOBAL_TROPOSPHERIC_METHANE.md`. The tests and build below were run before
 any methane implementation file was changed. Existing accepted global NOx
 evidence under `docs/chempas/musica/global-tropo-runs/` was read only.
 

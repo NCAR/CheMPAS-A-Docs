@@ -27,15 +27,15 @@ based on MPAS-Atmosphere v8.4.1. They complement the adapted
 
 The navigation includes the complete set of current CheMPAS-A Markdown
 documents: component notes, TUV-x and LNOx guidance, scientific plotting
-requirements, implementation records, every MVP qualification stage, and
-the compact validation records used by the global workflows. JSON manifests
+requirements, every MVP qualification stage, and the compact validation
+records used by the global workflows. JSON manifests
 and audit records are retained beside the relevant pages as machine-readable
 evidence but are not rendered as standalone documentation pages.
 
 The public MVP repository contains the model implementation. Declarative
 namelists, streams, mechanisms, and reconstruction instructions are published
 in the [CheMPAS-A wiki](https://github.com/NCAR/CheMPAS-A/wiki). Commands in
-implementation and qualification records that name development-only
+qualification records that name development-only
 `scripts/`, `test_cases/`, or `micm_configs/` paths are retained as provenance;
 those automation trees are not part of the public MVP source distribution.
 

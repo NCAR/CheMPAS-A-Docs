@@ -1,8 +1,8 @@
 CheMPAS-A Developer Notes
 =========================
 
-Architecture notes, integration and usage guides, implementation records,
-and reproducibility evidence for the CheMPAS-A 26.08 MVP release candidate.
+Architecture notes, integration and usage guides, and reproducibility
+evidence for the CheMPAS-A 26.08 MVP release candidate.
 
 The public model source is the immutable
 `v2026.08.01-rc2 tag <https://github.com/NCAR/CheMPAS-A/tree/v2026.08.01-rc2>`_.
@@ -38,16 +38,6 @@ but is not shipped in the public MVP repository.
    guides/LNOX_INTEGRATION
    guides/VISUALIZE
    guides/PLOTTING_PROTOCOL
-
-.. toctree::
-   :titlesonly:
-   :caption: Implementation Records
-
-   CHEM_TRACER_OUTPUT_UNITS_PLAN
-   MIEM_IMPLEMENTATION_LOG
-   mvp/PLAN_EMISSIONS
-   mvp/PLAN_GLOBAL_TROPOSPHERIC_NOX
-   mvp/PLAN_GLOBAL_TROPOSPHERIC_METHANE
 
 .. toctree::
    :titlesonly:
