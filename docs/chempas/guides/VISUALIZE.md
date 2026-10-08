@@ -1,10 +1,8 @@
 # MPAS Chemistry Visualization
 
 This document describes tools for visualizing MPAS-MUSICA chemistry output.
-Verified scientific figures must also follow the versioned
-[CheMPAS-A Scientific Plotting Protocol](PLOTTING_PROTOCOL.md), which defines
-title hierarchy, UTC subtitles, quantity/comparison semantics, pressure-axis
-orientation, scale selection, and provenance closure.
+Worked examples for the public release are on the
+[CheMPAS-A wiki](https://github.com/NCAR/CheMPAS-A/wiki/Examples).
 
 ## Python Environment
 
@@ -12,7 +10,7 @@ A conda environment `mpas` provides the required packages:
 
 ```bash
 # Create environment (if not already done)
-conda create -n mpas python=3.11 numpy matplotlib netcdf4 -y
+conda create -n mpas python=3.11 numpy matplotlib netcdf4 pyyaml -y
 
 # Activate before running the examples below
 conda activate mpas
@@ -21,54 +19,69 @@ conda activate mpas
 export CHEMPAS_ROOT="$(pwd)"
 ```
 
-**Required packages:** numpy, matplotlib, netcdf4
+**Required packages:** numpy, matplotlib, netcdf4, pyyaml
 
 ## Scripts
 
-All scripts are in the repository's `scripts/` directory. The examples call
-them through `CHEMPAS_ROOT`, so run directories do not need script symlinks.
+The scripts are in the `scripts/` directory of the CheMPAS-A development
+repository. Of the scripts described here, the public release includes only
+`init_tracer_sine.py`; the plotting scripts are not part of it.
+
+Run the global and MIEM plotters from the source root. They share the NCAR
+colors, fonts, and chemical labels in `scripts/style.py` and write each figure
+as a 300-dpi PNG and a vector PDF. The global plotters refuse a `--dpi` below
+300. Except for `plot_global_mvp.py`, they also accept `--context` with
+`default`, `publication`, or `presentation` to select font sizes. The other
+examples call scripts through `CHEMPAS_ROOT`, so run directories do not need
+script symlinks.
 
 ### plot_global_mvp.py
 
-Create the verified Minimum Viable Product bundle from the passing M3
-three-scenario attribution experiment. The plotter requires a passing report and all 27
-retained histories. The catalog and plotter verify their byte sizes and
-SHA-256 values before reading data, then produce seven 300-dpi PNG/vector-PDF
-pairs under `chempas-science-plot-v1`.
+Plot the global chemistry and emissions MVP experiment, which runs three
+scenarios over the same UTC day. `catalog_global_mvp_histories.py` reads the
+experiment's passing run report and lists its 27 history files (nine per
+scenario) and its input files by path relative to the data root.
+`plot_global_mvp.py` reads that list and writes seven PNG/PDF pairs. The
+report, run directories, and inputs must be below `--data-root`; the figure
+directory and the `--manifest` file that lists the figures must be inside the
+source tree.
 
 ```bash
 export CHEMPAS_EMISSIONS_DATA_ROOT=/path/to/emissions-science
-mvp_gate_commit=9f703f505051b8eb3700e9ecae927fc1c84746ca
 
 python scripts/catalog_global_mvp_histories.py \
-  --report "$CHEMPAS_EMISSIONS_DATA_ROOT/reports/global-mvp/$mvp_gate_commit/m3-report.json" \
+  --report "$CHEMPAS_EMISSIONS_DATA_ROOT/path/to/report.json" \
   --data-root "$CHEMPAS_EMISSIONS_DATA_ROOT" \
-  --output docs/chempas/mvp/m3-history-manifest.json
+  --output global-emissions-plots/history-manifest.json
 
 python scripts/plot_global_mvp.py \
-  --history-manifest docs/chempas/mvp/m3-history-manifest.json \
+  --history-manifest global-emissions-plots/history-manifest.json \
   --data-root "$CHEMPAS_EMISSIONS_DATA_ROOT" \
-  --outdir docs/chempas/mvp/figures \
-  --manifest docs/chempas/mvp/figure-manifest.json \
+  --outdir global-emissions-plots/figures \
+  --manifest global-emissions-plots/figure-manifest.json \
   --dpi 300
 ```
 
-Generation leaves visual inspection pending. Inspect every PNG for clipping,
-labels, color scales, coastlines, and physical plausibility before recording
-the attestation:
+The figures are:
 
-```bash
-python scripts/plot_global_mvp.py \
-  --attest-visual-inspection docs/chempas/mvp/figure-manifest.json
-```
+1. `01_upper_o3_climatology`: prescribed upper-atmosphere O3 climatology;
+2. `02_surface_source_fluxes`: CAMS and FINN surface source fluxes;
+3. `03_daily_mean_absolute_columns`: Daily Mean NO, NO2, CO, and O3 column
+   burdens;
+4. `04_daily_mean_column_contributions`: Daily Mean anthropogenic and fire
+   column contributions;
+5. `05_diurnal_photolysis`: diurnal TUV-x photolysis structure;
+6. `06_source_mass_and_closure`: applied source mass histories and closure;
+   and
+7. `07_model_top_o3_stitch`: model-top O3 profile stitch.
 
 Figures 03 and 04 are true Daily Means of NO, NO2, CO, and O3 column burdens:
 the plotter uses trapezoidal time integration across all nine instantaneous
 history records from 2024-07-01 00:00 through 2024-07-02 00:00 UTC. Figure 02
 is a model-step time-weighted Daily Mean source flux using all 192 left-endpoint
 450-second samples, exactly matching MIEM source application. Figures 01, 05,
-and 07 are explicitly Instantaneous. Figure 06 shows accumulated source mass
-and endpoint closure rather than a mean.
+and 07 are Instantaneous. Figure 06 shows accumulated source mass and endpoint
+closure rather than a mean.
 
 The scenarios are **No Surface Emissions**, **Anthropogenic Emissions**, and
 **Anthropogenic + Fire Emissions**.
@@ -78,115 +91,136 @@ Emissions minus No Surface Emissions) and **Fire Source Contribution**
 Emissions begins with the same nonzero chemical atmosphere as the other
 scenarios; it is not a pristine or zero-burden reference.
 
-The full scientific scope, interpretation limits, and evidence chain are in
-[`MVP_PRE_RELEASE.md`](../mvp/MVP_PRE_RELEASE.md).
+The scientific scope and interpretation limits of the experiment are on the
+wiki page
+[Global Chemistry and Emissions](https://github.com/NCAR/CheMPAS-A/wiki/Global-Chemistry-and-Emissions).
 
 ### plot_global_tropo_miem.py
 
-Create the verified R3/F3 global tropospheric NOx bundle from passed,
-same-provenance reports and four hash-verified final histories. The eight main
-figure pairs establish the science narrative in protocol order:
+Plot two one-day global tropospheric NOx runs that apply the CAMS-GLOB-ANT v6.2
+NO and NO2 inventory with lightning NOx off. The reduced run uses the
+NO-NO2-O3 mechanism in `micm_configs/global_cams_lnox_o3.yaml` with `jNO2`
+photolysis. The expanded run uses the Ox-HOx-NOx-CO-CH4 mechanism with HNO3 in
+`micm_configs/global_cams_tropo_ch4nox.yaml` with eight TUV-x rates. Each run
+has an emissions branch and a branch that withholds emissions over the same
+interval. The plotter reads the passing report of each run, finds the final
+history of each branch below the matching run root, and writes eight PNG/PDF
+pairs:
 
-1. final instantaneous NO/NO2 surface-emission fluxes;
-2. reduced emissions-applied and emissions-applied-minus-withheld NO/NO2
-   columns;
-3. reduced hourly species burdens and family closure;
-4. expanded emissions-continued and emissions-continued-minus-withheld NO/NO2
-   columns;
-5. expanded reactive-nitrogen evolution and closure;
-6. expanded O3/HNO3/OH/HO2 column response;
-7. vertical chemistry response; and
-8. the supplemental resource comparison.
+1. `global_tropo_surface_emissions`: final instantaneous NO/NO2
+   surface-emission fluxes;
+2. `global_tropo_reduced_nox_columns`: reduced emissions-applied and
+   emissions-applied-minus-withheld NO/NO2 columns;
+3. `global_tropo_reduced_budget`: reduced hourly species burdens and family
+   closure;
+4. `global_tropo_expanded_nox_columns`: expanded emissions-continued and
+   emissions-continued-minus-withheld NO/NO2 columns;
+5. `global_tropo_expanded_partition`: expanded reactive-nitrogen evolution and
+   closure;
+6. `global_tropo_expanded_response`: expanded O3/HNO3/OH/HO2 column response;
+7. `global_tropo_vertical_response`: vertical chemistry response; and
+8. `global_tropo_resource_comparison`: reduced/expanded resource comparison.
 
-The independent concentration-audit script adds the ninth pair. Both scripts
-use Title Case primary titles, subordinate UTC subtitles, lettered panels, and
-explicit comparison/domain labels from the plotting protocol. Exact commands
-and interpretation limits are in
-[`GLOBAL_TROPOSPHERIC_NOX.md`](../musica/GLOBAL_TROPOSPHERIC_NOX.md#verified-figure-bundle).
-The map panels are final-time snapshots, not daily means. R3 compares CAMS-NOx
-emissions applied with emissions withheld during its analysis interval. F3
-compares continuing with withholding emissions after a shared FS spin-up that
-already used CAMS-NOx emissions; neither reference branch is a pristine
-atmosphere.
+```bash
+python scripts/plot_global_tropo_miem.py \
+  --reduced-report /path/to/reduced-report.json \
+  --expanded-report /path/to/expanded-report.json \
+  --reduced-run-root /path/to/reduced-runs \
+  --expanded-run-root /path/to/expanded-runs \
+  --outdir global-tropo-figures \
+  --manifest global-tropo-figures/figure-manifest.json \
+  --dpi 300 --context publication
+```
+
+The map panels are final-time snapshots, not daily means. In the reduced run,
+differences are CAMS-NOx emissions applied minus emissions withheld during the
+analysis interval. The expanded run starts from a shared one-day spin-up that
+already applied CAMS-NOx emissions, so its differences are emissions continued
+minus emissions withheld; neither reference branch is a pristine atmosphere.
+
+`audit_global_tropo_concentrations.py` takes the same reports and run roots and
+screens the same final histories for physically plausible concentrations. It
+converts mass mixing ratio to dry-air molar mixing ratio, converts O, O1D, OH,
+HO2, and CH3O2 to number density, and reports extrema and weighted statistics
+for pressures of at least 500 hPa, 150–500 hPa, the full at-least-150 hPa
+diagnostic domain, and the column above it. `--audit` names the JSON result and
+`--figure-stem` the PNG/PDF pair:
+
+```bash
+python scripts/audit_global_tropo_concentrations.py \
+  --reduced-report /path/to/reduced-report.json \
+  --expanded-report /path/to/expanded-report.json \
+  --reduced-run-root /path/to/reduced-runs \
+  --expanded-run-root /path/to/expanded-runs \
+  --audit global-tropo-figures/concentration-audit.json \
+  --figure-stem global-tropo-figures/global_tropo_concentration_ranges \
+  --dpi 300 --context publication
+```
+
+The audit is a physical-plausibility screen, not an observational skill score.
 
 ### plot_global_miem_science.py
 
-Create the Phase 9D global emissions, reactive-N budget, and diurnal-structure
-bundle from the accepted A1 run. The plotter requires a passing A1 report,
-verifies the exact tracked external-input manifest, resolves the retained run
-through `CHEMPAS_EMISSIONS_DATA_ROOT`, and checks the full-file SHA-256 and byte
-size of the final enabled and matched-control histories before reading them.
-It uses all 25 accepted hourly report frames for time series and the final
-hash-verified NetCDF frames for global source/response maps.
+Plot a one-day global run with Chapman-NOx chemistry, TUV-x photolysis, and the
+CAMS-GLOB-ANT v6.2 NO/NO2 inventory, together with its matched control run
+without emissions. The plotter takes the run's passing throughput report, the
+tracked external-input manifest that describes the inventory, and the data root
+below which the report's history paths resolve. Time series use the report's
+25 hourly frames; global source and response maps use the final emissions and
+control histories.
 
 ```bash
 export CHEMPAS_EMISSIONS_DATA_ROOT=/path/to/emissions-science
 
 python scripts/plot_global_miem_science.py \
-  --report docs/chempas/musica/global-runs/stage9d-a1-report.json \
+  --report /path/to/throughput-report.json \
   --external-manifest \
     test_cases/global_miem/external-inputs.cams-glob-ant-v6.2-2024-07.json \
   --data-root "$CHEMPAS_EMISSIONS_DATA_ROOT" \
-  --outdir docs/chempas/musica/global-runs/figures \
-  --manifest \
-    docs/chempas/musica/global-runs/stage9d-figure-manifest.json \
-  --prefix stage9d \
+  --outdir global-miem-figures \
+  --manifest global-miem-figures/figure-manifest.json \
+  --prefix chapman_nox \
   --dpi 300
 ```
 
-The outputs are:
+`--prefix` sets the start of each output file name:
 
-- `stage9d_global_emissions_response.{png,pdf}`: explicit NO/NO2 surface flux
+- `<prefix>_global_emissions_response.{png,pdf}`: explicit NO/NO2 surface flux
   and 24-hour enabled-minus-control column response;
-- `stage9d_noy_budget.{png,pdf}`: hourly source rates, emitted-N/NOy closure,
+- `<prefix>_noy_budget.{png,pdf}`: hourly source rates, emitted-N/NOy closure,
   enabled/control partitioning, and retained-sector diagnostics; and
-- `stage9d_diurnal_structure.{png,pdf}`: four TUV-x day/night cycles, global
+- `<prefix>_diurnal_structure.{png,pdf}`: four TUV-x day/night cycles, global
   photolysis coverage, vertical NOy structure, and hemispheric evolution.
 
-The script follows `scripts/style.py`, uses explicit units, rasterizes dense
-map artists in the vector PDF, and refuses DPI below 300. The figure manifest
-contains no workstation-absolute paths. It ties every image to the passing A1
-report, external manifest, packaged inventory identity, final history hashes,
-plot code/style hashes, executable, and dependency commits.
-
-Scientific interpretation remains bounded: A1 proves coupled emissions,
-dynamics, transport, reactive chemistry, photolysis, restart, and matched
-control behavior. Although its meteorology is date matched, its Chapman-NOx
-initial composition is idealized and not spun up, so first-day concentrations
-are not production air-quality predictions.
-
-The Phase 9E release rechecked the retained A1 inputs and all 47 assertions;
-the result is canonically identical to the Stage 9D report after excluding the
-expected free-disk telemetry field. The release manifest pins that comparison
-and the figure-manifest SHA-256:
-[`stage9e-release-manifest.json`](../musica/global-runs/stage9e-release-manifest.json).
-The inspected PNG/PDF bundle is also copied to
-`~/Desktop/CheMPAS-A-Phase9-global-emissions` for convenient review, but the
-tracked figure and release manifests remain the authoritative identities.
+Dense map artists are rasterized in the vector PDF. The run uses date-matched
+meteorology, but its Chapman-NOx initial composition is idealized and not spun
+up, so first-day concentrations are not air-quality predictions.
 
 ### plot_miem_emissions.py
 
-Create the verified MIEM NO/NO2 figure bundle from three complementary
-eight-rank chem-box cases:
+Plot MIEM NO/NO2 emissions from three eight-rank chem-box cases run by
+`scripts/test_miem_integration.sh`:
 
-- R3 `cell_time_signature/exact_start` supplies the exact-grid horizontal
-  signature and 9:1 NO:NO2 split;
-- R6 `layered_diagnostics` supplies normalized elevated-source allocation and
+- `cell_time_signature`, variant `exact_start`, supplies the exact-grid
+  horizontal signature and 9:1 NO:NO2 split;
+- `layered_diagnostics` supplies normalized elevated-source allocation and
   bounded total/sector/category closure; and
-- an extended, emissions-only R2 `constant_flux` run supplies 30 minutes, 600
-  chemistry intervals, and 31 output frames for cumulative source-to-tracer
+- `constant_flux`, extended to an emissions-only 30-minute run, supplies 600
+  chemistry intervals and 31 output frames for cumulative source-to-tracer
   closure.
 
-The plotter follows the repository protocol in `scripts/style.py`: NCAR colors,
-fonts, and chemical labels; explicit physical units; final reference frames for
-spatial and vertical panels; all frames for time histories; rasterized dense
-fills; and both 300-dpi PNG and vector PDF output. It fails rather than plotting
-unverified data if the MPAS grid IDs do not match the history, diagnostics are
-missing or invalid, layered/group fields do not close, any R2/R3/R6 throughput
-report did not pass, or a report's history SHA-256 does not match its supplied
-file.
+The plotter writes three PNG/PDF pairs: `miem_emissions_spatial.png` shows the
+final-frame NO and NO2 surface fluxes, `miem_emissions_vertical.png` the
+elevated-source allocation and sector/category closure, and
+`miem_emissions_budget.png` the applied source rate and cumulative emitted mass
+against tracer mass over all frames. Spatial and vertical panels use the final
+frame; time histories use every frame. Dense fills are rasterized in the PDF.
+The plotter stops without plotting if the MPAS grid IDs do not match the
+history, diagnostics are missing or invalid, layered or group fields do not
+close, or any of the three run reports did not pass.
 
-Reproduce the run inputs from a MUSICA-enabled `atmosphere_model`:
+Produce the runs from a MUSICA-enabled `atmosphere_model`. `--keep-success`
+keeps each run directory after the run passes:
 
 ```bash
 miem_plot_root="$(mktemp -d)"
@@ -195,16 +229,16 @@ scripts/test_miem_integration.sh \
   --scenario cell_time_signature \
   --variant exact_start \
   --executable ./atmosphere_model \
-  --work-root "$miem_plot_root/r3" \
-  --report-dir "$miem_plot_root/r3/reports" \
+  --work-root "$miem_plot_root/spatial" \
+  --report-dir "$miem_plot_root/spatial/reports" \
   --keep-success \
   --skip-mapping-test
 
 scripts/test_miem_integration.sh \
   --scenario layered_diagnostics \
   --executable ./atmosphere_model \
-  --work-root "$miem_plot_root/r6" \
-  --report-dir "$miem_plot_root/r6/reports" \
+  --work-root "$miem_plot_root/layered" \
+  --report-dir "$miem_plot_root/layered/reports" \
   --keep-success \
   --skip-mapping-test
 
@@ -213,46 +247,42 @@ scripts/test_miem_integration.sh \
   --executable ./atmosphere_model \
   --override duration_seconds=1800 \
   --override output_interval_seconds=60 \
-  --work-root "$miem_plot_root/r2_30min" \
-  --report-dir "$miem_plot_root/r2_30min/reports" \
+  --work-root "$miem_plot_root/budget" \
+  --report-dir "$miem_plot_root/budget/reports" \
   --keep-success \
   --skip-mapping-test
 ```
 
-Then create the figures and their SHA-256 manifest:
+Each command writes `runs/<id>-<scenario>-<variant>/output.nc` below its work
+root and `<id>-<scenario>-<variant>.json` in its report directory; the variant
+is `default` for scenarios without named variants. Then create the figures:
 
 ```bash
 python scripts/plot_miem_emissions.py \
-  --spatial-output "$miem_plot_root/r3/runs/R3-cell_time_signature-exact_start/output.nc" \
+  --spatial-output "$miem_plot_root"/spatial/runs/*-cell_time_signature-exact_start/output.nc \
   --spatial-grid test_cases/chem_box/miem/assets/chem_box_grid.nc \
-  --spatial-report "$miem_plot_root/r3/reports/R3-cell_time_signature-exact_start.json" \
-  --layered-output "$miem_plot_root/r6/runs/R6-layered_diagnostics-default/output.nc" \
-  --layered-report "$miem_plot_root/r6/reports/R6-layered_diagnostics-default.json" \
-  --budget-output "$miem_plot_root/r2_30min/runs/R2-constant_flux-default/output.nc" \
-  --budget-report "$miem_plot_root/r2_30min/reports/R2-constant_flux-default.json" \
-  --outdir docs/_static \
-  --prefix miem_emissions \
-  --manifest docs/chempas/results/miem-emissions-figure-manifest.json
+  --spatial-report "$miem_plot_root"/spatial/reports/*-cell_time_signature-exact_start.json \
+  --layered-output "$miem_plot_root"/layered/runs/*-layered_diagnostics-default/output.nc \
+  --layered-report "$miem_plot_root"/layered/reports/*-layered_diagnostics-default.json \
+  --budget-output "$miem_plot_root"/budget/runs/*-constant_flux-default/output.nc \
+  --budget-report "$miem_plot_root"/budget/reports/*-constant_flux-default.json \
+  --outdir "$miem_plot_root/figures" \
+  --prefix miem_emissions
 ```
 
-The tracked plots use synthetic inventories generated deterministically inside
-the retained temporary runs. Those inventories and the NetCDF model histories
-are evidence inputs, not scientific emissions products, and are not committed.
-The canonical mesh is the tracked external grid input; a production plot must
-instead use a scientifically sourced inventory already conservatively remapped
-to its exact production mesh.
+The plotted inventories are synthetic, generated deterministically inside the
+temporary runs; they exercise the coupling and are not scientific emissions
+products. The canonical mesh is the tracked external grid input. A production
+plot must instead use a scientifically sourced inventory already conservatively
+remapped to its exact production mesh.
 
-The 30-minute R2 extension is the right longer run for the current verification
-question: it exercises 600 chemistry transactions and makes cumulative drift
-visible while retaining an analytically isolated budget. Extending R3 or R6
-does not add a new contract because their deterministic spatial and layer/group
-signatures are established in the first applied interval. The next longer run
-should therefore wait for a science-grade exact-grid inventory: first use a
-one-hour production-grid throughput shakedown, then use at least a full diurnal
-cycle when the goal is temporal interpolation plus transport and chemistry.
-Such a run must define its own scientific budget expectations; direct NO/NO2
-tracer equality is no longer valid once reactions, transport losses, or other
-sources are active.
+The 30-minute `constant_flux` run exercises 600 chemistry intervals and makes
+cumulative drift visible while keeping an analytically isolated budget. Longer
+`cell_time_signature` or `layered_diagnostics` runs show nothing new, because
+their spatial and layer/group signatures are established in the first applied
+interval. A longer emissions run needs a science-grade exact-grid inventory and
+its own scientific budget expectations; direct NO/NO2 tracer equality is no
+longer valid once reactions, transport losses, or other sources are active.
 
 ### plot_chemistry.py
 
@@ -412,7 +442,8 @@ open quick.png
 
 ### Unstructured Mesh Handling
 
-The scripts use matplotlib's `Triangulation` to visualize the MPAS unstructured mesh:
+`plot_chemistry.py` and `plot_miem_emissions.py` use matplotlib's
+`Triangulation` to visualize the MPAS unstructured mesh:
 
 ```python
 from matplotlib.tri import Triangulation
@@ -423,8 +454,11 @@ ax.tricontourf(tri, values, ...)
 **Limitations:**
 - Uses Delaunay triangulation of cell centers (not actual MPAS Voronoi topology)
 - May have minor artifacts at domain edges
-- Future: consider uxarray for proper mesh handling if visualization artifacts
-  near mesh boundaries become important.
+- Where artifacts near mesh boundaries matter, consider uxarray, which reads
+  the MPAS mesh topology directly.
+
+The global plotters instead draw one rasterized marker per cell center in
+longitude-latitude coordinates.
 
 ### Output Variables
 

@@ -30,10 +30,11 @@ This section is being revised.
 The supercell test case is an idealized deep-convection setup adapted
 from Weisman and Klemp (1982): a horizontally homogeneous, strongly
 sheared environment perturbed by a warm bubble that triggers a
-long-lived rotating storm. CheMPAS-A's tracked configuration
-uses 60 stretched vertical levels spanning 0–50 km (~300 m at the
-surface, ~1 km near the lid), a 3-second dynamics timestep, Kessler
-warm-rain microphysics, and a 2-hour integration.
+long-lived rotating storm. The release configuration in
+`test_cases/supercell/` uses 60 stretched vertical levels spanning
+0–50 km (~300 m at the surface, ~1 km near the lid), a 3-second
+dynamics timestep, Kessler warm-rain microphysics, and a 2-hour
+integration.
 
 It is a useful chemistry testbed for two reasons. First, the rotating
 updraft produces strong, well-organized vertical transport that lifts
@@ -58,8 +59,8 @@ This section is being revised.
 Before you run anything, confirm:
 
 ```bash
-# Start in the CheMPAS-A checkout and keep source and run data separate.
-cd /path/to/CheMPAS-A-qualification
+# Start in the v2026.08.01 checkout and keep source and run data separate.
+cd /path/to/CheMPAS-A
 export CHEMPAS_ROOT="$(pwd)"
 export CHEMPAS_RUN_ROOT=/path/to/CheMPAS-run-data
 export CHEMPAS_TUVX_DATA=/path/to/MUSICA/configs/tuvx/data
@@ -70,7 +71,7 @@ conda activate mpas
 ls -la "$CHEMPAS_ROOT/atmosphere_model" \
        "$CHEMPAS_ROOT/init_atmosphere_model"
 
-# 2. The downloaded supercell data and tracked configuration are staged.
+# 2. The downloaded supercell data and release configuration are staged.
 cd "$SUPERCELL_RUN"
 ls supercell_grid.nc supercell.graph.info.part.8 \
    namelist.atmosphere streams.atmosphere \
@@ -83,14 +84,29 @@ test -d "$CHEMPAS_TUVX_DATA"
 python -c "import netCDF4, numpy, matplotlib, scipy; print('ok')"
 ```
 
+The grid and eight-rank partition come from the NCAR
+[supercell archive](https://www2.mmm.ucar.edu/projects/mpas/test_cases/v7.0/supercell.tar.gz),
+which extracts to a `supercell/` directory. The namelists, streams files,
+output list, and `supercell_zeta_levels.txt` come from the release's
+`test_cases/supercell/` directory. To stage both:
+
+```bash
+cd "$CHEMPAS_RUN_ROOT"
+curl -fLO https://www2.mmm.ucar.edu/projects/mpas/test_cases/v7.0/supercell.tar.gz
+tar xzf supercell.tar.gz
+cp "$CHEMPAS_ROOT/test_cases/supercell/"* "$SUPERCELL_RUN/"
+```
+
 Keep these variables set for the remaining commands in Chapters 2 and 3.
 If any check fails, see
-the public MVP [build guide](https://github.com/NCAR/CheMPAS-A/wiki/Building)
+the [build guide](https://github.com/NCAR/CheMPAS-A/wiki/Building)
 for the model build,
 [Getting Started](https://github.com/NCAR/CheMPAS-A/wiki/Getting-Started) for
 the run-directory layout, and
 [Idealized Test Cases](https://github.com/NCAR/CheMPAS-A/wiki/Idealized-Test-Cases)
-for data download and public configuration staging.
+for the NCAR test-case downloads. The release container prepares and runs
+the Supercell ABBA and Supercell LNOx + O3 cases without these manual steps;
+see [Running the cases in a container](01-overview.md#running-the-cases-in-a-container).
 
 ## 2.4 Initialization
 
@@ -117,8 +133,7 @@ variables.
 Always run with 8 MPI ranks for the supercell case — the partition
 file in the run directory (`supercell.graph.info.part.8`) is keyed to
 that rank count, and a mismatched partition file causes a segfault in
-the dynamics solver. See `RUN.md` in the repository root for the full
-rank-vs-partition table.
+the dynamics solver.
 
 ## 2.5 Run with the ABBA mechanism
 
@@ -193,16 +208,9 @@ mpiexec -n 8 "$CHEMPAS_ROOT/atmosphere_model"
 Critical error messages = 0
 ```
 
-**Plot.** With the conda env active:
-
-```bash
-mkdir -p plots
-python "$CHEMPAS_ROOT/scripts/plot_abba_supercell.py" \
-    -i output.abba.nc --outdir plots --kind cross --y-slice 18
-```
-
-The command writes `plots/abba_supercell_qAB.{png,pdf}` and
-`plots/abba_supercell_qA.{png,pdf}`.
+**Plot.** With the conda env active, read `output.abba.nc` and plot
+vertical (x–z) cross-sections of qAB and qA through the storm at
+y = 18 km for the final output time (t = 2 h).
 
 ```{figure} ../_static/abba_supercell_qAB.png
 :name: fig-abba-supercell-qab
@@ -266,8 +274,9 @@ the `&lnox` namelist:
   emit NO in a fixed altitude window, with rate scaled by updraft
   excess.
 - **Isotherm-mode** gating (new, faithful to the DC3 mixed-phase
-  framing in `LNOx.md`) — emit NO in a temperature window
-  corresponding to the 233–262 K layer, at a constant rate.
+  framing described in the LNOx integration guide) — emit NO in a
+  temperature window corresponding to the 233–262 K layer, at a
+  constant rate.
 
 This section walks through both modes as parallel runs and then
 compares them. The full scheme description, namelist surface, and
@@ -331,7 +340,7 @@ This section is being revised.
 ```
 
 With `config_tuvx_config_file` active, TUV-x supplies `j_jNO2` and
-`config_j_no2_max` is ignored. The latter is retained only for the Phase 1
+`config_j_no2_max` is ignored. The latter is retained only for the
 no-TUV-x fallback path.
 
 In altitude mode, NO is injected into grid cells where the vertical
@@ -358,27 +367,9 @@ mpiexec -n 8 "$CHEMPAS_ROOT/atmosphere_model"
 [ -f log.atmosphere.0000.out ] && mv log.atmosphere.0000.out log.altitude.out
 ```
 
-**Plot.** The dedicated LNOx plotting script is intended to produce the standard
-diagnostic set (vertical cross-sections, time series, NO₂
-partitioning ratio):
-
-```{admonition} Known plotting limitation
-:class: warning
-
-Verified with Matplotlib 3.11.0 in the current `mpas` environment,
-`plot_lnox_o3.py` fails during module import, before argument parsing, and
-writes no plots:
-
-`ValueError: the values passed in the (value, color) pairs must increase monotonically from 0 to 1.`
-
-The custom colormap repeats the `0.10` stop. This does not affect the model
-run or the output-validation commands in §2.8.
-```
-
-```bash
-python "$CHEMPAS_ROOT/scripts/plot_lnox_o3.py" \
-    -i output.altitude.nc -o lnox_altitude.png
-```
+**Plot.** From `output.altitude.nc`, plot the standard LNOx diagnostic
+set: vertical cross-sections and time series of NO, NO₂, and O₃, and
+the NO₂/NOx partitioning ratio.
 
 **[Figure 2.4: NO, NO₂, O₃ at t = 2 h, LNOx + O3 mechanism, altitude
 gating. To be added.]**
@@ -435,8 +426,8 @@ temperature is between `config_lnox_t_min` and `config_lnox_t_max`
 *and* the updraft exceeds `config_lnox_w_threshold`. The emission
 rate is constant: `S = source_rate` whenever the gate is open.
 `source_rate = 1.0e-3 ppbv/s` is the calibration starting point in
-`LNOX_INTEGRATION.md`; expect to retune by a small factor after the
-first run.
+the [LNOx integration guide](../chempas/guides/LNOX_INTEGRATION.md);
+expect to retune by a small factor after the first run.
 
 **Run, then name the artifacts.** §2.6.1 already left
 `output.altitude.nc` in place; this run produces `output.isotherm.nc`
@@ -455,14 +446,8 @@ mpiexec -n 8 "$CHEMPAS_ROOT/atmosphere_model"
 [ -f log.atmosphere.0000.out ] && mv log.atmosphere.0000.out log.isotherm.out
 ```
 
-**Plot.** The same import-time Matplotlib 3.11.0 limitation described in
-§2.6.1 currently blocks this command as well; once corrected, point the
-script at the isotherm output:
-
-```bash
-python "$CHEMPAS_ROOT/scripts/plot_lnox_o3.py" -i output.isotherm.nc \
-    -o lnox_isotherm.png
-```
+**Plot.** Make the same diagnostic set as in §2.6.1 from
+`output.isotherm.nc`.
 
 **[Figure 2.5: NO, NO₂, O₃ at t = 2 h, LNOx + O3 mechanism, isotherm
 gating. To be added.]**
@@ -472,8 +457,8 @@ layer of the storm — approximately mid-troposphere on the
 Weisman–Klemp sounding used here — but moving with the cloud rather
 than pinned to a fixed altitude.
 The peak NOx in the convective core should be of order 1 ppbv (the
-LNOx.md DC3 target). If your peak is off by more than a factor of a
-few, retune `config_lnox_source_rate` and re-run.
+DC3 target in the LNOx integration guide). If your peak is off by more
+than a factor of a few, retune `config_lnox_source_rate` and re-run.
 
 ### 2.6.3 Comparing the gating modes
 
@@ -492,7 +477,7 @@ storm evolves and the 233–262 K layer moves up or down. In rate, the
 altitude formulation scales with updraft excess so the strongest
 updrafts emit the most NO; the isotherm formulation is flat — once
 the gate is open, every active cell emits at the same rate, faithful
-to the LNOx.md "constant emission" framing.
+to the DC3 "constant emission" framing.
 
 The downwind chemistry the two formulations imply — NO + O₃
 titration, NO₂ photolysis, anvil-level NOx redistribution — is
@@ -532,50 +517,38 @@ LNOx + O3 chemistry at t = 2 h. To be added.]**
 This section is being revised.
 ```
 
-Visual agreement is reassuring but not sufficient. Validate each output with
-the maintained checker from the active environment:
+Visual agreement is reassuring but not sufficient. First confirm that all
+three runs finished cleanly:
 
 ```bash
 cd "$SUPERCELL_RUN"
-
-python "$CHEMPAS_ROOT/scripts/check_chem_output.py" output.abba.nc \
-  --require qA qB qAB --conserve qA+qB+qAB --nonneg
-
-python "$CHEMPAS_ROOT/scripts/check_chem_output.py" output.altitude.nc \
-  --require qNO qNO2 qO3 j_jNO2 --nonneg
-
-python "$CHEMPAS_ROOT/scripts/check_chem_output.py" output.isotherm.nc \
-  --require qNO qNO2 qO3 j_jNO2 --nonneg
-
 grep 'Critical error messages = 0' \
   log.abba.out log.altitude.out log.isotherm.out
 ```
 
-These commands check all three stable tutorial artifacts and their rank-zero
-logs.
+Then check that each output carries the expected chemistry fields and
+that every value is finite and non-negative:
 
-From the repository root, the maintained source-level suite is:
+```python
+import numpy as np
+from netCDF4 import Dataset
 
-```bash
-cd "$CHEMPAS_ROOT"
-python -m unittest discover -v
-scripts/test_global_tropo_f0.sh
+expected = {
+    'output.abba.nc': ['qA', 'qB', 'qAB'],
+    'output.altitude.nc': ['qNO', 'qNO2', 'qO3', 'j_jNO2'],
+    'output.isotherm.nc': ['qNO', 'qNO2', 'qO3', 'j_jNO2'],
+}
+for path, names in expected.items():
+    with Dataset(path) as ds:
+        for name in names:
+            values = np.ma.filled(ds[name][:].astype('f8'), np.nan)
+            print(f'{path} {name}: finite={np.isfinite(values).all()} '
+                  f'min={np.nanmin(values):.3e}')
 ```
 
-The executable-backed E0 suite also carries `supercell_abba` and
-`supercell_lightning` cases. Their frozen artifacts each cover exactly
-`00:01:00`, so they are short compatibility and bitwise-regression gates,
-not validation of the tutorial's two-hour integrations. Run them when the
-external baseline bundle named by `test_cases/miem_disabled_baselines.json`
-is available:
-
-```bash
-scripts/test_miem_disabled_baselines.sh . \
-  --case supercell_abba --case supercell_lightning
-```
-
-The accepted clean-build matrix and all 16 maintained shell contracts are
-recorded in [MVP Stage 5](../chempas/mvp/STAGE5_FULL_REGRESSION.md).
+Every line should report `finite=True` and a minimum that is not
+negative. A missing field raises an `IndexError`; for `j_jNO2`, check
+that it was added to `stream_list.atmosphere.output` (§2.6).
 
 ## 2.9 Next steps
 
@@ -604,7 +577,7 @@ This section is being revised.
 ## 2.10 Standalone ABBA box model
 
 The same mechanism as §2.5, exercised in pure Python with no MPAS in
-the loop. `scripts/musica_python/abba_box.py` loads
+the loop. [`abba_box.py`](../_downloads/tutorial/abba_box.py) loads
 `micm_configs/abba.yaml` into a single-cell MICM solver, seeds AB at
 1 ppm, runs the reversible reaction for 2 hours, and writes
 `abba_box.nc`, `abba_box.png` (300 dpi), and `abba_box.pdf` next to
@@ -624,16 +597,16 @@ multiplier at 1.0.
 Pre-req: see Chapter 1's [Python environment for standalone
 examples](01-overview.md) section.
 
-Run:
+Before running, adapt two assumptions in the listing below. The script
+reads `micm_configs/abba.yaml` from the directory two levels above its
+own (`ABBA_YAML`), and it imports a plotting-style helper module,
+`style`, from the directory above it. Point `ABBA_YAML` at the
+release checkout's `micm_configs/abba.yaml` and replace the `style`
+calls with plain Matplotlib settings, then run:
 
 ```bash
-cd "$CHEMPAS_ROOT"
-python scripts/musica_python/abba_box.py
+python abba_box.py
 ```
-
-The script writes `scripts/musica_python/abba_box.nc`,
-`scripts/musica_python/abba_box.png`, and
-`scripts/musica_python/abba_box.pdf`.
 
 ```{figure} ../_static/abba_box.png
 :name: fig-abba-box
@@ -655,19 +628,18 @@ reversible kinetics; the coupled test in §2.5 reacts while advection and
 cell-varying density also shape the fields.
 
 **Source listings.** Both files are reproduced inline below for
-reference; they are the same files used by the script invocation
-above.
+reference; they are the same files used by the run above.
 
 ```{literalinclude} ../_downloads/tutorial/abba_box.py
-:caption: scripts/musica_python/abba_box.py
+:caption: abba_box.py
 :language: python
 :linenos:
 ```
 
 The script imports the MUSICA bindings (`MICM`, the mechanism-config
 parser, `SolverState`) plus `numpy`, `xarray`, and `matplotlib` for
-I/O and plotting, and the project's `scripts/style.py` for
-NCAR-palette plotting. After parsing `abba.yaml`, it constructs a
+I/O and plotting, and the `style` helper for NCAR-palette plotting.
+After parsing `abba.yaml`, it constructs a
 Rosenbrock standard-order solver, creates a single-cell state at
 T = 273 K and P = 101 325 Pa, and seeds A = B = 0, AB = 1 ppm (the
 ppm seed is converted to a mol m⁻³ concentration internally via
@@ -728,30 +700,20 @@ domain-wide equilibrium fraction.
 The standalone counterpart of §2.6, *minus* the lightning-NOx source
 (which is a CheMPAS-A operator-split injection in
 `mpas_lightning_nox.F`, not part of the MICM mechanism).
-`scripts/musica_python/lnox_box.py` loads `micm_configs/lnox_o3.yaml`
-into a single-cell MICM solver at mid-tropospheric conditions
-(T = 240 K, P = 5×10⁴ Pa), seeds 0.2 ppb total NOx (50/50 NO/NO₂) and
-50 ppb O₃, hardcodes `PHOTO.jNO2 = 0.01 s⁻¹`, and runs for 5 minutes
-with 5-second output. That hardcoded rate has the same numeric value as
-CheMPAS-A's no-TUV-x fallback `config_j_no2_max`; it is not the active TUV-x
-rate or a cap on it in §2.6.
+With the same MUSICA-Python calls as the ABBA box in §2.10, load
+`micm_configs/lnox_o3.yaml` into a single-cell MICM solver at
+mid-tropospheric conditions (T = 240 K, P = 5×10⁴ Pa), seed 0.2 ppb
+total NOx (50/50 NO/NO₂) and 50 ppb O₃, fix `PHOTO.jNO2 = 0.01 s⁻¹`,
+and run for 5 minutes with 5-second output. That fixed rate has the
+same numeric value as CheMPAS-A's no-TUV-x fallback `config_j_no2_max`;
+it is not the active TUV-x rate or a cap on it in §2.6.
 
 Pre-req: see Chapter 1's [Python environment for standalone
 examples](01-overview.md) section.
 
-Run:
-
-```bash
-cd "$CHEMPAS_ROOT"
-python scripts/musica_python/lnox_box.py
-```
-
-The script writes `scripts/musica_python/lnox_box.nc` and
-`scripts/musica_python/lnox_box.png`.
-
 What to look for: NO and NO₂ partitioning settles within ~1 minute
-to the Leighton ratio (jNO₂ / k_{NO+O₃}·[O₃]) — at the script's
-conditions the simulated [NO]/[NO₂] reaches ~2.2, matching the
+to the Leighton ratio (jNO₂ / k_{NO+O₃}·[O₃]) — at these conditions
+the simulated [NO]/[NO₂] reaches ~2.2, matching the
 analytical expression. O₃ stays essentially constant: in this
 simplified mechanism the back-reaction NO₂ + hν → NO + O₃ exactly
 balances NO + O₃ → NO₂ + O₂ once PSS is reached, so there is no

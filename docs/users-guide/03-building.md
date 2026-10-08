@@ -165,7 +165,7 @@ Regardless of which precision the CheMPAS-A `init_atmosphere` and `atmosphere` c
 ## 3.5 Documented Build Environments
 
 The build is organized around three environments. The Ubuntu toolchain is the
-MVP release-qualification environment. The macOS and Derecho recipes preserve
+environment used to test the MVP release. The macOS and Derecho recipes preserve
 the same dependency pins and Makefile contract while selecting their native
 compiler stacks.
 
@@ -241,7 +241,7 @@ hard-coded `-lstdc++` or `-lc++`.
 
 ## 3.7 Ubuntu with GCC and Open MPI
 
-The qualified MVP build used GNU Fortran 15.2.0, Open MPI 5.0.10, NetCDF-C
+The tested MVP build used GNU Fortran 15.2.0, Open MPI 5.0.10, NetCDF-C
 4.10.1, NetCDF-Fortran 4.6.3, PnetCDF 1.14.1, and PIO 2.6.9. Create one
 conda environment so the compiler, MPI wrappers, and I/O libraries share an
 ABI:
@@ -486,10 +486,10 @@ libraries. For current module and compiler guidance, see the
 ## 3.10 Build CheMPAS-A and Verify the MUSICA Link
 
 After completing one platform section and the MUSICA metadata checks in
-Section 3.6, build the public MVP from its immutable tag:
+Section 3.6, build the public MVP from its release tag:
 
 ```bash
-git clone --branch v2026.08.01-rc2 --depth 1 \
+git clone --branch v2026.08.01 --depth 1 \
   https://github.com/NCAR/CheMPAS-A.git
 cd CheMPAS-A
 

@@ -13,9 +13,8 @@ the Chapman + NOx mechanism against the analytical Leighton
 photostationary state. This chapter runs the same chemistry on a
 global mesh — the standard MPAS `x1.40962` 120 km quasi-uniform mesh —
 and looks at what the diurnal cycle of solar photolysis does when it
-sweeps across an entire planet. This is the **Stratosphere** case in
-the CheMPAS-A talk: Chapman ozone chemistry with NOₓ catalytic loss,
-exercised globally over a full diurnal cycle.
+sweeps across an entire planet: Chapman ozone chemistry with NOₓ
+catalytic loss, exercised globally over a full diurnal cycle.
 
 ## 4.1 What you'll learn
 
@@ -58,9 +57,10 @@ Domain summary:
 - `config_chemistry_use_grid_coords = .true.` — every cell uses its
   own (latitude, longitude) for the solar-zenith-angle calculation,
   so jNO₂ at any instant has the day–night terminator built in.
-- The TUV-x upper-atmosphere extension is enabled. The tracked global-case
-  CSV begins at the JW model lid (45 km) and extends to 100 km; the
-  supercell-specific file in Chapter 3 instead begins at its 50 km lid.
+- The TUV-x upper-atmosphere extension is enabled. The global-case CSV
+  in `test_cases/chapman_nox_global/` begins at the JW model lid (45 km)
+  and extends to 100 km; the supercell-specific file in Chapter 3 instead
+  begins at its 50 km lid.
 
 This case borrows the JW baroclinic-wave init mesh purely as a
 convenient global initial state for the dynamics; it is not a
@@ -84,8 +84,9 @@ This section is being revised.
 Before you run anything, confirm:
 
 ```bash
-# Start in the checkout, define the run-data locations, and activate Python.
-cd /path/to/CheMPAS-A-qualification
+# Start in the v2026.08.01 checkout, define the run-data locations, and
+# activate Python.
+cd /path/to/CheMPAS-A
 export CHEMPAS_ROOT="$(pwd)"
 export CHEMPAS_RUN_ROOT=/path/to/CheMPAS-run-data
 export CHEMPAS_TUVX_DATA=/path/to/MUSICA/configs/tuvx/data
@@ -111,9 +112,16 @@ test -d "$CHEMPAS_TUVX_DATA"
 python -c "import netCDF4, numpy, cartopy, matplotlib, scipy; print('ok')"
 ```
 
-If the JW init file is missing, run the standard JW init step first (see the
-public [Idealized Test Cases](https://github.com/NCAR/CheMPAS-A/wiki/Idealized-Test-Cases)
-guide).
+If the JW files are missing, extract the NCAR
+[JW baroclinic-wave archive](https://www2.mmm.ucar.edu/projects/mpas/test_cases/v7.0/jw_baroclinic_wave.tar.gz)
+into `$CHEMPAS_RUN_ROOT`; it unpacks to `jw_baroclinic_wave/` with the
+grid and eight-rank partition. If `x1.40962.init.nc` is still missing,
+copy the release's `test_cases/jw_baroclinic_wave/` files into `$JW_RUN`
+and run `init_atmosphere_model` there on eight ranks (see the
+[Idealized Test Cases](https://github.com/NCAR/CheMPAS-A/wiki/Idealized-Test-Cases)
+guide). The release container prepares and runs this case as
+`chapman-nox-global`; see
+[Running the cases in a container](01-overview.md#running-the-cases-in-a-container).
 
 Always run with 8 MPI ranks for this case — the partition file in the
 run directory (`x1.40962.graph.info.part.8`) is keyed to that rank
@@ -168,11 +176,13 @@ decimal precision.
 This section is being revised.
 ```
 
-The public configs in
-[the global Chapman + NOx test case](https://github.com/NCAR/CheMPAS-A/wiki/Chemistry-Test-Cases)
-include the namelist, streams, and output-variable list. Copy them
-into the run directory, then stage the mechanism and TUV-x JSON that the
-namelist resolves relative to that directory:
+The release's `test_cases/chapman_nox_global/` directory holds the
+namelist, streams, output-variable list, and global-case extension CSV;
+the wiki's
+[Chemistry Test Cases](https://github.com/NCAR/CheMPAS-A/wiki/Chemistry-Test-Cases)
+page documents the same case. Copy them into the run directory, then
+stage the mechanism and TUV-x JSON that the namelist resolves relative
+to that directory:
 
 ```bash
 cd "$CHAPMAN_GLOBAL_RUN"
@@ -186,7 +196,7 @@ ln -sf "$CHEMPAS_ROOT/atmosphere_model" .
 ln -sf "$JW_RUN/x1.40962.graph.info.part.8" .
 ```
 
-The tracked chemistry records read:
+The release chemistry records read:
 
 ```fortran
 &chemistry
@@ -235,30 +245,16 @@ Verify the run completed cleanly by checking the tail of
 Critical error messages = 0
 ```
 
-Validate the required chemistry and photolysis fields in the result:
+Check that the six species and four photolysis rates are present,
+finite, and non-negative with the loop from Chapter 2 §2.8 and this
+mapping:
 
-```bash
-python "$CHEMPAS_ROOT/scripts/check_chem_output.py" output.nc \
-  --require qO2 qO qO1D qO3 qNO qNO2 \
-            j_jNO2 j_jO2 j_jO3_O j_jO3_O1D \
-  --nonneg
+```python
+expected = {
+    'output.nc': ['qO2', 'qO', 'qO1D', 'qO3', 'qNO', 'qNO2',
+                  'j_jNO2', 'j_jO2', 'j_jO3_O', 'j_jO3_O1D'],
+}
 ```
-
-The maintained executable regression for this case is available when the
-frozen external E0 bundle is staged:
-
-```bash
-cd "$CHEMPAS_ROOT"
-scripts/test_miem_disabled_baselines.sh . --case chapman_nox_global
-```
-
-This frozen artifact is a historical compatibility and bitwise-regression
-gate. Its captured mechanism is named `Chapman-NOx-noO1D`, omits qO1D, and
-has a different SHA from the current `micm_configs/chapman_nox.yaml`; it is
-not a numerical baseline for the current six-species tutorial mechanism.
-
-See [MVP Stage 5](../chempas/mvp/STAGE5_FULL_REGRESSION.md) for the accepted
-clean-build and full Python/shell regression record.
 
 ## 4.6 Plotting the global response
 
@@ -268,68 +264,40 @@ clean-build and full Python/shell regression record.
 This section is being revised.
 ```
 
-`scripts/plot_chapman_nox_global.py` defines nine PNG/PDF figure pairs, but
-the tracked case and the current plotter do not yet complete all nine.
+Plot `output.nc` with your own analysis tools; the output list carries
+`latCell`, `lonCell`, and `zgrid` alongside the chemistry fields. For
+maps, triangulate the cell centers and mask antimeridian-spanning
+triangles so the limb is clean. These figures show the global response:
 
-```{admonition} Known plotting limitation
-:class: warning
+- **NO at 25 km** — a single 25 km NO map at 12 UTC with the terminator
+  overlaid, emphasizing the dayside photolysis product.
 
-The tracked output timestamps run from `0000-01-01_00:00:00` through
-`0000-01-02_00:00:00`. The plotter hardcodes `2026-06-24` for its zonal-mean
-and Boulder-profile figures. With the tracked output, it writes the first
-seven figure pairs listed below, then prints
-`fig_o3_zonal_mean: no slices on 2026-06-24, skipping`. While beginning
-`nox_diurnal`, `_xtime_datetimes` raises
+- **NO₂ at 25 km** — the matching NO₂ reservoir map, including its
+  daylight drawdown.
 
-`ValueError: year must be in 1..9999, not 0`
+- **NO and NO₂ contours** — overlaid NO and NO₂ fields at the same level
+  and time, with separate color scales and the terminator.
 
-and the process exits nonzero. All nine pairs are generated only from
-valid-calendar hourly output that covers `2026-06-24`, including 19:00 UTC.
-```
-
-Run the current plotter with:
-
-```bash
-cd "$CHAPMAN_GLOBAL_RUN"
-python "$CHEMPAS_ROOT/scripts/plot_chapman_nox_global.py" \
-    -i output.nc -o ./plots
-```
-
-The command writes these seven date-independent pairs, in this order, before
-the year-0000 failure:
-
-- **`global_NO.png` / `.pdf`** — a single 25 km NO map at 12 UTC with the
-  terminator overlaid, emphasizing the dayside photolysis product.
-
-- **`global_NO2.png` / `.pdf`** — the matching NO₂ reservoir map, including
-  its daylight drawdown.
-
-- **`global_NOx_contours.png` / `.pdf`** — overlaid NO and NO₂ fields at the
-  same level and time, with separate color scales and the terminator.
-
-- **`jNO2_terminator.png` / `.pdf`** — jNO₂ maps at t = 3, 9, 15, 21 UTC.
+- **jNO₂ terminator sweep** — jNO₂ maps at t = 3, 9, 15, 21 UTC.
   The day–night terminator is shown at four snapshots during one daily sweep,
   visible as a sharp drop in jNO₂ at the photolysis edge. (t = 0 is skipped
   because TUV-x has not yet fired at the initial output frame, so jNO₂ is
   identically zero there.)
-  Triangulated mesh rendering with antimeridian-spanning triangles
-  masked, so the limb is clean.
 
   **[Figure 4.2: jNO₂ terminator-sweep map at t = 3 / 9 / 15 / 21
   UTC. To be added.]**
 
-- **`tracers_evolution.png` / `.pdf`** — qO₃ at level 22 (≈36 km, where the
-  Chapman cycle is most active) and qNO₂ at a representative level 17
-  (≈25 km), shown at t = 12 h and t = 24 h. Initial NO and NO₂ are uniform
-  with altitude, so this is not a seeded NOx peak. The level
-  indices are tied to the JW 26-level grid via the `LEVEL_O3` and
-  `LEVEL_NO2` constants in `plot_chapman_nox_global.py`; if the
-  vertical grid changes, those constants need to be retuned.
+- **Tracer evolution** — qO₃ at level 22 (≈36 km, where the Chapman
+  cycle is most active) and qNO₂ at a representative level 17 (≈25 km),
+  shown at t = 12 h and t = 24 h. Initial NO and NO₂ are uniform with
+  altitude, so this is not a seeded NOx peak. These level indices are
+  tied to the JW 26-level grid; if the vertical grid changes, pick new
+  levels.
 
   **[Figure 4.3: qO₃ at ≈36 km and qNO₂ at ≈25 km, t = 12 h and t =
   24 h. To be added.]**
 
-- **`nox_partition.png` / `.pdf`** — NO₂ / (NO + NO₂) molar fraction at t = 12 h
+- **NO₂ partition** — NO₂ / (NO + NO₂) molar fraction at t = 12 h
   and t = 24 h. Dayside drops toward Leighton (lower fraction —
   jNO₂ converts NO₂ → NO); nightside relaxes toward NO₂ (higher
   fraction — no photolysis, NO + O₃ titrates NO back to NO₂).
@@ -337,7 +305,7 @@ the year-0000 failure:
   **[Figure 4.4: NO₂ partition fraction at t = 12 h and t = 24 h. To
   be added.]**
 
-- **`o3_profile.png` / `.pdf`** — global-mean O₃ vertical profile and the
+- **O₃ profile** — global-mean O₃ vertical profile and the
   zonal-mean ΔO₃ over the 24-hour window. Symmetric-log color norm so
   upper-stratosphere production above ~30 km and lower-altitude
   NOx-driven loss below are both visible in the same figure.
@@ -345,44 +313,43 @@ the year-0000 failure:
   **[Figure 4.5: Global-mean O₃ profile and zonal-mean ΔO₃ over 24 h.
   To be added.]**
 
-The last two functions are conditional on the hardcoded date and are not
-regenerated by the tracked year-0000 command. The embedded images are
-archived `2026-06-24` talk figures:
+The next two figures were made from hourly output of this case covering
+2026-06-24 UTC. The release namelist
+starts at `0000-01-01_00:00:00` instead; if you convert `xtime` with
+Python's `datetime`, note that it cannot represent year 0000.
 
-- **`o3_zonal_mean.png`** — the zonal-mean O₃ pressure–latitude cross
+- **Ozone zonal mean** — the zonal-mean O₃ pressure–latitude cross
   section, averaged over a full UTC day, beside latitude-band O₃
   profiles sharing the pressure axis. Columns are interpolated to a
-  common log-pressure grid and lightly smoothed. This is the
-  **Stratosphere: Ozone Zonal Mean** figure from the talk.
+  common log-pressure grid and lightly smoothed.
 
   ```{figure} ../_static/o3_zonal_mean.png
   :name: fig-stratosphere-o3-zonal-mean
   :alt: Zonal-mean O3 pressure-latitude cross-section with latitude-band profiles.
   :width: 100%
 
-  Figure 4.6: Archived `2026-06-24` Stratosphere ozone talk figure; the
-  tracked year-0000 plotting command does not regenerate it. Left: day-averaged
-  zonal-mean O₃ as a pressure–latitude cross-section. Right:
-  O₃ profiles for representative latitude bands on the shared pressure
-  axis. The ozone maximum sits in the middle stratosphere, with the
-  expected latitudinal structure of the Chapman layer.
+  Figure 4.6: Zonal-mean O₃ from 2026-06-24 output.
+  Left: day-averaged zonal-mean O₃ as a pressure–latitude
+  cross-section. Right: O₃ profiles for representative latitude bands
+  on the shared pressure axis. The ozone maximum sits in the middle
+  stratosphere, with the expected latitudinal structure of the Chapman
+  layer.
   ```
 
-- **`nox_diurnal.png`** — a Hovmöller of the NO₂/NOₓ partition
+- **NOₓ diurnal cycle** — a Hovmöller of the NO₂/NOₓ partition
   (pressure vs. Mountain Standard Time) in the Boulder column, beside
-  NO and NO₂ profiles at local noon. This is the **Stratosphere:
-  NOₓ Diurnal Cycle** figure from the talk.
+  NO and NO₂ profiles at local noon.
 
   ```{figure} ../_static/nox_diurnal.png
   :name: fig-stratosphere-nox-diurnal
   :alt: Hovmoller of the NO2/NOx partition over a diurnal cycle in the Boulder column.
   :width: 100%
 
-  Figure 4.7: Archived `2026-06-24` Stratosphere NOₓ talk figure; the tracked
-  year-0000 plotting command does not regenerate it. Left: Hovmöller of the
-  NO₂/NOₓ partition fraction (pressure vs. MST) in the Boulder column —
-  daytime photolysis drives the partition toward NO, nighttime relaxes
-  it back toward NO₂. Right: NO and NO₂ profiles at local noon.
+  Figure 4.7: NOₓ diurnal cycle from 2026-06-24 output.
+  Left: Hovmöller of the NO₂/NOₓ partition fraction (pressure vs. MST)
+  in the Boulder column — daytime photolysis drives the partition
+  toward NO, nighttime relaxes it back toward NO₂. Right: NO and NO₂
+  profiles at local noon.
   ```
 
 ## 4.7 What to look for
@@ -395,21 +362,22 @@ This section is being revised.
 
 Three diagnostics worth checking by eye:
 
-- **Terminator alignment.** In `jNO2_terminator.png`, the jNO₂ drop
-  should align with the geometric SZA = 90° great circle at each UTC
-  hour. If the terminator is rotated or offset, the
+- **Terminator alignment.** In the jNO₂ terminator maps (Figure 4.2),
+  the jNO₂ drop should align with the geometric SZA = 90° great circle
+  at each UTC hour. If the terminator is rotated or offset, the
   `use_grid_coords` machinery is mis-wired.
-- **Partition flip.** In `nox_partition.png`, daytime hemispheres
-  should sit at lower NO₂ fractions than nighttime hemispheres. The
-  contrast tracks where the integration is in its diurnal cycle —
-  t = 12 h and t = 24 h are 12 hours apart and show approximately opposite
-  day/night phases at the prime meridian.
-- **Ozone modulation magnitude.** In `tracers_evolution.png` and
-  `o3_profile.png`, expect a small diurnal modulation in qO₃ at
-  36 km, visible as a difference between the t = 12 h and t = 24 h
-  panels. The 24-hour integration is too short for the column to
-  fully relax; longer runs (multi-day, outside the scope of this
-  chapter) would show a slow drift toward the steady state.
+- **Partition flip.** In the NO₂ partition maps (Figure 4.4), daytime
+  hemispheres should sit at lower NO₂ fractions than nighttime
+  hemispheres. The contrast tracks where the integration is in its
+  diurnal cycle — t = 12 h and t = 24 h are 12 hours apart and show
+  approximately opposite day/night phases at the prime meridian.
+- **Ozone modulation magnitude.** In the tracer-evolution and O₃
+  profile figures (Figures 4.3 and 4.5), expect a small diurnal
+  modulation in qO₃ at 36 km, visible as a difference between the
+  t = 12 h and t = 24 h panels. The 24-hour integration is too short
+  for the column to fully relax; longer runs (multi-day, outside the
+  scope of this chapter) would show a slow drift toward the steady
+  state.
 
 The fast-radical species (qO, qO¹D) should stay small everywhere
 once chemistry has spun up — they are output for diagnostic value

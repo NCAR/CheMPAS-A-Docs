@@ -105,25 +105,6 @@ flux, bracket, and metadata state. The legacy full-grid MUSICA constructor is
 used only by equivalence tests and benchmarks. See
 [MIEM_INTEGRATION.md](../musica/MIEM_INTEGRATION.md).
 
-### Phase 9 evidence boundary
-
-```text
-tracked external-input manifest
-  |-> immutable external inventory, meteorology, mesh, and partition
-  |-> isolated G3/A1/R0-R6/E0 runs
-  |-> compact reports, logs, field hashes, and figure manifest
-  `-> stage9e-release-manifest.json (all hashes, commands, and gates)
-```
-
-Large NetCDF inputs, histories, restarts, and baseline outputs stay outside the
-repository under `CHEMPAS_EMISSIONS_DATA_ROOT`; only compact, hash-addressed
-evidence is tracked. The release proves the implemented data path, coupled
-dynamics/transport/chemistry behavior, source and NOy accounting, restart,
-controls, and reproducibility. Scientific interpretation is narrower: A1 uses
-science-grade emissions and date-matched meteorology, but its idealized,
-unspun chemical initial state does not support production first-day
-concentration claims.
-
 ### Chemistry Timestep Flow
 
 Once initialized, chemistry is stepped through the MPAS chemistry driver after
@@ -263,14 +244,13 @@ The registry is processed by tools in `src/tools/registry/` to generate Fortran 
 
 ### Supported Chemistry Build
 
-The supported Makefile path for the chemistry-enabled `develop` branch
-requires:
+The supported Makefile path for chemistry-enabled builds requires:
 
 - MPI, including the compiler-compatible Fortran interface;
 - NetCDF-C and NetCDF-Fortran;
 - the PnetCDF C library;
 - PIO; and
-- the revision-qualified MUSICA-Fortran closure, including MICM, MIEM,
+- the pinned MUSICA-Fortran revision set, including MICM, MIEM,
   MechanismConfiguration, and TUV-x.
 
 PnetCDF's Fortran interface is not required by the supported LLVM/flang path;
@@ -282,7 +262,7 @@ ABI.
 The retained non-chemistry CMake path has a different dependency scope and
 does not expose the CheMPAS chemistry coupling. Optional facilities such as
 GPTL or ESMF depend on that selected build configuration. See the build guide
-for the authoritative commands and qualified revisions.
+for the authoritative commands and pinned revisions.
 
 ## Related Documentation
 
@@ -290,9 +270,6 @@ for the authoritative commands and qualified revisions.
 - [COMPONENTS.md](COMPONENTS.md) - Detailed component documentation
 - [MUSICA_INTEGRATION.md](../musica/MUSICA_INTEGRATION.md) - Chemistry integration details
 - [MIEM_INTEGRATION.md](../musica/MIEM_INTEGRATION.md) - Exact-grid emissions workflow
-- [MVP_PRE_RELEASE.md](../mvp/MVP_PRE_RELEASE.md) - Current end-to-end global demonstration
-- [TEST_RUNS.md](../results/TEST_RUNS.md) - Recorded runtime validation results
-- [MVP qualification record](../mvp/MVP_PRE_RELEASE.md) - completed release-candidate scope and evidence
 
 ## External Resources
 

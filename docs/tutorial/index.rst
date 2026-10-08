@@ -6,11 +6,12 @@ tutorial complements the imported MPAS-Atmosphere User's Guide (which is a
 CheMPAS-A adaptation of the upstream MPAS v8.4.1 reference documentation) with
 worked examples specific to CheMPAS-A's MUSICA/MICM coupling.
 
-Public namelists, streams, mechanisms, and input contracts are maintained in
-the `CheMPAS-A wiki <https://github.com/NCAR/CheMPAS-A/wiki/Examples>`_. Some
-sections preserve commands from the development qualification tree; those
-commands document how results were produced but the named automation is not
-part of the public MVP source distribution.
+Commands assume a checkout of the CheMPAS-A
+`v2026.08.01 release <https://github.com/NCAR/CheMPAS-A/tree/v2026.08.01>`_,
+which carries the mechanisms, initialization scripts, and case configurations
+the chapters reference. Further public namelists, streams, mechanisms, and input
+contracts are maintained in the
+`CheMPAS-A wiki <https://github.com/NCAR/CheMPAS-A/wiki/Examples>`_.
 
 .. admonition:: Work in progress
    :class: warning

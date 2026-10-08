@@ -1,7 +1,7 @@
 CheMPAS-A User's Guide
 ======================
 
-User's Guide for the CheMPAS-A 26.08 MVP release candidate, based on
+User's Guide for the CheMPAS-A 26.08 MVP (v2026.08.01), based on
 MPAS-Atmosphere v8.4.1.
 
 .. toctree::

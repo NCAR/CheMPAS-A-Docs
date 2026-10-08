@@ -25,8 +25,8 @@ active build discovers an installed MUSICA-Fortran package through
 ## Supported Revision Scope
 
 Unless a paragraph explicitly says `main`, every Fortran type, signature, and
-behavior below is scoped to the exact dependency closure qualified by
-CheMPAS-A `develop`:
+behavior below is scoped to the exact dependency revisions pinned by
+CheMPAS-A:
 
 | Component | Supported revision |
 |---|---|
@@ -51,7 +51,7 @@ replacement for the closure above.
 | Component | Current role | Audited `main` tip | Compatibility with the CheMPAS-A pin |
 |---|---|---|---|
 | MUSICA | Build/package umbrella and language bindings for MICM, MIEM, TUV-x, and other components | `a6d34d38f874574b8a0599540f1a12230063ce58` | **Not API-compatible for CheMPAS emissions.** The pin and `main` diverge after `5e4108cceae1aa11478902c996e473d85b41f6ba`; the selected-cell/layer/group/grid-metadata Fortran work is not on `main`. |
-| MICM | C++20 chemical state, reaction, and ODE-solver library; the CPU target is header-only and CUDA is optional | `97ac9e5d8aadd345c242722ee8274d71dfe0f73e` (`3.13.0`) | The CheMPAS pin is an ancestor and `main` is 29 commits ahead, but that newer API and numerics have not been qualified with CheMPAS-A. Do not silently substitute it. |
+| MICM | C++20 chemical state, reaction, and ODE-solver library; the CPU target is header-only and CUDA is optional | `97ac9e5d8aadd345c242722ee8274d71dfe0f73e` (`3.13.0`) | The CheMPAS pin is an ancestor and `main` is 29 commits ahead, but that newer API and numerics have not been tested with CheMPAS-A. Do not silently substitute it. |
 | MIEM | Compiled C++20 offline-emissions library linked with NetCDF; MUSICA supplies its C and Fortran bindings | `970e9c20360e25c53b37d5587eebfc81a18336e2` (`0.1.0`) | **Not API-compatible for CheMPAS emissions.** The pin and `main` diverge after `2bb1e21dc251e3eb356fd0a2d4ae74f7fc145150`; the selected-cell, vertical-profile, diagnostics, and exact-grid work is feature-only. |
 
 In particular, audited MUSICA `main` exports a much smaller
@@ -227,7 +227,7 @@ max_cells = micm%get_maximum_number_of_grid_cells()
 ```
 
 **Returns:** Maximum grid cells supported by solver type
-- Vector-ordered solvers: the build-time vector group size (4 in the qualified
+- Vector-ordered solvers: the build-time vector group size (4 in the pinned
   MICM build)
 - Standard-ordered solvers: effectively unlimited; the Fortran wrapper caps
   the C++ `size_t` result at the largest default Fortran integer
@@ -663,7 +663,7 @@ use musica_micm, only: Rosenbrock, RosenbrockStandardOrder, &
                        CudaRosenbrock
 ```
 
-| Solver | Description | Maximum grid cells reported by the qualified build |
+| Solver | Description | Maximum grid cells reported by the pinned build |
 |--------|-------------|----------------------------------------------------|
 | `Rosenbrock` | Vector-ordered Rosenbrock | Build-time vector group size (4) |
 | `RosenbrockStandardOrder` | Standard-ordered Rosenbrock | Effectively unlimited |
@@ -1008,5 +1008,5 @@ convention.
 - [ARCHITECTURE.md](../architecture/ARCHITECTURE.md) - MPAS system architecture
 - [MUSICA_INTEGRATION.md](MUSICA_INTEGRATION.md) - MPAS-MUSICA integration details
 - [MIEM_INTEGRATION.md](MIEM_INTEGRATION.md) - MIEM public-API usage and workflow
-- The installed, revision-qualified MUSICA-Fortran package discovered by
+- The installed, revision-pinned MUSICA-Fortran package discovered by
   `pkg-config`; sibling source trees are inspection references only

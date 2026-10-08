@@ -6,25 +6,73 @@ CheMPAS-A adaptation of the upstream MPAS-Atmosphere documentation, this
 tutorial is narrative: run the case, look at the output, understand what the
 chemistry is doing.
 
-The tutorial cases are teaching and development examples. For the verified
-global MVP, use the public reconstruction guide and evidence record linked
-under [Beyond the tutorial](#beyond-the-tutorial) rather than treating an
-idealized case as production forcing.
+The tutorial cases are teaching examples. For global chemistry with surface
+emissions, use the public guides linked under
+[Beyond the tutorial](#beyond-the-tutorial) rather than treating an idealized
+case as production forcing.
 
 ## What this tutorial assumes
 
-- `atmosphere_model` is built. See the public MVP
+- A checkout of the CheMPAS-A
+  [v2026.08.01 release](https://github.com/NCAR/CheMPAS-A/tree/v2026.08.01),
+  for example from
+  `git clone --branch v2026.08.01 https://github.com/NCAR/CheMPAS-A.git`.
+  Its `micm_configs/`, `scripts/`, and `test_cases/` directories hold the
+  mechanisms, TUV-x configurations, tracer initializers, and case
+  configurations used in Chapters 2--4. The examples call this checkout
+  `$CHEMPAS_ROOT`.
+- `atmosphere_model` is built. See the
   [build guide](https://github.com/NCAR/CheMPAS-A/wiki/Building) and
   [Chapter 3 of the User's Guide](../users-guide/03-building.md).
 - A separate run-data root is set up with each case's namelist, streams,
   graph partition, and (where needed) initial-condition files. The examples
-  call this location `$CHEMPAS_RUN_ROOT`; obtain the public inputs from the
+  call this location `$CHEMPAS_RUN_ROOT`; each chapter names the NCAR
+  test-case archive and release `test_cases/` directory it uses. Further
+  public inputs are in the
   [examples wiki](https://github.com/NCAR/CheMPAS-A/wiki/Examples).
 - The conda environment `mpas` is available for plotting:
   `conda activate mpas`.
 - For coupled TUV-x runs, `CHEMPAS_TUVX_DATA` points to a MUSICA source
   checkout's `configs/tuvx/data` directory. Chapters 2--4 stage that tree as
   `data` in each run directory because the TUV-x JSON paths are relative.
+
+## Running the cases in a container
+
+The release's
+[`docker/README.md`](https://github.com/NCAR/CheMPAS-A/blob/v2026.08.01/docker/README.md)
+describes a Docker build and run harness for three of the tutorial cases:
+`supercell-abba` (Supercell ABBA, §2.5), `supercell-lnox` (Supercell
+LNOx + O3, §2.6), and `chapman-nox-global` (Global Chapman + NOx,
+Chapter 4). The image builds `init_atmosphere_model` and `atmosphere_model`
+with MUSICA/MICM support. Its Python environment contains only NumPy and
+netCDF4, so plot the output on the host. The supported container target is
+Linux/AMD64.
+
+From the root of the release checkout, build the image, create a host data
+directory, and run a case:
+
+```bash
+docker build --platform linux/amd64 \
+  -f docker/Containerfile --target run -t chempas-a:docker .
+
+mkdir -p "$HOME/Data/CheMPAS"
+
+docker run --rm \
+  --platform linux/amd64 \
+  --shm-size=1g \
+  -v "$HOME/Data/CheMPAS:/data/CheMPAS" \
+  chempas-a:docker supercell-abba
+```
+
+Replace `supercell-abba` with `supercell-lnox` or `chapman-nox-global` for
+the other two cases. The runner downloads missing NCAR MPAS v7.0 test-case
+archives and writes each case to its own directory under
+`$HOME/Data/CheMPAS`. The `--shm-size=1g` allocation is required by the
+eight-rank OpenMPI runs. After a run, the harness checks that `output.nc`
+and `log.atmosphere.0000.out` exist, that the log reports
+`Critical error messages = 0`, and that the expected chemistry variables are
+present and finite. The README also covers setup-only runs and the
+`CHEMPAS_FORCE_INIT` and `CHEMPAS_RUN_DURATION` overrides.
 
 ## Python environment for standalone examples
 
@@ -50,19 +98,9 @@ pip install 'musica[tutorial]' ephem
 The standalone-example sections each link back here for the install;
 no need to re-run `pip` between sections.
 
-The development qualification tree used four standalone scripts:
-
-```bash
-python scripts/musica_python/abba_box.py
-python scripts/musica_python/lnox_box.py
-python scripts/musica_python/chapman_nox_column.py
-python scripts/musica_python/tropo_box.py
-```
-
-The fourth exercises the reduced Ox-HOx-NOx-CO-CH4 mechanism through a two-day
-TUV-x-driven diurnal cycle. These commands are retained as qualification
-provenance; the public MVP distributes declarative coupled examples through
-the wiki rather than the development automation tree.
+Chapter 2 reproduces the standalone ABBA box script in full (§2.10).
+Sections 2.11 and 3.10 describe the corresponding single-cell LNOx + O₃ box
+and Chapman + NOx column calculations.
 
 ## Chapters
 
@@ -79,20 +117,12 @@ the wiki rather than the development automation tree.
 
 ## Beyond the tutorial
 
-- [Global MVP reconstruction](https://github.com/NCAR/CheMPAS-A/wiki/Global-Chemistry-and-Emissions)
+- [Global chemistry and emissions](https://github.com/NCAR/CheMPAS-A/wiki/Global-Chemistry-and-Emissions)
   — public inputs and manual staging for the No Surface Emissions,
   Anthropogenic Emissions, and Anthropogenic + Fire Emissions scenarios.
-- [MVP qualification record](../chempas/mvp/MVP_PRE_RELEASE.md) — prescribed
-  upper O3, reduced Ox-HOx-NOx-CO-CH4 chemistry, source attribution, and
-  interpretation limits.
 - [MIEM integration](../chempas/musica/MIEM_INTEGRATION.md) — exact-grid
-  inventory preparation, the self-contained chem-box fixture, distributed
-  runtime behavior, and global qualification evidence.
-- [Global tropospheric NOx](../chempas/musica/GLOBAL_TROPOSPHERIC_NOX.md) —
-  reduced and expanded chemistry promotion ladders.
-- [Global tropospheric methane](../chempas/musica/GLOBAL_TROPOSPHERIC_METHANE.md)
-  — post-MVP development status for signed methane exchange, initialization,
-  MOZART-35, and evidence publication.
+  inventory preparation, the self-contained chem-box fixture, and
+  distributed runtime behavior.
 
 The global guides require external provider data under
 `CHEMPAS_EMISSIONS_DATA_ROOT`. The small examples and synthetic fixtures must
@@ -100,9 +130,8 @@ not be substituted for that scientific forcing.
 
 ## Verifying numerically
 
-The accepted clean-build and test matrix is recorded in
-[`STAGE5_FULL_REGRESSION.md`](../chempas/mvp/STAGE5_FULL_REGRESSION.md). The
-development suite and its shell harnesses are provenance for that result; they
-are not shipped as commands in the public MVP source. Public users can
-reconstruct the released examples from the wiki and apply the log, stream,
-restart, and mass-bookkeeping checks documented in this site.
+Each chapter ends with checks to apply to your own output: a rank-zero log
+that reports `Critical error messages = 0`, the expected chemistry and
+photolysis fields present, finite, and non-negative, and case-specific
+diagnostics such as the Leighton photostationary-state comparison in
+Chapter 3.

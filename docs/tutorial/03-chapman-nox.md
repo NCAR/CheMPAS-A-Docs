@@ -27,10 +27,10 @@ By the end of this chapter you will:
 
 - Run the Chapman + NOx idealized stratospheric-chemistry case in
   CheMPAS-A on the supercell mesh.
-- Generate the TUV-x upper-atmosphere extension CSV and understand
+- Stage the TUV-x upper-atmosphere extension CSV and understand
   why TUV-x needs photons from above the model lid.
 - Verify the chemistry against the analytical Leighton photostationary
-  state, then use the maintained output checker and regression contracts.
+  state and check the output fields.
 
 ## 3.2 The Chapman + NOx case
 
@@ -62,8 +62,8 @@ target of section 3.7.
 The MICM solver evolves all six prognostic species (O₂, O, O¹D, O₃,
 NO, NO₂) every timestep — including O₃, which is produced by
 O + O₂ + M → O₃ and destroyed by both photolysis and titration.
-The Chapman O₃ column itself is *not* prescribed. What `init_chapman.py`
-does is supply realistic *initial conditions*: starting the run from
+The Chapman O₃ column itself is *not* prescribed. The initialization in
+§3.5 supplies realistic *initial conditions*: starting the run from
 zero would force the chemistry to build the column from scratch, which
 takes hours in the upper stratosphere where jO₂ is non-negligible and
 months-to-years in the lower stratosphere where the Schumann–Runge
@@ -71,9 +71,9 @@ bands are extinguished. The AFGL mid-latitude-summer climatology gets
 the run close enough to a reasonable starting state that the diurnal
 photochemistry the run actually demonstrates is meaningful.
 
-The Chapman cycle is global-stratospheric physics, but
-`scripts/init_chapman.py` seeds a 1-D AFGL mid-latitude-summer ozone
-profile uniformly across the supercell mesh, and the chemistry has no
+The Chapman cycle is global-stratospheric physics, but the §3.5
+initialization seeds a 1-D AFGL mid-latitude-summer ozone profile
+uniformly across the supercell mesh, and the chemistry has no
 feedback on dynamics. This chapter therefore uses the small
 (~85 km × 85 km × 50 km top) supercell grid as a column-like sandbox
 — what matters is the vertical structure of the photolysis driver and
@@ -101,7 +101,7 @@ itself does not simulate. Without an extension, TUV-x sees vacuum
 above 50 km, jO₃ and jNO₂ are off by a non-trivial factor at high
 altitudes, and the Chapman steady state never establishes properly.
 
-The fix is `micm_configs/tuvx_upper_atm.csv`: a tracked CSV carrying
+The fix is `micm_configs/tuvx_upper_atm.csv`: a CSV carrying
 temperature, air number density, and ozone number density on a
 uniform 5-km grid from 50 to 100 km. The temperature and air values
 come from the US Standard Atmosphere 1976 tables; the ozone values
@@ -115,7 +115,7 @@ The stitch lives in `src/core_atmosphere/chemistry/mpas_tuvx.F`; for
 the broader integration story, see
 [TUV-x integration](../chempas/guides/TUVX_INTEGRATION.md).
 
-## 3.4 Generating and verifying the extension CSV
+## 3.4 Staging and verifying the extension CSV
 
 ```{admonition} Draft - revisions in progress
 :class: warning
@@ -123,13 +123,13 @@ the broader integration story, see
 This section is being revised.
 ```
 
-**Generate the CSV.** The generator is parameterized but defaults to
-the configuration the runtime expects (50–100 km, 10 layers, 5-km
-spacing). These commands reuse the source/run variables from §2.3. In a
+**Stage the CSV.** The release ships the extension as
+`micm_configs/tuvx_upper_atm.csv`, covering 50–100 km in 10 layers of
+5 km. These commands reuse the source/run variables from §2.3. In a
 new shell, establish them and activate the environment first:
 
 ```bash
-cd /path/to/CheMPAS-A-qualification
+cd /path/to/CheMPAS-A
 export CHEMPAS_ROOT="$(pwd)"
 export CHEMPAS_RUN_ROOT=/path/to/CheMPAS-run-data
 export CHEMPAS_TUVX_DATA=/path/to/MUSICA/configs/tuvx/data
@@ -137,29 +137,19 @@ export SUPERCELL_RUN="$CHEMPAS_RUN_ROOT/supercell"
 conda activate mpas
 test -d "$CHEMPAS_TUVX_DATA"
 
-python scripts/gen_tuvx_upper_atm.py \
-    --out "$SUPERCELL_RUN/tuvx_upper_atm.csv"
+cp "$CHEMPAS_ROOT/micm_configs/tuvx_upper_atm.csv" "$SUPERCELL_RUN/"
 ```
 
-The script emits a header line followed by one row per edge with
-columns `z_km, T_K, n_air_molec_cm3, n_O3_molec_cm3`. The output path
-must match the `config_tuvx_extension_file` value in the namelist
-(set in section 3.6 below).
+The file has a header line followed by one row per edge with
+columns `z_km, T_K, n_air_molec_cm3, n_O3_molec_cm3`. Its name must
+match the `config_tuvx_extension_file` value in the namelist (set in
+section 3.6 below).
 
-**Verify the stitched column.** The companion plotter overlays the
-MPAS region with the extension-CSV region as TUV-x actually sees
-them, including the edge-blending the runtime applies at the 50-km
-boundary:
-
-```bash
-cd "$SUPERCELL_RUN"
-python "$CHEMPAS_ROOT/scripts/plot_extension_profiles.py" \
-    -i output.isotherm.nc --csv tuvx_upper_atm.csv
-```
-
-This pre-run check uses the stable isotherm LNOx artifact named in Chapter 2.
-After §3.6 creates the Chapman result, repeat the command with
-`-i output.nc` to inspect the column from the actual Chapman run.
+**Verify the stitched column.** After §3.6 creates the Chapman result,
+plot temperature, air number density, and O₃ number density from
+`output.nc` below the 50-km lid together with the CSV values above it.
+The runtime blends the two regions at the boundary, so TUV-x sees a
+continuous column.
 
 **[Figure 3.2: Stitched T, n_air, and n_O₃ vertical profiles from
 mpas_tuvx.F. MPAS region (below 50 km) and extension-CSV region
@@ -185,25 +175,22 @@ plus NOx reactions:
   grid (continuous with the upper-atmosphere extension at the lid).
   Starting near the climatology avoids the months-to-years
   Chapman spin-up in the lower stratosphere.
-- `qO` — an altitude-dependent Chapman quasi-steady-state seed by default;
-  select `--qo-mode uniform` or `--qo-mode zero` for the alternate script
-  modes. `qO1D` starts at zero. Both are fast radicals evolved by chemistry.
+- `qO` — an altitude-dependent Chapman quasi-steady-state seed.
+  `qO1D` starts at zero. Both are fast radicals evolved by chemistry.
 - `qNO`, `qNO2` — total-NOx profile (0.05 ppb tropospheric background
   → ~10 ppb stratospheric peak around 25–35 km → drop near the lid),
   partitioned ~30 % NO / 70 % NO₂ as a near-Leighton initial guess.
   The Leighton partitioning settles within seconds; the total NOx
   burden is preserved over the run.
 
-`scripts/init_chapman.py` writes these six tracers into
-`supercell_init.nc`:
+Write these six tracers, as mass mixing ratios in kg/kg, into
+`supercell_init.nc` before running. The release's
+`scripts/init_chapman_nox.py` is a worked example of adding
+altitude-dependent tracers to an MPAS init file; its global profiles
+are described in Chapter 4 §4.4.
 
-```bash
-cd "$SUPERCELL_RUN"
-python "$CHEMPAS_ROOT/scripts/init_chapman.py" -i supercell_init.nc
-```
-
-Note: this rewrites tracers in `supercell_init.nc` in place. If
-you've been running the supercell + LNOx case from Chapter 2 and
+Note: writing into `supercell_init.nc` replaces its tracers in place.
+If you've been running the supercell + LNOx case from Chapter 2 and
 want to switch back, copy `supercell_init.nc` aside first or be
 prepared to re-run `init_atmosphere_model` to regenerate it.
 
@@ -277,19 +264,10 @@ Verify the run completed cleanly by checking the tail of
 Critical error messages = 0
 ```
 
-**Plot.** `scripts/plot_chemistry_profiles.py` produces seven panels of
-horizontal-mean vertical profiles with a cellwise min--max envelope:
-
-```bash
-cd "$SUPERCELL_RUN"
-python "$CHEMPAS_ROOT/scripts/plot_chemistry_profiles.py" \
-    -i output.nc
-```
-
-The panels are qO₃, total atomic oxygen qO + qO1D, qNO₂, and qNO,
-followed by jO₂, combined jO₃ = jO₃→O + jO₃→O¹D, and jNO₂. With no
-`-o` option, the command writes `plots/chemistry_profiles.png` and
-`plots/chemistry_profiles.pdf`.
+**Plot.** From `output.nc`, plot seven panels of horizontal-mean
+vertical profiles, each with a cellwise min--max envelope: qO₃, total
+atomic oxygen qO + qO1D, qNO₂, and qNO, followed by jO₂, combined
+jO₃ = jO₃→O + jO₃→O¹D, and jNO₂.
 
 **[Figure 3.3: Horizontal-mean vertical profiles and cellwise min--max
 envelopes for the four species panels and three combined photolysis panels,
@@ -297,8 +275,8 @@ Chapman + NOx mechanism. To be added.]**
 
 What to look for: O₃ and NOx maxima in the seeded stratospheric
 layer (~25–35 km); jNO₂ rising sharply with altitude as the column
-above thins; and evolution of the qNO and qNO₂ profiles. The script does not
-plot their ratio; section 3.8 checks that diagnostic analytically.
+above thins; and evolution of the qNO and qNO₂ profiles. These panels do
+not show their ratio; section 3.8 checks that diagnostic analytically.
 
 ## 3.7 The photostationary-state diagnostic
 
@@ -334,8 +312,8 @@ side of the expression above at every level of the column: it's the
 analytical [NO]/[NO₂] partitioning the simple two-reaction system
 *should* settle to, given the local jNO₂ and [O₃]. Plotting the
 simulated NO/NO₂ ratio alongside the Leighton curve (Figure 3.4 in
-§3.8 and the bottom-left panel of the standalone column-model plot in
-§3.10) is a direct visual check on the photolysis–titration balance.
+§3.8 and the standalone column calculation in §3.10) is a direct
+visual check on the photolysis–titration balance.
 Where the two curves agree, the chemistry is at PSS as expected; where
 they diverge, either the system hasn't relaxed yet, or some other
 reaction the simple expression doesn't capture is perturbing the
@@ -364,44 +342,18 @@ to settle in the stratospheric column.
 This section is being revised.
 ```
 
-Two complementary checks.
+Two complementary checks, both run from `$SUPERCELL_RUN`.
 
-**Maintained checks.** First validate field presence, finiteness, and
-non-negativity in the result you just produced:
+**Field checks.** First confirm that all six species and four
+photolysis rates are present, finite, and non-negative in the result
+you just produced. Use the loop from §2.8 with this mapping:
 
-```bash
-cd "$SUPERCELL_RUN"
-python "$CHEMPAS_ROOT/scripts/check_chem_output.py" output.nc \
-  --require qO2 qO qO1D qO3 qNO qNO2 \
-            j_jNO2 j_jO2 j_jO3_O j_jO3_O1D \
-  --nonneg
+```python
+expected = {
+    'output.nc': ['qO2', 'qO', 'qO1D', 'qO3', 'qNO', 'qNO2',
+                  'j_jNO2', 'j_jO2', 'j_jO3_O', 'j_jO3_O1D'],
+}
 ```
-
-From the repository root, run the Python suite and the focused chemistry
-contract that exercises box, column, photolysis, NOy, radical, and Troe
-behavior:
-
-```bash
-cd "$CHEMPAS_ROOT"
-python -m unittest discover -v
-scripts/test_global_tropo_f0.sh
-```
-
-The executable E0 suite includes a frozen 24-hour `chapman_nox_global`
-artifact when its external bundle is available:
-
-```bash
-scripts/test_miem_disabled_baselines.sh . --case chapman_nox_global
-```
-
-This is a historical compatibility and bitwise-regression gate: its captured
-mechanism is named `Chapman-NOx-noO1D`, omits qO1D, and has a different SHA
-from the current `micm_configs/chapman_nox.yaml`. The manifest does not carry
-a maintained 24-hour executable baseline for the current six-species
-tutorial mechanism.
-
-See [MVP Stage 5](../chempas/mvp/STAGE5_FULL_REGRESSION.md) for the accepted
-clean build, 268-test Python run, and all 16 shell contracts.
 
 **Analytical PSS check.** Pull jNO₂, [O₃], [NO], [NO₂] from
 `output.nc` at the final timestep and compare the simulated ratio
@@ -443,10 +395,9 @@ print('median ratio agreement (sim / Leighton), 25-35 km:',
 ```
 
 The reported ratio should be finite and near unity in the sunlit 25–35 km
-layer. Treat this as a physics diagnostic, not the bitwise acceptance gate:
-the full mechanism contains the NO₂ + O pathway and Chapman radical
-chemistry omitted from the two-reaction Leighton expression. The maintained
-regression contracts above provide the release qualification.
+layer. Treat this as a physics diagnostic rather than an exact test: the
+full mechanism contains the NO₂ + O pathway and Chapman radical chemistry
+omitted from the two-reaction Leighton expression.
 
 **[Figure 3.4: Simulated vs. analytical Leighton [NO]/[NO₂] ratio vs.
 height at the final timestep. To be added.]**
@@ -470,62 +421,49 @@ This section is being revised.
   [Stratosphere — Chapman + NOx (Global)](04-stratosphere.md) — the same
   chemistry on the `x1.40962` global mesh, where the day–night
   photolysis terminator and zonal-mean ozone response become visible.
-- **Further idealized cases** (mountain wave, chem box) will be added
-  when their tutorial chapters are written. *(Not yet scheduled.)*
+- **Further idealized cases** — mountain-wave and JW baroclinic-wave
+  ABBA configurations — are on the wiki's
+  [Idealized Test Cases](https://github.com/NCAR/CheMPAS-A/wiki/Idealized-Test-Cases)
+  page.
 
 ## 3.10 Standalone Chapman + NOx column model
 
 The standalone counterpart of this whole chapter — same
 `chapman_nox.yaml` MICM mechanism, TUV-x photolysis on a vertical
-column, no MPAS in the loop. `scripts/musica_python/chapman_nox_column.py`
-loads MUSICA's bundled `vTS1` TUV-x calculator (which provides jO₂,
-jO₃→O, jO₃→O¹D, jNO₂), maps its TS1 reaction labels to
-`chapman_nox.yaml`'s `PHOTO.*` parameter names via a small alias table
-in the script, and runs a 12-hour diurnal cycle starting at 06:00
+column, no MPAS in the loop. The column model uses MUSICA's bundled
+`vTS1` TUV-x calculator (which provides jO₂, jO₃→O, jO₃→O¹D, jNO₂),
+maps its TS1 reaction labels to `chapman_nox.yaml`'s `PHOTO.*`
+parameter names, and runs a 12-hour diurnal cycle starting at 06:00
 local at the supercell case's nominal lat/lon (Norman, OK). The
 column grid is whatever vTS1 dictates — independent of the MPAS mesh
 and of the upper-atmosphere extension introduced in §3.3.
 
-Initial profiles come from `scripts/init_chapman.py`'s helpers (AFGL
-mid-latitude-summer O₃, total NOx with daytime 30/70 NO/NO₂
-partitioning), so the standalone column shares the coupled run's O₃ and NOx
-profiles. It is not an identical initial state: the standalone script starts
-O and O¹D at zero, whereas `init_chapman.py` seeds qO from its
-altitude-dependent quasi-steady-state mode by default and starts qO1D at
+Initial profiles follow §3.5 (AFGL mid-latitude-summer O₃, total NOx
+with daytime 30/70 NO/NO₂ partitioning), so the standalone column shares
+the coupled run's O₃ and NOx profiles. It is not an identical initial
+state: the column starts O and O¹D at zero, whereas §3.5 seeds qO with
+its altitude-dependent quasi-steady-state profile and starts qO1D at
 zero.
 
 Pre-req: see Chapter 1's [Python environment for standalone
 examples](01-overview.md) section.
 
-Run:
-
-```bash
-cd "$CHEMPAS_ROOT"
-python scripts/musica_python/chapman_nox_column.py
-```
-
-The script writes `scripts/musica_python/chapman_nox_column.nc` and
-`scripts/musica_python/chapman_nox_column.png`. The generated PNG contains
-the solar-noon O₃ and NOx profiles, the simulated-versus-Leighton comparison,
-and O₃ time series at three representative altitudes; it is not a tracked
-tutorial asset.
+Useful plots are the solar-noon O₃ and NOx profiles, the
+simulated-versus-Leighton NO/NO₂ comparison, and O₃ time series at three
+representative altitudes.
 
 What to look for: the simulated NO/NO₂ ratio in the stratospheric column
-tracks the plotted Leighton curve qualitatively. One current-script caveat is
-important: MICM uses the current YAML coefficient
-$1.084\times10^6\exp(-1370/T)$ m³ mol⁻¹ s⁻¹, but the dashed diagnostic in
-`chapman_nox_column.py` still uses the legacy
-$1.7\times10^{-12}\exp(-1310/T)$ cm³ molecule⁻¹ s⁻¹. A roughly factor-1.3
-offset therefore combines that coefficient mismatch with the additional
-NO₂ + O pathway and Chapman radical chemistry; it cannot be attributed only
-to O/O¹D coupling. The O₃ mixing-ratio profile peaks at ~6 ppm near
-~42 km (consistent with the AFGL mid-latitude-summer
-climatology used by `init_chapman.py`; tropical and US-standard
+tracks the Leighton curve qualitatively. Evaluate that curve with the
+`chapman_nox.yaml` coefficient $1.084\times10^6\exp(-1370/T)$
+m³ mol⁻¹ s⁻¹ so that it uses the same NO + O₃ rate as MICM; the remaining
+offset then reflects the NO₂ + O pathway and Chapman radical chemistry
+omitted from the two-reaction expression (§3.7). The O₃ mixing-ratio
+profile peaks at ~6 ppm near ~42 km (consistent with the AFGL
+mid-latitude-summer climatology used in §3.5; tropical and US-standard
 profiles peak higher, closer to 8–10 ppm). The O₃ *number-density*
 peak sits lower in the column, near ~20 km, because air density
 falls off faster than mixing ratio rises — a classic stratospheric
-O₃ feature. The script selects `datetime.now(TZ).date()` and runs from 06:00
-local for 12 hours, so the solar-zenith range and O₃ swing vary with the date
-of invocation; near-solstice values are illustrative, not invariant expected
-output. This provides an independent numerical check on the same mechanism
-the chapter's MPAS-coupled run exercises.
+O₃ feature. The solar-zenith range and O₃ swing depend on the
+simulated date, so they are not fixed expected values. This provides
+an independent numerical check on the same mechanism the chapter's
+MPAS-coupled run exercises.

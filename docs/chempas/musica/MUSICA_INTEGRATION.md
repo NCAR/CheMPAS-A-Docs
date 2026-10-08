@@ -13,13 +13,13 @@ for pregridded offline surface or normalized-profile emissions, and TUV-x as
 the optional photolysis solver. The complete emissions workflow is documented in
 [MIEM_INTEGRATION.md](MIEM_INTEGRATION.md).
 
-This integration targets the exact revision closure documented in the
+This integration targets the exact revision set documented in the
 [MUSICA API revision scope](MUSICA_API.md#supported-revision-scope). It is not
-compatible with arbitrary same-version installations or the audited 2026-08-16
-MUSICA/MIEM `main` tips: the rank-local selected-cell constructor, layer/group
-fluxes, exact-grid metadata, and complete static Fortran link closure are on the
-CheMPAS feature pins. MICM `main` contains the tested MICM commit but is 29
-commits newer and has not been qualified as a drop-in upgrade.
+compatible with arbitrary same-version installations or with MUSICA/MIEM
+`main`: the rank-local selected-cell constructor, layer/group fluxes,
+exact-grid metadata, and complete static Fortran link closure exist only on
+the pinned CheMPAS feature revisions. MICM `main` contains the tested MICM
+commit but is newer and has not been tested as a drop-in upgrade.
 
 ## Architecture
 
@@ -224,17 +224,16 @@ configuration at runtime, and MPAS tracer names follow the convention:
 
 `MICM species X -> MPAS tracer qX`
 
-The shipped mechanisms include ABBA (`AB`, `A`, `B`), LNOx-O3 (`NO`, `NO2`,
-`O3`), Chapman, Chapman + NOx, and reduced Ox-HOx-NOx-CO-CH4 variants. The
-`global_cams_*` snapshots add exactly `EMIS.NO` and `EMIS.NO2` for the
-[global tropospheric NOx ladder](GLOBAL_TROPOSPHERIC_NOX.md). MICM species map
-to MPAS tracers by prefixing `q`, e.g. `NO2 -> qNO2` and `O3 -> qO3`.
+The mechanisms used with CheMPAS-A include ABBA (`AB`, `A`, `B`), LNOx-O3
+(`NO`, `NO2`, `O3`), Chapman, Chapman + NOx, and reduced Ox-HOx-NOx-CO-CH4
+variants; the v2026.08.01 release ships the ABBA, LNOx-O3, and Chapman + NOx
+configurations. The `global_cams_*` configurations add exactly `EMIS.NO` and
+`EMIS.NO2` for global anthropogenic NOx emissions. MICM species map to MPAS
+tracers by prefixing `q`, e.g. `NO2 -> qNO2` and `O3 -> qO3`.
 
-The [global methane workflow](GLOBAL_TROPOSPHERIC_METHANE.md) adds a Tier C
-`EMIS.CH4` entry point and a deterministically generated MOZART-35 tier. Its
-O2, N2, and H2O parameters are host-bound only when the mechanism metadata
-declares that relationship; transported `qO2` in Chapman and Tier C remains
-unchanged.
+O2, N2, and H2O mechanism parameters are bound to host fields only when the
+mechanism metadata declares that relationship; transported `qO2` in the
+Chapman mechanisms remains unchanged.
 
 Molar masses are read per-species from MICM properties (`__molar mass`) via
 `micm%get_species_property_double(...)` during `musica_init`.
@@ -386,9 +385,9 @@ interval-start flux. No disaggregated buffers are allocated by default.
 
 ## Dependencies
 
-The module names below refer to the revision-qualified package, especially the
-expanded feature-pin `musica_emissions` module. Audited MUSICA `main` has a
-module with the same name but only the smaller full-grid surface-flux API.
+The module names below refer to the pinned package, especially the expanded
+feature-pin `musica_emissions` module. MUSICA `main` has a module with the
+same name but only the smaller full-grid surface-flux API.
 
 | Dependency | Module | Purpose |
 |------------|--------|---------|
@@ -413,26 +412,21 @@ if (has_error_occurred(error, error_message, error_code)) return
 
 The `has_error_occurred()` helper converts MUSICA errors to MPAS-compatible format.
 
-## Current Status And Follow-On Work
-
-The 2026-08-16 `develop` audit distinguishes implemented/qualified software
-from experiments whose science promotion is still incomplete:
+## Current Capabilities And Limits
 
 | Capability | Status |
 |---|---|
-| Core coupling | Implemented: runtime species/tracer discovery, MPAS-MICM MMR/concentration transfer, configurable substeps/tolerance, optional reference solve, and LNOx-O3, Chapman, Chapman-NOx, Tier C, and generated Tier Z mechanism paths. |
-| TUV-x and prescribed O3 | Implemented: from-host atmosphere/cloud profiles, optional exact-grid cyclic monthly MERRA-2 O3 strictly above the model top, and legacy/no-extension modes. Prescribed upper O3 affects photolysis only and never writes prognostic `qO3`. |
-| MIEM and multiple inventories | Implemented: selected owned-cell reads, exact-grid validation, surface/fixed-profile allocation, multiple inventory files in one configuration, bounded total/layer/sector/category diagnostics, signed-species opt-in, and algebraic global mass budgets. The global MVP exercised separate CAMS anthropogenic and FINN fire inventories. |
-| Global MVP | Complete as a pre-release process demonstration. The x1.40962 No Surface Emissions, Anthropogenic Emissions, and Anthropogenic + Fire Emissions 24-hour attribution with reduced chemistry and the complete regression suite passed; the result is not a production air-quality forecast or chemically spun-up product. |
-| Chemistry output units | Complete and revalidated: MMR remains authoritative transport/restart state; optional history-only `vmr_<species>` diagnostics support fraction, percent, ppmv, ppbv, and pptv with per-species overrides and host-bound species. |
-| MOZART-35 / global methane | The deterministic 35-transported-tracer mechanism, host-bound O2/N2/H2O handling, user rates, ledgers, MIEM NOx+CH4 path, and independent 48-hour box qualification are implemented. The global methane science ladder is not complete because CAMS inversion access and the documented disk-capacity gate remain unresolved. |
-| Scalability | Regional/global reports demonstrate owned-cell payload/state scaling and bitwise full/selected equivalence on eight ranks. I/O remains independent serial NetCDF hyperslabs rather than collective parallel I/O. |
+| Core coupling | Runtime species/tracer discovery, MPAS-MICM MMR/concentration transfer, configurable substeps/tolerance, optional reference solve, and the LNOx-O3, Chapman, Chapman-NOx, and reduced tropospheric mechanism paths. |
+| TUV-x and prescribed O3 | From-host atmosphere/cloud profiles, optional exact-grid cyclic monthly MERRA-2 O3 strictly above the model top, and legacy/no-extension modes. Prescribed upper O3 affects photolysis only and never writes prognostic `qO3`. |
+| MIEM and multiple inventories | Selected owned-cell reads, exact-grid validation, surface/fixed-profile allocation, multiple inventory files in one configuration, bounded total/layer/sector/category diagnostics, signed-species opt-in, and algebraic global mass budgets. Global simulations have combined separate CAMS anthropogenic and FINN fire inventories. |
+| Global simulations | 24-hour x1.40962 No Surface Emissions, Anthropogenic Emissions, and Anthropogenic + Fire Emissions scenarios with reduced chemistry. They are process demonstrations, not production air-quality forecasts or chemically spun-up products. |
+| Chemistry output units | MMR remains authoritative transport/restart state; optional history-only `vmr_<species>` diagnostics support fraction, percent, ppmv, ppbv, and pptv with per-species overrides and host-bound species. |
+| Scalability | Each rank reads and stores emissions only for its owned cells, and selected-cell and full-grid fluxes are bitwise identical on eight ranks. I/O uses independent serial NetCDF hyperslab reads rather than collective parallel I/O. |
 
-Follow-on work includes science promotion and longer validation for MOZART-35,
-additional production-oriented chemistry evaluation, aerosol chemistry,
-performance work for expensive photolysis configurations, collective
-parallel-NetCDF MIEM I/O, and meteorology-dependent plume rise beyond fixed
-normalized profiles.
+Not yet supported: aerosol chemistry, collective parallel-NetCDF MIEM I/O, and
+meteorology-dependent plume rise beyond fixed normalized profiles. The
+chemistry has not been evaluated for production use, and expensive photolysis
+configurations have not been optimized.
 
 ## Related Documentation
 
@@ -440,5 +434,3 @@ normalized profiles.
 - [Public MVP build guide](https://github.com/NCAR/CheMPAS-A/wiki/Building) - Build configuration for MUSICA
 - [COMPONENTS.md](../architecture/COMPONENTS.md) - Atmosphere component details
 - [MIEM_INTEGRATION.md](MIEM_INTEGRATION.md) - Offline-emissions workflow and contracts
-- [GLOBAL_TROPOSPHERIC_METHANE.md](GLOBAL_TROPOSPHERIC_METHANE.md) - Methane backgrounds, surface exchange, and MOZART-35
-- [MVP_PRE_RELEASE.md](../mvp/MVP_PRE_RELEASE.md) - Completed global MVP scope and limits

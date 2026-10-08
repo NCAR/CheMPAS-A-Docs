@@ -1,14 +1,14 @@
 # CheMPAS-A User's Guide
 
-CheMPAS-A 26.08 MVP release candidate, based on MPAS-Atmosphere v8.4.1
+CheMPAS-A 26.08 MVP (v2026.08.01), based on MPAS-Atmosphere v8.4.1
 
-Last updated: 25 August 2026
+Last updated: 8 October 2026
 
 ---
 
 ## Foreword
 
-This user's guide describes the CheMPAS-A 26.08 MVP release candidate, a chemistry-enabled derivative of the Model for Prediction Across Scales -- Atmosphere (MPAS-A) based on MPAS-Atmosphere v8.4.1. MPAS-A is the non-hydrostatic atmosphere model built within the MPAS framework. User guides for other MPAS components, such as MPAS-Ocean, are separate from this guide.
+This user's guide describes the CheMPAS-A 26.08 MVP, released as v2026.08.01, a chemistry-enabled derivative of the Model for Prediction Across Scales -- Atmosphere (MPAS-A) based on MPAS-Atmosphere v8.4.1. MPAS-A is the non-hydrostatic atmosphere model built within the MPAS framework. User guides for other MPAS components, such as MPAS-Ocean, are separate from this guide.
 
 The component models and framework that comprise MPAS are being developed collaboratively between Los Alamos National Laboratory (LANL) and the U.S. National Science Foundation National Center for Atmospheric Research (NSF NCAR). Common functionality required by different MPAS component models, such as parallel input/output, time management, block decomposition, etc., is provided by the MPAS framework, while development of specific component models, referred to in MPAS as *cores*, is handled by the individual development groups. Currently, LANL is responsible for the ocean, land-ice, and sea-ice cores, while NSF NCAR is responsible for the atmospheric core, MPAS-A.
 

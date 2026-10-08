@@ -126,11 +126,8 @@ For altitude mode, the DAVINCI-era working value `source_rate = 0.5`
 produces a visually similar enhancement on the supercell case;
 calibration there is also a manual loop.
 
-The repository regression infrastructure is present and the accepted MVP
-matrix records 268 Python tests plus 16 shell contracts passing. It does not
-yet publish a dedicated numerical reference for both LNOx gating modes, so
-retain the manual calibration check above and compare against the recorded
-[runtime evidence](../results/TEST_RUNS.md) when changing this source.
+There is not yet a dedicated numerical reference for both LNOx gating modes,
+so repeat the manual calibration check above when changing this source.
 
 ## See also
 

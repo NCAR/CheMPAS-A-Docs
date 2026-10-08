@@ -17,11 +17,11 @@ CheMPAS-A (Chemistry for MPAS - Atmosphere) is an ACOM integration pilot that
 couples MUSICA/MICM atmospheric chemistry to MPAS-Atmosphere on its native
 unstructured Voronoi mesh, developed as part of the NSF CSSI project QUACS
 (Quick Updates to Aerosol and Chemistry Systems for Next Generation Multi-Scale
-Models). This site documents the CheMPAS-A 26.08 Minimum Viable Product (MVP)
-release candidate, based on MPAS-Model v8.4.1.
+Models). This site documents the CheMPAS-A 26.08 Minimum Viable Product (MVP),
+released as v2026.08.01 and based on MPAS-Model v8.4.1.
 
-**MVP source:** `v2026.08.01-rc2 <https://github.com/NCAR/CheMPAS-A/tree/v2026.08.01-rc2>`_
-(``5acca0227088d9e6e4c58764574b695956a7a804``)
+**MVP source:** `v2026.08.01 <https://github.com/NCAR/CheMPAS-A/tree/v2026.08.01>`_
+(``a76dd8ae2adce569c45433a53503a6f3c791f325``)
 
 **Runnable examples and input contracts:** `CheMPAS-A wiki <https://github.com/NCAR/CheMPAS-A/wiki>`_
 
@@ -42,18 +42,15 @@ NSF NCAR ACOM).
 
 .. note::
 
-   This documentation describes the process-integration MVP at the immutable
+   This documentation describes the process-integration MVP at the release
    tag linked above. The reduced mechanisms and example initial conditions are
    research demonstrations, not a production air-quality configuration. The
-   public wiki is the supported source for declarative example inputs; detailed
-   qualification records in these pages preserve how the MVP was produced but
-   may name development-only automation that is not shipped in the MVP source
-   repository.
+   public wiki is the supported source for declarative example inputs.
 
 The CheMPAS-A MVP demonstrates runtime tracer allocation,
 MUSICA/MICM state transfer, TUV-x photolysis and prescribed upper-column
-fields, selected-cell MIEM offline emissions, and idealized through global
-chemistry qualification workflows.
+fields, selected-cell MIEM offline emissions, and chemistry cases ranging
+from idealized storms to global simulations.
 
 CheMPAS-A uses calendar versioning (YY.MM), tracked independently from the
 MPAS base model version. This documentation includes an MPAS-Atmosphere
@@ -90,7 +87,7 @@ equations, and spatial discretization.
 
    `MIEM documentation <https://miem.readthedocs.io/>`_ —
    **MIEM** (Model-Independent Emissions Module): the compiled C++20
-   offline-emissions library. CheMPAS-A uses its revision-qualified extended
+   offline-emissions library. CheMPAS-A uses its revision-pinned extended
    Fortran binding through MUSICA; see the developer API pages for the exact
    pin-versus-``main`` boundary.
 

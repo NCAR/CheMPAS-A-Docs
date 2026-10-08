@@ -1,5 +1,9 @@
 # Appendix F: Revision History
 
+## 8 October 2026
+
+- Update the User's Guide for the CheMPAS-A 26.08 MVP release, v2026.08.01.
+
 ## 26 August 2026
 
 - Add complete Ubuntu, macOS LLVM/flang, and Derecho build procedures.
@@ -14,7 +18,7 @@
 
 ## 16 August 2026
 
-- Update the User's Guide for the CheMPAS-A 26.08 MVP release candidate, based on MPAS-Atmosphere v8.4.1.
+- Update the User's Guide for the CheMPAS-A 26.08 MVP, based on MPAS-Atmosphere v8.4.1.
 - Publish the complete CheMPAS-A developer-documentation tree in the Sphinx navigation.
 - Add warning-clean local HTML and link-check build instructions.
 

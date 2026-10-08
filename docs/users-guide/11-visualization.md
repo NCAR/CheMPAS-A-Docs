@@ -9,13 +9,13 @@ setenv T 0
 
 before running one of the scripts. In general, the specific field to be plotted from the netCDF file must be set within a script before running that script.
 
-The MVP qualification repository also used Python chemistry plotting tools for
-toy-tracer output, Chapman/NOx profiles, and MIEM spatial and mass-budget
-figures. Those development-only scripts are not shipped in the public MVP
-source; their algorithms, figure conventions, and accepted results are
-documented in the CheMPAS-A
-[visualization guide](../chempas/guides/VISUALIZE.md). Public users may inspect
-the same NetCDF fields with xarray, Matplotlib, or another MPAS-capable viewer.
+CheMPAS-A also has Python scripts for plotting chemistry output: toy-tracer
+fields, global chemistry and emissions experiments, and MIEM emission maps and
+mass budgets. These plotting scripts are in the CheMPAS-A development
+repository, not the public release; the CheMPAS-A
+[visualization guide](../chempas/guides/VISUALIZE.md) describes what each one
+plots and how to run it. The same NetCDF fields can be inspected with xarray,
+Matplotlib, or another MPAS-capable viewer.
 
 [^1]: NCAR Command Language; http://ncl.ucar.edu
 

@@ -139,7 +139,7 @@ See [MUSICA_INTEGRATION.md](../musica/MUSICA_INTEGRATION.md) for details.
 | `musica/mpas_musica.F` | Owns MICM state, species mapping, and photolysis-rate updates into MUSICA |
 | `musica/mpas_miem.F` | Owns selected rank-local MIEM state, validates inventory metadata, exposes column/layer/group fluxes, and reduces successful-step source or signed-exchange mass at finalize |
 | `mpas_lightning_nox.F` | Applies altitude- or isotherm-gated updraft NO before the chemistry solve (see below) |
-| `mpas_solar_geometry.F` | Computes fallback solar geometry for Phase 1-style photolysis |
+| `mpas_solar_geometry.F` | Computes cos(SZA) for the fallback photolysis path used without TUV-x |
 | `mpas_tuvx.F` | Computes profile-dependent photolysis rates with TUV-x, including cloud-opacity support |
 
 #### Lightning NOx Source Parameterization
@@ -371,4 +371,3 @@ Each core has a `Registry.xml` file defining:
 - [ARCHITECTURE.md](ARCHITECTURE.md) - High-level architecture
 - `BUILD.md` - Build system
 - [MUSICA_INTEGRATION.md](../musica/MUSICA_INTEGRATION.md) - Chemistry integration
-- [TEST_RUNS.md](../results/TEST_RUNS.md) - Runtime validation notes and case summaries

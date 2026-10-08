@@ -7,10 +7,10 @@ data contracts.
 
 ## Obtain the MVP Source and Examples
 
-Clone the immutable MVP release candidate and the companion wiki:
+Clone the MVP release and the companion wiki:
 
 ```bash
-git clone --branch v2026.08.01-rc2 --depth 1 \
+git clone --branch v2026.08.01 --depth 1 \
   https://github.com/NCAR/CheMPAS-A.git
 git clone https://github.com/NCAR/CheMPAS-A.wiki.git
 ```
@@ -57,7 +57,7 @@ make -j8 gfortran CORE=atmosphere OPENMP=false \
 ```
 
 A successful build produces `init_atmosphere_model`, `build_tables`, and
-`atmosphere_model`. The command above is the qualified Ubuntu path. On macOS,
+`atmosphere_model`. The command above is the tested Ubuntu path. On macOS,
 use the `llvm` target with the flang-built dependency stack; on Derecho, use
 the `cray` target with the Cray programming environment. Both procedures,
 including construction and verification of the pinned MUSICA package, are in
@@ -131,8 +131,7 @@ scenarios:
 All three use identical meteorology, chemistry, photolysis, and initial state;
 only the declared surface sources differ. The guide links the exact namelists,
 streams, reduced mechanism, TUV-x configuration, MIEM configurations, and data
-manifest. The corresponding qualification evidence is retained in the
-[MVP record](../chempas/mvp/MVP_PRE_RELEASE.md).
+manifest.
 
 The demonstration validates coupled process integration and source
 bookkeeping. It is not a production air-quality forecast or a chemically

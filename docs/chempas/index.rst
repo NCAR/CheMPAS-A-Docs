@@ -1,15 +1,15 @@
 CheMPAS-A Developer Notes
 =========================
 
-Architecture notes, integration and usage guides, and reproducibility
-evidence for the CheMPAS-A 26.08 MVP release candidate.
+Architecture notes and integration and usage guides for the CheMPAS-A 26.08
+MVP.
 
-The public model source is the immutable
-`v2026.08.01-rc2 tag <https://github.com/NCAR/CheMPAS-A/tree/v2026.08.01-rc2>`_.
+The public model source is the
+`v2026.08.01 release <https://github.com/NCAR/CheMPAS-A/tree/v2026.08.01>`_.
 Runnable declarative examples are maintained in the
-`CheMPAS-A wiki <https://github.com/NCAR/CheMPAS-A/wiki>`_. Qualification
-records may name development-only automation that is retained as provenance
-but is not shipped in the public MVP repository.
+`CheMPAS-A wiki <https://github.com/NCAR/CheMPAS-A/wiki>`_. Some pages also
+describe preprocessing and plotting tools that are maintained in the
+development repository and are not part of the public release.
 
 .. toctree::
    :titlesonly:
@@ -31,42 +31,6 @@ but is not shipped in the public MVP repository.
    musica/MUSICA_INTEGRATION
    musica/MUSICA_API
    musica/MIEM_INTEGRATION
-   musica/MIEM_SCALABILITY_DESIGN
-   musica/GLOBAL_TROPOSPHERIC_NOX
-   musica/GLOBAL_TROPOSPHERIC_METHANE
    guides/TUVX_INTEGRATION
    guides/LNOX_INTEGRATION
    guides/VISUALIZE
-   guides/PLOTTING_PROTOCOL
-
-.. toctree::
-   :titlesonly:
-   :caption: MVP Qualification
-
-   mvp/MVP_PRE_RELEASE
-   mvp/STAGE0_DATA_CONTRACT
-   mvp/STAGE1_PRESCRIBED_O3
-   mvp/STAGE2_EMISSIONS
-   mvp/STAGE3_LOCAL_QUALIFICATION
-   mvp/STAGE4_GLOBAL_LADDER
-   mvp/STAGE5_FULL_REGRESSION
-   mvp/STAGE6_PRE_RELEASE
-
-.. toctree::
-   :titlesonly:
-   :caption: Validation Evidence
-
-   results/TEST_RUNS
-   musica/benchmarks/README
-   musica/global-runs/stage9a-inventory-qualification
-   musica/global-runs/stage9b-inventory-qualification
-   musica/global-tropo-runs/README
-   musica/global-methane-runs/stage0-baseline
-   musica/global-methane-runs/d0-data-access-status
-   musica/global-methane-runs/implementation-verification
-
-.. toctree::
-   :titlesonly:
-   :caption: Historical Baseline
-
-   upstream/2026-04-19-vs-mpas-v8.3.1

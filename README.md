@@ -2,18 +2,19 @@
 
 This public repository is the deployment source for the
 [CheMPAS-A documentation](https://chempas-a.readthedocs.io/). It describes the
-CheMPAS-A 26.08 Minimum Viable Product release candidate:
+CheMPAS-A 26.08 Minimum Viable Product release:
 
-- model source: [`v2026.08.01-rc2`](https://github.com/NCAR/CheMPAS-A/tree/v2026.08.01-rc2)
-  (`5acca0227088d9e6e4c58764574b695956a7a804`)
-- documentation source snapshot: `76cde2645531d8563ac42a1156afab05a545a759`
+- model source: [`v2026.08.01`](https://github.com/NCAR/CheMPAS-A/tree/v2026.08.01)
+  (`a76dd8ae2adce569c45433a53503a6f3c791f325`)
+- documentation source snapshot: `c8ca76eced73b84cdb834840e99b105850f65de2`
 - public examples and input contracts: [CheMPAS-A wiki](https://github.com/NCAR/CheMPAS-A/wiki)
 
 The canonical `.readthedocs.yaml` and `docs/` sources are maintained in the
 CheMPAS-A development repository and mirrored here for public deployment; the
-canonical copies are not removed from that repository. Small files under
-`docs/_downloads/` make the Sphinx tree independently buildable and preserve
-the provenance of referenced qualification inputs.
+canonical copies are not removed from that repository. The mirror carries only
+the published documentation: paths excluded from the Sphinx build in
+`docs/conf.py` stay in the development repository. Small files under
+`docs/_downloads/` make the Sphinx tree independently buildable.
 
 ## Build Locally
 

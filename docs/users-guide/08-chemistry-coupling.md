@@ -27,7 +27,7 @@ of eight Fortran modules:
 The driver is `chemistry_step`, called once per
 MPAS dynamics step after physics updates time level 1 and before dynamics
 advances the transported state. Its active chemistry work is operator-split
-into these phases:
+into these steps:
 
 1. Chemistry interval gate, controlled by `config_chemistry_interval`.
 2. Optional photolysis-rate update (TUV-x or `cos(SZA)` fallback), gated by
@@ -122,14 +122,14 @@ Module-level state cached at init, used by `chemistry_step`:
 `chemistry_step(dt, currTime, mesh, state, diag, dimensions, time_lev)`
 is the per-step entry point.
 
-**Phase 0 — Chemistry interval gate.** `config_chemistry_interval = 0.0`
+**Step 0 — Chemistry interval gate.** `config_chemistry_interval = 0.0`
 runs chemistry every MPAS step. Positive values accumulate elapsed dynamics
 timesteps at entry; when the accumulated clock is still below the interval,
 `chemistry_step` returns before photolysis, emissions, lightning NOx, and MICM
 work. When the interval fires, MIEM sampling, LNOx injection, and the MICM
 solve use the accumulated chemistry timestep.
 
-**Phase 1 — Photolysis update.** A module accumulator
+**Step 1 — Photolysis update.** A module accumulator
 `tuvx_time_since_last` tracks simulated seconds since the photolysis block
 last fired. When the accumulator reaches `config_tuvx_update_interval`,
 the block fires:
@@ -150,7 +150,7 @@ default) updates every chemistry step. In `spatial_climatology` mode, the same
 block updates the two-slab monthly O3 interpolation for the rank-owned cells
 before extending each TUV-x column.
 
-**Phase 2 — MIEM sampling.** When emissions are enabled, MIEM is called once
+**Step 2 — MIEM sampling.** When emissions are enabled, MIEM is called once
 for the accumulated chemistry interval. It returns column and layer fluxes in
 the owned MPAS-cell order, plus any requested sector/category diagnostics.
 `musica_set_emission_fluxes` converts the layer mass fluxes to MICM
@@ -160,29 +160,29 @@ remain fixed across chemistry substeps. Negative values are accepted only for
 species named by `config_miem_net_flux_species`; all other inventory values are
 source-only.
 
-**Phase 3 — Lightning NOx injection.** `lightning_nox_inject` modifies
+**Step 3 — Lightning NOx injection.** `lightning_nox_inject` modifies
 `scalars(idx_qNO, :, :)` in place.
 Operator-split: the increment is added before the MICM call, not as a
 tendency. MIEM and parameterized lightning may both supply NOx, so inventories
 that already include lightning can double count it.
 
-**Phase 4 — MPAS → MICM gather.** `chemistry_from_MPAS` reconstructs
+**Step 4 — MPAS → MICM gather.** `chemistry_from_MPAS` reconstructs
 per-cell ρ, T, and p (Section 8.4), then calls `MICM_from_chemistry`, which
 writes MICM's `state%conditions` and converts each species' mixing ratio to
 mol m⁻³. Immediately before LNOx and gather, the driver snapshots only the
 active chemistry-species rows of the MPAS scalar pool.
 
-**Phase 5 — MICM solve.** The chemistry timestep is divided into
+**Step 5 — MICM solve.** The chemistry timestep is divided into
 `config_chem_substeps` calls to `musica_step`, each advancing the coupled state
 by `dt_chem / N`. TUV-x and MIEM rate parameters remain frozen across these
 substeps. When `config_chemistry_ref_solve = .true.`, `musica_step_ref` runs in
 lockstep on the reference state.
 
-**Phase 6 — MICM → MPAS scatter.** `chemistry_to_MPAS` reconstructs ρ and
+**Step 6 — MICM → MPAS scatter.** `chemistry_to_MPAS` reconstructs ρ and
 calls `MICM_to_chemistry`, which converts the integrated mol m⁻³ state back
 to mass mixing ratio and writes it into the scalars pool at `time_lev`.
 
-**Phase 7 — commit or rollback.** After a successful scatter, MIEM integrates
+**Step 7 — commit or rollback.** After a successful scatter, MIEM integrates
 the exact applied fluxes over owned-cell area and timestep, emissions and
 photolysis diagnostics are published, cadence clocks advance, and the
 consecutive-failure counter resets. A recoverable gather or solver failure
@@ -474,7 +474,7 @@ its internal steps more aggressively before accepting a step. Passed to
 **Re-entrant solve loop.** `musica_step` wraps `micm%solve` in a sub-call loop
 with `MAX_SUB_CALLS = 100`. MICM's
 adaptive controller has its own internal step budget
-(`max_number_of_steps`, default 1000 for the qualified Rosenbrock solver) and
+(`max_number_of_steps`, default 1000 for the pinned Rosenbrock solver) and
 returns early when it exhausts
 that budget without reaching the requested interval. The wrapper inspects
 `solver_stats%final_time()`, computes the remaining duration, and
@@ -536,7 +536,7 @@ Explicit `config_miem_diagnostic_sectors` and
 `emis_<species>_layer` and `_layer` forms of requested groups. The
 `config_miem_max_diagnostic_fields` cap is checked before runtime-field
 allocation. Column, group, layer, finalize-log, and (for emissions-only
-mechanisms) tracer-mass closure are exercised by the tracked R6 case. See the
+mechanisms) tracer-mass closure are exercised by the `layered_diagnostics` chem-box case. See the
 [MIEM workflow](../chempas/musica/MIEM_INTEGRATION.md) for exact names, units,
 accounting equations, and the no-runtime-regridding contract.
 

@@ -31,6 +31,10 @@ chemistry mechanism; `config_micm_file` remains a separate required input. One
 MIEM mechanism-configuration file may name multiple inventory files and source
 maps; CheMPAS still constructs one rank-local aggregate emissions object.
 
+The climatological upper-column O3 that extends the TUV-x photolysis column is
+not an MIEM source: it applies strictly above the model top and never modifies
+prognostic `qO3`.
+
 ## Build contract
 
 The tested dependency and compiler identities are:
@@ -45,17 +49,14 @@ The tested dependency and compiler identities are:
 | TUV-x | `bbf7dd9a144fa0f0294b3779f3f993818638e20c` |
 
 These revisions are a compatibility set, not aliases for current upstream
-`main`. In the local 2026-08-16 audit, MUSICA
-`a6d34d38f874574b8a0599540f1a12230063ce58` and MIEM
-`970e9c20360e25c53b37d5587eebfc81a18336e2` had diverged from the feature
-pins above. Audited MUSICA `main` exposes only the full-grid, surface-flux
-Fortran MIEM wrapper; it does not expose the selected-cell constructor,
-per-layer/group buffers, or exact-grid metadata required here. MICM `main`
-`97ac9e5d8aadd345c242722ee8274d71dfe0f73e` contains the tested MICM pin but
-is 29 commits newer and has not been qualified with CheMPAS-A. See the
-[API revision scope](MUSICA_API.md#supported-revision-scope); do not replace
-the tested pins with sibling `main` tips without a forward port and the full
-build/runtime qualification.
+`main`. MUSICA and MIEM `main` have diverged from the feature pins above:
+MUSICA `main` exposes only the full-grid, surface-flux Fortran MIEM wrapper;
+it does not expose the selected-cell constructor, per-layer/group buffers, or
+exact-grid metadata required here. MICM `main` contains the tested MICM pin
+but is newer and has not been tested with CheMPAS-A. The
+[MUSICA API reference](MUSICA_API.md) lists the supported revision scope. Do
+not replace the tested pins with upstream `main` tips without a forward port
+and a full rebuild and retest.
 
 The tested MUSICA build enables its Fortran interface, MPI, MICM, MIEM, and
 TUV-x; it disables shared libraries, tests, CARMA, MIAM, and `fmt`. `fmt` is an
@@ -81,8 +82,8 @@ make -j8 "$CHEMPAS_MAKE_TARGET" \
 Preflight requires `musica_micm.mod`, `musica_emissions.mod`, the pinned source
 revisions and compiler ABI, and a complete `pkg-config` static closure. It also
 links a constructor-level MICM+MIEM probe using only exported package flags.
-See the public MVP [build guide](https://github.com/NCAR/CheMPAS-A/wiki/Building)
-for the dependency build.
+The wiki [build guide](https://github.com/NCAR/CheMPAS-A/wiki/Building) covers
+the dependency build.
 
 ## Exact-grid inventory contract
 
@@ -212,6 +213,14 @@ Stage these inputs together:
 - atmosphere namelist, streams, and requested output fields; and
 - normal case-specific tables and auxiliary data.
 
+Tracked multi-inventory configurations include
+`miem_configs/two_inventory_nox_ch4.yaml`, which reads separate NOx and CH4
+files, and `miem_configs/global_mvp_cams_finn.yaml`, which combines
+CAMS-GLOB-ANT anthropogenic and FINNv2.5.1 fire inventories for the
+[global chemistry and emissions example](https://github.com/NCAR/CheMPAS-A/wiki/Global-Chemistry-and-Emissions).
+Each inventory is sampled independently and contributes through MIEM's normal
+category/hierarchy aggregation.
+
 `EMIS.*` diagnostic names are discovered only from `config_micm_file` because
 they are writable MICM rate parameters. `config_miem_file` constructs MIEM and
 provides its aggregate output species after all configured sources and
@@ -241,6 +250,10 @@ To disable MIEM while retaining chemistry, use:
     config_miem_file = ''
 /
 ```
+
+With MIEM disabled, the ABBA, Chapman-NOx, and lightning-NOx cases produce the
+same scientific output fields as CheMPAS-A before emissions support was added,
+given the same compiler, dependencies, and inputs.
 
 ## Source conversion and timestep order
 
@@ -288,6 +301,8 @@ An active MIEM run always creates the column total `emis_<species>(Time,nCells)`
 `kg m^{-2} s^{-1}`. Initial fields are exactly zero. After a successful solve,
 the diagnostic represents the flux applied during that chemistry interval,
 sampled at its interval start; it is not a sample at the output timestamp.
+Optional `vmr_<species>` chemistry output does not change these units;
+transported and restart `q<species>` fields remain dry-air mass mixing ratios.
 
 Requested diagnostics use these names and the same mass-flux units:
 
@@ -383,22 +398,22 @@ python test_cases/chem_box/miem/generate_fixture.py \
   --verify-sha256
 ```
 
-## R0-R6 regression matrix
+## Chem-box test scenarios
 
 Definitions, exact timesteps, tolerances, overrides, and expected assertions
 are tracked in `test_cases/chem_box/miem/scenarios.yaml`:
 
-| ID | Scenario | Primary contract |
-|---|---|---|
-| R0 | `disabled` | No MIEM object, I/O, timer, or emissions diagnostics |
-| R1 | `zero_flux` | Enabled zero diagnostics/budgets and unchanged tracers |
-| R2 | `constant_flux` | Unit conversion and inventory-to-tracer mass closure |
-| R3 | `cell_time_signature` | Global-ID mapping and endpoint/midpoint interpolation |
-| R4 | `substeps_restart` | Substep sampling and continuous/restart equivalence |
-| R5 | `lightning_coexistence` | Separate MIEM accounting with lightning NOx active |
-| R6 | `layered_diagnostics` | Normalized vertical profile and bounded sector/category diagnostic closure |
+| Scenario | Primary contract |
+|---|---|
+| `disabled` | No MIEM object, I/O, timer, or emissions diagnostics |
+| `zero_flux` | Enabled zero diagnostics/budgets and unchanged tracers |
+| `constant_flux` | Unit conversion and inventory-to-tracer mass closure |
+| `cell_time_signature` | Global-ID mapping and endpoint/midpoint interpolation |
+| `substeps_restart` | Substep sampling and continuous/restart equivalence |
+| `lightning_coexistence` | Separate MIEM accounting with lightning NOx active |
+| `layered_diagnostics` | Normalized vertical profile and bounded sector/category diagnostic closure |
 
-Run the complete matrix and the focused 1-rank/8-rank mapping comparison:
+Run every scenario and the 1-rank/8-rank mapping comparison:
 
 ```bash
 scripts/test_miem_integration.sh \
@@ -406,7 +421,7 @@ scripts/test_miem_integration.sh \
   --executable ./atmosphere_model
 ```
 
-The checker can also be called directly when retained artifacts and
+The checker can also be called directly when retained run outputs and
 `run-metadata.json` are available:
 
 ```bash
@@ -424,115 +439,52 @@ Reports conform to
 `test_cases/chem_box/miem/throughput-report.schema.json`. They record file and
 configuration hashes, dependency/compiler/rank provenance, extrema and errors,
 source/log/tracer masses, resolved tolerances, and pass/fail assertions. They
-also record inventory/history bytes and the `chem MIEM` timer. The historical
-throughput fields retain per-rank and aggregate effective-rate estimates for
-R0-R6 continuity, but they do not infer selected NetCDF payload and are not a
-scalability gate. The production-mesh reports described below provide the
-rank-local payload, state, hyperslab, time, and RSS evidence.
+also record inventory/history bytes and the `chem MIEM` timer. Their per-rank
+and aggregate effective-rate estimates do not measure the selected NetCDF
+payload; use the scalability benchmark below for rank-local I/O and memory
+measurements.
 
-## Verified emissions figures
+## Chem-box emissions figures
 
-The tracked visualization bundle is generated only from passing eight-rank
-R2, R3, and R6 throughput evidence. Those three scenarios are source-only, so
-the plotter checks the history/report hash, exact grid order, physical units,
-finite nonnegative diagnostics, initial zero fields, layer/group closure, and
-final diagnostic-to-tracer mass closure before writing either image format.
+`scripts/plot_miem_emissions.py` draws these figures from passing eight-rank
+`cell_time_signature`, `layered_diagnostics`, and `constant_flux` runs. Those
+scenarios are source-only, so before writing the PNG and PDF files the plotter
+checks the history/report hash, exact grid order, physical units, finite
+nonnegative diagnostics, initial zero fields, layer/group closure, and final
+diagnostic-to-tracer mass closure.
 
 ```{figure} ../../_static/miem_emissions_spatial.png
 :alt: Two exact-grid maps showing the synthetic NO and NO2 emissions fluxes.
 :name: miem-emissions-spatial
 
-Final R3 exact-grid cell/time-signature diagnostics. The nonuniform cell
-pattern validates global-ID placement, and the panels retain the configured
-9:1 NO:NO2 mass split.
+Final exact-grid diagnostics from the `cell_time_signature` scenario. The
+nonuniform cell pattern shows global-ID placement, and the panels retain the
+configured 9:1 NO:NO2 mass split.
 ```
 
 ```{figure} ../../_static/miem_emissions_vertical.png
 :alt: Vertical allocation curves and grouped NO and NO2 emissions bars.
 :name: miem-emissions-vertical
 
-Final R6 layered and disaggregated diagnostics. The elevated profile allocates
-25% and 75% of the column source to the two active layers; each requested
-sector and category family closes to the total.
+Final layered and disaggregated diagnostics from the `layered_diagnostics`
+scenario. The elevated profile allocates 25% and 75% of the column source to
+the two active layers; each requested sector and category family closes to the
+total.
 ```
 
 ```{figure} ../../_static/miem_emissions_budget.png
 :alt: Thirty-minute NO and NO2 source-rate and cumulative-mass closure plots.
 :name: miem-emissions-budget
 
-All 31 frames of the extended R2 emissions-only run. Across 600 chemistry
-intervals, integrated output diagnostics, finalize logs, and dry tracer mass
-close for NO and NO2; the figure reports the independently calculated final
-relative diagnostic/tracer errors.
+All 31 output frames of a 30-minute `constant_flux` emissions-only run. Across
+600 chemistry intervals, integrated output diagnostics, finalize logs, and dry
+tracer mass close for NO and NO2; the figure reports the independently
+calculated final relative diagnostic/tracer errors.
 ```
 
-The accompanying
-[figure manifest](../results/miem-emissions-figure-manifest.json) records all
-input and output SHA-256 values, the selected frames, the 30-minute run
-configuration, and closure errors. See the
-[visualization guide](../guides/VISUALIZE.md) for exact reproduction commands,
-the plotting protocol, the synthetic-versus-production data boundary, and the
-longer-run decision.
-
-### Global coupled A1 figures
-
-The Phase 9D bundle uses the passing 24-hour x1.40962 A1 report, not the
-synthetic chem-box cases. `plot_global_miem_science.py` verifies the exact
-external-input manifest and the full-file hashes of the selected final enabled
-and matched-control histories before reading spatial fields. Time-series panels
-use all 25 hourly diagnostics already closed by the A1 checker.
-
-```{figure} global-runs/figures/stage9d_global_emissions_response.png
-:alt: Global NO and NO2 surface emissions maps above matched-control column-response maps.
-:name: stage9d-global-emissions-response
-
-CAMS-GLOB-ANT v6.2 surface flux at the final accepted diagnostic frame and the
-24-hour enabled-minus-control NO and NO2 column response. Dense x1.40962 cells
-are rasterized in the vector PDF; colorbars retain explicit physical units.
-```
-
-```{figure} global-runs/figures/stage9d_noy_budget.png
-:alt: Global emissions rates, reactive nitrogen closure, burdens, and sector diagnostics.
-:name: stage9d-noy-budget
-
-All hourly source diagnostics, the integrated emitted-N versus matched-control
-NOy response, reactive NO/NO2 partitioning, and retained sector totals. The
-final source/response residual is `1.435e-11` relative.
-```
-
-```{figure} global-runs/figures/stage9d_diurnal_structure.png
-:alt: Photolysis day-night cycles, vertical NOy structure, and hemispheric burdens.
-:name: stage9d-diurnal-structure
-
-TUV-x day/night cycles at four geographic anchors, global photolysis coverage,
-resolved 26-level NOy structure, and hemispheric evolution across the full
-diurnal trajectory.
-```
-
-The portable
-[A1 figure manifest](global-runs/stage9d-figure-manifest.json) records the A1
-report, external manifest, inventory, selected histories, code, style, figures,
-software commits, executable hash, and scientific-interpretation boundary.
-These panels establish coupled software/process behavior. The meteorology is
-date matched, but the Chapman-NOx background is idealized and not chemically
-spun up; the displayed first-day concentrations are not production air-quality
-predictions. Exact reproduction commands are in the
-[visualization guide](../guides/VISUALIZE.md).
-
-## Current `develop` capability status
-
-As of the 2026-08-16 documentation audit, the surrounding CheMPAS chemistry
-features have the following status. This table distinguishes implemented
-software from science experiments that have not been promoted.
-
-| Capability | Current status and MIEM relationship |
-|---|---|
-| Global MVP | The [MVP release candidate](../mvp/MVP_PRE_RELEASE.md) is complete: its 24-hour x1.40962 No Surface Emissions, Anthropogenic Emissions, and Anthropogenic + Fire Emissions attribution uses independent CAMS anthropogenic and FINN fire inventories with reduced chemistry and passed the repository regression suite. It is a process demonstration, not a production forecast. |
-| Multiple inventories | Implemented and tested through one `config_miem_file`. The MVP combines the separate CAMS and FINN files in `miem_configs/global_mvp_cams_finn.yaml`; `miem_configs/two_inventory_nox_ch4.yaml` also exercises independent NOx and CH4 files. Every inventory is sampled independently, must carry the same exact-grid identity, and contributes through MIEM's normal category/hierarchy aggregation. |
-| Signed net flux | Implemented as an exact-species opt-in. Positive exchange and negative uptake are preserved through layer rates, diagnostics, and algebraic mass accounting; all non-opted species remain source-only. |
-| Prescribed upper O3 | The [spatial monthly O3 provider](../mvp/STAGE1_PRESCRIBED_O3.md) is implemented and qualified, but it is not an MIEM source. It extends the TUV-x column strictly above the model top and never modifies prognostic `qO3`. |
-| Chemistry VMR output | Complete and revalidated. Optional `vmr_<species>` fields are history-only diagnostics; transported and restarted `q<species>` fields remain dry-air mass mixing ratios. This output conversion does not change MIEM flux units. |
-| MOZART-35 / global methane | The generated Tier Z mechanism, host bindings, MIEM NOx+CH4 software path, ledgers, and independent box qualification are implemented. The [global methane workflow](GLOBAL_TROPOSPHERIC_METHANE.md) is not science-promoted: CAMS inversion data access and the recorded disk-capacity requirement still block the required global gates. |
+The [visualization guide](../guides/VISUALIZE.md) gives the commands that
+reproduce these figures and describes the boundary between synthetic test data
+and production inventories.
 
 ## Lightning coexistence
 
@@ -540,11 +492,11 @@ MIEM and `mpas_lightning_nox.F` are independent sources. Enabling both does not
 replace, deduplicate, or reconcile them. `emis_NO` and `emis_NO2` plus MIEM's
 final mass logs contain only MIEM flux; lightning modifies the NO tracer
 separately. If an offline inventory already represents lightning NOx, enabling
-the operator-split lightning source can double count it. R5 enables both
-intentionally to prove coexistence and does not interpret total tracer change
-as an MIEM-only budget.
+the operator-split lightning source can double count it. The
+`lightning_coexistence` scenario enables both and checks MIEM accounting only;
+it does not interpret total tracer change as an MIEM-only budget.
 
-## Scalability evidence and current boundaries
+## Scalability
 
 Each rank constructs MIEM with global `nCells`, the actual MPAS level count,
 and only its ordered owned global IDs. UPTEMPO/ECCAD readers sort a temporary
@@ -552,83 +504,44 @@ index, coalesce consecutive IDs, issue `nc_get_vara` calls for those runs, and
 scatter back into host order. Flux buffers, two cached time brackets, and exact
 grid metadata therefore scale with owned cells; MIEM performs no MPI calls.
 
-The reproducible benchmark command is:
+To measure this on a given system, run:
 
 ```bash
 scripts/benchmark_miem_scalability.sh --case all --warm-steps 12
 ```
 
-It expects external production init/mesh and partition files under
-`$HOME/Data/CheMPAS` by default, creates a temporary deterministic exact-grid
-NO/NO2 inventory, and runs full-grid and selected-cell modes on eight ranks.
-The committed [regional and global reports](benchmarks/README.md) cover the
-28,080-cell planar supercell mesh and 40,962-cell spherical x1.40962 mesh. In
-both reports, selected aggregate NetCDF payload and modeled persistent state
-are exactly `1/8` of replicated totals, every owned-cell flux stream is
-bitwise identical, and no selected rank reports global-sized flux buffers.
-Initialization/warm-step time and peak RSS are recorded but are not portable
-performance thresholds.
+It expects external init/mesh and partition files under `$HOME/Data/CheMPAS`
+by default, creates a temporary deterministic exact-grid NO/NO2 inventory, and
+runs full-grid and selected-cell modes on eight ranks. On the 28,080-cell
+planar supercell mesh and the 40,962-cell spherical x1.40962 mesh, the
+selected-cell aggregate NetCDF payload and persistent state are exactly `1/8`
+of the replicated full-grid totals, owned-cell fluxes are identical between
+the two modes, and no selected rank holds global-sized flux buffers. The
+benchmark also records initialization and warm-step time and peak RSS; those
+values depend on the system and are not portable performance thresholds.
 
-Current scientific boundaries remain explicit: inventories must be externally
-remapped onto the exact MPAS grid; runtime native regridding is unsupported;
-emissions use Gregorian timestamps; vertical profiles are fixed normalized
-fractions rather than meteorology-dependent plume rise; and each rank performs
-independent serial NetCDF hyperslab reads rather than collective parallel I/O.
-The full-grid MUSICA constructor remains only for backward compatibility and
-the bitwise reference/benchmark path; CheMPAS runtime uses selected cells.
+## Current limitations
 
-## Disabled baselines and checkpoint provenance
-
-`test_cases/miem_disabled_baselines.json` pins ABBA, Chapman-NOx, and
-lightning-NOx outputs from pre-emissions CheMPAS-A source `4eb4e677...` rebuilt
-against the same pinned MUSICA/MIEM stack as the Phase 9 candidate. E0 is valid
-only with the recorded compiler, double precision, PIO/NetCDF stack,
-configuration and input hashes, eight-rank commands, and canonical field-hash
-policy. A different dependency, compiler, precision, input, or field policy
-cannot claim E0. Run the comparison with:
-
-```bash
-scripts/test_miem_disabled_baselines.sh /path/to/clean/build --case all
-```
-
-The immutable `test_cases/miem_disabled_baselines.phase0.json` archive retains
-the original Phase 0 dependency provenance. The harness verifies the archive,
-retained preimplementation executable, active baseline containers and logs,
-and exact equality of all 195 canonical scientific field hashes between the
-historical and same-stack captures. NetCDF container-hash changes do not stand
-in for scientific-field differences.
-
-## Phase 9E release evidence
-
-The authoritative compact release record is
-[`stage9e-release-manifest.json`](global-runs/stage9e-release-manifest.json). It
-requires all of the following:
-
-- a G3 run created from an empty staging root using tracked orchestration and
-  manifest-resolved external inputs;
-- a decisive A1 recheck with all 47 assertions and canonical equality to the
-  accepted Stage 9D report except volatile free-disk telemetry;
-- the versioned Phase 9 figure manifest and exact plot hashes;
-- all nine R0-R6 reports, all three strict same-stack E0 reports, selected/full
-  and one/eight-rank mapping, and six expected runtime failure contracts; and
-- exact compiler, executable, dependency, inventory, partition, command,
-  report, external-retention, and tracked-artifact identities.
-
-Large NetCDF inputs, histories, restarts, captured baselines, and run trees
-remain under `CHEMPAS_EMISSIONS_DATA_ROOT` with no automatic cleanup. The gate
-validates software coupling, applied-source throughput, reactive-N accounting,
-restart/control behavior, performance telemetry, and reproducibility. The
-date-matched meteorology and science-grade CAMS inventory support that coupled
-process experiment; the idealized, unspun Chapman-NOx initial composition does
-not make its first-day concentrations production air-quality estimates.
+- Inventories must be conservatively remapped onto the exact MPAS grid before
+  the run; CheMPAS-A does not regrid at runtime.
+- Emissions require the Gregorian calendar.
+- Vertical profiles are fixed normalized fractions, not meteorology-dependent
+  plume rise.
+- Each rank performs independent serial NetCDF hyperslab reads rather than
+  collective parallel I/O.
+- The full-grid MUSICA constructor remains only for backward compatibility and
+  as the benchmark reference; the CheMPAS-A runtime uses selected cells.
+- The global chemistry and emissions example uses date-matched meteorology
+  but idealized chemical background profiles that are not spun up. It
+  demonstrates coupled source attribution; its first-day concentrations are
+  not production air-quality predictions.
 
 ## Related documentation
 
-- [Global tropospheric NOx ladder](GLOBAL_TROPOSPHERIC_NOX.md)
-- [Global tropospheric methane and MOZART-35](GLOBAL_TROPOSPHERIC_METHANE.md)
 - [MUSICA integration](MUSICA_INTEGRATION.md)
 - [MUSICA API reference](MUSICA_API.md)
 - [Architecture](../architecture/ARCHITECTURE.md)
+- [Visualization guide](../guides/VISUALIZE.md)
 - [Build guide](https://github.com/NCAR/CheMPAS-A/wiki/Building)
 - [Getting started](https://github.com/NCAR/CheMPAS-A/wiki/Getting-Started)
 - [Global chemistry and emissions](https://github.com/NCAR/CheMPAS-A/wiki/Global-Chemistry-and-Emissions)
