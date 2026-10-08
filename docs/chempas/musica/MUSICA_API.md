@@ -2,9 +2,9 @@
 
 This document is a compatibility reference for the MUSICA (Multi-Scale
 Infrastructure for Chemistry and Aerosols) Fortran API used by CheMPAS-A. The
-active build discovers an installed MUSICA-Fortran package through
-`pkg-config`; sibling source checkouts such as `../MUSICA`, `../MICM`, and
-`../MIEM` are useful for inspection but are not hard-coded build inputs.
+build discovers an installed MUSICA-Fortran package through `pkg-config`; it
+does not read the MUSICA, MICM, or MIEM source repositories, which serve only
+as references.
 
 ## Table of Contents
 
@@ -39,23 +39,32 @@ CheMPAS-A:
 The selected-cell emissions constructor, per-layer and grouped fluxes,
 exact-grid metadata, and the complete static `pkg-config` closure are feature
 pin capabilities. A version string of `0.16.5` alone does not establish that
-an installation has them; the build preflight checks the exported source and
-dependency revisions as well as the Fortran compiler ABI.
+an installation has them.
 
-### Audited upstream `main` tips
+With `MUSICA=true`, the CheMPAS-A `Makefile` reads the installed
+`musica-fortran` metadata and stops unless the version is `0.16.5`, the MUSICA
+source and MIEM revisions match the table, and MIEM is enabled. It does not
+check the MICM, MechanismConfiguration, or TUV-x revisions; the `pkg-config`
+metadata tests in
+[Section 3.6](../../users-guide/03-building.md#36-build-the-pinned-musica-dependency)
+of the User's Guide cover those. A Fortran compiler or module mismatch
+surfaces when the `Makefile` compiles and links its MUSICA-Fortran test
+program, which uses the `musica_util`, `musica_micm`, and `musica_emissions`
+modules.
 
-The sibling local `main` and `origin/main` refs were equal when audited on
-2026-08-16. They are valuable upstream references, but they are not a tested
+### Pinned revisions and upstream `main`
+
+The upstream `main` branches are useful references, but they are not a tested
 replacement for the closure above.
 
-| Component | Current role | Audited `main` tip | Compatibility with the CheMPAS-A pin |
-|---|---|---|---|
-| MUSICA | Build/package umbrella and language bindings for MICM, MIEM, TUV-x, and other components | `a6d34d38f874574b8a0599540f1a12230063ce58` | **Not API-compatible for CheMPAS emissions.** The pin and `main` diverge after `5e4108cceae1aa11478902c996e473d85b41f6ba`; the selected-cell/layer/group/grid-metadata Fortran work is not on `main`. |
-| MICM | C++20 chemical state, reaction, and ODE-solver library; the CPU target is header-only and CUDA is optional | `97ac9e5d8aadd345c242722ee8274d71dfe0f73e` (`3.13.0`) | The CheMPAS pin is an ancestor and `main` is 29 commits ahead, but that newer API and numerics have not been tested with CheMPAS-A. Do not silently substitute it. |
-| MIEM | Compiled C++20 offline-emissions library linked with NetCDF; MUSICA supplies its C and Fortran bindings | `970e9c20360e25c53b37d5587eebfc81a18336e2` (`0.1.0`) | **Not API-compatible for CheMPAS emissions.** The pin and `main` diverge after `2bb1e21dc251e3eb356fd0a2d4ae74f7fc145150`; the selected-cell, vertical-profile, diagnostics, and exact-grid work is feature-only. |
+| Component | Role | Relationship of the CheMPAS-A pin to `main` |
+|---|---|---|
+| MUSICA | Build/package umbrella and language bindings for MICM, MIEM, TUV-x, and other components | **Not API-compatible for CheMPAS emissions.** The pin diverges from `main` after `5e4108cceae1aa11478902c996e473d85b41f6ba`; the selected-cell/layer/group/grid-metadata Fortran work is not on `main`. |
+| MICM | C++20 chemical state, reaction, and ODE-solver library; the CPU target is header-only and CUDA is optional | The pin is an ancestor of `main`, but the newer `main` API and numerics have not been tested with CheMPAS-A. Do not silently substitute it. |
+| MIEM | Compiled C++20 offline-emissions library linked with NetCDF; MUSICA supplies its C and Fortran bindings | **Not API-compatible for CheMPAS emissions.** The pin diverges from `main` after `2bb1e21dc251e3eb356fd0a2d4ae74f7fc145150`; the selected-cell, vertical-profile, diagnostics, and exact-grid work is feature-only. |
 
-In particular, audited MUSICA `main` exports a much smaller
-`musica_emissions` Fortran API: `mechanism_t`, a full-grid
+In particular, MUSICA `main` exports a much smaller `musica_emissions` Fortran
+API: `mechanism_t`, a full-grid
 `emissions_t(mechanism,n_cells,n_vert_levels,error)` constructor, `run()`,
 `flux()`, the surface-flux pointer and strides, and species ordering. It does
 not expose global-versus-local dimensions, selected IDs, layer fluxes,
@@ -65,26 +74,30 @@ Fortran surfaces are MUSICA bindings at different revisions.
 
 ### Authoritative upstream examples
 
-The following paths are relative to the CheMPAS-A repository root and were
-checked on the audited upstream `main` tips. They are useful demonstrations of
-the component roles, but their main-tip API does not override the supported
-pin contract above.
+The following paths are relative to the root of each upstream repository on
+its `main` branch. They are useful demonstrations of the component roles, but
+the `main` API they use does not override the supported pin contract above.
+The CAMS+FINN Python example and its configuration are on MUSICA `main` but
+not at the MUSICA pin.
 
-| Purpose | Authoritative path |
-|---|---|
-| Minimal MUSICA Fortran MIEM box | `../MUSICA/fortran/examples/miem_nox_box_model.F90` |
-| Real-fixture Fortran flux-to-`EMIS.*` conversion and solve loop | `../MUSICA/fortran/examples/miem_nox_box_model_real_fixture.F90` |
-| Multi-inventory CAMS+FINN Python box | `../MUSICA/python/musica/examples/miem_cams_finn_box_model_real_fixture.py` |
-| Matching CAMS+FINN emissions configuration | `../MUSICA/configs/miem/cams_finn_all_species_emissions_config.yaml` |
-| Canonical MICM C++ builder/state/solve tutorial | `../MICM/test/tutorial/test_README_example.cpp` |
-| Canonical MIEM C++ builder/run tutorial | `../MIEM/test/tutorial/test_README_example.cpp` |
-| MIEM real-fixture provenance and field descriptions | `../MIEM/test/data/README.md` |
+| Purpose | Repository | Path |
+|---|---|---|
+| Minimal MUSICA Fortran MIEM box | MUSICA | `fortran/examples/miem_nox_box_model.F90` |
+| Real-fixture Fortran flux-to-`EMIS.*` conversion and solve loop | MUSICA | `fortran/examples/miem_nox_box_model_real_fixture.F90` |
+| Multi-inventory CAMS+FINN Python box | MUSICA | `python/musica/examples/miem_cams_finn_box_model_real_fixture.py` |
+| Matching CAMS+FINN emissions configuration | MUSICA | `configs/miem/cams_finn_all_species_emissions_config.yaml` |
+| Canonical MICM C++ builder/state/solve tutorial | MICM | `test/tutorial/test_README_example.cpp` |
+| Canonical MIEM C++ builder/run tutorial | MIEM | `test/tutorial/test_README_example.cpp` |
+| MIEM real-fixture provenance and field descriptions | MIEM | `test/data/README.md` |
 
-For the exact extended Fortran declaration used here, inspect the pinned source
-without switching the sibling worktree:
+The exact extended Fortran declaration used here is
+`fortran/miem/emissions.F90` at the pinned MUSICA revision. In a MUSICA clone
+that contains that commit, such as the `MUSICA-CheMPAS-A` clone created in
+[Section 3.6](../../users-guide/03-building.md#36-build-the-pinned-musica-dependency)
+of the User's Guide, print it with:
 
 ```bash
-git -C ../MUSICA show \
+git -C MUSICA-CheMPAS-A show \
   1403e3d22717bc87f3bf9d0aa591caf039c92bbc:fortran/miem/emissions.F90
 ```
 
@@ -858,7 +871,7 @@ deallocate(j_rate)
 
 This subsection documents the extended emissions surface at the exact MUSICA
 feature pin listed in [Supported Revision Scope](#supported-revision-scope),
-not the smaller full-grid-only wrapper on audited MUSICA `main`.
+not the smaller full-grid-only wrapper on MUSICA `main`.
 
 CheMPAS-A constructs `mechanism_t(config_path,error)` and uses the selected
 constructor on each rank:
@@ -1009,4 +1022,5 @@ convention.
 - [MUSICA_INTEGRATION.md](MUSICA_INTEGRATION.md) - MPAS-MUSICA integration details
 - [MIEM_INTEGRATION.md](MIEM_INTEGRATION.md) - MIEM public-API usage and workflow
 - The installed, revision-pinned MUSICA-Fortran package discovered by
-  `pkg-config`; sibling source trees are inspection references only
+  `pkg-config`; the MUSICA, MICM, and MIEM source repositories are
+  references only

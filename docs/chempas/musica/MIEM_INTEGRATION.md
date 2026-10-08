@@ -5,9 +5,19 @@ MUSICA's Model-Independent Emissions Module (MIEM).
 
 > CheMPAS-A does not regrid at runtime. Every production inventory must already
 > be conservatively remapped to the exact global MPAS mesh, contain the same
-> global cells, and be stored in ascending `indexToCellID` order. Run the
-> tracked validator before every launch; the model then performs an independent
-> selected-cell geometry check after the first inventory read.
+> global cells, and be stored in ascending `indexToCellID` order. Validate each
+> inventory against that mesh before every launch; the model then performs an
+> independent selected-cell geometry check after the first inventory read.
+
+The inventory packaging and validation scripts, the chem-box test assets and
+harness, the plotting script, the scalability benchmark, and the `miem_configs/`
+files named on this page are maintained in the CheMPAS-A development
+repository. They are not part of the
+[v2026.08.01 release](https://github.com/NCAR/CheMPAS-A/tree/v2026.08.01).
+Without them, prepare inventories by following the manual preparation contract
+on the wiki
+[Data and Provenance](https://github.com/NCAR/CheMPAS-A/wiki/Data-and-Provenance)
+page together with the exact-grid inventory contract below.
 
 ## Scope and data path
 
@@ -59,16 +69,24 @@ not replace the tested pins with upstream `main` tips without a forward port
 and a full rebuild and retest.
 
 The tested MUSICA build enables its Fortran interface, MPI, MICM, MIEM, and
-TUV-x; it disables shared libraries, tests, CARMA, MIAM, and `fmt`. `fmt` is an
-exported dependency only when MUSICA was built with `MUSICA_USE_FMT=ON`.
-NetCDF-Fortran is part of the tested TUV-x closure. The package-generated
-static link order places `libmiem` before NetCDF-C and selects the platform C++
-runtime; CheMPAS-A does not hard-code that runtime.
+TUV-x and disables CARMA, MIAM, and `fmt`. Its libraries are static because
+`MUSICA_BUILD_SHARED_LIBS` defaults to `OFF`. The documented configure step
+also passes `-DBUILD_SHARED_LIBS=OFF` and `-DBUILD_TESTING=OFF`, but neither is
+a MUSICA option at the pinned revision. MUSICA's own tests are controlled by
+`MUSICA_ENABLE_TESTS`, which defaults to `ON`, so that step still builds them.
+`fmt` is an exported dependency only when MUSICA was built with
+`MUSICA_USE_FMT=ON`. NetCDF-Fortran is part of the tested TUV-x closure. The
+package-generated static link order places `libmiem` before NetCDF-C and
+selects the platform C++ runtime; CheMPAS-A does not hard-code that runtime.
 
-Run preflight and build with eight-way parallelism:
+Install the pinned MUSICA package and run the `pkg-config` metadata checks in
+the [build guide](../../users-guide/03-building.md) first. Those checks compare
+the MUSICA, MICM, MIEM, MechanismConfiguration, and TUV-x revisions and report
+the Fortran compiler that built the package. `CHEMPAS_MAKE_TARGET` and the
+dependency paths are set in the guide's platform sections. Then build with
+eight-way parallelism:
 
 ```bash
-eval "$(scripts/check_build_env.sh --export)"
 make -j8 "$CHEMPAS_MAKE_TARGET" \
   CORE=atmosphere \
   PIO="$PIO" \
@@ -79,11 +97,15 @@ make -j8 "$CHEMPAS_MAKE_TARGET" \
   MUSICA=true
 ```
 
-Preflight requires `musica_micm.mod`, `musica_emissions.mod`, the pinned source
-revisions and compiler ABI, and a complete `pkg-config` static closure. It also
-links a constructor-level MICM+MIEM probe using only exported package flags.
-The wiki [build guide](https://github.com/NCAR/CheMPAS-A/wiki/Building) covers
-the dependency build.
+With `MUSICA=true`, the Makefile requires the `musica-fortran` package at
+version `0.16.5` with the pinned MUSICA source revision, the pinned MIEM
+revision, and MIEM enabled. It does not check the MICM, MechanismConfiguration,
+or TUV-x revisions; the `pkg-config` checks above cover those. It then compiles
+and links a constructor-level MICM+MIEM probe against `musica_micm` and
+`musica_emissions` using only the exported package flags. A missing Fortran
+module, an incomplete static closure, or a compiler ABI mismatch fails at this
+probe. The wiki [build guide](https://github.com/NCAR/CheMPAS-A/wiki/Building)
+covers the dependency build.
 
 ## Exact-grid inventory contract
 
@@ -101,14 +123,17 @@ Each packaged inventory is NetCDF-4 with:
   validation, and runtime staging;
 - `indexToCellID(nCells)` stored exactly as `1,2,...,nCells`; and
 - the authoritative mesh identity arrays and `chempas-mesh-sha256-v1`
-  attributes written by the packaging tool.
+  attributes written when the inventory is packaged.
 
 The inventory's first and last timestamps must bracket the complete requested
-model interval. MIEM linearly interpolates between records. CheMPAS-A supports
-the Gregorian calendar only when emissions are enabled. When one MIEM YAML
-declares multiple inventories, this contract applies independently to every
-file: each must bracket the run and all must report identical exact-grid
-metadata for the selected MPAS mesh.
+model interval. Each source in the MIEM configuration selects how MIEM samples
+between records with `temporal interpolation`: `linear` blends the two
+bracketing records and `nearest` takes the nearer one. In the wiki's global
+example, the CAMS source uses `linear` and the FINN fire source uses `nearest`.
+CheMPAS-A supports the Gregorian calendar only when emissions are enabled.
+When one MIEM YAML declares multiple inventories, this contract applies
+independently to every file: each must bracket the run and all must report
+identical exact-grid metadata for the selected MPAS mesh.
 
 ### `chempas-mesh-sha256-v1`
 
@@ -128,16 +153,32 @@ stream contains, in order:
 A spherical mesh (`on_a_sphere=YES`) must contain `latCell` and `lonCell`. A
 planar mesh must contain `xCell`, `yCell`, and `zCell`; all-zero planar
 latitude/longitude values are not accepted as a substitute. Optional
-coordinates, when present, also enter the fingerprint. The stored algorithm,
-digest, and field-manifest attributes must match the inventory contents and the
-authoritative MPAS mesh/init file.
+coordinates, when present, also enter the fingerprint.
+
+The development repository's packaging and validation tools recompute the
+digest from the inventory and from the authoritative MPAS mesh/init file, and
+reject an inventory whose stored digest or field manifest does not match. The
+model does not recompute the digest. On the first inventory read it requires
+the algorithm string `chempas-mesh-sha256-v1`, a 64-character digest, and a
+non-empty field manifest. It then compares the global cell count, geometry
+class, `on_a_sphere`, `is_periodic`, `sphere_radius` when present, and each
+owned cell's `indexToCellID`, `areaCell`, and coordinates, including their
+units, against the running mesh. The coordinates compared are those the
+geometry requires plus any optional ones the inventory carries.
 
 ## Production preprocessing
 
+The commands in this section run `scripts/prepare_miem_inventory.py` and
+`scripts/validate_miem_inventory.py` from the CheMPAS-A development repository;
+neither script is in the v2026.08.01 release. Without them, follow the wiki
+[Data and Provenance](https://github.com/NCAR/CheMPAS-A/wiki/Data-and-Provenance)
+page, which gives the remapping, packaging, and mesh-identity requirements for
+the global example's inventories.
+
 Choose a scientifically appropriate conservative remapper for each source
-inventory before invoking repository tooling. The packaging command validates,
-reorders, converts supported mass-flux units, records remapping provenance, and
-writes atomically; it never performs horizontal interpolation.
+inventory before packaging. The packaging command validates, reorders, converts
+supported mass-flux units, records remapping provenance, and writes atomically;
+it never performs horizontal interpolation.
 
 ```bash
 python scripts/prepare_miem_inventory.py \
@@ -191,6 +232,13 @@ relative to that directory unless absolute paths are used.
 /
 ```
 
+The two file names are the development repository's chem-box configurations,
+`micm_configs/miem_nox.yaml` and `miem_configs/chem_box_nox.yaml`; the latter
+has one source with sector `synthetic` and category `0`. The wiki's
+Anthropogenic + Fire Emissions scenario instead sets
+`global_cams_tropo_ch4nox.yaml` and `global_mvp_cams_finn.yaml`, with sectors
+`cams_harmonized_no_awb,finn_fire` and categories `0,100`.
+
 Only `config_miem_file` is required. `config_miem_net_flux_species` is an
 exact, comma-separated opt-in for species whose positive values are upward
 sources and negative values are downward uptake. An empty value preserves the
@@ -213,13 +261,14 @@ Stage these inputs together:
 - atmosphere namelist, streams, and requested output fields; and
 - normal case-specific tables and auxiliary data.
 
-Tracked multi-inventory configurations include
-`miem_configs/two_inventory_nox_ch4.yaml`, which reads separate NOx and CH4
-files, and `miem_configs/global_mvp_cams_finn.yaml`, which combines
-CAMS-GLOB-ANT anthropogenic and FINNv2.5.1 fire inventories for the
-[global chemistry and emissions example](https://github.com/NCAR/CheMPAS-A/wiki/Global-Chemistry-and-Emissions).
-Each inventory is sampled independently and contributes through MIEM's normal
-category/hierarchy aggregation.
+The
+[global chemistry and emissions example](https://github.com/NCAR/CheMPAS-A/wiki/Global-Chemistry-and-Emissions)
+publishes its MIEM configurations in the wiki's `examples/global-emissions/`
+directory. `global_mvp_cams.yaml` reads one harmonized CAMS-GLOB-ANT
+anthropogenic inventory, and `global_mvp_cams_finn.yaml` combines that
+inventory with a separate FINNv2.5.1 fire inventory. Each inventory is sampled
+independently and contributes through MIEM's normal category/hierarchy
+aggregation.
 
 `EMIS.*` diagnostic names are discovered only from `config_micm_file` because
 they are writable MICM rate parameters. `config_miem_file` constructs MIEM and
@@ -239,9 +288,10 @@ vertical injection: profile
 vertical profile: [0.0, 0.25, 0.75, 0.0]
 ```
 
-The example is schematic and is valid only for a four-level run. The tracked
-60-level form is `miem_configs/chem_box_nox_profile.yaml`. Profiles prescribe
-vertical allocation; they do not calculate plume rise.
+The example is schematic and is valid only for a four-level run. The
+development repository's 60-level chem-box form is
+`miem_configs/chem_box_nox_profile.yaml`. Profiles prescribe vertical
+allocation; they do not calculate plume rise.
 
 To disable MIEM while retaining chemistry, use:
 
@@ -360,6 +410,10 @@ not an MIEM-only tracer delta.
 
 ## Tracked chem-box workflow
 
+The chem-box assets, scenario definitions, harness, and checker in this and
+the next two sections are in the CheMPAS-A development repository, not the
+v2026.08.01 release.
+
 The canonical 64-cell init/mesh and 8-rank partition live under
 `test_cases/chem_box/miem/assets/`. Verify their manifest before use:
 
@@ -446,12 +500,12 @@ measurements.
 
 ## Chem-box emissions figures
 
-`scripts/plot_miem_emissions.py` draws these figures from passing eight-rank
-`cell_time_signature`, `layered_diagnostics`, and `constant_flux` runs. Those
-scenarios are source-only, so before writing the PNG and PDF files the plotter
-checks the history/report hash, exact grid order, physical units, finite
-nonnegative diagnostics, initial zero fields, layer/group closure, and final
-diagnostic-to-tracer mass closure.
+The development repository's `scripts/plot_miem_emissions.py` draws these
+figures from passing eight-rank `cell_time_signature`, `layered_diagnostics`,
+and `constant_flux` runs. Those scenarios are source-only, so before writing
+the PNG and PDF files the plotter checks the history/report hash, exact grid
+order, physical units, finite nonnegative diagnostics, initial zero fields,
+layer/group closure, and final diagnostic-to-tracer mass closure.
 
 ```{figure} ../../_static/miem_emissions_spatial.png
 :alt: Two exact-grid maps showing the synthetic NO and NO2 emissions fluxes.
@@ -504,21 +558,23 @@ index, coalesce consecutive IDs, issue `nc_get_vara` calls for those runs, and
 scatter back into host order. Flux buffers, two cached time brackets, and exact
 grid metadata therefore scale with owned cells; MIEM performs no MPI calls.
 
-To measure this on a given system, run:
+To measure this on a given system, run the benchmark from the development
+repository:
 
 ```bash
 scripts/benchmark_miem_scalability.sh --case all --warm-steps 12
 ```
 
-It expects external init/mesh and partition files under `$HOME/Data/CheMPAS`
-by default, creates a temporary deterministic exact-grid NO/NO2 inventory, and
-runs full-grid and selected-cell modes on eight ranks. On the 28,080-cell
-planar supercell mesh and the 40,962-cell spherical x1.40962 mesh, the
-selected-cell aggregate NetCDF payload and persistent state are exactly `1/8`
-of the replicated full-grid totals, owned-cell fluxes are identical between
-the two modes, and no selected rank holds global-sized flux buffers. The
-benchmark also records initialization and warm-step time and peak RSS; those
-values depend on the system and are not portable performance thresholds.
+The script is not in the v2026.08.01 release. It expects external init/mesh and
+partition files under `$HOME/Data/CheMPAS` by default, creates a temporary
+deterministic exact-grid NO/NO2 inventory, and runs full-grid and selected-cell
+modes on eight ranks. On the 28,080-cell planar supercell mesh and the
+40,962-cell spherical x1.40962 mesh, the selected-cell aggregate NetCDF payload
+and persistent state are exactly `1/8` of the replicated full-grid totals,
+owned-cell fluxes are identical between the two modes, and no selected rank
+holds global-sized flux buffers. The benchmark also records initialization and
+warm-step time and peak RSS; those values depend on the system and are not
+portable performance thresholds.
 
 ## Current limitations
 
@@ -535,6 +591,10 @@ values depend on the system and are not portable performance thresholds.
   but idealized chemical background profiles that are not spun up. It
   demonstrates coupled source attribution; its first-day concentrations are
   not production air-quality predictions.
+- All three global example scenarios run with
+  `config_physics_suite = 'none'`: there is no boundary-layer mixing,
+  convection, or cloud, so TUV-x runs clear-sky and surface emissions are
+  carried upward only by resolved motion.
 
 ## Related documentation
 

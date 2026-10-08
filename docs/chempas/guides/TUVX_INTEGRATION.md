@@ -172,13 +172,16 @@ after each photolysis update and keep their values between updates.
 
 ### Supported mechanisms
 
-The paired files are in `micm_configs/`.
+The release ships the first two pairs in `micm_configs/`. The global pair is
+published with the CheMPAS-A wiki's
+[global chemistry and emissions examples](https://github.com/NCAR/CheMPAS-A/wiki/Global-Chemistry-and-Emissions)
+rather than in the release.
 
 | MICM mechanism | TUV-x configuration | Rates | Purpose | In v2026.08.01 |
 |----------------|---------------------|-------|---------|----------------|
 | `lnox_o3.yaml` | `tuvx_no2.json` | jNO2 | Tropospheric NO-NO2-O3 cycle, used with the lightning-NOx source | Yes |
 | `chapman_nox.yaml` | `tuvx_chapman_nox.json` | jO2, jO3_O, jO3_O1D, jNO2 | Chapman + NOx catalytic O3 destruction | Yes |
-| `chapman_full.yaml` | `tuvx_chapman.json` | jO2, jO3_O, jO3_O1D | Stratospheric Chapman cycle | No |
+| `global_cams_tropo_ch4nox.yaml` | `tuvx_tropo.json` | jO3_O1D, jO3_O, jNO2, jH2O2, jCH2O_a, jCH2O_b, jCH3OOH, jHNO3 | Tropospheric Ox-HOx-NOx-CO-CH4 chemistry for the global examples | No; published on the wiki |
 
 The release also ships `tuvx_upper_atm.csv`, the default extension profile.
 
@@ -268,9 +271,8 @@ covers 50–100 km at 5 km spacing (10 layers), with temperature and air density
 from the US Standard Atmosphere 1976 and O3 from the AFGL
 mid-latitude-summer profile. It starts at the 50 km top of the idealized
 supercell; `test_cases/chapman_nox_global` ships its own
-`tuvx_upper_atm.csv`, which starts at 45 km. `scripts/gen_tuvx_upper_atm.py`
-(`--z-bottom`, `--z-top`, `--nlayers`, `--out`) writes the same format for
-another model top; it is not included in the v2026.08.01 release.
+`tuvx_upper_atm.csv`, which starts at 45 km. For another model top, supply a
+file in the same format whose first row lies at that top.
 
 ### Spatial monthly O3 climatology
 
@@ -345,8 +347,6 @@ TUV-x takes O3 at and below the model top from `qO3`, so the initial O3 field
 sets the overhead ozone column. `scripts/init_lnox_o3.py` (uniform background
 O3 for `lnox_o3.yaml`) and `scripts/init_chapman_nox.py` (altitude-dependent
 O3, NO, and NO2 for the global Chapman + NOx case) ship in the release.
-`scripts/init_chapman.py`, which seeds an AFGL mid-latitude-summer O3 profile
-for the supercell Chapman setups, does not.
 
 ### Example: idealized supercell
 
@@ -371,10 +371,15 @@ following block, together with `&lnox` settings, as a commented example:
 ```
 
 The coordinates place the domain at Kingfisher, Oklahoma, and every column
-shares that solar geometry. `config_j_no2_max` has no effect while TUV-x is
-active. The same template also carries an isotherm-gated
-lightning variant and a Chapman block that uses `chapman_full.yaml` and
-`tuvx_chapman.json`.
+shares that solar geometry. The template starts at `0000-01-01_00:00:00`,
+after local sunset at these coordinates, so photolysis rates stay at zero
+until sunrise; [Tutorial Chapter 2](../../tutorial/02-deep-convection.md)
+sets an 18:00 UTC start in both namelists for daytime photolysis.
+`config_j_no2_max` has no effect while TUV-x is active. The same template also carries an isotherm-gated lightning variant
+and a commented Chapman block. The mechanism, TUV-x configuration, and
+initialization script that the Chapman block names are not part of the
+release. The released Chapman + NOx pair, `chapman_nox.yaml` with
+`tuvx_chapman_nox.json`, includes the Chapman cycle.
 
 ### Example: global Chapman + NOx
 

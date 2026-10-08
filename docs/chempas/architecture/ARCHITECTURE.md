@@ -8,7 +8,7 @@ this repository.
 
 MPAS is a modular, unstructured mesh framework for Earth system modeling. It supports multiple specialized "cores" for different physical domains:
 
-- **core_atmosphere** - Atmospheric modeling (primary focus of this branch)
+- **core_atmosphere** - Atmospheric modeling (the focus of CheMPAS-A)
 - **core_init_atmosphere** - Initialization preprocessing
 - **core_ocean** - Ocean modeling
 - **core_seaice** - Sea ice modeling
@@ -155,14 +155,10 @@ CheMPAS-A/
 ├── CMakeLists.txt          # Retained non-chemistry MPAS CMake path
 ├── Makefile                # Supported CheMPAS chemistry build
 ├── cmake/                  # CMake modules and functions
-├── docs/                   # Sphinx documentation source
-│   ├── chempas/            # CheMPAS-A-specific developer notes
-│   ├── tutorial/           # CheMPAS-A tutorial chapters
-│   ├── users-guide/        # Imported MPAS-Atmosphere user's guide
-│   └── technical-description/
-├── micm_configs/           # MICM and TUV-x chemistry configuration files
-├── miem_configs/           # MIEM source configuration documents
-├── scripts/                # Analysis, plotting, and helper scripts
+├── docker/                 # Container build and run harness for three cases
+├── docs/                   # Sphinx source for the MPAS-Ocean design documents
+├── micm_configs/           # MICM mechanisms, TUV-x configurations, extension CSV
+├── scripts/                # Chemistry tracer initialization scripts
 ├── src/                    # Main source code
 │   ├── driver/             # Main execution entry points
 │   ├── framework/          # Shared infrastructure
@@ -176,7 +172,8 @@ CheMPAS-A/
 │   ├── core_landice/
 │   ├── core_sw/
 │   └── core_test/
-└── test_cases/             # Idealized, integration, and global workflows
+├── test_cases/             # Supercell, JW baroclinic wave, global Chapman + NOx
+└── testing_and_setup/      # MPAS test and run-directory setup tools
 ```
 
 ## Core Components
@@ -266,7 +263,7 @@ for the authoritative commands and pinned revisions.
 
 ## Related Documentation
 
-- [Public MVP build guide](https://github.com/NCAR/CheMPAS-A/wiki/Building) - supported chemistry build and dependency pins
+- [Build guide](https://github.com/NCAR/CheMPAS-A/wiki/Building) - supported chemistry build and dependency pins
 - [COMPONENTS.md](COMPONENTS.md) - Detailed component documentation
 - [MUSICA_INTEGRATION.md](../musica/MUSICA_INTEGRATION.md) - Chemistry integration details
 - [MIEM_INTEGRATION.md](../musica/MIEM_INTEGRATION.md) - Exact-grid emissions workflow

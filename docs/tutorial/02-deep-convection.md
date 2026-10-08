@@ -270,11 +270,10 @@ anvil where the updraft is strongest.
 The lightning-NOx source has two gating modes, configurable through
 the `&lnox` namelist:
 
-- **Altitude-mode** gating (the inherited DAVINCI-MPAS formulation) —
-  emit NO in a fixed altitude window, with rate scaled by updraft
-  excess.
-- **Isotherm-mode** gating (new, faithful to the DC3 mixed-phase
-  framing described in the LNOx integration guide) — emit NO in a
+- **Altitude-mode** gating (the default) — emit NO in a fixed altitude
+  window, with rate scaled by updraft excess.
+- **Isotherm-mode** gating (faithful to the DC3 mixed-phase framing
+  described in the LNOx integration guide) — emit NO in a
   temperature window corresponding to the 233–262 K layer, at a
   constant rate.
 
@@ -283,12 +282,29 @@ compares them. The full scheme description, namelist surface, and
 calibration notes live in the
 [LNOx integration guide](../chempas/guides/LNOX_INTEGRATION.md).
 
-**Initialize the LNOx tracers.** The supercell init file does not
-contain NO / NO₂ / O₃; populate them with a one-time script. Both
-gating modes use the same initial state:
+**Set a daytime start time.** In both `namelist.init_atmosphere` and
+`namelist.atmosphere`, change the start time in the `&nhyd_model` record
+to 18:00 UTC:
+
+```fortran
+    config_start_time = '0000-01-01_18:00:00'
+```
+
+The release namelists start at 00:00 UTC, which at the fixed solar
+coordinates used below (35.86° N, 97.93° W) is after local sunset, so
+jNO₂ would stay at zero for the whole run.
+
+**Initialize the LNOx tracers.** Regenerate `supercell_init.nc` so that
+it carries the new start time. The supercell init file does not contain
+NO / NO₂ / O₃; populate them with a one-time script. Both gating modes
+use the same initial state:
 
 ```bash
 cd "$SUPERCELL_RUN"
+# By default MPAS does not overwrite an existing file; keep the ABBA init.
+[ -f supercell_init.nc ] && mv supercell_init.nc supercell_init.abba.nc
+mpiexec -n 8 "$CHEMPAS_ROOT/init_atmosphere_model"
+
 cp "$CHEMPAS_ROOT/micm_configs/lnox_o3.yaml" .
 cp "$CHEMPAS_ROOT/micm_configs/tuvx_no2.json" .
 cp "$CHEMPAS_ROOT/micm_configs/tuvx_upper_atm.csv" .

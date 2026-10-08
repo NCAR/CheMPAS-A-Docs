@@ -29,8 +29,8 @@ compilers, MPI, NetCDF-C, NetCDF-Fortran, PnetCDF, and PIO. Chemistry builds
 also require the pinned MUSICA-Fortran package with MICM, TUV-x, and MIEM.
 [Chapter 3](03-building.md) gives complete Ubuntu, macOS LLVM, and Derecho
 dependency and compiler recipes; the public wiki's
-[Building](https://github.com/NCAR/CheMPAS-A/wiki/Building) page is the concise
-MVP recipe.
+[Building](https://github.com/NCAR/CheMPAS-A/wiki/Building) page carries the
+same recipes.
 
 After exporting the installation prefixes, build the initialization core and
 then the chemistry-enabled atmosphere core from clean boundaries:
@@ -129,9 +129,11 @@ scenarios:
 - Anthropogenic + Fire Emissions
 
 All three use identical meteorology, chemistry, photolysis, and initial state;
-only the declared surface sources differ. The guide links the exact namelists,
-streams, reduced mechanism, TUV-x configuration, MIEM configurations, and data
-manifest.
+only the declared surface sources differ. All three also run with
+`config_physics_suite = 'none'`, so there is no boundary-layer mixing,
+convection, or cloud, and TUV-x runs clear-sky. The guide links the exact
+namelists, streams, reduced mechanism, TUV-x configuration, MIEM
+configurations, and data manifest.
 
 The demonstration validates coupled process integration and source
 bookkeeping. It is not a production air-quality forecast or a chemically

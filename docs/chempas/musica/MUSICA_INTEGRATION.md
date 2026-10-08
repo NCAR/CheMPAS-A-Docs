@@ -71,10 +71,9 @@ The integration is conditionally compiled using the `MPAS_USE_MUSICA` preprocess
 #endif
 ```
 
-Enable at build time with the Makefile workflow used by this repository:
+Enable it at build time by passing `MUSICA=true` to the top-level Makefile:
 
 ```bash
-eval "$(scripts/check_build_env.sh --export)"
 make -j8 "$CHEMPAS_MAKE_TARGET" \
     CORE=atmosphere \
     PIO="$PIO" \
@@ -85,8 +84,12 @@ make -j8 "$CHEMPAS_MAKE_TARGET" \
     MUSICA=true
 ```
 
-`scripts/check_build_env.sh --export` resolves and exports the supported
-compiler target as `CHEMPAS_MAKE_TARGET` together with the dependency paths.
+The platform sections of the [build guide](../../users-guide/03-building.md)
+set `CHEMPAS_MAKE_TARGET` and the dependency paths, build the pinned MUSICA
+package, and check its `pkg-config` revision metadata. With `MUSICA=true`, the
+Makefile requires `musica-fortran` version `0.16.5` with the pinned MUSICA
+source and MIEM revisions and MIEM enabled, links a MICM+MIEM probe program,
+and adds `-DMPAS_USE_MUSICA` to the build.
 
 ## API Overview
 
@@ -227,13 +230,17 @@ configuration at runtime, and MPAS tracer names follow the convention:
 The mechanisms used with CheMPAS-A include ABBA (`AB`, `A`, `B`), LNOx-O3
 (`NO`, `NO2`, `O3`), Chapman, Chapman + NOx, and reduced Ox-HOx-NOx-CO-CH4
 variants; the v2026.08.01 release ships the ABBA, LNOx-O3, and Chapman + NOx
-configurations. The `global_cams_*` configurations add exactly `EMIS.NO` and
-`EMIS.NO2` for global anthropogenic NOx emissions. MICM species map to MPAS
-tracers by prefixing `q`, e.g. `NO2 -> qNO2` and `O3 -> qO3`.
+configurations. The wiki's global example mechanism,
+`global_cams_tropo_ch4nox.yaml`, adds `EMIS.NO`, `EMIS.NO2`, and `EMIS.CO`
+emission rate parameters for MIEM's CAMS anthropogenic and FINN fire sources.
+MICM species map to MPAS tracers by prefixing `q`, e.g. `NO2 -> qNO2` and
+`O3 -> qO3`.
 
-O2, N2, and H2O mechanism parameters are bound to host fields only when the
-mechanism metadata declares that relationship; transported `qO2` in the
-Chapman mechanisms remains unchanged.
+H2O is always bound to the MPAS water-vapor field `qv`; CheMPAS-A reads `qv`
+into MICM and never writes it back. O2 and N2 are bound to fixed dry-air mole
+fractions only when their species metadata declares a `dry-air mole fraction`
+host binding; otherwise they are ordinary species, so the Chapman mechanisms
+keep their transported `qO2` tracer.
 
 Molar masses are read per-species from MICM properties (`__molar mass`) via
 `micm%get_species_property_double(...)` during `musica_init`.
@@ -313,6 +320,13 @@ because `lbc_scalars` remains statically sized from registry metadata.
     config_tuvx_upper_column_mode = 'none'
 /
 ```
+
+`miem_nox.yaml` and `chem_box_nox.yaml` are the chem-box MICM and MIEM
+configurations from the CheMPAS-A development repository and are not part of
+the v2026.08.01 release; `tuvx_no2.json` ships in the release's
+`micm_configs/`. The wiki's global example instead uses
+`global_cams_tropo_ch4nox.yaml`, `global_mvp_cams.yaml` or
+`global_mvp_cams_finn.yaml`, and `tuvx_tropo.json`.
 
 ### MICM Configuration File
 
@@ -419,7 +433,7 @@ The `has_error_occurred()` helper converts MUSICA errors to MPAS-compatible form
 | Core coupling | Runtime species/tracer discovery, MPAS-MICM MMR/concentration transfer, configurable substeps/tolerance, optional reference solve, and the LNOx-O3, Chapman, Chapman-NOx, and reduced tropospheric mechanism paths. |
 | TUV-x and prescribed O3 | From-host atmosphere/cloud profiles, optional exact-grid cyclic monthly MERRA-2 O3 strictly above the model top, and legacy/no-extension modes. Prescribed upper O3 affects photolysis only and never writes prognostic `qO3`. |
 | MIEM and multiple inventories | Selected owned-cell reads, exact-grid validation, surface/fixed-profile allocation, multiple inventory files in one configuration, bounded total/layer/sector/category diagnostics, signed-species opt-in, and algebraic global mass budgets. Global simulations have combined separate CAMS anthropogenic and FINN fire inventories. |
-| Global simulations | 24-hour x1.40962 No Surface Emissions, Anthropogenic Emissions, and Anthropogenic + Fire Emissions scenarios with reduced chemistry. They are process demonstrations, not production air-quality forecasts or chemically spun-up products. |
+| Global simulations | 24-hour x1.40962 No Surface Emissions, Anthropogenic Emissions, and Anthropogenic + Fire Emissions scenarios with reduced chemistry. All three run with `config_physics_suite = 'none'`, so there is no boundary-layer mixing, convection, or cloud, and TUV-x runs clear-sky. They are process demonstrations, not production air-quality forecasts or chemically spun-up products. |
 | Chemistry output units | MMR remains authoritative transport/restart state; optional history-only `vmr_<species>` diagnostics support fraction, percent, ppmv, ppbv, and pptv with per-species overrides and host-bound species. |
 | Scalability | Each rank reads and stores emissions only for its owned cells, and selected-cell and full-grid fluxes are bitwise identical on eight ranks. I/O uses independent serial NetCDF hyperslab reads rather than collective parallel I/O. |
 
@@ -431,6 +445,6 @@ configurations have not been optimized.
 ## Related Documentation
 
 - [ARCHITECTURE.md](../architecture/ARCHITECTURE.md) - Overall system architecture
-- [Public MVP build guide](https://github.com/NCAR/CheMPAS-A/wiki/Building) - Build configuration for MUSICA
+- [Build guide](https://github.com/NCAR/CheMPAS-A/wiki/Building) - Build configuration for MUSICA
 - [COMPONENTS.md](../architecture/COMPONENTS.md) - Atmosphere component details
 - [MIEM_INTEGRATION.md](MIEM_INTEGRATION.md) - Offline-emissions workflow and contracts

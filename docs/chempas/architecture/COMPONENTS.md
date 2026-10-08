@@ -369,5 +369,6 @@ Each core has a `Registry.xml` file defining:
 ## Related Documentation
 
 - [ARCHITECTURE.md](ARCHITECTURE.md) - High-level architecture
-- `BUILD.md` - Build system
+- [Chapter 3: Building CheMPAS-A](../../users-guide/03-building.md) and the
+  [wiki Building page](https://github.com/NCAR/CheMPAS-A/wiki/Building) - Build system
 - [MUSICA_INTEGRATION.md](../musica/MUSICA_INTEGRATION.md) - Chemistry integration

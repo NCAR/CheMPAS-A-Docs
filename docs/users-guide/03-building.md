@@ -4,7 +4,7 @@
 
 To build CheMPAS-A, compatible C and Fortran compilers are required; the
 chemistry-enabled build also requires a compatible C++ compiler for the
-MUSICA/MICM/MIEM dependency closure. Additionally, the MPAS software relies on
+MUSICA/MICM/MIEM dependency closure. Additionally, the documented builds use
 the PIO parallel I/O library to read and write model fields, and the PIO
 library requires the standard netCDF library as well as the parallel-netCDF
 library from Argonne National Laboratory. All libraries must be compiled with
@@ -17,16 +17,25 @@ include files and libraries, the environment variables `PIO`, `PNETCDF`, and
 as well when NetCDF-Fortran has a different prefix; otherwise it defaults to
 `NETCDF` in the documented commands.
 
+When `PIO` is unset or empty, the `Makefile` skips its PIO test and instead
+builds and links the SMIOL library bundled in `src/external/SMIOL`, and the
+build summary reports `Using the SMIOL library.` SMIOL still requires
+PnetCDF, so `PNETCDF` must be set in either case. The release container build
+in `docker/` uses SMIOL; the native builds documented in this chapter use
+PIO 2.6.9.
+
 An MPI installation such as MPICH or OpenMPI is also required, and there is no option to build a serial version of the MPAS executables. MPAS-Atmosphere v5.0 introduces the capability to use hybrid parallelism using MPI and OpenMP; however, the use of OpenMP *should be considered experimental* and generally does not offer any performance advantage. The primary reason for releasing a shared-memory capability is to make this code available to collaborators for future development.
 
 ## 3.2 Compiling I/O Libraries
 
 > **IMPORTANT NOTE:** *The instructions provided in this section for installing libraries have been successfully used by MPAS developers, but due to differences in library versions, compilers, and system configurations, it is recommended that users consult documentation provided by individual library vendors should problems arise during installation. The MPAS developers cannot assume responsibility for third-party libraries.*
 
-The verified CheMPAS-A 26.08 GNU/Linux environment uses netCDF-C 4.10.1,
-netCDF-Fortran 4.6.3, PnetCDF 1.14.1, and PIO 2.6.9. Other compatible versions
-may work, but the repository preflight and a clean link test are authoritative
-for a particular toolchain. NetCDF and PnetCDF must be installed before PIO.
+CheMPAS-A 26.08 was tested on GNU/Linux with netCDF-C 4.10.1, netCDF-Fortran
+4.6.3, PnetCDF 1.14.1, and PIO 2.6.9. Other compatible versions may work. For a
+particular toolchain, the deciding check is a clean build in which the
+`Makefile`'s PnetCDF, PIO, and MUSICA-Fortran test programs and the final
+model link all succeed (Section 3.10). NetCDF and PnetCDF must be installed
+before PIO.
 
 ### 3.2.1 NetCDF
 
@@ -63,10 +72,11 @@ After PIO is built and installed the `PIO` environment variable should be set to
 
 ## 3.3 Compiling MPAS
 
-> **IMPORTANT NOTE:** *Before compiling MPAS, the `NETCDF`, `PNETCDF`, and
-> `PIO` environment variables must be set to the library installation
-> directories described above. Set `NETCDFF` too when NetCDF-Fortran uses a
-> different prefix.*
+> **IMPORTANT NOTE:** *Before compiling MPAS, the `NETCDF` and `PNETCDF`
+> environment variables must be set to the library installation directories
+> described above, and `PIO` must be set for the documented PIO builds. Set
+> `NETCDFF` too when NetCDF-Fortran uses a different prefix. Without `PIO`,
+> the build uses the bundled SMIOL library (Section 3.1).*
 
 The supported chemistry-enabled path uses the top-level `Makefile`. (The
 repository also retains a CMake path for non-chemistry work; it does not compile
@@ -79,12 +89,12 @@ make gfortran
 
 to build the code using the GNU Fortran and C compilers. Representative current
 targets are listed below. The top-level `Makefile` is the complete authority
-and also retains platform-specific and deprecated targets; the current
-reference builds are `gfortran` and `llvm`.
+and also retains platform-specific and deprecated targets; the documented
+build environments in Section 3.5 use `gfortran`, `llvm`, and `cray`.
 
 | Target | Fortran compiler | C compiler | MPI wrappers |
 |--------|-----------------|------------|--------------|
-| `xlf` | xlf90 | xlc | mpxlf90 / mpcc |
+| `xlf` | xlf2003_r | xlc_r | mpifort / mpicc |
 | `gnu`, `gfortran` | gfortran | gcc | mpif90 / mpicc |
 | `llvm` | flang | clang | mpifort / mpicc |
 | `nvhpc` | nvfortran | nvc | mpifort / mpicc |
@@ -108,22 +118,47 @@ make gfortran CORE=atmosphere
 
 If the `CORE` environment variable is set and a core is specified on the command-line, the command-line value takes precedence; if no core is specified, either on the command line or via the `CORE` environment variable, the build process will stop with an error message stating such. Assuming compilation is successful, the model executable, named `${CORE}_model` (e.g., `atmosphere_model`), should be created in the top-level MPAS directory.
 
-In order to get a list of available cores, one can simply run the top-level `Makefile` without setting the `CORE` environment variable or passing the core via the command-line:
+To list the available build targets, cores, and options, run the top-level
+`Makefile` without setting the `CORE` environment variable or passing the core
+on the command line. The target list is generated from the `BUILDTARGET`
+comments in the `Makefile`. GNU make's own directory and exit-status lines,
+which vary with the make version, are omitted below:
 
-```
+```text
 > make
 ( make error )
-make[1]: Entering directory '/scratch/MPAS-Release'
 
 Usage: make target CORE=[core] [options]
 
-Example targets:
-    ifort
-    gfortran
-    xlf
-    pgi
+Available Targets:
+    gnu             - GNU Fortran, C, and C++ compilers
+    xlf             - IBM XL compilers
+    xlf-summit-omp-offload - IBM XL compilers w/OpenMP offloading on ORNL Summit
+    ftn             - Cray compilers
+    titan-cray      - (deprecated) Cray compilers with options for ORNL Titan
+    nvhpc           - NVIDIA HPC SDK
+    pgi             - PGI compiler suite
+    pgi-summit      - PGI compiler suite w/OpenACC options for ORNL Summit
+    pgi-nersc       - (deprecated) PGI compilers on NERSC machines
+    pgi-llnl        - (deprecated) PGI compilers on LLNL machines
+    ifort           - Intel Fortran, C, and C++ compiler suite
+    ifort-scorep    - Intel compiler suite with ScoreP profiling library
+    ifort-gcc       - Intel Fortran compiler and GNU C/C++ compilers
+    intel-mpi       - Intel compiler suite with Intel MPI library
+    gfortran        - GNU Fortran, C, and C++ compilers
+    gfortran-clang  - GNU Fortran compiler with LLVM clang/clang++ compilers
+    g95             - (deprecated) G95 Fortran compiler with GNU C/C++ compilers
+    pathscale-nersc - (deprecated) Pathscale compilers on NERSC machines
+    cray-nersc      - (deprecated) Cray compilers on NERSC machines
+    gnu-nersc       - (deprecated) GNU compilers on NERSC machines
+    intel-nersc     - (deprecated) Intel compilers on NERSC machines
+    bluegene        - (deprecated) IBM XL compilers on BlueGene/Q systems
+    llvm            - LLVM flang, clang, and clang++ compilers
+    nag             - NAG Fortran compiler and GNU C/C++ compilers
+    cray            - Cray Programming Environment
+    intel           - Intel oneAPI Fortran, C, and C++ compiler suite
 
-Available Cores:
+Availabe Cores:
     atmosphere
     init_atmosphere
     landice
@@ -133,23 +168,31 @@ Available Cores:
     test
 
 Available Options:
-    DEBUG=true       - builds debug version. Default is optimized version.
-    USE_PAPI=true    - builds version using PAPI for timers. Default is off.
-    TAU=true         - builds version using TAU hooks for profiling. Default is off.
-    AUTOCLEAN=true   - forces a clean of infrastructure prior to build new core.
-    GEN_F90=true     - Generates intermediate .f90 files through CPP, and builds with them.
-    TIMER_LIB=opt    - Selects the timer library interface to be used for profiling the model.
-                       TIMER_LIB=native - Uses native built-in timers in MPAS
-                       TIMER_LIB=gptl   - Uses gptl for the timer interface
-                       TIMER_LIB=tau    - Uses TAU for the timer interface
-    OPENMP=true      - builds and links with OpenMP flags. Default is to not use OpenMP.
-    OPENACC=true     - builds and links with OpenACC flags when supported by the target.
-    PRECISION=double - builds with default double-precision real kind. Default is single-precision.
-    SHAREDLIB=true   - generates position-independent code suitable for a shared library.
+    DEBUG=true    - builds debug version. Default is optimized version.
+    USE_PAPI=true - builds version using PAPI for timers. Default is off.
+    TAU=true      - builds version using TAU hooks for profiling. Default is off.
+    AUTOCLEAN=true - Enables automatic cleaning and re-compilation of code as needed.
+    GEN_F90=true  - Generates intermediate .f90 files through CPP, and builds with them.
+    TIMER_LIB=opt - Selects the timer library interface to be used for profiling the model. Options are:
+                    TIMER_LIB=native - Uses native built-in timers in MPAS
+                    TIMER_LIB=gptl - Uses gptl for the timer interface instead of the native interface
+                    TIMER_LIB=tau - Uses TAU for the timer interface instead of the native interface
+    OPENMP=true   - builds and links with OpenMP flags. Default is to not use OpenMP.
+    OPENACC=true  - builds and links with OpenACC flags. Default is to not use OpenACC.
+    PRECISION=double - builds with default double-precision real kind. Default is to use single-precision.
+    SHAREDLIB=true - generate position-independent code suitable for use in a shared library. Default is false.
+    MPAS_ESMF=opt  - Selects the ESMF library to be used for MPAS. Options are:
+                     MPAS_ESMF=embedded - Use the embedded ESMF timekeeping library (default)
+                     MPAS_ESMF=external - Use an external ESMF library, determined by ESMFMKFILE
+
+Ensure that NETCDF, PNETCDF, PIO, and PAPI (if USE_PAPI=true) are environment variables
+that point to the absolute paths for the libraries.
 
 ************ ERROR ************
 No CORE specified. Quitting.
 ************ ERROR ************
+
+exit 1
 ```
 
 ## 3.4 Selecting Model Precision

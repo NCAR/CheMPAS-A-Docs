@@ -1,12 +1,7 @@
 # LNOx Integration Summary
 
 This note describes CheMPAS-A's lightning-NOx (LNOx) source scheme as
-it currently stands in `src/core_atmosphere/chemistry/mpas_lightning_nox.F`.
-It supersedes the historical `LNOx.md` note at the repository root,
-which is preserved there as the original DC3 motivation record.
-
-The current source and namelist contract, rather than the archived development
-design, are authoritative for the isotherm-mode implementation.
+implemented in `src/core_atmosphere/chemistry/mpas_lightning_nox.F`.
 
 ## Scope
 
@@ -18,10 +13,9 @@ mechanism that carries a `qNO` species will receive the source.
 
 Two gating modes are available:
 
-- **Altitude mode** (default, inherited from DAVINCI-MPAS) — emission
-  in a fixed altitude window, with rate scaled linearly by updraft
-  excess.
-- **Isotherm mode** (new, faithful to the LNOx.md DC3 framing) —
+- **Altitude mode** (default) — emission in a fixed altitude window,
+  with rate scaled linearly by updraft excess.
+- **Isotherm mode** (faithful to the DC3 framing described below) —
   emission in a temperature window matching the mixed-phase layer,
   with constant rate.
 
@@ -33,23 +27,23 @@ Both modes additionally require updraft `w` to exceed
 | Mode | Gate | Rate |
 |---|---|---|
 | `altitude` (default) | `z_min ≤ z ≤ z_max` AND `w > w_threshold` | `S = source_rate · (w − w_threshold) / w_ref` |
-| `isotherm` (new) | `t_min ≤ T ≤ t_max` AND `w > w_threshold` | `S = source_rate` (constant) |
+| `isotherm` | `t_min ≤ T ≤ t_max` AND `w > w_threshold` | `S = source_rate` (constant) |
 
 The 233.15–262.15 K isotherm window is the canonical mixed-phase layer
 where charge separation drives lightning in deep convection. The 1 ppbv
-NOx target at cloud top, and the constant emission framing, come from
-the DC3 supercell parcel-model description preserved in `LNOx.md` at
-the repository root.
+NOx target at cloud top, and the constant emission framing, come from a
+parcel-model description of a supercell sampled during the Deep
+Convective Clouds and Chemistry (DC3) experiment.
 
 Altitude mode is retained for backward compatibility with existing
 runs and for cases where the user wants to specify a literal injection
 volume independent of the storm thermal structure.
 
-Both gating modes follow the original DC3 parcel-model design in
-`LNOx.md`: they apply a mixing-ratio rate to parcels in an idealized
-storm, not a flash-rate or molecule-count source. In altitude mode,
-`z_min` and `z_max` are applied to MPAS `zgrid` height above MSL, not
-AGL, so over terrain the injection layer does not follow the surface.
+Both gating modes follow that DC3 parcel-model design: they apply a
+mixing-ratio rate to parcels in an idealized storm, not a flash-rate or
+molecule-count source. In altitude mode, `z_min` and `z_max` are applied
+to MPAS `zgrid` height above MSL, not AGL, so over terrain the injection
+layer does not follow the surface.
 Because `config_lnox_source_rate` is a mixing-ratio rate in ppbv s⁻¹,
 the total injected moles scale with each cell's air mass; integrated
 production is therefore resolution-dependent on variable meshes. These
@@ -103,7 +97,7 @@ itself is pool-independent and receives plain arrays;
 
 ## Calibration notes
 
-The LNOx.md DC3 description targets ~1 ppbv NOx at cloud top in a
+The DC3 parcel-model description targets ~1 ppbv NOx at cloud top in a
 supercell with ~5 m s⁻¹ sustained updrafts. For isotherm mode, a
 starting point that gives an order-of-magnitude-correct first run is
 
@@ -115,16 +109,15 @@ config_lnox_source_rate = 1.0e-3   ! ppbv/s
 mixed-phase layer in a strong updraft; 1.0e-3 ppbv/s × 1000 s ≈ 1 ppbv).
 
 Refinement is a manual retune-and-rerun loop: inspect peak NOx in the convective
-core, adjust `config_lnox_source_rate` by a small factor, and re-run. The
-tracked `scripts/plot_lnox_o3.py` is not currently a usable path: its custom
-colormap construction fails before argument parsing (including `--help`). Use
-NetCDF/xarray or another verified viewer for `qNO`, `qNO2`, and `qO3` until the
-plotter is corrected.
+core by reading `qNO`, `qNO2`, and `qO3` from the history file with netCDF4,
+xarray, or another NetCDF viewer, adjust `config_lnox_source_rate` by a small
+factor, and re-run.
 
-For altitude mode, the DAVINCI-era working value `source_rate = 0.5`
+For altitude mode, the working value `source_rate = 0.5` used in the
+commented altitude-mode block of `test_cases/supercell/namelist.atmosphere`
 (paired with the Registry defaults `w_threshold = 5.0`, `w_ref = 10.0`)
-produces a visually similar enhancement on the supercell case;
-calibration there is also a manual loop.
+produces a visually similar enhancement on the supercell case; calibration
+there is also a manual loop.
 
 There is not yet a dedicated numerical reference for both LNOx gating modes,
 so repeat the manual calibration check above when changing this source.

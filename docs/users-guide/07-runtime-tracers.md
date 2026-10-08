@@ -41,15 +41,21 @@ in the `&chemistry` namelist record:
 ```
 
 The file name is resolved against the run directory. CheMPAS-A ships
-several reference configurations under `micm_configs/`:
+three reference mechanisms under `micm_configs/`:
 
 | File | Mechanism |
 |------|-----------|
 | `abba.yaml` | Three-species `AB ⇌ A + B` coupling-test mechanism |
-| `chapman.yaml`, `chapman_full.yaml`, `chapman_only.yaml` | Stratospheric Chapman cycle variants |
-| `chapman_nox.yaml`, `chapman_nox_no_O.yaml`, `chapman_nox_noO1D.yaml`, `chapman_nox_slow.yaml` | Chapman + NOx variants for stiffness studies |
+| `chapman_nox.yaml` | Chapman cycle plus NOx catalytic O3 destruction, used by the Chapman + NOx tutorial and global cases |
 | `lnox_o3.yaml` | Tropospheric NOx-O3 mechanism used by the LNOx tutorial case |
-| `lnox_o3_sink.yaml` | Tropospheric NOx-O3 variant with a relaxation sink |
+
+The same directory holds the TUV-x configurations paired with the
+photolysis mechanisms (`tuvx_chapman_nox.json` and `tuvx_no2.json`) and the
+default upper-atmosphere extension profile, `tuvx_upper_atm.csv`. The
+CheMPAS-A wiki publishes one further mechanism with its
+[global chemistry and emissions examples](https://github.com/NCAR/CheMPAS-A/wiki/Global-Chemistry-and-Emissions):
+`global_cams_tropo_ch4nox.yaml`, a tropospheric Ox-HOx-NOx-CO-CH4 mechanism
+paired with `tuvx_tropo.json`.
 
 The `&lnox` record gates lightning NOx, `&photolysis` configures TUV-x
 and fallback photolysis, and `&chemistry` holds solver controls such as
@@ -79,9 +85,11 @@ At model startup, for each MPAS block:
 5. Chemistry initialization (`chemistry_init`) constructs the persistent
    MICM solver, resolves the per-species `index_qXX` dimensions from the
    pool metadata, and seeds the MPAS scalars from the MICM initial state.
-   If any chemistry tracer already contains spatial gradients in the input
-   state, the MICM seed is skipped for the whole chemistry set so that
-   file-provided tracer fields are preserved.
+   Seeding is all-or-nothing. If any non-host-bound chemistry tracer in the
+   input state has spatial structure or a uniform nonzero value, the MICM
+   seed is skipped for the whole chemistry set so that file-provided tracer
+   fields are preserved; tracers that the file leaves at zero then start
+   from zero rather than from their MICM initial concentrations.
 
 After this point, chemistry species are first-class scalars: they appear
 in output streams under their q-prefixed MPAS tracer names, they are advected

@@ -94,8 +94,11 @@ flag (see [Section 3.10](03-building.md#310-build-chempas-a-and-verify-the-music
    `PHOTO.<name>` in MICM's `rate_parameters_ordering` and store the stride
    index for later writes.
 9. Only after all chemistry, emissions, photolysis, and prescribed-field
-   configuration has passed, copy MICM's initial state to MPAS when the input
-   file did not already initialize spatially varying chemistry. Zero the
+   configuration has passed, `chemistry_seed_chem` copies MICM's initial
+   state to both MPAS time levels. The seed is all-or-nothing: it is skipped
+   for every species if any non-host-bound chemistry tracer in the input
+   already has spatial structure or a uniform nonzero value, so only an input
+   whose non-host-bound chemistry tracers are all zero is seeded. Zero the
    initial runtime diagnostics before the first history write.
 
 `assign_rate_parameters` in `mpas_musica.F` populates MICM's
@@ -358,8 +361,8 @@ total τ is the sum of cloud and rain contributions; by the choice of
 
 **Upper-atmosphere column extension.** `config_tuvx_upper_column_mode`
 selects exactly one of `none`, `legacy_static`, or `spatial_climatology`.
-The legacy mode reads `(z_km, T_K, n_air_cm⁻³, n_O3_cm⁻³)` edge values from
-`config_tuvx_extension_file`. The spatial mode reads
+The legacy mode reads `z_km`, `T_K`, `n_air_molec_cm3`, and `n_O3_molec_cm3`
+edge values from `config_tuvx_extension_file`. The spatial mode reads
 `chempas-prescribed-field-package-v1` from
 `config_tuvx_prescribed_field_file`; the package supplies monthly O3 number
 density on the exact MPAS mesh while the frozen reference atmosphere supplies
@@ -441,8 +444,8 @@ Over terrain, the altitude-mode injection slab stays fixed in MSL coordinates
 and does not follow the surface. The source is a mixing-ratio rate
 (ppbv s⁻¹), so total injected moles scale with the air mass in each
 gated cell and domain-integrated production is resolution-dependent on
-variable meshes. These semantics follow the DC3 parcel-model design in
-`LNOx.md` and are intended for flat-terrain idealized cases; recalibrate
+variable meshes. These semantics follow a DC3 supercell parcel-model design
+and are intended for flat-terrain idealized cases; recalibrate
 before applying them to terrain-following or variable-resolution
 applications. Isotherm mode follows the configured thermal layer but retains
 the same air-mass/resolution caveat. With the default
@@ -535,8 +538,7 @@ Explicit `config_miem_diagnostic_sectors` and
 `config_miem_layered_diagnostics = .true.` also adds
 `emis_<species>_layer` and `_layer` forms of requested groups. The
 `config_miem_max_diagnostic_fields` cap is checked before runtime-field
-allocation. Column, group, layer, finalize-log, and (for emissions-only
-mechanisms) tracer-mass closure are exercised by the `layered_diagnostics` chem-box case. See the
+allocation. See the
 [MIEM workflow](../chempas/musica/MIEM_INTEGRATION.md) for exact names, units,
 accounting equations, and the no-runtime-regridding contract.
 

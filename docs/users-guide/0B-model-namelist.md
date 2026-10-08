@@ -1492,7 +1492,7 @@ coupling).
 | | |
 |---|---|
 | Units | - |
-| Description | Path to the legacy TUV-x upper-atmosphere CSV (columns: `z_km, T_K, n_air_cm-3, n_O3_cm-3`). Required only in `legacy_static` mode. |
+| Description | Path to the legacy TUV-x upper-atmosphere CSV (columns: `z_km, T_K, n_air_molec_cm3, n_O3_molec_cm3`). Required only in `legacy_static` mode. |
 | Possible Values | Any valid filename *(default: '')* |
 
 ### `config_tuvx_prescribed_field_file` (character)
