@@ -4,7 +4,7 @@
 **Result:** PASS
 
 Stage 0 freezes the inputs, transformations, runtime interface, resource
-envelopes, and pre-change regression baseline for `PLAN_MVP.md`. The compact
+envelopes, and pre-change regression baseline for the MVP. The compact
 machine record is [`stage0-audit.json`](stage0-audit.json). Large provider
 files and generated reports remain under `CHEMPAS_EMISSIONS_DATA_ROOT`.
 

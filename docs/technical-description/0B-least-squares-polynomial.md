@@ -1,6 +1,6 @@
 # Appendix B: Least-Squares Polynomial Computation
 
-**[Figure B.1: A limited region in an MPAS horizontal mesh. Adapted from Skamarock and Gassmann (2011) Figure 1. To be added next session.]**
+**[Figure B.1: A limited region in an MPAS horizontal mesh. Adapted from Skamarock and Gassmann (2011) Figure 1. To be added.]**
 
 Consider the Voronoi cells depicted in Figure B.1. To compute the flux edge $e_1$ we fit polynomials to cells $c_1$ and its neighbor cells, i.e. $(c_1, c_0, c_6, c_7, c_8, c_9, c_2)$, and also to $c_0$ and its neighbors, i.e. $(c_0, c_1, c_2, c_3, c_4, c_5, c_6)$. More generally, a polynomial fit is needed for each cell, and its 2nd derivative normal to each edge needs to be computed.
 
@@ -8,7 +8,7 @@ To illustrate how the polynomials are computed, we examine the polynomial comput
 
 Following Skamarock and Gassmann (2011), the tangent plane is defined such that the angles $\theta_i$ are the spherical angles at $c_0$ between the vectors $\overrightarrow{c_0c_1}$ and $\overrightarrow{c_0c_i}$. The length $|\overrightarrow{c_0c_i}|$ is the great circle arc distance on the sphere between $c_0$ and $c_i$. We fit a least-squares-fit polynomial for a
 
-**[Figure B.2: Tangent plane for cell $c_0$. To be added next session.]**
+**[Figure B.2: Tangent plane for cell $c_0$. To be added.]**
 
 variable $\phi$ of the form
 

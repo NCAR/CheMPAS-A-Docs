@@ -2,8 +2,7 @@
 
 **Status:** Implemented, benchmarked, clean-gate verified, and phase-checkpoint remote-verified
 
-This document is the implementation contract for the scalability work in the
-development-repository plan `PLAN_EMISSIONS.md`. It extends the exact-grid Phase 1 workflow; it does not
+This document is the implementation contract for the MIEM scalability work. It extends the exact-grid Phase 1 workflow; it does not
 weaken inventory validation or introduce runtime horizontal regridding.
 
 ## Selected-cell API
@@ -145,8 +144,8 @@ in MIEM:
 6. reproducible equivalence to the existing external conservative remapping
    workflow.
 
-Any future native implementation must satisfy those conditions in a separate
-plan and may not silently fall back to interpolation. Selected-cell reads are
+Any future native implementation must satisfy those conditions as a separate,
+documented change and may not silently fall back to interpolation. Selected-cell reads are
 an I/O optimization on an already exact MPAS inventory, not regridding.
 
 ## Benchmark and acceptance matrix

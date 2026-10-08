@@ -8,7 +8,7 @@ The defining features of MPAS are the unstructured Voronoi meshes and C-grid dis
 
 The atmospheric component of MPAS, as with all MPAS components, uses an unstructured centroidal Voronoi mesh (grid, or tessellation) and C-grid staggering of the state variables as the basis for the horizontal discretization in the fluid-flow solver. The unstructured variable resolution meshes can be generated having smoothly-varying mesh transitions as illustrated in Figure 1.1, and this capability ameliorates many issues associated with the traditional mesh refinement strategy of one-way and two-way grid nesting where the transitions are abrupt. Using the flexibility of the MPAS meshes, we are working towards applications in high-resolution numerical weather prediction (NWP) and regional climate, in addition to global uniform-resolution NWP and climate applications.
 
-**[Figure 1.1: A variable resolution MPAS global mesh. To be added next session.]**
+**[Figure 1.1: A variable resolution MPAS global mesh. To be added.]**
 
 The MPAS atmosphere consists of an atmospheric fluid-flow solver (the dynamical core) and a subset of the Advanced Research WRF (ARW, Skamarock et al. 2021b) model atmospheric physics.
 
@@ -53,7 +53,7 @@ The *init_atmosphere* core code can be found in `src/core_init_atmosphere/`. The
 
 The *atmosphere* core is responsible for integrating the MPAS-Atmosphere state forward in time. The integration is accomplished as depicted in this flow chart given in Figure 1.2. The numbered tasks in the flow chart are explained as follows:
 
-**[Figure 1.2: A top level flow chart for MPAS-Atmosphere. To be added next session.]**
+**[Figure 1.2: A top level flow chart for MPAS-Atmosphere. To be added.]**
 
 (1) At startup necessary infrastructure is initialized, including I/O, parallel processing capabilities, clocking capabilities, etc.
 

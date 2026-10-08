@@ -86,7 +86,7 @@ The current release of MPAS, Version 8, does not contain the solver for the deep
 
 MPAS integrates the equations of motion using a Runge-Kutta (RK3) time integration scheme, described in Wicker and Skamarock (2002), within which a split-explicit time integration technique is employed to integrate acoustic and gravity wave modes (Klemp et al. 2007). For the dry dynamics, prognostic equations {eq}`eq:3.6`–{eq}`eq:3.9` for the density-coupled horizontal velocity, vertical velocity, potential temperature $\Theta_m$, and the dry air density are integrated in the RK3 split-explicit dynamics time step. Other scalars, e.g. water vapor, precipitation species, number concentrations in microphysics, etc, are integrated in a separate Runge-Kutta step after the dynamics are advanced.
 
-**[Figure 3.1: The MPAS time integration methodology. To be added next session.]**
+**[Figure 3.1: The MPAS time integration methodology. To be added.]**
 
 The MPAS time step integration sequence is depicted in Figure 3.1. The main MPAS time step, `config_dt` in the `namelist.atmosphere`, is the time step for the scalar transport which is performed as the final process in the time integration, and this scalar integration appears as the final loop in the pseudo-code in Figure 3.1. The dynamics can be integrated with a smaller time step than the main MPAS time step, and this time step is specified through the `namelist.atmosphere` parameters as `config_dt/config_dynamics_split_steps`, where `config_dynamics_split_steps` is an integer. The loop for the dynamics steps is the first loop in Figure 3.1, and within it are the RK3 substeps within which appear a loop for the acoustic time steps that integrate each RK3 substep.
 
@@ -123,7 +123,7 @@ The scheme {eq}`eq:3.12`–{eq}`eq:3.14` is third-order accurate in time for lin
 The RK3 time-step coefficients are set in two places in the main MPAS time integration driver in `src/core_atmosphere/dynamics/mpas_atm_time_integration.F`, in subroutine `atm_srk3`. The first location is before the main Runge-Kutta loop for integrating the dry dynamics, and the coefficients are used for the named loop `rk3_dynamics`. The second location is immediately before the named loop `rk3_split_transport` where, as the name implies, an RK3 integration of the scalar transport is accomplished.
 :::
 
-**[Figure 3.2: Runge-Kutta time integration response. RK3 unstable for $k\Delta t > 1.73$; RK3/2 unstable for $k\Delta t > 2$. To be added next session.]**
+**[Figure 3.2: Runge-Kutta time integration response. RK3 unstable for $k\Delta t > 1.73$; RK3/2 unstable for $k\Delta t > 2$. To be added.]**
 
 ### 3.3.1 Perturbation Equations Employed in the RK3 Solver
 
@@ -189,7 +189,7 @@ For the $[\ ]_{t_2}$ terms in {eq}`eq:3.15`–{eq}`eq:3.18`, the terms associate
 
 Within the RK3 substeps, smaller acoustic steps are taken where only the terms responsible for acoustic modes are integrated while the terms responsible for the slower atmospheric modes are held fixed to their RK3 evaluation. Thus the Runge-Kutta time integration takes place within the acoustic steps where the precomputed RK3 tendencies are added to the prognostic variables. The combined timesteps are illustrated in Figure 3.3 which includes the graphical relation of the acoustic timestep to the RK3 timestep in each RK3 substep. The RK3 substeps $(\Delta t/3, \Delta t/2, \Delta t)$ are accomplished over the acoustic steps within them. In the following section we present the perturbation equations for the acoustic steps along with gravity wave and acoustic filters that are employed in MPAS-A.
 
-**[Figure 3.3: Integration timesteps in the split-explicit RK3 scheme. To be added next session.]**
+**[Figure 3.3: Integration timesteps in the split-explicit RK3 scheme. To be added.]**
 
 ### 3.4.1 Perturbation Equations Employed in the Acoustic Solver
 

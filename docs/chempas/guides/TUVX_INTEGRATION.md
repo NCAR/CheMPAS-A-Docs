@@ -2,9 +2,8 @@
 
 This note summarizes the CheMPAS-A TUV-x integration work completed to date and
 records the development test case used to validate it. It is intended as the
-stable overview document for TUV-x work; detailed implementation planning lives
-in `docs/chempas/plans/2026-03-06-tuvx-photolysis-integration.md`, and recorded run
-results live in `docs/chempas/results/TEST_RUNS.md`.
+stable overview document for TUV-x work; recorded run results live in
+`docs/chempas/results/TEST_RUNS.md`.
 
 ## Scope
 
@@ -393,8 +392,6 @@ fatal; the spatial mode never falls back to the CSV.
 
 ## Pointers
 
-- Detailed plan:
-  `docs/chempas/plans/2026-03-06-tuvx-photolysis-integration.md`
 - Recorded test results:
   `docs/chempas/results/TEST_RUNS.md`
 - Run instructions:

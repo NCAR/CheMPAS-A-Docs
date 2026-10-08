@@ -1,7 +1,7 @@
 {
   "schema_version": "chempas-mvp-stage0-release-record-v1",
   "recorded_date": "2026-08-15",
-  "planning_commit": "7449fd0f0e91259814cb9450034303bba38af0de",
+  "baseline_commit": "7449fd0f0e91259814cb9450034303bba38af0de",
   "external_manifest": "test_cases/global_mvp/external-inputs.json",
   "external_manifest_schema": "test_cases/global_mvp/external-inputs.schema.json",
   "prescribed_field_contract": "test_cases/global_mvp/prescribed-field-contract.json",

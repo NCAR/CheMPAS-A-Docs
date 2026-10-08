@@ -4,7 +4,7 @@ MPAS-A integrates the equations of motion using a centroidal Voronoi mesh for it
 
 ## 2.1 Horizontal Voronoi Mesh
 
-**[Figure 2.1: A portion of an MPAS-Atmosphere horizontal mesh with C-grid staggered velocities. To be added next session.]**
+**[Figure 2.1: A portion of an MPAS-Atmosphere horizontal mesh with C-grid staggered velocities. To be added.]**
 
 A schematic of a representative portion of the horizontal MPAS-A centroidal Voronoi mesh is given in Figure 2.1. MPAS-A meshes are mostly comprised of hexagons, but may contain some pentagons and possibly heptagons, and mesh cells are referred to by their central points that are located at the centroid (center of mass) of the cells. In Figure 2.1 the cells (cell centers) are $A$, $B$ and $C$. The dual of the centroidal Voronoi mesh is the Delaunay triangular mesh, and a Delaunay triangle $ABC$ is shown in the figure. There are three properties of this centroidal Voronoi mesh that are critical to the MPAS-A discretization:
 
@@ -18,7 +18,7 @@ Specifically, the fact that the horizontal line connecting the cell centers is o
 
 ### 2.1.1 Points on the MPAS horizontal mesh
 
-**[Figure 2.2: Horizontal mesh points and lengths used in MPAS. To be added next session.]**
+**[Figure 2.2: Horizontal mesh points and lengths used in MPAS. To be added.]**
 
 The locations of the three points that are used to define the mesh are given in Figure 2.2:
 
@@ -74,7 +74,7 @@ In `src/core_atmosphere/Registry.xml`, the line lengths for lines connecting cel
 
 Cells are composed of a cell center, edges, and vertices. The edges are bounded by vertices. As an illustration, Figure 2.3 shows the cells surrounding cell 42 in the left panel, the edges in the center panel, and the vertices in the right panel. MPAS contains arrays that contain this information.
 
-**[Figure 2.3: Cell, edge and vertex neighbors of a cell. Cell indices are given in black, edge indices are red and vertex indices are given in blue. To be added next session.]**
+**[Figure 2.3: Cell, edge and vertex neighbors of a cell. Cell indices are given in black, edge indices are red and vertex indices are given in blue. To be added.]**
 
 :::{admonition} MPAS code
 :class: note
@@ -86,7 +86,7 @@ Following Figure 2.3, the array containing the neighbors of cell 42 has the valu
 
 Each edge in an MPAS mesh is shared by two cells and connects two vertex points. Each vertex has three edges that meet at the vertex and three cells that share the vertex.
 
-**[Figure 2.4: Neighbors of edges and vertices. Cell indices are given in black, edge indices are red and vertex indices are given in blue. To be added next session.]**
+**[Figure 2.4: Neighbors of edges and vertices. Cell indices are given in black, edge indices are red and vertex indices are given in blue. To be added.]**
 
 :::{admonition} MPAS code
 :class: note
@@ -98,13 +98,13 @@ In the example given in the left figure in Figure 2.4, the cells sharing edge 17
 
 Two horizontal velocities are defined on the MPAS mesh, the edge-normal velocity, denoted as $u$ in the MPAS code, and the edge-tangential velocity that is denoted as $v$. These velocities are defined following the convention given in Figure 2.5. By convention, a positive edge-normal velocity $u$ at edge $Edge$ points from the cell index `cellsOnEdge(1,Edge)` to cell index `cellsOnEdge(2,Edge)`. Also by convention, `cellsOnEdge(1,Edge)` is the smaller of the two cell indices. A positive tangential velocity $v$ points from `verticesOnEdge(1,Edge)` to `verticesOnEdge(2,Edge)`. These velocities follow a right-hand rule: the cross product of the unit vectors at the edge points corresponding to positive $u$ and $v$ point outward from the sphere or Cartesian plane.
 
-**[Figure 2.5: Definition of the prognostic edge-normal horizontal velocity and the diagnostic horizontal edge-tangential velocity using the example mesh given in Figure 2.4. To be added next session.]**
+**[Figure 2.5: Definition of the prognostic edge-normal horizontal velocity and the diagnostic horizontal edge-tangential velocity using the example mesh given in Figure 2.4. To be added.]**
 
 ### 2.1.5 Areas on the MPAS horizontal mesh
 
 Three areas are defined on the MPAS mesh and they are depicted in Figure 2.6: the Voronoi mesh cell areas, the areas of the Delaunay triangular (dual) mesh, and the areas formed by the intersection of a Voronoi cell and a Delaunay triangle, denoted as kite areas. The areas are on the plane for the Cartesian plane configuration of MPAS, and on the surface of the sphere for the spherical configuration of MPAS.
 
-**[Figure 2.6: Horizontal mesh areas used in MPAS. To be added next session.]**
+**[Figure 2.6: Horizontal mesh areas used in MPAS. To be added.]**
 
 :::{admonition} MPAS code
 :class: note
@@ -120,7 +120,7 @@ MPAS-Atmosphere uses a computational vertical coordinate $\zeta$ that represents
 
 The vertical grid in MPAS is structured - the vertical coordinate axis points outward from the center of the earth (or upward from the Cartesian plane), and quantities defined on the vertical axis have neighbors adjacent in the arrays in which they are stored. The MPAS vertical grid defines variables at *layers* and at layer *interfaces*. The interfaces are where the vertical velocities $\Omega$ and $w$, and the height above sea level $z$ (or above the Cartesian plane) are defined. The layers are where all other variables ($u, \rho, \theta, q$, etc) are defined, and by definition the layer heights are halfway between the interface heights. For example, referring to Figure 2.7:
 
-**[Figure 2.7: The MPAS-Atmosphere vertical grid with the locations of the staggered variables. The dashed red lines indicate the center of the layers, and solid lines are interfaces. To be added next session.]**
+**[Figure 2.7: The MPAS-Atmosphere vertical grid with the locations of the staggered variables. The dashed red lines indicate the center of the layers, and solid lines are interfaces. To be added.]**
 
 $$
 z_{\mathrm{layer}}(2) = \left[z_{\mathrm{int}}(3) + z_{\mathrm{int}}(2)\right]/2.
@@ -226,7 +226,7 @@ where the default value for $\gamma = 0.3$. On a given iteration $i$ of the smoo
 
 Figure 2.8 shows an example of the coordinate surfaces from a traditional terrain following coordinate where $A(\zeta)$ is a linear function with a value of 1 at the surface and 0 at the model top and $h_s = h$, and the smoothed hybrid terrain following coordinate.
 
-**[Figure 2.8: The terrain following coordinate used in MPAS. The left figure shows the traditional terrain following coordinate surfaces and the right figure shows the smoothed vertical coordinate. To be added next session.]**
+**[Figure 2.8: The terrain following coordinate used in MPAS. The left figure shows the traditional terrain following coordinate surfaces and the right figure shows the smoothed vertical coordinate. To be added.]**
 
 :::{admonition} MPAS code
 :class: note

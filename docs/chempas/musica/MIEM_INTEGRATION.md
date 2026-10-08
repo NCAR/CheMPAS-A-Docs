@@ -622,13 +622,6 @@ date-matched meteorology and science-grade CAMS inventory support that coupled
 process experiment; the idealized, unspun Chapman-NOx initial composition does
 not make its first-day concentrations production air-quality estimates.
 
-Implementation follows a verify-commit-push checkpoint after every completed
-phase, stage, or milestone. Required phase commit messages are listed in the
-development-repository plan `PLAN_EMISSIONS.md`; pushed SHAs, build roots,
-report roots, and verification results are recorded in its companion
-`MIEM_IMPLEMENTATION_LOG.md`. No phase advances until its checkpoint SHA is
-present on `origin/develop_emissions`.
-
 ## Related documentation
 
 - [Global tropospheric NOx ladder](GLOBAL_TROPOSPHERIC_NOX.md)

@@ -6,8 +6,8 @@ A Description of the Model for Prediction Across Scales, Atmosphere, Version 8.
 Lightly edited port of the draft NCAR Technical Note by W. C. Skamarock,
 M. G. Duda, J. B. Klemp, and L. Fowler (29 May 2025). Text and equations
 are ported first; source paths have been normalized to this repository, and
-figures are deferred to a follow-on session — see ``README.md`` in this
-subtree for the figure plan.
+figures are not yet included — bracketed placeholders mark where each figure
+belongs.
 
 .. note::
 
@@ -39,8 +39,3 @@ subtree for the figure plan.
    0B-least-squares-polynomial
    0C-gradient-operators
    0F-bibliography
-
-.. toctree::
-   :hidden:
-
-   README

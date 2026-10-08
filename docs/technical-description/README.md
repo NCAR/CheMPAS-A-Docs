@@ -9,7 +9,7 @@ Version 8* by Skamarock, Duda, Klemp, and Fowler (29 May 2025).
 - **Text and equations:** ported from the upstream draft, with light
   editorial fixes and source paths normalized to this repository layout.
 - **Figures:** deferred to a follow-on session. Placeholders of the form
-  `**[Figure N.M: caption. To be added next session.]**` mark the
+  `**[Figure N.M: caption. To be added.]**` mark the
   intended figure location in each chapter.
 - **Bibliography:** inline citations (e.g. *Ringler et al. 2008*) are
   kept as written; the entries are collected in

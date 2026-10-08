@@ -204,7 +204,7 @@ python "$CHEMPAS_ROOT/scripts/init_chapman.py" -i supercell_init.nc
 
 Note: this rewrites tracers in `supercell_init.nc` in place. If
 you've been running the supercell + LNOx case from Chapter 2 and
-plan to switch back, copy `supercell_init.nc` aside first or be
+want to switch back, copy `supercell_init.nc` aside first or be
 prepared to re-run `init_atmosphere_model` to regenerate it.
 
 ## 3.6 Run with the Chapman + NOx mechanism

@@ -69,7 +69,7 @@ equations, and spatial discretization.
    These docs are an active port and are not yet feature-complete. In
    particular, figures from the MPAS-Atmosphere User's Guide and Technical
    Description still need to be regenerated — placeholders of the form
-   ``**[Figure N.M: caption. To be added next session.]**`` mark the
+   ``**[Figure N.M: caption. To be added.]**`` mark the
    intended location of each figure in the Technical Description, and
    figure references in the User's Guide (e.g., Figure 9.1, the vertical
    grid schematics in Appendix C) currently render without their source

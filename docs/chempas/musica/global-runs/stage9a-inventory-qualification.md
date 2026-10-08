@@ -2,7 +2,7 @@
 
 **Gate result:** PASS on 2026-08-06. The first Phase 9 inventory is
 CAMS-GLOB-ANT v6.2 monthly anthropogenic NOx. The provider's July and August
-2024 frames bracket the planned 2024-07-01 00:00 UTC to 2024-07-02 00:00 UTC
+2024 frames bracket the 2024-07-01 00:00 UTC to 2024-07-02 00:00 UTC
 acceptance period.
 
 ## Scientific identity and use

@@ -143,7 +143,7 @@ Check resource forecasts without MPI or promotion requirements first:
 ```
 
 Each stage report records predicted history/restart volume, reserve, MPI rank
-count, executable hash, external inputs, TUV-x data-tree hash, and all planned
+count, executable hash, external inputs, TUV-x data-tree hash, and all
 variant directories.
 
 ## Gate ladder

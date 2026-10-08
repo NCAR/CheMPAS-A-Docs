@@ -54,7 +54,7 @@ generation, interpretation, limitations, and final checklist. The focused
 plot workflow and exact Daily Mean definitions are in
 [`VISUALIZE.md`](../guides/VISUALIZE.md#plot_global_mvppy).
 
-Every tracked relative link in the MVP plan, MVP evidence documents, and the
-updated visualization guide was resolved locally. All example paths match
+Every tracked relative link in the MVP evidence documents and the updated
+visualization guide was resolved locally. All example paths match
 tracked configuration or script locations; commands use placeholders only for
 the explicitly external data and TUV-x roots.

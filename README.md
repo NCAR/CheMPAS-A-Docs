@@ -6,7 +6,7 @@ CheMPAS-A 26.08 Minimum Viable Product release candidate:
 
 - model source: [`v2026.08.01-rc2`](https://github.com/NCAR/CheMPAS-A/tree/v2026.08.01-rc2)
   (`5acca0227088d9e6e4c58764574b695956a7a804`)
-- documentation source snapshot: `597f5f4ffd113df7aac52fe262f0dd87c0e89d33`
+- documentation source snapshot: `76cde2645531d8563ac42a1156afab05a545a759`
 - public examples and input contracts: [CheMPAS-A wiki](https://github.com/NCAR/CheMPAS-A/wiki)
 
 The canonical `.readthedocs.yaml` and `docs/` sources are maintained in the

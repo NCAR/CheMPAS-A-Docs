@@ -26,7 +26,7 @@ we transform cell-integrated values of derivatives into line integrals of the di
 
 To compute the discrete horizontal derivatives, we begin by defining a tangent plane to the cell center and map the vertices of the cell to the tangent plane, as described in figure C.1. We define the plane and the locations of the vertices $(x_i, y_i)$ on the tangent plane for vertices $i = 1,\ldots,n$, where $n$ is the number of vertices (and the number of edges). The vertices are
 
-**[Figure C.1: MPAS tangent-plane schematic. To be added next session.]**
+**[Figure C.1: MPAS tangent-plane schematic. To be added.]**
 
 ordered such that they progress counterclockwise around the cell; likewise edges are ordered counterclockwise around the cell with edge $e_i$ spanning vertices $(x_i, y_i)$ and $(x_{i+1}, y_{i+1})$ as depicted in figure C.2. The line integrals take place in the $(x, y)$ coordinate system defined in figure C.2, where the $x$ direction is unconstrained, e.g. we do not require any vertex to lie on the $x$ axis nor do we require any normal velocity to lie on the axis. In the MPAS implementation, we define the positive direction $x$ as tangent to latitude circles at the cell edge points and increasing in the direction of increasing longitude, and the direction $y$ as tangent to longitudes and increasing with increasing latitude, i.e. the local latitude-longitude coordinate. Thus the $x$ derivative is the longitudinal derivative and the $y$ derivative is the latitudinal derivative.
 
@@ -65,7 +65,7 @@ $$
 c_{y_{c,e}} = \frac{l_e\sin\theta_e}{A_c}
 $$ (eq:C.6)
 
-**[Figure C.2: Horizontal depiction of the tangent plane and cell-edge velocity fields for an arbitrary MPAS mesh cell. To be added next session.]**
+**[Figure C.2: Horizontal depiction of the tangent plane and cell-edge velocity fields for an arbitrary MPAS mesh cell. To be added.]**
 
 To compute the line integrals {eq}`eq:C.1` and {eq}`eq:C.2` for the horizontal velocities $(u, v)$ in the tangent plane coordinate, we rotate the edge velocities into the coordinate:
 

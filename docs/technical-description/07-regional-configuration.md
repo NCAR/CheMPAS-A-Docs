@@ -8,13 +8,13 @@ This section begins with the definition of the regions of the horizontal MPAS-At
 
 Regional MPAS meshes can be constructed in two ways. The first method is to cut the mesh from a global mesh (or another regional mesh) using tools described in the MPAS User's Guide. Examples of such meshes are given in Figure 7.1 that illustrate the flexibility one has in defining an MPAS regional mesh. The boundary zone cells that are in the relaxation region and the specified region are those that are not deep blue in color, and these cells make up the boundary region where the lateral boundary conditions are applied. The utility that extracts the regional mesh defines the interior cells (deep blue) and then builds the boundary region cells.
 
-**[Figure 7.1: Skamarock et al. (2018) Figure 2 — Regional MPAS meshes extracted from a global MPAS mesh by (a) specifying a circular region and (b) specifying a polygon whose faces are great-circle arcs on the sphere. The regional mesh specifications are given by the black lines, and the blue cells fall in the mesh. The boundary-zone cells appended to the outside of the specified mesh are also shown. To be added next session.]**
+**[Figure 7.1: Skamarock et al. (2018) Figure 2 — Regional MPAS meshes extracted from a global MPAS mesh by (a) specifying a circular region and (b) specifying a polygon whose faces are great-circle arcs on the sphere. The regional mesh specifications are given by the black lines, and the blue cells fall in the mesh. The boundary-zone cells appended to the outside of the specified mesh are also shown. To be added.]**
 
 A closer view of the boundary region cells is given in Figure 7.2. The interior cells have index number 0 (not shown in the figure) and are deep blue in color, and the boundary region cells are different colors and have indices numbered sequentially beginning from 1, starting with those adjacent to (sharing an edge with) an interior cell to those at the outermost edge of the region (having edges possessing no neighbor). Edges are also labelled where the edge index number is that of the lowest cell number of the cells sharing the edge.
 
 In the C-grid staggering of prognostic variables in MPAS (see Chapter 2 Figure 2.1), the cell edge normal horizontal velocity is prognosed and all other prognostic variables are defined at cell centers. On the outer two cell and edge boundary-zone index values are specified from an external analysis or forecast, usually by spatial and temporal interpolation using MPAS-Atmosphere utilities (see the MPAS User's Guide). This is called the *specified zone*. In Figure 7.2 the edges and cells with indices 6 and 7 would have their values specified. The cells and edges with index values 1 through 5 are updated using the standard solution update in the time integration augmented by filtering a relaxation based on the driving analysis/forecast. Cells and edges 1 through 5 are in this *relaxation zone*.
 
-**[Figure 7.2: Skamarock et al. (2018) Figure 3 — Boundary zone for the MPAS horizontal mesh. The blue cells are the interior mesh, and the labeled cells and edges are in the boundary region. To be added next session.]**
+**[Figure 7.2: Skamarock et al. (2018) Figure 3 — Boundary zone for the MPAS horizontal mesh. The blue cells are the interior mesh, and the labeled cells and edges are in the boundary region. To be added.]**
 
 There are two additional relaxation/filter terms applied to cells and edges in the relaxation zone. For a prognostic variable $\phi$:
 
@@ -40,7 +40,7 @@ The default configuration for MPAS sets $\gamma_1 = (0.06\Delta x)^{-1}$ and has
 
 The time integration sequence in MPAS-Atmosphere is described in chapter 3 and summarized in Figure 3.1. The additions to the MPAS-A solver to accommodate the regional configuration include code sections where lateral boundary conditions and relaxation zone filters are applied, along with masks and a few places where conditionals are used to change the algorithms for the lateral boundaries.
 
-**[Figure 7.3: Pseudo code describing the locations of lateral boundary condition applications in the MPAS timestep. To be added next session.]**
+**[Figure 7.3: Pseudo code describing the locations of lateral boundary condition applications in the MPAS timestep. To be added.]**
 
 Figure 7.3 expands Figure 3.1 to indicate the locations in the MPAS time integration where lateral boundary adjustments are applied. In the regional boundary zone section (1) in Figure 7.3, the tendency for the specified zone increments for $u$, $\Theta_m$ and $\tilde{\rho}_d$ are set, and the filter terms are applied.
 
