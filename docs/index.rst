@@ -1,12 +1,29 @@
 CheMPAS-A
 =========
 
+CheMPAS-A MUSICA connects MPAS-Atmosphere with the model-independent Multi-Scale
+Infrastructure for Chemistry and Aerosols (MUSICA) library, providing a
+foundation for simulating atmospheric chemistry and aerosol processes. It is
+being developed as a successor to WRF-Chem, combining global simulations with
+regional mesh refinement and modern software engineering.
+
+The first minimum viable product (MVP) is limited to gas-phase chemistry,
+photolysis, and offline anthropogenic, biogenic, and fire emissions. Emission
+inputs are generated with the UPTEMPO emissions preprocessor.
+
+The MVP is intended for training and selected science applications, including
+short-term studies of lightning NOx, carbon monoxide (CO) budgets,
+stratosphere–troposphere exchange, and inversions of CO or nitrogen dioxide
+(NO2) emissions.
+
 .. warning::
 
-   CheMPAS-A is still very much work in progress and there is no published
-   description available yet. While the code is available, there are no
-   guarantees that any of it works out of the box and scientific validation
-   is still ongoing.
+   The CheMPAS-A MUSICA MVP is currently undergoing testing and scientific
+   validation. CheMPAS-A remains a work in progress, with no published model
+   description and no guarantee that the code works out of the box.
+
+For more information, see the CheMPAS-A and QUACS presentations in Session 8A
+of the `2026 Joint MPAS/WRF Users Workshop <https://www.mmm.ucar.edu/events/133496/agenda>`_.
 
 .. |logo_uarizona| image:: _static/logo_uarizona.svg
    :height: 78px
@@ -20,7 +37,7 @@ CheMPAS-A
 
 |logo_ncar| |logo_uarizona|
 
-CheMPAS-A (Chemistry for MPAS - Atmosphere) is an ACOM integration pilot that
+CheMPAS-A (Chemistry for MPAS-Atmosphere) is an ACOM integration pilot that
 couples MUSICA/MICM atmospheric chemistry to MPAS-Atmosphere on its native
 unstructured Voronoi mesh, developed as part of the NSF CSSI project QUACS
 (Quick Updates to Aerosol and Chemistry Systems for Next Generation Multi-Scale
