@@ -5,6 +5,11 @@ chemistry-enabled run. The model implementation is in the CheMPAS-A source
 repository; the public wiki carries the declarative example inputs and their
 data contracts.
 
+For the three bounded demonstrations, [Running the Examples with
+Docker](../tutorial/docker.md) gives the image build and launch commands.
+The native workflow below supports the full
+[public example collection](../tutorial/running-examples.md).
+
 ## Obtain the MVP Source and Examples
 
 Clone the MVP release and the companion wiki:
@@ -32,8 +37,17 @@ dependency and compiler recipes; the public wiki's
 [Building](https://github.com/NCAR/CheMPAS-A/wiki/Building) page carries the
 same recipes.
 
-After exporting the installation prefixes, build the initialization core and
-then the chemistry-enabled atmosphere core from clean boundaries:
+First select a platform recipe in Chapter 3. On Derecho, the
+[shared installation](03-building.md#391-option-a-use-the-shared-pio-and-musica-installation)
+sets the compiler modules and library prefixes in one step:
+
+```bash
+source /glade/work/fillmore/chempas-a/ncarenv-25.10-gcc/env.sh
+```
+
+For a private installation, export its prefixes and the platform's Make
+target. For example, Ubuntu uses the following settings; retain the settings
+from Chapter 3 when building on macOS or Derecho:
 
 ```bash
 export NETCDF=/path/to/netcdf
@@ -41,26 +55,39 @@ export NETCDFF=/path/to/netcdf-fortran
 export PNETCDF=/path/to/pnetcdf
 export PIO=/path/to/pio
 export MUSICA_PREFIX=/path/to/musica-install
-export PKG_CONFIG_PATH="${MUSICA_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
+export CHEMPAS_MAKE_TARGET=gfortran
+```
 
+Verify the pinned MUSICA metadata as described in
+[Section 3.6](03-building.md#36-build-the-pinned-musica-dependency), including
+both possible installation directories:
+
+```bash
+export PKG_CONFIG_PATH="${MUSICA_PREFIX}/lib64/pkgconfig:${MUSICA_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
+```
+
+Build the initialization core and then the chemistry-enabled atmosphere core
+from clean boundaries:
+
+```bash
 cd CheMPAS-A
 
 make clean CORE=init_atmosphere
-make -j8 gfortran CORE=init_atmosphere OPENMP=false \
+make -j8 "$CHEMPAS_MAKE_TARGET" CORE=init_atmosphere OPENMP=false \
   PIO="$PIO" NETCDF="$NETCDF" NETCDFF="$NETCDFF" PNETCDF="$PNETCDF" \
   PRECISION=double
 
 make clean CORE=atmosphere
-make -j8 gfortran CORE=atmosphere OPENMP=false \
+make -j8 "$CHEMPAS_MAKE_TARGET" CORE=atmosphere OPENMP=false \
   PIO="$PIO" NETCDF="$NETCDF" NETCDFF="$NETCDFF" PNETCDF="$PNETCDF" \
   PRECISION=double MUSICA=true
 ```
 
 A successful build produces `init_atmosphere_model`, `build_tables`, and
-`atmosphere_model`. The command above is the tested Ubuntu path. On macOS,
-use the `llvm` target with the flang-built dependency stack; on Derecho, use
-the `cray` target with the Cray programming environment. Both procedures,
-including construction and verification of the pinned MUSICA package, are in
+`atmosphere_model`. Ubuntu and Derecho use `gfortran`; Derecho requires
+GCC 14.3.0 with Cray MPICH and the NCAR MPI wrappers. On macOS, use `llvm`
+with the flang-built dependency stack. The platform procedures, including
+construction and verification of the pinned MUSICA package, are in
 [Chapter 3](03-building.md#35-documented-build-environments).
 
 ## Stage a First Chemistry Run
@@ -80,7 +107,7 @@ namelist.atmosphere
 streams.atmosphere
 stream_list.atmosphere.output
 <initial-condition>.nc
-<graph>.part.8
+<graph>.part.<MPI-ranks>
 <MICM mechanism>.yaml
 <TUV-x configuration>.json       # when photolysis is enabled
 data/                            # pinned TUV-x data
@@ -88,7 +115,14 @@ data/                            # pinned TUV-x data
 <inventory>.nc                   # when emissions are enabled
 ```
 
-Use the supplied eight-rank partition and launch from the staged directory:
+Copy or link `LANDUSE.TBL` from
+`CheMPAS-A/src/core_atmosphere/physics/physics_wrf/files/`. When TUV-x is
+enabled, link the pinned MUSICA `configs/tuvx/data` directory as `data`.
+The shared Derecho installation provides the same data at
+`$MUSICA_PREFIX/share/tuvx/data`.
+
+Use the rank count matching the partition and the namelist's decomposition
+prefix. For the eight-rank x1.40962 example, launch from the staged directory:
 
 ```bash
 mpiexec -n 8 ./atmosphere_model
@@ -97,6 +131,9 @@ mpiexec -n 8 ./atmosphere_model
 Check `log.atmosphere.0000.out` for the source revision, enabled chemistry
 components, runtime-injected fields, mesh validation, and normal completion.
 Chemistry currently requires exactly one local MPAS block on each MPI task.
+Leave the supplied examples on automatic block decomposition. The
+[manual example workflow](../tutorial/running-examples.md) covers
+initialization, clocks, and case-specific staging.
 
 ## Chemistry State and Output Units
 

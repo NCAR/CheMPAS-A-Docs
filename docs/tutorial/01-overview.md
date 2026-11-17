@@ -33,14 +33,21 @@ case as production forcing.
 - The conda environment `mpas` is available for plotting:
   `conda activate mpas`.
 - For coupled TUV-x runs, `CHEMPAS_TUVX_DATA` points to a MUSICA source
-  checkout's `configs/tuvx/data` directory. Chapters 2--4 stage that tree as
+  checkout's `configs/tuvx/data` directory at the pinned revision, or the
+  shared Derecho installation's `$MUSICA_PREFIX/share/tuvx/data`.
+  Chapters 2--4 stage that tree as
   `data` in each run directory because the TUV-x JSON paths are relative.
+
+For the complete wiki example collection, start with
+[Running the Public Examples](running-examples.md). The numbered chapters
+below use the release's teaching configurations and identify changes from
+the wiki examples where their durations or initial conditions differ.
 
 ## Running the cases in a container
 
-The release's
-[`docker/README.md`](https://github.com/NCAR/CheMPAS-A/blob/v2026.08.01/docker/README.md)
-describes a Docker build and run harness for three of the tutorial cases:
+The [Docker workflow](docker.md), also documented in the release's
+[`docker/README.md`](https://github.com/NCAR/CheMPAS-A/blob/v2026.08.01/docker/README.md),
+provides a build and run harness for three of the tutorial cases:
 `supercell-abba` (Supercell ABBA, §2.5), `supercell-lnox` (Supercell
 LNOx + O3, §2.6), and `chapman-nox-global` (Global Chapman + NOx,
 Chapter 4). The image builds `init_atmosphere_model` and `atmosphere_model`
@@ -71,8 +78,15 @@ archives and writes each case to its own directory under
 eight-rank OpenMPI runs. After a run, the harness checks that `output.nc`
 and `log.atmosphere.0000.out` exist, that the log reports
 `Critical error messages = 0`, and that the expected chemistry variables are
-present and finite. The README also covers setup-only runs and the
-`CHEMPAS_FORCE_INIT` and `CHEMPAS_RUN_DURATION` overrides.
+present and finite, with at least two output time records. For
+`supercell-lnox`, allocate at least 8 GiB of memory to Docker Desktop.
+
+The default durations are two hours for each supercell case and 24 hours
+for the global case. Set `-e CHEMPAS_RUN_DURATION=00:10:00` for a short
+supercell check, or `-e CHEMPAS_RUN_DURATION=01:00:00` for the global case;
+the latter needs an hour to write a second output record. The
+[Docker workflow](docker.md) also covers `--setup-only`, `--no-download`,
+`--force-init`, output archiving, and the checks required after each run.
 
 ## Python environment for standalone examples
 

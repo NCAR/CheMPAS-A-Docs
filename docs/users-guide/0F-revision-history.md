@@ -1,5 +1,12 @@
 # Appendix F: Revision History
 
+## 17 November 2026
+
+- Align the Derecho recipe with the wiki's GCC 14.3.0 build, shared PIO and
+  MUSICA installation, `lib64/pkgconfig` lookup, and optional unit-test workflow.
+- Add the wiki's manual example and Docker workflows to the tutorial navigation,
+  including initialization, rank counts, clocks, resource settings, and output checks.
+
 ## 8 October 2026
 
 - Update the User's Guide for the CheMPAS-A 26.08 MVP release, v2026.08.01.

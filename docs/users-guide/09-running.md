@@ -1,11 +1,19 @@
 # Chapter 9: Running the MPAS Non-hydrostatic Atmosphere Model
 
+For chemistry-enabled runs, start with [Running the Public
+Examples](../tutorial/running-examples.md) for the wiki's example files,
+run-directory layout, and chemistry initialization steps, or use the
+[Docker workflow](../tutorial/docker.md) for the three bounded demonstrations.
+On Derecho, load the same modules used to build the executable in every PBS
+run script; builds using the shared libraries should source
+`/glade/work/fillmore/chempas-a/ncarenv-25.10-gcc/env.sh`.
+
 Given a CVT mesh, prepared using steps from [Chapter 4](04-preparing-meshes.md) as appropriate, this chapter describes the two main steps to running the CheMPAS-A model: creating initial conditions and running the model itself. This chapter makes use of two MPAS cores, `init_atmosphere` and `atmosphere`, which are, respectively, used for initializing and running the non-hydrostatic atmospheric model. Sections 9.1 and 9.2 of this chapter describe the creation of idealized and real-data initial condition files using the `init_atmosphere` core. Section 9.3 describes the basic procedure of running the model itself.
 
 Each section of this chapter follows a familiar pattern of compiling and executing MPAS model components, albeit using different cores depending on its intended use. The compilation will create either an initialization or a model executable, which are named, respectively, `init_atmosphere_model` and `atmosphere_model`. In general, an executable is run with `mpiexec` or `mpirun`, for example:
 
 ```
-mpiexec -n 8 atmosphere_model
+mpiexec -n 8 ./atmosphere_model
 ```
 
 where `8` is the number of MPI tasks to be used. In any case where n > 1, there must exist a corresponding graph decomposition file, e.g., `graph.info.part.8`. For more on graph decomposition, see [Section 4.1](04-preparing-meshes.md#41-graph-partitioning-with-metis).
@@ -23,7 +31,12 @@ There are several idealized test cases supported within the `init_atmosphere` mo
 
 [^1]: Jablonowski, C. and D.L. Williamson, 2006, A baroclinic instability test case for atmospheric model dynamical cores, *QJRMS*, 132, 2943-2975. doi:10.1256/qj.06.12.
 
-Creating idealized initial conditions is fairly straightforward, as no external data are required and the starting date/time is irrelevant to building the initial conditions file (hereafter referred to as `init.nc`) that will be used to run the model.
+Creating idealized dynamical initial conditions requires no external
+meteorological data. The starting date/time does not affect those idealized
+fields, but it does set the model clock in the initial conditions file
+(hereafter `init.nc`). For chemistry runs, match that clock to the atmosphere
+namelist: TUV-x uses it for solar geometry, and MIEM requires a Gregorian
+calendar with inventory coverage for the full run.
 
 The following steps summarize the creation of `init.nc`:
 

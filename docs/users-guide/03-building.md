@@ -90,7 +90,8 @@ make gfortran
 to build the code using the GNU Fortran and C compilers. Representative current
 targets are listed below. The top-level `Makefile` is the complete authority
 and also retains platform-specific and deprecated targets; the documented
-build environments in Section 3.5 use `gfortran`, `llvm`, and `cray`.
+build environments in Section 3.5 use `gfortran` on Ubuntu and Derecho, and
+`llvm` on macOS.
 
 | Target | Fortran compiler | C compiler | MPI wrappers |
 |--------|-----------------|------------|--------------|
@@ -207,16 +208,21 @@ Regardless of which precision the CheMPAS-A `init_atmosphere` and `atmosphere` c
 
 ## 3.5 Documented Build Environments
 
-The build is organized around three environments. The Ubuntu toolchain is the
-environment used to test the MVP release. The macOS and Derecho recipes preserve
-the same dependency pins and Makefile contract while selecting their native
-compiler stacks.
+The build is organized around three environments, following the wiki
+[Building](https://github.com/NCAR/CheMPAS-A/wiki/Building) guide. All three
+use the top-level MPAS Makefile and the same revision-pinned MUSICA dependency
+closure. For the three bounded Linux/AMD64 demonstration runs, see
+[Running the Examples with Docker](../tutorial/docker.md).
 
 | Environment | Make target | Compiler family | Dependency source |
 |---|---|---|---|
 | Ubuntu 24.04 | `gfortran` | GCC/gfortran with Open MPI | conda-forge plus PIO from source |
 | macOS | `llvm` | Apple clang/clang++ and Homebrew LLVM flang | Homebrew plus flang-built Fortran libraries |
-| Derecho CPU | `cray` | Cray `cc`, `CC`, and `ftn` wrappers | `ncarenv` I/O modules plus private PIO and MUSICA installs |
+| Derecho CPU | `gfortran` | GCC 14.3.0 with Cray MPICH and NCAR MPI wrappers | `ncarenv/25.10` I/O modules plus shared or private PIO and MUSICA installs |
+
+Derecho users can start with the [shared installation](#391-option-a-use-the-shared-pio-and-musica-installation)
+without building PIO or MUSICA themselves. Other native builds follow the
+source and platform instructions below.
 
 Never reuse `.mod` or object files between these environments. In particular,
 gfortran, flang, and Cray Fortran module files are mutually incompatible. Use a
@@ -256,10 +262,11 @@ component revisions are fetched instead of silently reusing same-named system
 packages.
 
 After installation, put the pinned package first and verify the metadata before
-building CheMPAS-A:
+building CheMPAS-A. CMake installs the libraries in `lib64` on Derecho and in
+`lib` on Ubuntu and macOS, so include both directories:
 
 ```bash
-export PKG_CONFIG_PATH="${MUSICA_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
+export PKG_CONFIG_PATH="${MUSICA_PREFIX}/lib64/pkgconfig:${MUSICA_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
 
 test "$(pkg-config --modversion musica-fortran)" = 0.16.5
 test "$(pkg-config --variable=source_revision musica-fortran)" = "$MUSICA_REV"
@@ -448,14 +455,56 @@ cmake --build MUSICA-CheMPAS-A/build-macos-llvm --parallel 8
 cmake --install MUSICA-CheMPAS-A/build-macos-llvm
 ```
 
-## 3.9 Derecho with the Cray Programming Environment
+## 3.9 Derecho with GCC
 
-Build on a compute node, not a shared login node. This recipe pins
-[`ncarenv/25.10`](https://arc.ucar.edu/articles/1006), the NSF NCAR default
-stack since 3 March 2026; using the named stack makes the compiler-dependent
-NetCDF, PnetCDF, and PIO modules resolve together. Start an
+Derecho users can link against a shared, prebuilt PIO and MUSICA installation
+(option A) or build both themselves (option B). Both options use
+`ncarenv/25.10` with GCC 14.3.0, Cray MPICH, and the NCAR MPI compiler wrappers
+(`mpicc`, `mpicxx`, `mpif90`). A CheMPAS-A build, and every PBS run script,
+must load the same modules as the libraries it links.
+
+Use `gcc/14.3.0`, not `gcc/12.5.0`. GCC 12's C++ library has no `<format>`,
+which MechanismConfiguration requires with `MUSICA_USE_FMT=OFF`.
+
+The Cray compilers (CCE 19.0.0) do not currently work for this build. TUV-x
+does not compile without a source patch (`ftn-629` in its `get_updater`
+functions). CCE's C++ compiler is pinned to GCC 12's C++ library, so `<format>`
+is missing. And the Cray `ftn` driver aborts during the final CheMPAS-A link
+(`add_cce_postlink: Assertion 'clangrt_path != NULL' failed`).
+
+### 3.9.1 Option A: use the shared PIO and MUSICA installation
+
+PIO 2.6.9 and MUSICA 0.16.5 (revision `1403e3d22717bc87f3bf9d0aa591caf039c92bbc`)
+are installed under `/glade/work/fillmore/chempas-a/ncarenv-25.10-gcc`. They
+were built with `ncarenv/25.10`, GCC 14.3.0, Cray MPICH 8.1.32, NetCDF 4.9.3
+(NetCDF-Fortran 4.6.2), and PnetCDF 1.14.1, and the MUSICA build passes all 30
+MUSICA unit tests. The `env.sh` in that directory does three things:
+
+- purges your loaded modules and loads exactly that module set;
+- exports `MUSICA_REV`, `NETCDF`, `NETCDFF`, `PNETCDF`, `CHEMPAS_DEPS`, `PIO`,
+  `MUSICA_PREFIX`, `CHEMPAS_MAKE_TARGET`, and `PKG_CONFIG_PATH`; and
+- stops with an error if the active `gfortran` is not the one that built
+  MUSICA.
+
+```bash
+source /glade/work/fillmore/chempas-a/ncarenv-25.10-gcc/env.sh
+```
+
+Then continue with [the MUSICA metadata checks](#36-build-the-pinned-musica-dependency)
+and [Build CheMPAS-A and Verify the MUSICA Link](#310-build-chempas-a-and-verify-the-musica-link).
+Source the same `env.sh` in PBS run scripts.
+
+`BUILD-INFO.md` in the same directory records how the libraries were built and
+tested. The TUV-x data from the pinned MUSICA revision is in
+`$MUSICA_PREFIX/share/tuvx/data`. In run directories, link it as `data` in
+place of a MUSICA checkout's `configs/tuvx/data`.
+
+### 3.9.2 Option B: build PIO and MUSICA yourself
+
+Build on a compute node rather than a shared login node. Start an
 [interactive development job](https://ncar-hpc-docs.readthedocs.io/en/latest/pbs/),
-replacing `YOUR_PROJECT_CODE`:
+pin [`ncarenv/25.10`](https://arc.ucar.edu/articles/1006), select GCC 14.3.0,
+and load compiler-matched I/O libraries. Replace `YOUR_PROJECT_CODE` below:
 
 ```bash
 export PROJECT_CODE=YOUR_PROJECT_CODE
@@ -464,51 +513,55 @@ qinteractive -A "$PROJECT_CODE" -l walltime=02:00:00
 module --force purge
 module load ncarenv/25.10
 module reset
-module swap intel cce
+module swap intel gcc/14.3.0
 module load cmake netcdf parallel-netcdf
 module -t list
 
-command -v cc CC ftn cmake pkg-config nc-config nf-config pnetcdf-config
+command -v mpicc mpicxx mpif90 mpifort cmake pkg-config nc-config nf-config pnetcdf-config
 
 export NETCDF="$(nc-config --prefix)"
 export NETCDFF="$(nf-config --prefix)"
 export PNETCDF="$(pnetcdf-config --prefix)"
-export CHEMPAS_DEPS="/glade/work/$USER/chempas-a/ncarenv-25.10-cce"
+export CHEMPAS_DEPS="/glade/work/$USER/chempas-a/ncarenv-25.10-gcc"
 export PIO="$CHEMPAS_DEPS/pio-2.6.9"
-export MUSICA_PREFIX="$CHEMPAS_DEPS/musica-$MUSICA_REV"
-export CHEMPAS_MAKE_TARGET=cray
+export MUSICA_PREFIX="$CHEMPAS_DEPS/musica-0.16.5"
+export CHEMPAS_MAKE_TARGET=gfortran
 ```
 
-Build the reference PIO release with the same Cray wrappers and I/O modules:
+Build PIO 2.6.9 with the same MPI wrappers and I/O modules:
 
 ```bash
 git clone --depth 1 --branch pio2_6_9 \
   https://github.com/NCAR/ParallelIO.git ParallelIO-2.6.9
-cmake -S ParallelIO-2.6.9 -B ParallelIO-2.6.9/build-derecho-cce \
+cmake -S ParallelIO-2.6.9 -B ParallelIO-2.6.9/build-derecho-gcc \
   -DCMAKE_BUILD_TYPE=Release \
   -DCMAKE_INSTALL_PREFIX="$PIO" \
-  -DCMAKE_C_COMPILER=cc \
-  -DCMAKE_Fortran_COMPILER=ftn \
+  -DCMAKE_C_COMPILER=mpicc \
+  -DCMAKE_Fortran_COMPILER=mpifort \
   -DPIO_ENABLE_TIMING=OFF \
   -DPIO_ENABLE_TESTS=OFF
-cmake --build ParallelIO-2.6.9/build-derecho-cce --parallel 8
-cmake --install ParallelIO-2.6.9/build-derecho-cce
+cmake --build ParallelIO-2.6.9/build-derecho-gcc --parallel 8
+cmake --install ParallelIO-2.6.9/build-derecho-gcc
 ```
 
-Do not load Derecho's `musica/0.10.1` module: it does not satisfy the CheMPAS-A
-version, revision, or MIEM API requirements. Build the pinned package with the
-Cray compiler wrappers:
+Do not load Derecho's `musica/0.10.1` module; it is too old and lacks the
+required MIEM revision/API. Build the pinned MUSICA package with the MPI
+wrappers. Set `MUSICA_ENABLE_TESTS=OFF`: `BUILD_TESTING=OFF` does not disable
+MUSICA's unit tests, and on Derecho they fail to link. The NCAR compiler
+wrappers add `-I/glade/u/apps/derecho/25.10/opt/view/include`, which puts a
+newer system googletest ahead of MUSICA's pinned copy.
 
 ```bash
-cmake -S MUSICA-CheMPAS-A -B MUSICA-CheMPAS-A/build-derecho-cce \
+cmake -S MUSICA-CheMPAS-A -B MUSICA-CheMPAS-A/build-derecho-gcc \
   -DFETCHCONTENT_TRY_FIND_PACKAGE_MODE=NEVER \
   -DCMAKE_BUILD_TYPE=Release \
   -DCMAKE_INSTALL_PREFIX="$MUSICA_PREFIX" \
-  -DCMAKE_C_COMPILER=cc \
-  -DCMAKE_CXX_COMPILER=CC \
-  -DCMAKE_Fortran_COMPILER=ftn \
+  -DCMAKE_C_COMPILER=mpicc \
+  -DCMAKE_CXX_COMPILER=mpicxx \
+  -DCMAKE_Fortran_COMPILER=mpifort \
   -DBUILD_SHARED_LIBS=OFF \
   -DBUILD_TESTING=OFF \
+  -DMUSICA_ENABLE_TESTS=OFF \
   -DMUSICA_BUILD_FORTRAN_INTERFACE=ON \
   -DMUSICA_ENABLE_MPI=ON \
   -DMUSICA_ENABLE_MICM=ON \
@@ -517,14 +570,69 @@ cmake -S MUSICA-CheMPAS-A -B MUSICA-CheMPAS-A/build-derecho-cce \
   -DMUSICA_ENABLE_CARMA=OFF \
   -DMUSICA_ENABLE_MIAM=OFF \
   -DMUSICA_USE_FMT=OFF
-cmake --build MUSICA-CheMPAS-A/build-derecho-cce --parallel 8
-cmake --install MUSICA-CheMPAS-A/build-derecho-cce
+cmake --build MUSICA-CheMPAS-A/build-derecho-gcc --parallel 8
+cmake --install MUSICA-CheMPAS-A/build-derecho-gcc
 ```
 
-Use the same `module` commands in later PBS run scripts. Changing the compiler
-or `ncarenv` stack after compilation can select incompatible MPI and I/O
-libraries. For current module and compiler guidance, see the
-[NSF NCAR Derecho compiler documentation](https://ncar-hpc-docs.readthedocs.io/en/latest/compute-systems/derecho/compiling-code-on-derecho/).
+Use the same `ncarenv`, GCC, MPI, and I/O module list in PBS run scripts. NSF
+NCAR documents the wrappers and hierarchical modules in
+[Compiling Code on Derecho](https://ncar-hpc-docs.readthedocs.io/en/latest/compute-systems/derecho/compiling-code-on-derecho/).
+
+#### Optional: run MUSICA's unit tests
+
+To check a MUSICA build, configure a separate tree with the tests enabled and
+without the system googletest include:
+
+```bash
+(
+  unset NCAR_INC_0_COMMON
+  cmake -S MUSICA-CheMPAS-A -B MUSICA-CheMPAS-A/build-derecho-gcc-tests \
+    -DFETCHCONTENT_TRY_FIND_PACKAGE_MODE=NEVER \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_C_COMPILER=mpicc \
+    -DCMAKE_CXX_COMPILER=mpicxx \
+    -DCMAKE_Fortran_COMPILER=mpifort \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DMUSICA_ENABLE_TESTS=ON \
+    -DMUSICA_BUILD_FORTRAN_INTERFACE=ON \
+    -DMUSICA_ENABLE_MPI=ON \
+    -DMUSICA_ENABLE_MICM=ON \
+    -DMUSICA_ENABLE_MIEM=ON \
+    -DMUSICA_ENABLE_TUVX=ON \
+    -DMUSICA_ENABLE_CARMA=OFF \
+    -DMUSICA_ENABLE_MIAM=OFF \
+    -DMUSICA_USE_FMT=OFF
+  cmake --build MUSICA-CheMPAS-A/build-derecho-gcc-tests --parallel 8
+)
+```
+
+MUSICA registers each test as `mpirun -v -np 2 <test>`, but Derecho has no
+`mpirun` executable. Its PALS `mpiexec` also needs a host list outside a
+multi-node job. A small wrapper runs the tests on two ranks on the current
+node:
+
+```bash
+mkdir -p mpirun-shim
+cat > mpirun-shim/mpirun <<'EOF'
+#!/bin/bash
+# MUSICA tests call "mpirun -v -np N <test>"; run them with PALS on this node
+np=1
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -v) shift ;;
+    -np|-n) np="$2"; shift 2 ;;
+    *) break ;;
+  esac
+done
+exec mpiexec --hosts localhost -n "$np" "$@"
+EOF
+chmod +x mpirun-shim/mpirun
+
+PATH="$PWD/mpirun-shim:$PATH" \
+  ctest --test-dir MUSICA-CheMPAS-A/build-derecho-gcc-tests --output-on-failure
+```
+
+All 30 tests pass with the `ncarenv/25.10` GCC 14.3.0 stack.
 
 ## 3.10 Build CheMPAS-A and Verify the MUSICA Link
 
